@@ -1,0 +1,87 @@
+.sidebar {
+    width: 200px; /* Ancho fijo */
+    overflow-y: auto; /* Scroll vertical cuando sea necesario */
+    overflow-x: hidden; /* Oculta el scroll horizontal */
+    background: #666672; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    scrollbar-width: thin; /* Firefox: barra de scroll más delgada */
+    scrollbar-color: #888 #405bd6; /* Color de la barra y fondo */
+}
+
+.sidebar.collapsed {
+    width: 45px; /* Ancho del menú colapsado */
+}
+
+/* Personalización del scroll para Chrome, Edge, y Safari */
+.sidebar::-webkit-scrollbar {
+    width: 6px; /* Ancho del scroll */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color de la barra */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #222; /* Color de fondo */
+}
+
+
+.menu-item {
+    list-style: none; /* Eliminar puntos de la lista */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el elemento */
+}
+
+.menu-header {
+    display: flex;
+    align-items: center; /* Centrando verticalmente */
+    padding: 12px 10px; /* Espaciado interno */
+    transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
+}
+
+.menu-header:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Color de fondo al pasar el cursor */
+}
+
+.icon {
+    font-size: 20px; /* Tamaño del ícono */
+    margin-right: 20px; /* Espaciado a la derecha del ícono */
+}
+
+.arrow {
+    margin-left: auto; /* Alinear flecha a la derecha */
+    transition: transform 0.3s; /* Transición suave para la rotación */
+}
+
+.rotate {
+    transform: rotate(90deg); /* Rotar la flecha */
+}
+
+.sub-menu, .third-menu {
+    list-style: none;
+    display: none; /* Ocultar submenús por defecto */
+    flex-direction: column; /* Disposición vertical */
+    padding-left: 10px; /* Espaciado a la izquierda */
+}
+
+.menu-item.active > .sub-menu,
+.menu-item.active > .third-menu {
+    display: flex; /* Mostrar submenús cuando el elemento es activo */
+}
+
+.sub-menu li, .third-menu li {
+    padding: 8px 10px; /* Espaciado interno en los ítems de los submenús */
+    transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
+}
+
+/* .sub-menu li:hover, .third-menu li:hover {
+    background-color: rgba(255, 255, 255, 0.15); 
+} */
+
+.sub-menu a, .third-menu a {
+    color: #fff; /* Color del texto en el submenú */
+    text-decoration: none; /* Sin subrayado en enlaces */
+    display: block; /* Hacer que el enlace ocupe todo el espacio disponible */
+}
+
+

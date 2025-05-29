@@ -1,0 +1,8 @@
+<footer class="d-flex bg-dark text-white text-center py-2 mt-auto align-items-center justify-content-center">
+    <div id="footerinf" style="width: 90%;">
+        <span>&copy; <?php echo date("Y"); ?> INRtools - <?php echo $ambiente; ?>.
+            Todos los derechos reservados.</span><br>
+        <span>Powered by: Intendencia Nacional de Riesgos - DNR - IL - 2025</span>
+    </div>
+    <div id="contador-sesion" class="text-secondary">ExpireAt: <span id="tiempo-restante"></span></div>
+</footer>

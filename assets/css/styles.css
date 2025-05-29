@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Estilos para el main-content */
+#main-content {
+    flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+    padding: 50px; /* Espaciado interno */
+    background-color: #f8f9fa; /* Color de fondo */
+    transition: margin-left 0.3s; /* Transición suave al colapsar/expandir el sidebar */
+}
+
+/* Cuando el sidebar está colapsado, ajustar el margen */
+.sidebar.collapsed + #main-content {
+    margin-left: 0; /* Sin margen cuando el sidebar está colapsado */
+}
+
+
+.div.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    /* text-transform: uppercase; */
+    letter-spacing: 2px;
+    /* background: linear-gradient(90deg, #0066ff, #00ccff); Gradiente moderno */
+    padding: 5px 30px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto de hover */
+.div.title:hover {
+    transform: translateY(-5px); /* Levanta el texto ligeramente */
+    box-shadow: 0 8px 20px rgba(0, 102, 255, 0.4); /* Aumenta la sombra en hover */
+}
+
+.tituloPagina {
+    font-size: 24px ;
+    text-shadow: 0px 0px 9px #7d8b9b;
+}
+
+
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .div.title {
+        font-size: 24px;
+        padding: 12px 25px;
+    }
+}
+
+.pendiente {
+    color: red !important;
+    font-weight: bold; /* Opcional: Añade negrita */
+}
+
+.table-container {
+    max-height: 400px; /* Ajusta la altura según sea necesario */
+    overflow-y: auto;  /* Activa el desplazamiento vertical */
+    border: 1px solid #dee2e6; /* Opcional: agrega un borde */
+}
+
+.table {
+    border-collapse: collapse; /* Colapsa los bordes */
+}
+
+
+thead {
+    position: sticky; /* Fija la posición */
+    top: 0; /* Fija en la parte superior del contenedor */
+    background-color: white; /* Fondo blanco para el encabezado */
+    z-index: 10; /* Asegura que el encabezado esté por encima del contenido */
+}
+
+th, td {
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto */
+    border-bottom: 1px solid #dee2e6; /* Línea inferior */
+}
+
+/* Tamaño personalizado para el modal */
+.modal-custom {
+    max-width: 400px; /* Ancho máximo */
+    width: 100%; /* Ancho completo */
+    max-height: 300px; /* Altura máxima del modal (80% de la altura de la ventana) */
+}
+
+.scrollable-list {
+    max-height: 200px; /* Ajusta la altura máxima según tus necesidades */
+    overflow-y: auto;  /* Habilita el scroll vertical */
+}
+
+#tablaActividadesFull {
+    width: 200px; /* Define el ancho de la tabla */
+}
+
+.modal-header {
+    background-color: #17a2b8; /* Cambia el color aquí */
+    color: white; /* Cambia el color del texto si es necesario */
+}
+
+
