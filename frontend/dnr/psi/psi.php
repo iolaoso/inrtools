@@ -54,84 +54,111 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                             <h4>Datos PSI</h4>
                         </div>
                         <div class="card-body">
-                            <form id="formPsi" method="POST" action="#">
-                                <input type="hidden" id="id" name="id" value="0" />
+                            <div class="container">
+                                <form id="formPsi" method="POST" action="#">
+                                    <input type="hidden" id="id" name="id" value="0" />
 
-                                <div class="mb-3">
-                                    <label for="NUMERO" class="form-label">NUMERO</label>
-                                    <input type="text" class="form-control" id="NUMERO" name="NUMERO" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="COD_UNICO" class="form-label">COD_UNICO</label>
-                                    <input type="text" class="form-control" id="COD_UNICO" name="COD_UNICO" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="RUC" class="form-label">RUC</label>
-                                    <input type="text" class="form-control" id="RUC" name="RUC" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="RAZON_SOCIAL" class="form-label">RAZÓN SOCIAL</label>
-                                    <input type="text" class="form-control" id="RAZON_SOCIAL" name="RAZON_SOCIAL"
-                                        required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="SEGMENTO" class="form-label">SEGMENTO</label>
-                                    <input type="text" class="form-control" id="SEGMENTO" name="SEGMENTO">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="ZONAL" class="form-label">ZONAL</label>
-                                    <input type="text" class="form-control" id="ZONAL" name="ZONAL">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="ESTADO_JURIDICO" class="form-label">ESTADO JURÍDICO</label>
-                                    <input type="text" class="form-control" id="ESTADO_JURIDICO" name="ESTADO_JURIDICO">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="TIPO_SUPERVISION" class="form-label">TIPO SUPERVISIÓN</label>
-                                    <input type="text" class="form-control" id="TIPO_SUPERVISION"
-                                        name="TIPO_SUPERVISION">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="FECHA_INICIO" class="form-label">FECHA INICIO</label>
-                                    <input type="date" class="form-control" id="FECHA_INICIO" name="FECHA_INICIO">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="FECHA_FIN" class="form-label">FECHA FIN</label>
-                                    <input type="date" class="form-control" id="FECHA_FIN" name="FECHA_FIN">
-                                </div>
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="NUMERO" class="form-label">NÚMERO</label>
+                                            <input type="text" class="form-control" id="NUMERO" name="NUMERO" required>
+                                        </div>
+                                    </div>
 
-                                <!-- Puedes continuar agregando más campos aquí igual -->
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="COD_UNICO" class="form-label">CÓDIGO ÚNICO</label>
+                                            <input type="text" class="form-control" id="COD_UNICO" name="COD_UNICO"
+                                                required>
+                                        </div>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="ULTIMO_CORTE" class="form-label">ULTIMO CORTE</label>
-                                    <input type="number" class="form-control" id="ULTIMO_CORTE" name="ULTIMO_CORTE"
-                                        value="2" required>
-                                </div>
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="RUC" class="form-label">RUC</label>
+                                            <input type="text" class="form-control" id="RUC" name="RUC" required>
+                                        </div>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="EST_REGISTRO" class="form-label">ESTADO REGISTRO</label>
-                                    <select class="form-control" id="EST_REGISTRO" name="EST_REGISTRO" required>
-                                        <option value="ACT">ACTIVO</option>
-                                        <option value="DEL">ELIMINADO</option>
-                                    </select>
-                                </div>
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="RAZON_SOCIAL" class="form-label">RAZÓN SOCIAL</label>
+                                            <input type="text" class="form-control" id="RAZON_SOCIAL"
+                                                name="RAZON_SOCIAL" required>
+                                        </div>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="USR_CREACION" class="form-label">Usuario Creación</label>
-                                    <input type="text" readonly class="form-control" id="USR_CREACION"
-                                        name="USR_CREACION" value="<?= htmlspecialchars($nickname) ?>">
-                                </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-4">
+                                            <label for="SEGMENTO" class="form-label">SEGMENTO</label>
+                                            <input type="text" class="form-control" id="SEGMENTO" name="SEGMENTO">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="ZONAL" class="form-label">ZONAL</label>
+                                            <input type="text" class="form-control" id="ZONAL" name="ZONAL">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="ESTADO_JURIDICO" class="form-label">ESTADO JURÍDICO</label>
+                                            <input type="text" class="form-control" id="ESTADO_JURIDICO"
+                                                name="ESTADO_JURIDICO">
+                                        </div>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <button class="btn btn-primary btn-sm btn-block save-btn" type="submit" title="Save"
-                                        onclick="asignarActions(this, 'save');">
-                                        Guardar Registro
-                                    </button>
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="TIPO_SUPERVISION" class="form-label">TIPO SUPERVISIÓN</label>
+                                            <input type="text" class="form-control" id="TIPO_SUPERVISION"
+                                                name="TIPO_SUPERVISION">
+                                        </div>
+                                    </div>
 
-                                    <button type="button" id="btnLimpiar"
-                                        class="btn btn-secondary btn-sm btn-block">Limpiar</button>
-                                </div>
-                            </form>
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="FECHA_INICIO" class="form-label">FECHA INICIO</label>
+                                            <input type="date" class="form-control" id="FECHA_INICIO"
+                                                name="FECHA_INICIO">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="FECHA_FIN" class="form-label">FECHA FIN</label>
+                                            <input type="date" class="form-control" id="FECHA_FIN" name="FECHA_FIN">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col">
+                                            <label for="ULTIMO_CORTE" class="form-label">ÚLTIMO CORTE</label>
+                                            <input type="number" class="form-control" id="ULTIMO_CORTE"
+                                                name="ULTIMO_CORTE" value="2" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="EST_REGISTRO" class="form-label">ESTADO REGISTRO</label>
+                                        <select class="form-control" id="EST_REGISTRO" name="EST_REGISTRO" required>
+                                            <option value="ACT">ACTIVO</option>
+                                            <option value="DEL">ELIMINADO</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="USR_CREACION" class="form-label">Usuario Creación</label>
+                                        <input type="text" readonly class="form-control" id="USR_CREACION"
+                                            name="USR_CREACION" value="<?= htmlspecialchars($nickname) ?>">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <button class="btn btn-primary btn-sm btn-block save-btn" type="submit"
+                                            title="Save" onclick="asignarActions(this, 'save');">
+                                            Guardar Registro
+                                        </button>
+                                        <button type="button" id="btnLimpiar"
+                                            class="btn btn-secondary btn-sm btn-block">Limpiar</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
