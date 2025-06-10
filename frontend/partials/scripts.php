@@ -6,13 +6,13 @@ const nickname = '<?php echo $nickname; ?>';
 const usrDir = '<?php echo $direccion; ?>';
 const usrRol = '<?php echo $rol_nombre; ?>';
 </script>
-<script src="<?php echo $base_url; ?>/assets/js/menuItems.js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/sidebarFunctions.js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/exportarTabla.js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/filtrarTablas.js"></script>
-<script src="<?php echo $base_url; ?>/assets/js/entidades.js"></script>
+<script src="<?php echo $base_url; ?>/assets/js/menuItems.js?v=<?= time(); ?>"></script>
+<script src="<?php echo $base_url; ?>/assets/js/sidebarFunctions.js?v=<?= time(); ?>"></script>
+<script src="<?php echo $base_url; ?>/assets/js/exportarTabla.js?v=<?= time(); ?>"></script>
+<script src="<?php echo $base_url; ?>/assets/js/filtrarTablas.js?v=<?= time(); ?>"></script>
+<script src="<?php echo $base_url; ?>/assets/js/entidades.js?v=<?= time(); ?>"></script>
 <!-- Enlazar JavaScript para la caducidad de sesión -->
-<script src="<?php echo $base_url; ?>/assets/js/session_timeout.js"></script>
+<script src="<?php echo $base_url; ?>/assets/js/session_timeout.js?v=<?= time(); ?>"></script>
 <!-- Icons -->
 <script src="https://kit.fontawesome.com/1d3a0435ab.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
