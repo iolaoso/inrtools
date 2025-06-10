@@ -1,5 +1,82 @@
 console.log("psi.js loaded");
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('previewBtn').addEventListener('click', function() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert("Por favor, selecciona un archivo.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            const worksheet = workbook.Sheets["BASE_PSI"];
+            if (!worksheet) {
+                alert("No se encontró la hoja 'BASE_PSI'.");
+                return;
+            }
+
+            const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+            const startRow = json.findIndex(row => row[0] === "T_PSIDATA");
+            const filteredData = json.slice(startRow + 1);
+
+            // Mostrar datos en formato JSON
+            console.log("Datos en formato JSON:", JSON.stringify(filteredData, null, 2));
+
+            // Verificar la estructura de los datos
+            console.log("Datos filtrados:", filteredData);
+
+            // Limpiar la tabla antes de llenarla
+            document.getElementById('tableHeaders').innerHTML = '';
+            document.getElementById('tableBody').innerHTML = '';
+
+            // Crear encabezados
+            if (filteredData.length > 0) {
+                const headers = filteredData[0];
+                headers.forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header;
+                    document.getElementById('tableHeaders').appendChild(th);
+                });
+
+                // Llenar la tabla con los datos
+                filteredData.slice(1).forEach(row => {
+                    const tr = document.createElement('tr');
+                    row.forEach(cell => {
+                        const td = document.createElement('td');
+                        td.textContent = cell;
+                        tr.appendChild(td);
+                    });
+                    document.getElementById('tableBody').appendChild(tr);
+                });
+            } else {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = '100%';
+                td.textContent = 'No hay datos para mostrar.';
+                tr.appendChild(td);
+                document.getElementById('tableBody').appendChild(tr);
+            }
+
+            // Inicializar DataTable
+            try {
+                const dataTable = new DataTable('#tablePreviewPsi');
+            } catch (error) {
+                console.error("Error al inicializar tablePreviewPsi:", error);
+            }
+
+            // Mostrar el modal
+            $('#previewModal').modal('show');
+        };
+
+        reader.readAsArrayBuffer(file);
+    });
+});
+
 // Función para cargar datos en el modal
 function cargarDatosPsi(button) {
     const id = button.getAttribute('data-id');
@@ -18,7 +95,7 @@ function cargarDatosPsi(button) {
             if (selectedData) {
                 //console.log(selectedData.i);
                 document.getElementById("detalleid").value = selectedData.id;
-                document.getElementById("detalleFecCorte").value = selectedData.FECHA_CORTE;
+                document.getElementById("detalleFecCorte").value = selectedData.FECHA_CORTE_INFORMACION;
                 document.getElementById("detalleRUC").value = selectedData.RUC;
                 document.getElementById("detalleSegmento").value = selectedData.SEGMENTO;
                 document.getElementById("detalleZonal").value = selectedData.ZONAL;
@@ -42,7 +119,7 @@ function cargarDatosPsi(button) {
                 document.getElementById("detalleUltBal").value = selectedData.FECHA_ULTIMO_BALANCE;
                 document.getElementById("detalleActivos").value = selectedData.ACTIVOS;
                 document.getElementById("detalleUltRiesgo").value = selectedData.ULTIMO_RIESGO;
-                document.getElementById("detalleResFinPSI").value = selectedData.RESOLUCION_FIN_PSI;
+                document.getElementById("detalleResFinPSI").value = selectedData.NUM_RESOLUCION_FIN_PSI;
                 document.getElementById("detalleFecResFinPSI").value = selectedData.FECHA_RESOLUCION_FIN_PSI;
                 document.getElementById("detalleMotCierre").value = selectedData.MOTIVO_CIERRE;
                 document.getElementById("detalleEstSup").value = selectedData.ESTRATEGIA_SUPERVISION;

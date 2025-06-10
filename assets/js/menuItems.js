@@ -1,3 +1,4 @@
+
 const menuItems = [
     {
         title: 'HOME',
@@ -115,8 +116,8 @@ const menuItems = [
         subMenu: [
             { title: 'Informes', 
                 url: '/INRtools/frontend/dns/informes/informes.php',
-                direccion: ['DNS'],
-                //direccion: ($rol_nombre == 'SUPERUSER') ? ['ALL'] : ['DNS'], 
+                //direccion: ['DNS'],
+                direccion: (usrRol === 'SUPERUSER') ? ['ALL'] : ['DNS'], 
                 rol: ['SUPERUSER']//,'ADMINISTRADOR','ANALISTA','DIRECTOR']
             },
             {
