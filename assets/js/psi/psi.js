@@ -1,82 +1,5 @@
 console.log("psi.js loaded");
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('previewBtn').addEventListener('click', function() {
-        const fileInput = document.getElementById('fileInput');
-        const file = fileInput.files[0];
-        if (!file) {
-            alert("Por favor, selecciona un archivo.");
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: 'array' });
-
-            const worksheet = workbook.Sheets["BASE_PSI"];
-            if (!worksheet) {
-                alert("No se encontró la hoja 'BASE_PSI'.");
-                return;
-            }
-
-            const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-            const startRow = json.findIndex(row => row[0] === "T_PSIDATA");
-            const filteredData = json.slice(startRow + 1);
-
-            // Mostrar datos en formato JSON
-            console.log("Datos en formato JSON:", JSON.stringify(filteredData, null, 2));
-
-            // Verificar la estructura de los datos
-            console.log("Datos filtrados:", filteredData);
-
-            // Limpiar la tabla antes de llenarla
-            document.getElementById('tableHeaders').innerHTML = '';
-            document.getElementById('tableBody').innerHTML = '';
-
-            // Crear encabezados
-            if (filteredData.length > 0) {
-                const headers = filteredData[0];
-                headers.forEach(header => {
-                    const th = document.createElement('th');
-                    th.textContent = header;
-                    document.getElementById('tableHeaders').appendChild(th);
-                });
-
-                // Llenar la tabla con los datos
-                filteredData.slice(1).forEach(row => {
-                    const tr = document.createElement('tr');
-                    row.forEach(cell => {
-                        const td = document.createElement('td');
-                        td.textContent = cell;
-                        tr.appendChild(td);
-                    });
-                    document.getElementById('tableBody').appendChild(tr);
-                });
-            } else {
-                const tr = document.createElement('tr');
-                const td = document.createElement('td');
-                td.colSpan = '100%';
-                td.textContent = 'No hay datos para mostrar.';
-                tr.appendChild(td);
-                document.getElementById('tableBody').appendChild(tr);
-            }
-
-            // Inicializar DataTable
-            try {
-                const dataTable = new DataTable('#tablePreviewPsi');
-            } catch (error) {
-                console.error("Error al inicializar tablePreviewPsi:", error);
-            }
-
-            // Mostrar el modal
-            $('#previewModal').modal('show');
-        };
-
-        reader.readAsArrayBuffer(file);
-    });
-});
-
 // Función para cargar datos en el modal
 function cargarDatosPsi(button) {
     const id = button.getAttribute('data-id');
@@ -248,3 +171,144 @@ function asignarActions(button, action) {
 }
 
 
+function excelDateToJSDate(excelDate) {
+    const date = new Date((excelDate - (25567 + 1)) * 86400 * 1000);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Meses empiezan desde 0
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`; // Formato YYYY-MM-DD
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('previewBtn').addEventListener('click', function() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert("Por favor, selecciona un archivo.");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            const worksheet = workbook.Sheets["BASE_PSI"];
+            if (!worksheet) {
+                alert("No se encontró la hoja 'BASE_PSI'.");
+                return;
+            }
+
+            const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+            const startRow = json.findIndex(row => row[0] === "T_PSIDATA");
+            const filteredData = json.slice(startRow + 1);
+
+            const dateHeaders = [
+                "FECHA_INICIO",
+                "FECHA_FIN",
+                "FECHA_APROBACION_PLAN_FISICO",
+                "FECHA_INFORME",
+                "FECHA_RESOLUCION",
+                "FECHA_RESOLUCION_AMPLIACION",
+                "FECHA_ULTIMO_BALANCE",
+                "FECHA_RESOLUCION_FIN_PSI",
+                "FECHA_CORTE_INFORMACION",
+                "FECHA_CREACION",
+                "FECHA_ACTUALIZACION",
+                "DELETED_AT"
+            ]; // Campos de fecha
+            const headers = filteredData[0];
+
+            // Convertir las fechas en el JSON y mantener los datos de las celdas vacías o nulas 
+            const formattedData = filteredData.map((row, rowIndex) => {
+                if (rowIndex === 0) return row; // Dejar los encabezados sin cambios
+                // Crear un nuevo array de celdas para la fila actual
+                const newRow = new Array(headers.length).fill(''); // Inicializar con cadenas vacías
+                row.forEach((cell, index) => {
+                    if (dateHeaders.includes(headers[index]) && typeof cell === 'number') {
+                        newRow[index] = excelDateToJSDate(cell); // Formatear la fecha
+                    } else if (cell === null || cell === undefined) {
+                        newRow[index] = ''; // Mantener celdas vacías
+                    } else if (typeof cell === 'string') {
+                        newRow[index] = cell.trim(); // Limpiar espacios en blanco
+                    } else {
+                        newRow[index] = cell; // Mantener el valor original si es de otro tipo
+                    }
+                });
+                return newRow; // Retornar la nueva fila con el mismo número de celdas
+            });
+
+            console.log("Datos formateados:", JSON.stringify(formattedData, null, 2));
+
+            document.getElementById('tableHeaders').innerHTML = '';
+            document.getElementById('tableBody').innerHTML = '';
+
+            if (formattedData.length > 0) {
+                headers.forEach(header => {
+                    const th = document.createElement('th');
+                    th.textContent = header;
+                    document.getElementById('tableHeaders').appendChild(th);
+                });
+
+                formattedData.slice(1).forEach(row => {
+                    const tr = document.createElement('tr');
+                    row.forEach(cell => {
+                        const td = document.createElement('td');
+                        td.textContent = cell === undefined ? '' : cell; // Mantener celdas vacías
+                        tr.appendChild(td);
+                    });
+                    document.getElementById('tableBody').appendChild(tr);
+                });
+            } else {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = '100%';
+                td.textContent = 'No hay datos para mostrar.';
+                tr.appendChild(td);
+                document.getElementById('tableBody').appendChild(tr);
+            }
+
+            
+            // Inicializar DataTable con 5 registros por página
+            $('#tablePreviewPsi').DataTable({
+                dom: 'Bfrtip',
+                retrieve: true, // para que solo cree una instancia de DataTable
+                pageLength: 4, // Establecer el número de registros por página
+                lengthChange: false, // Desactivar la opción "Show entries"
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Reporte_Gestiones_INR',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ],
+                columnDefs: [
+                    { targets: [0, 1, 2, 33, 34, 35, 36, 37, 38], visible: false }
+                ]
+            });
+
+            $('#previewModal').modal('show');
+
+            // Destruir DataTable al cerrar el modal
+            $('#previewModal').on('hidden.bs.modal', function () {
+                $('#tablePreviewPsi').DataTable().destroy(); // Destruir la instancia de DataTable
+                $('#tableBody').empty(); // Limpiar el cuerpo de la tabla
+                $('#tableHeaders').empty(); // Limpiar los encabezados
+            });
+        };
+
+        reader.readAsArrayBuffer(file);
+    });
+});
+
+
+
+
+
+
+            
+
+ 
