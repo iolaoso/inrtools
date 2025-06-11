@@ -179,7 +179,6 @@ function excelDateToJSDate(excelDate) {
     return `${year}-${month}-${day}`; // Formato YYYY-MM-DD
 }
 
-
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('previewBtn').addEventListener('click', function() {
         const fileInput = document.getElementById('fileInput');
@@ -271,24 +270,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
             
             // Inicializar DataTable con 5 registros por página
-            $('#tablePreviewPsi').DataTable({
-                dom: 'Bfrtip',
-                retrieve: true, // para que solo cree una instancia de DataTable
-                pageLength: 4, // Establecer el número de registros por página
-                lengthChange: false, // Desactivar la opción "Show entries"
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        title: 'Reporte_Gestiones_INR',
-                        exportOptions: {
-                            columns: ':visible'
+            if ($.fn.dataTable.isDataTable('#tablePreviewPsi')) {
+                table = $('#tablePreviewPsi').DataTable();
+            } else {
+                $('#tablePreviewPsi').DataTable({
+                    dom: 'Bfrtip',
+                    retrieve: true, // para que solo cree una instancia de DataTable
+                    pageLength: 4, // Establecer el número de registros por página
+                    lengthChange: false, // Desactivar la opción "Show entries"
+                    buttons: [
+                        {
+                            extend: 'excelHtml5',
+                            title: 'Reporte_Gestiones_INR',
+                            exportOptions: {
+                                columns: ':visible'
+                            }
                         }
-                    }
-                ],
-                columnDefs: [
-                    { targets: [0, 1, 2, 33, 34, 35, 36, 37, 38], visible: false }
-                ]
-            });
+                    ],
+                    columnDefs: [
+                        { targets: [0, 1, 2, 33, 34, 35, 36, 37, 38], visible: false }
+                    ]
+                });
+            }
 
             $('#previewModal').modal('show');
 
