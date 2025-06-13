@@ -58,7 +58,13 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                                 <div class="container mb-3 row">
                                     <h2>Cargar Archivo de Excel</h2>
                                     <input type="file" id="fileInput" accept=".xlsx, .xls" class="form-control mb-3">
-                                    <button id="previewBtn" class="btn btn-sm btn-primary">Vista Previa</button>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" id="previewBtn" class="btn btn-primary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#previewModal">
+                                        <i class="fas fa-eye"></i>
+                                        Vista Previa
+                                    </button>
+
                                 </div>
                                 <form id="formPsi" method="POST" action="#">
                                     <div class="mb-3 row">
@@ -387,7 +393,8 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
     </div>
 
     <!-- Modal Vista Previa-->
-    <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-modal="true">
+    <div class="modal fade" id="previewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="previewModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" role="document">
                 <div class="modal-header">
@@ -396,7 +403,7 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                 </div>
                 <div class="modal-body">
                     <div class="table-container" style="max-height: 700px; overflow-y: auto;">
-                        <table id="tablePreviewPsi" lass="table table-striped table-sm" style="font-size: 12px;">
+                        <table id="tablePreviewPsi" class="table table-striped table-sm" style="font-size: 12px;">
                             <thead>
                                 <tr id="tableHeaders"></tr>
                             </thead>
@@ -405,13 +412,12 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button id="confirmUploadBtn" class="btn btn-success">Cargar a MySQL</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button id="confirmUploadBtn" class="btn btn-success">Cargar a BDD</button>
                 </div>
             </div>
         </div>
     </div>
-
 
 
     <div id="base_url" data-base-url="<?= htmlspecialchars($base_url) ?>"></div>

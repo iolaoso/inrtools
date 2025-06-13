@@ -1,5 +1,8 @@
 console.log("psi.js loaded");
 
+// Obtiene la fecha actual en formato ISO
+const currentDate = new Date().toISOString(); 
+
 // Función para cargar datos en el modal
 function cargarDatosPsi(button) {
     const id = button.getAttribute('data-id');
@@ -179,139 +182,338 @@ function excelDateToJSDate(excelDate) {
     return `${year}-${month}-${day}`; // Formato YYYY-MM-DD
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('previewBtn').addEventListener('click', function() {
-        const fileInput = document.getElementById('fileInput');
-        const file = fileInput.files[0];
-        if (!file) {
-            alert("Por favor, selecciona un archivo.");
+// Configuración optimizada de DataTable
+function initializeDataTable() {
+    const tableId = '#tablePreviewPsi';
+    const defaultOptions = {
+        dom: '<"top"Bf>rt<"bottom"lip>', // Mejor estructura de controles
+        pageLength: 3, // 
+        lengthChange: false,
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+        },
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'PSI Data Export', // Título del archivo Excel
+                text: '<i class="fas fa-file-excel"></i> Excel', // Icono + texto
+                className: 'btn btn-success', // Clases para estilizado
+                exportOptions: {
+                    columns: ':visible',
+                    modifier: {
+                        page: 'all' // Exportar todos los datos, no solo la página actual
+                    }
+                }
+            }
+        ],
+        responsive: true, // Hacer tabla responsive
+        //stateSave: true // Recordar configuración del usuario
+    };
+
+    // Verificar si la tabla existe en el DOM
+    if ($(tableId).length === 0) {
+        console.error('Elemento de tabla no encontrado:', tableId);
+        return null;
+    }
+
+    // Inicializar o recuperar instancia existente
+    let table;
+    if ($.fn.DataTable.isDataTable(tableId)) {
+        table = $(tableId).DataTable();
+        table.destroy(); // Limpiar instancia existente para reinicialización
+    }
+    
+    table = $(tableId).DataTable(defaultOptions);
+
+    // Mejorar accesibilidad
+    $(tableId).attr({
+        'aria-label': 'Tabla de gestiones INR',
+        'role': 'grid'
+    });
+
+    return table;
+}
+
+
+document.getElementById('previewBtn').addEventListener('click', function() {
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    if (!file) {
+        alert("Por favor, selecciona un archivo.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+
+        const worksheet = workbook.Sheets["BASE_PSI"];
+        if (!worksheet) {
+            alert("No se encontró la hoja 'BASE_PSI'.");
             return;
         }
 
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: 'array' });
+        const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+        const startRow = json.findIndex(row => row[0] === "T_PSIDATA");
+        const filteredData = json.slice(startRow + 1);
 
-            const worksheet = workbook.Sheets["BASE_PSI"];
-            if (!worksheet) {
-                alert("No se encontró la hoja 'BASE_PSI'.");
-                return;
-            }
+        const dateHeaders = [
+            "FECHA_INICIO",
+            "FECHA_FIN",
+            "FECHA_APROBACION_PLAN_FISICO",
+            "FECHA_INFORME",
+            "FECHA_RESOLUCION",
+            "FECHA_RESOLUCION_AMPLIACION",
+            "FECHA_ULTIMO_BALANCE",
+            "FECHA_RESOLUCION_FIN_PSI",
+            "FECHA_CORTE_INFORMACION",
+            "FECHA_CREACION",
+            "FECHA_ACTUALIZACION",
+            "DELETED_AT"
+        ]; // Campos de fecha
+        const headers = filteredData[0];
 
-            const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-            const startRow = json.findIndex(row => row[0] === "T_PSIDATA");
-            const filteredData = json.slice(startRow + 1);
+        // Convertir las fechas en el JSON y mantener los datos de las celdas vacías o nulas 
+        const formattedData = filteredData.map((row, rowIndex) => {
+            if (rowIndex === 0) return row; // Dejar los encabezados sin cambios
+            // Crear un nuevo array de celdas para la fila actual
+            const newRow = new Array(headers.length).fill(''); // Inicializar con cadenas vacías
+            row.forEach((cell, index) => {
+                if (dateHeaders.includes(headers[index]) && typeof cell === 'number') {
+                    newRow[index] = excelDateToJSDate(cell); // Formatear la fecha
+                } else if (cell === null || cell === undefined) {
+                    newRow[index] = ''; // Mantener celdas vacías
+                } else if (typeof cell === 'string') {
+                    newRow[index] = cell.trim(); // Limpiar espacios en blanco
+                } else {
+                    newRow[index] = cell; // Mantener el valor original si es de otro tipo
+                }
+            });
+            return newRow; // Retornar la nueva fila con el mismo número de celdas
+        });
 
-            const dateHeaders = [
-                "FECHA_INICIO",
-                "FECHA_FIN",
-                "FECHA_APROBACION_PLAN_FISICO",
-                "FECHA_INFORME",
-                "FECHA_RESOLUCION",
-                "FECHA_RESOLUCION_AMPLIACION",
-                "FECHA_ULTIMO_BALANCE",
-                "FECHA_RESOLUCION_FIN_PSI",
-                "FECHA_CORTE_INFORMACION",
-                "FECHA_CREACION",
-                "FECHA_ACTUALIZACION",
-                "DELETED_AT"
-            ]; // Campos de fecha
-            const headers = filteredData[0];
+        //console.log("Datos formateados:", JSON.stringify(formattedData, null, 2));
 
-            // Convertir las fechas en el JSON y mantener los datos de las celdas vacías o nulas 
-            const formattedData = filteredData.map((row, rowIndex) => {
-                if (rowIndex === 0) return row; // Dejar los encabezados sin cambios
-                // Crear un nuevo array de celdas para la fila actual
-                const newRow = new Array(headers.length).fill(''); // Inicializar con cadenas vacías
-                row.forEach((cell, index) => {
-                    if (dateHeaders.includes(headers[index]) && typeof cell === 'number') {
-                        newRow[index] = excelDateToJSDate(cell); // Formatear la fecha
-                    } else if (cell === null || cell === undefined) {
-                        newRow[index] = ''; // Mantener celdas vacías
-                    } else if (typeof cell === 'string') {
-                        newRow[index] = cell.trim(); // Limpiar espacios en blanco
-                    } else {
-                        newRow[index] = cell; // Mantener el valor original si es de otro tipo
-                    }
-                });
-                return newRow; // Retornar la nueva fila con el mismo número de celdas
+        document.getElementById('tableHeaders').innerHTML = '';
+        document.getElementById('tableBody').innerHTML = '';
+
+        if (formattedData.length > 0) {
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                document.getElementById('tableHeaders').appendChild(th);
             });
 
-            console.log("Datos formateados:", JSON.stringify(formattedData, null, 2));
-
-            document.getElementById('tableHeaders').innerHTML = '';
-            document.getElementById('tableBody').innerHTML = '';
-
-            if (formattedData.length > 0) {
-                headers.forEach(header => {
-                    const th = document.createElement('th');
-                    th.textContent = header;
-                    document.getElementById('tableHeaders').appendChild(th);
-                });
-
-                formattedData.slice(1).forEach(row => {
-                    const tr = document.createElement('tr');
-                    row.forEach(cell => {
-                        const td = document.createElement('td');
-                        td.textContent = cell === undefined ? '' : cell; // Mantener celdas vacías
-                        tr.appendChild(td);
-                    });
-                    document.getElementById('tableBody').appendChild(tr);
-                });
-            } else {
+            formattedData.slice(1).forEach(row => {
                 const tr = document.createElement('tr');
-                const td = document.createElement('td');
-                td.colSpan = '100%';
-                td.textContent = 'No hay datos para mostrar.';
-                tr.appendChild(td);
-                document.getElementById('tableBody').appendChild(tr);
-            }
-
-            
-            // Inicializar DataTable con 5 registros por página
-            if ($.fn.dataTable.isDataTable('#tablePreviewPsi')) {
-                table = $('#tablePreviewPsi').DataTable();
-            } else {
-                $('#tablePreviewPsi').DataTable({
-                    dom: 'Bfrtip',
-                    retrieve: true, // para que solo cree una instancia de DataTable
-                    pageLength: 4, // Establecer el número de registros por página
-                    lengthChange: false, // Desactivar la opción "Show entries"
-                    buttons: [
-                        {
-                            extend: 'excelHtml5',
-                            title: 'Reporte_Gestiones_INR',
-                            exportOptions: {
-                                columns: ':visible'
-                            }
-                        }
-                    ],
-                    columnDefs: [
-                        { targets: [0, 1, 2, 33, 34, 35, 36, 37, 38], visible: false }
-                    ]
+                row.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell === undefined ? '' : cell; // Mantener celdas vacías
+                    tr.appendChild(td);
                 });
-            }
-
-            $('#previewModal').modal('show');
-
-            // Destruir DataTable al cerrar el modal
-            $('#previewModal').on('hidden.bs.modal', function () {
-                $('#tablePreviewPsi').DataTable().destroy(); // Destruir la instancia de DataTable
-                $('#tableBody').empty(); // Limpiar el cuerpo de la tabla
-                $('#tableHeaders').empty(); // Limpiar los encabezados
+                document.getElementById('tableBody').appendChild(tr);
             });
-        };
+        } else {
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.colSpan = '100%';
+            td.textContent = 'No hay datos para mostrar.';
+            tr.appendChild(td);
+            document.getElementById('tableBody').appendChild(tr);
+        }
 
-        reader.readAsArrayBuffer(file);
-    });
+        
+        // Uso recomendado dentro de document.ready
+        $(document).ready(function() {
+            const dataTable = initializeDataTable();
+        });
+        $('#previewModal').modal('show');
+    };
+
+    reader.readAsArrayBuffer(file);
 });
 
+// Configuración del evento click del botón
+document.getElementById('confirmUploadBtn').addEventListener('click', async function() {
+    console.log("Iniciando carga de datos...");
+    
+    try {
+        const button = this;
+        const tablaDatos = $('#tablePreviewPsi').DataTable();
+        
+        // Cambiar estado del botón
+        button.disabled = true;
+        button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...';
+        
+        // Obtener y preparar datos
+        const formattedData = prepareUploadData(tablaDatos);
+        //console.log("Datos preparados:", formattedData);
+        
+        // Subir datos
+        const result = await uploadToDatabase(formattedData);
+        console.log("Resultado de la carga:", {result});
+        // Mostrar resultado
+        showUploadResult(result);
+        
+    } catch (error) {
+        console.error('Error en el proceso:', error);
+        showUploadError(error);
+    } finally {
+        const button = document.getElementById('confirmUploadBtn');
+        if (button) {
+            button.disabled = false;
+            button.textContent = 'Cargar a BDD';
+        }
+    }
+});
 
+/**
+ * Prepara los datos para subir en formato JSON
+ */
+function prepareUploadData(tablaDatos) {
+    if (!tablaDatos) {
+        throw new Error('La tabla de datos no está disponible');
+    }
 
+    const rawData = tablaDatos.rows().data().toArray();
+    const formattedData = {
+        metadata: {
+            timestamp: new Date().toISOString(),
+            totalRecords: rawData.length
+        },
+        records: []
+    };
 
+    rawData.forEach((row, index) => {
+    try {
+        // Asume que las columnas tienen un orden específico
+        const record = {
+            NUMERO: String(row[2] || ''),
+            COD_UNICO: String(row[1] || ''),
+            RUC: String(row[3] || ''),
+            RAZON_SOCIAL: String(row[4] || ''),
+            SEGMENTO: String(row[5] || ''),
+            ZONAL: String(row[6] || ''),
+            ESTADO_JURIDICO: String(row[7] || ''),
+            TIPO_SUPERVISION: String(row[8] || ''),
+            FECHA_INICIO: String(row[9] || ''),
+            FECHA_FIN: String(row[10] || ''),
+            ANIO_INICIO: Number(row[11]) || 0,
+            MES_INICIO: Number(row[12]) || 0,
+            ANIO_VENCIMIENTO: Number(row[13]) || 0,
+            MES_VENCIMIENTO: Number(row[14]) || 0,
+            TRIMESTRE: String(row[15] || ''),
+            ESTADO_PSI: String(row[16] || ''),
+            VIGENCIA_PSI: String(row[17] || ''),
+            FECHA_APROBACION_PLAN_FISICO: String(row[18] || ''),
+            NUM_INFORME: String(row[19] || ''),
+            FECHA_INFORME: String(row[20] || ''),
+            NUM_RESOLUCION: String(row[21] || ''),
+            FECHA_RESOLUCION: String(row[22] || ''),
+            NUM_RESOLUCION_AMPLIACION: String(row[23] || ''),
+            FECHA_RESOLUCION_AMPLIACION: String(row[24] || ''),
+            FECHA_ULTIMO_BALANCE: String(row[25] || ''),
+            ACTIVOS: Number(row[26]) || 0,
+            ULTIMO_RIESGO: Number(row[27]) || 0,
+            NUM_RESOLUCION_FIN_PSI: String(row[28] || ''),
+            FECHA_RESOLUCION_FIN_PSI: String(row[29] || ''),
+            MOTIVO_CIERRE: String(row[30] || ''),
+            ESTRATEGIA_SUPERVISION: String(row[31] || ''),
+            FECHA_CORTE_INFORMACION: String(row[32] || ''),
+            ULTIMO_CORTE: String(row[33] || ''),
+            EST_REGISTRO: String(row[34] || ''),
+            USR_CREACION: String(row[35] || ''),
+            FECHA_CREACION: String(row[36] || ''),
+            FECHA_ACTUALIZACION: String(row[37] || ''),
+            rowIndex: index
+        };
+        formattedData.records.push(record);
+    } catch (error) {
+        console.warn(`Error procesando fila ${index}:`, error);
+    }
+});
 
+    if (formattedData.records.length === 0) {
+        throw new Error('No se encontraron datos válidos para enviar');
+    }
 
-            
+    return formattedData;
+}
 
- 
+/**
+ * Función para subir datos al servidor
+ */
+async function uploadToDatabase(data) {
+    const endpoint = `${baseurl}/backend/psi/uploadFilePSI.php`; // Ruta al archivo PHP
+
+    try {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || ''
+            },
+            body: JSON.stringify(data)
+        });
+
+        const responseText = await response.text(); // Obtiene la respuesta como texto
+        //console.log(responseText); // Imprime la respuesta en la consola
+
+        if (!response.ok) {
+            // Intenta parsear el texto de respuesta como JSON
+            let errorData;
+            try {
+                errorData = JSON.parse(responseText);
+            } catch (e) {
+                // Si no se puede parsear, usa un mensaje genérico
+                throw new Error(`Error en el servidor: ${response.status}`);
+            }
+            throw new Error(errorData.message || `Error en el servidor: ${response.status}`);
+        }
+
+        return JSON.parse(responseText); // Devuelve la respuesta JSON del servidor
+    } catch (error) {
+        //console.log('Error al subir datos a la base de datos:', error);
+        throw error; // Re-lanza el error para que pueda ser manejado en otro lugar
+    }
+}
+
+/**
+ * Muestra el resultado exitoso
+ */
+function showUploadResult(result) {
+    Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        html: `
+            <p>${result.message || 'N/A'}</p>
+            <small>Registros procesados: ${result.numRecord || 'N/A'}</small>
+        `,
+        timer: 4000, // opcional para que se cierre solo 
+        showConfirmButton: false
+    });
+   
+    // Opcional: Recargar los datos después de 3 segundos
+    setTimeout(() => {
+         window.location.reload(); // Recarga toda la página
+    //     $('#tablePreviewPsi').DataTable().ajax.reload(null, false);
+    }, 4000);
+}
+
+/**
+ * Muestra errores de carga
+ */
+function showUploadError(error) {
+    console.error('Error en la carga:', error);
+    // Mostrar un mensaje de error con SweetAlert2
+    Swal.fire({
+        icon: 'error',
+        title: 'Error en la carga',
+        html: `
+            <p>${error.message || 'Error desconocido'}</p>
+            <small>Intente Nuevamente</small>
+        `,
+        //footer: '<a href="/ayuda" class="btn btn-link">¿Necesita ayuda?</a>'
+    });
+}
