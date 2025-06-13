@@ -54,45 +54,64 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                             <h4>Datos PSI</h4>
                         </div>
                         <div class="card-body">
-                            <div class="container">
-                                <div class="container mb-3 row">
+                            <div class="container border mb-3 p-3">
+                                <div class="mb-3 row ">
                                     <h2>Cargar Archivo de Excel</h2>
+                                </div>
+                                <div class="mb-3 row">
                                     <input type="file" id="fileInput" accept=".xlsx, .xls" class="form-control mb-3">
                                     <!-- Button trigger modal -->
-                                    <button type="button" id="previewBtn" class="btn btn-primary btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#previewModal">
+                                    <button type="button" id="previewBtn" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#previewModal">
                                         <i class="fas fa-eye"></i>
                                         Vista Previa
                                     </button>
 
                                 </div>
+                            </div>
+                            <div class="container border mb-3 p-3">
                                 <form id="formPsi" method="POST" action="#">
                                     <div class="mb-3 row">
                                         <h2>Ingreso / Actualización Individual</h2>
-                                        <input type="hidden" id="id" name="id" value="0" />
                                     </div>
                                     <div class="mb-3 row">
-                                        <div class="col">
-                                            <label for="NUMERO" class="form-label">NÚMERO</label>
-                                            <input type="text" class="form-control" id="NUMERO" name="NUMERO" required>
+                                        <div class="col-4">
+                                            <label for="id" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="id" name="id" value="0"
+                                                disabled />
+                                        </div>
+
+                                        <div class="col-8">
+                                            <label for="FCORTE" class="form-label">FECHA CORTE</label>
+                                            <input type="date" class="form-control" id="FCORTE" name="FCORTE" require>
                                         </div>
                                     </div>
-
                                     <div class="mb-3 row">
-                                        <div class="col">
+                                        <div class="col-4">
+                                            <label for="NUMERO" class="form-label">NÚMERO</label>
+                                            <input type="text" class="form-control" id="NUMERO" name="NUMERO" require>
+                                        </div>
+                                        <div class="col-8">
                                             <label for="COD_UNICO" class="form-label">CÓDIGO ÚNICO</label>
                                             <input type="text" class="form-control" id="COD_UNICO" name="COD_UNICO"
                                                 required>
                                         </div>
                                     </div>
-
                                     <div class="mb-3 row">
                                         <div class="col">
-                                            <label for="RUC" class="form-label">RUC</label>
-                                            <input type="text" class="form-control" id="RUC" name="RUC" required>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">RUC</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="ruc" name="ruc" required>
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#catastroModal">Buscar</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-
                                     <div class="mb-3 row">
                                         <div class="col">
                                             <label for="RAZON_SOCIAL" class="form-label">RAZÓN SOCIAL</label>
@@ -100,7 +119,6 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                                                 name="RAZON_SOCIAL" required>
                                         </div>
                                     </div>
-
                                     <div class="mb-3 row">
                                         <div class="col-4">
                                             <label for="SEGMENTO" class="form-label">SEGMENTO</label>
@@ -111,64 +129,187 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                                             <input type="text" class="form-control" id="ZONAL" name="ZONAL">
                                         </div>
                                         <div class="col-4">
-                                            <label for="ESTADO_JURIDICO" class="form-label">ESTADO JURÍDICO</label>
+                                            <label for="ESTADO_JURIDICO" class="form-label">EST. JURÍDICO</label>
                                             <input type="text" class="form-control" id="ESTADO_JURIDICO"
                                                 name="ESTADO_JURIDICO">
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <div class="col">
+                                        <div class="col-8">
                                             <label for="TIPO_SUPERVISION" class="form-label">TIPO SUPERVISIÓN</label>
                                             <input type="text" class="form-control" id="TIPO_SUPERVISION"
                                                 name="TIPO_SUPERVISION">
                                         </div>
+                                        <div class="col-4">
+                                            <label for="FECHA_APROBACION_PLAN_FISICO" class="form-label">F.
+                                                PLAN FÍSICO</label>
+                                            <input type="date" class="form-control" id="FECHA_APROBACION_PLAN_FISICO"
+                                                name="FECHA_APROBACION_PLAN_FISICO">
+                                        </div>
                                     </div>
-
                                     <div class="mb-3 row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <label for="FECHA_INICIO" class="form-label">FECHA INICIO</label>
                                             <input type="date" class="form-control" id="FECHA_INICIO"
                                                 name="FECHA_INICIO">
                                         </div>
-                                    </div>
-
-                                    <div class="mb-3 row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <label for="FECHA_FIN" class="form-label">FECHA FIN</label>
                                             <input type="date" class="form-control" id="FECHA_FIN" name="FECHA_FIN">
                                         </div>
+                                        <div class="col-3">
+                                            <label for="ANIO_INICIO" class="form-label">AÑO INICIO</label>
+                                            <input type="text" class="form-control" id="ANIO_INICIO" name="ANIO_INICIO"
+                                                readonly>
+                                        </div>
+                                        <div class="col-3">
+                                            <label for="MES_INICIO" class="form-label">MES INICIO</label>
+                                            <input type="text" class="form-control" id="MES_INICIO" name="MES_INICIO"
+                                                readonly>
+                                        </div>
+                                        <div class="col-3">
+                                            <label for="ANIO_VENCIMIENTO" class="form-label">AÑO VENC.</label>
+                                            <input type="text" class="form-control" id="ANIO_VENCIMIENTO"
+                                                name="ANIO_VENCIMIENTO" readonly>
+                                        </div>
+                                        <div class="col-3">
+                                            <label for="MES_VENCIMIENTO" class="form-label">MES VENC.</label>
+                                            <input type="text" class="form-control" id="MES_VENCIMIENTO"
+                                                name="MES_VENCIMIENTO" readonly>
+                                        </div>
                                     </div>
-
                                     <div class="mb-3 row">
-                                        <div class="col">
-                                            <label for="ULTIMO_CORTE" class="form-label">ÚLTIMO CORTE</label>
+                                        <div class="col-4">
+                                            <label for="TRIMESTRE" class="form-label">TRIMESTRE</label>
+                                            <input type="text" class="form-control" id="TRIMESTRE" name="TRIMESTRE"
+                                                readonly>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="ESTADO_PSI" class="form-label   ">ESTADO PSI</label>
+                                            <input type="text" class="form-control" id="ESTADO_PSI" name="ESTADO_PSI"
+                                                required>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="VIGENCIA_PSI" class="form-label">VIGENCIA PSI</label>
+                                            <input type="text" class="form-control" id="VIGENCIA_PSI"
+                                                name="VIGENCIA_PSI" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-4">
+                                            <label for="FECHA_INFORME" class="form-label">FEC. INFORME</label>
+                                            <input type="date" class="form-control" id="FECHA_INFORME"
+                                                name="FECHA_INFORME" required>
+                                        </div>
+                                        <div class="col-8">
+                                            <label for="NUM_INFORME" class="form-label">NÚMERO INFORME</label>
+                                            <input type="text" class="form-control" id="NUM_INFORME" name="NUM_INFORME"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-4">
+                                            <label for="FECHA_RESOLUCION" class="form-label">FEC. RES</label>
+                                            <input type="date" class="form-control" id="FECHA_RESOLUCION"
+                                                name="FECHA_RESOLUCION" required>
+                                        </div>
+                                        <div class="col-8">
+                                            <label for="NUM_RESOLUCION" class="form-label">NÚMERO RESOLUCIÓN</label>
+                                            <input type="text" class="form-control" id="NUM_RESOLUCION"
+                                                name="NUM_RESOLUCION" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-4">
+                                            <label for="FECHA_RESOLUCION_AMPLIACION" class="form-label">FEC. RES.
+                                                AMP</label>
+                                            <input type="date" class="form-control" id="FECHA_RESOLUCION_AMPLIACION"
+                                                name="FECHA_RESOLUCION_AMPLIACION">
+                                        </div>
+                                        <div class="col-8">
+                                            <label for="NUM_RESOLUCION_AMPLIACION" class="form-label">NÚMERO RES.
+                                                AMPLIACIÓN</label>
+                                            <input type="text" class="form-control" id="NUM_RESOLUCION_AMPLIACION"
+                                                name="NUM_RESOLUCION_AMPLIACION">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-4">
+                                            <label for="FECHA_ULTIMO_BALANCE" class="form-label">FEC. ÚLT.
+                                                BAL</label>
+                                            <input type="date" class="form-control" id="FECHA_ULTIMO_BALANCE"
+                                                name="FECHA_ULTIMO_BALANCE">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="ACTIVOS" class="form-label">ACTIVOS</label>
+                                            <input type="text" class="form-control" id="ACTIVOS" name="ACTIVOS">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="ULTIMO_RIESGO" class="form-label">ÚLTIMO RIESGO</label>
+                                            <input type="text" class="form-control" id="ULTIMO_RIESGO"
+                                                name="ULTIMO_RIESGO">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-4">
+                                            <label for="FECHA_RESOLUCION_FIN_PSI" class="form-label">FEC. RES.
+                                                FIN PSI</label>
+                                            <input type="date" class="form-control" id="FECHA_RESOLUCION_FIN_PSI"
+                                                name="FECHA_RESOLUCION_FIN_PSI">
+                                        </div>
+                                        <div class="col-8">
+                                            <label for="NUM_RESOLUCION_FIN_PSI" class="form-label">RESOLUCIÓN
+                                                FIN PSI</label>
+                                            <input type="text" class="form-control" id="NUM_RESOLUCION_FIN_PSI"
+                                                name="NUM_RESOLUCION_FIN_PSI">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-12">
+                                            <label for="MOTIVO_CIERRE" class="form-label">MOTIVO DE CIERRE</label>
+                                            <input type="text" class="form-control" id="MOTIVO_CIERRE"
+                                                name="MOTIVO_CIERRE">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-12">
+                                            <label for="ESTRATEGIA_SUPERVISION" class="form-label">ESTRATEGIA DE
+                                                SUPERVISIÓN</label>
+                                            <input type="text" class="form-control" id="ESTRATEGIA_SUPERVISION"
+                                                name="ESTRATEGIA_SUPERVISION">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-3">
+                                            <label for="ULTIMO_CORTE" class="form-label">ULT. CORTE</label>
                                             <input type="number" class="form-control" id="ULTIMO_CORTE"
                                                 name="ULTIMO_CORTE" value="2" required>
                                         </div>
+                                        <div class="col-9">
+                                            <label for="EST_REGISTRO" class="form-label">ESTADO REGISTRO</label>
+                                            <select class="form-control" id="EST_REGISTRO" name="EST_REGISTRO" required>
+                                                <option value="ACT">ACTIVO</option>
+                                                <option value="DEL">ELIMINADO</option>
+                                            </select>
+                                        </div>
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="EST_REGISTRO" class="form-label">ESTADO REGISTRO</label>
-                                        <select class="form-control" id="EST_REGISTRO" name="EST_REGISTRO" required>
-                                            <option value="ACT">ACTIVO</option>
-                                            <option value="DEL">ELIMINADO</option>
-                                        </select>
+                                    <div class="mb-3 row">
+                                        <div class="col-12">
+                                            <label for="USR_CREACION" class="form-label">Usuario Creación</label>
+                                            <input type="text" readonly class="form-control" id="USR_CREACION"
+                                                name="USR_CREACION" value="<?= htmlspecialchars($nickname) ?>">
+                                        </div>
                                     </div>
-
                                     <div class="mb-3">
-                                        <label for="USR_CREACION" class="form-label">Usuario Creación</label>
-                                        <input type="text" readonly class="form-control" id="USR_CREACION"
-                                            name="USR_CREACION" value="<?= htmlspecialchars($nickname) ?>">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <button class="btn btn-primary btn-sm btn-block save-btn" type="submit"
-                                            title="Save" onclick="asignarActions(this, 'save');">
-                                            Guardar Registro
-                                        </button>
-                                        <button type="button" id="btnLimpiar"
-                                            class="btn btn-secondary btn-sm btn-block">Limpiar</button>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary btn-sm btn-block save-btn" type="submit"
+                                                title="Save" onclick="asignarActions(this, 'save');">
+                                                Guardar Registro
+                                            </button>
+                                            <button type="button" id="btnLimpiar"
+                                                class="btn btn-secondary btn-sm btn-block">Limpiar</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -208,43 +349,43 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                                     </thead>
                                     <tbody>
                                         <?php foreach ($result as $psi): ?>
-                                            <tr data-id="<?= htmlspecialchars($psi['id']) ?>">
-                                                <td>
-                                                    <?= htmlspecialchars(isset($psi['FECHA_CORTE_INFORMACION']) ? date('F Y', strtotime($psi['FECHA_CORTE_INFORMACION'])) : 'N/A') ?>
-                                                </td>
-                                                <td><?= htmlspecialchars($psi['RUC'] ?? 'N/A') ?></td>
-                                                <td><?= htmlspecialchars($psi['RAZON_SOCIAL'] ?? 'N/A') ?></td>
-                                                <td><?= htmlspecialchars($psi['NUM_INFORME'] ?? 'N/A') ?></td>
-                                                <td><?= htmlspecialchars($psi['NUM_RESOLUCION'] ?? 'N/A') ?></td>
-                                                <td><?= htmlspecialchars($psi['ESTADO_PSI'] ?? 'N/A') ?></td>
-                                                <td><?= htmlspecialchars($psi['VIGENCIA_PSI'] ?? 'N/A') ?></td>
-                                                <td><?= htmlspecialchars($psi['ANIO_VENCIMIENTO'] ?? 'N/A') ?></td>
-                                                <td class="text-center button-cell">
-                                                    <button class="btn btn-primary detalle-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($psi['id'] ?? '') ?>"
-                                                        title="Detalle PSI" data-bs-toggle="modal"
-                                                        data-bs-target="#detalleModalPsi" onclick="cargarDatosPsi(this)">
-                                                        <i class="fa-solid fa-comment"></i>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-info edit-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($psi['id']) ?>" title="Editar"
-                                                        onclick="asignarActions(this, 'edit');">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger delete-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($psi['id']) ?>" title="Eliminar"
-                                                        onclick="asignarActions(this, 'delete');">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                        <tr data-id="<?= htmlspecialchars($psi['id']) ?>">
+                                            <td>
+                                                <?= htmlspecialchars(isset($psi['FECHA_CORTE_INFORMACION']) ? date('F Y', strtotime($psi['FECHA_CORTE_INFORMACION'])) : 'N/A') ?>
+                                            </td>
+                                            <td><?= htmlspecialchars($psi['RUC'] ?? 'N/A') ?></td>
+                                            <td><?= htmlspecialchars($psi['RAZON_SOCIAL'] ?? 'N/A') ?></td>
+                                            <td><?= htmlspecialchars($psi['NUM_INFORME'] ?? 'N/A') ?></td>
+                                            <td><?= htmlspecialchars($psi['NUM_RESOLUCION'] ?? 'N/A') ?></td>
+                                            <td><?= htmlspecialchars($psi['ESTADO_PSI'] ?? 'N/A') ?></td>
+                                            <td><?= htmlspecialchars($psi['VIGENCIA_PSI'] ?? 'N/A') ?></td>
+                                            <td><?= htmlspecialchars($psi['ANIO_VENCIMIENTO'] ?? 'N/A') ?></td>
+                                            <td class="text-center button-cell">
+                                                <button class="btn btn-primary detalle-btn btn-sm"
+                                                    data-id="<?= htmlspecialchars($psi['id'] ?? '') ?>"
+                                                    title="Detalle PSI" data-bs-toggle="modal"
+                                                    data-bs-target="#detalleModalPsi" onclick="cargarDatosPsi(this)">
+                                                    <i class="fa-solid fa-comment"></i>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-info edit-btn btn-sm"
+                                                    data-id="<?= htmlspecialchars($psi['id']) ?>" title="Editar"
+                                                    onclick="asignarActions(this, 'edit');">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-danger delete-btn btn-sm"
+                                                    data-id="<?= htmlspecialchars($psi['id']) ?>" title="Eliminar"
+                                                    onclick="asignarActions(this, 'delete');">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                         <?php endforeach; ?>
                                         <?php if (empty($result)): ?>
-                                            <tr>
-                                                <td colspan="8" class="text-center">No hay registros para mostrar.</td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="8" class="text-center">No hay registros para mostrar.</td>
+                                        </tr>
                                         <?php endif; ?>
                                     </tbody>
                                 </table>
@@ -258,7 +399,7 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
     </div>
 
     <!-- Modal para Detalle PSI -->
-    <div class="modal fade" id="detalleModalPsi" tabindex="-1" aria-labelledby="detalleModalLabel" aria-modal="true">
+    <div class="modal fade" id="detalleModalPsi" tabindex="-1" aria-labelledby="detalleModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -433,75 +574,75 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
 
 
     <script>
-        // Filtrar tabla por búsqueda
-        function filterTable() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
-            const rows = document.querySelectorAll('#tablaPsi tbody tr');
+    // Filtrar tabla por búsqueda
+    function filterTable() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const rows = document.querySelectorAll('#tablaPsi tbody tr');
 
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.indexOf(filter) > -1 ? '' : 'none';
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.indexOf(filter) > -1 ? '' : 'none';
+        });
+    }
+
+    // Cargar datos del registro en el formulario para editar
+    document.querySelectorAll('.btn-editar').forEach(button => {
+        button.addEventListener('click', () => {
+            const tr = button.closest('tr');
+            const id = tr.getAttribute('data-id');
+
+            // Recorremos las celdas para llenar el formulario según los campos
+            document.getElementById('id').value = id;
+            document.getElementById('NUMERO').value = tr.children[1].textContent.trim();
+            document.getElementById('COD_UNICO').value = tr.children[2].textContent.trim();
+            document.getElementById('RUC').value = tr.children[3].textContent.trim();
+            document.getElementById('RAZON_SOCIAL').value = tr.children[4].textContent.trim();
+            document.getElementById('ULTIMO_CORTE').value = tr.children[5].textContent.trim();
+            document.getElementById('EST_REGISTRO').value = tr.children[6].textContent.trim();
+
+            // Aquí puedes cargar más campos si los agregas al formulario
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-        }
+        });
+    });
 
-        // Cargar datos del registro en el formulario para editar
-        document.querySelectorAll('.btn-editar').forEach(button => {
-            button.addEventListener('click', () => {
-                const tr = button.closest('tr');
-                const id = tr.getAttribute('data-id');
+    // Eliminar registro (soft delete)
+    document.querySelectorAll('.btn-eliminar').forEach(button => {
+        button.addEventListener('click', () => {
+            if (!confirm('¿Seguro que deseas eliminar este registro?')) return;
+            const tr = button.closest('tr');
+            const id = tr.getAttribute('data-id');
 
-                // Recorremos las celdas para llenar el formulario según los campos
-                document.getElementById('id').value = id;
-                document.getElementById('NUMERO').value = tr.children[1].textContent.trim();
-                document.getElementById('COD_UNICO').value = tr.children[2].textContent.trim();
-                document.getElementById('RUC').value = tr.children[3].textContent.trim();
-                document.getElementById('RAZON_SOCIAL').value = tr.children[4].textContent.trim();
-                document.getElementById('ULTIMO_CORTE').value = tr.children[5].textContent.trim();
-                document.getElementById('EST_REGISTRO').value = tr.children[6].textContent.trim();
-
-                // Aquí puedes cargar más campos si los agregas al formulario
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+            fetch('<?= $base_url ?>backend/psiActions.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        accion: 'eliminar',
+                        id: id
+                    })
+                }).then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Registro eliminado correctamente');
+                        tr.remove();
+                        document.getElementById('formPsi').reset();
+                    } else {
+                        alert('Error al eliminar');
+                    }
                 });
-            });
         });
+    });
 
-        // Eliminar registro (soft delete)
-        document.querySelectorAll('.btn-eliminar').forEach(button => {
-            button.addEventListener('click', () => {
-                if (!confirm('¿Seguro que deseas eliminar este registro?')) return;
-                const tr = button.closest('tr');
-                const id = tr.getAttribute('data-id');
-
-                fetch('<?= $base_url ?>backend/psiActions.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: new URLSearchParams({
-                            accion: 'eliminar',
-                            id: id
-                        })
-                    }).then(res => res.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert('Registro eliminado correctamente');
-                            tr.remove();
-                            document.getElementById('formPsi').reset();
-                        } else {
-                            alert('Error al eliminar');
-                        }
-                    });
-            });
-        });
-
-        // Limpiar formulario
-        document.getElementById('btnLimpiar').addEventListener('click', () => {
-            document.getElementById('formPsi').reset();
-            document.getElementById('id').value = 0;
-        });
+    // Limpiar formulario
+    document.getElementById('btnLimpiar').addEventListener('click', () => {
+        document.getElementById('formPsi').reset();
+        document.getElementById('id').value = 0;
+    });
     </script>
 
 </body>

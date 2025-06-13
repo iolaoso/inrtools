@@ -86,19 +86,44 @@ function asignarActions(button, action) {
                     // Llenar los campos del formulario con los datos obtenidos
                     if (data) {
                         document.getElementById('id').value = data.id;
+                        document.getElementById('FCORTE').value = data.FECHA_CORTE_INFORMACION;
                         document.getElementById('NUMERO').value = data.NUMERO;
-                        document.getElementById('COD_UNICO').value = data.COD_UNICO;
-                        document.getElementById('RUC').value = data.RUC;
+                        document.getElementById('COD_UNICO').value = data.RUC + data.NUM_INFORME;
+                        document.getElementById('ruc').value = data.RUC;
                         document.getElementById('RAZON_SOCIAL').value = data.RAZON_SOCIAL;
                         document.getElementById('SEGMENTO').value = data.SEGMENTO;
                         document.getElementById('ZONAL').value = data.ZONAL;
                         document.getElementById('ESTADO_JURIDICO').value = data.ESTADO_JURIDICO;
                         document.getElementById('TIPO_SUPERVISION').value = data.TIPO_SUPERVISION;
                         document.getElementById('FECHA_INICIO').value = data.FECHA_INICIO;
+                        document.getElementById('ANIO_INICIO').value =  data.ANIO_INICIO;
+                        document.getElementById('MES_INICIO').value =  data.MES_INICIO;
                         document.getElementById('FECHA_FIN').value = data.FECHA_FIN;
+                        document.getElementById('ANIO_VENCIMIENTO').value =  data.ANIO_VENCIMIENTO;
+                        document.getElementById('MES_VENCIMIENTO').value =  data.MES_VENCIMIENTO;
+                        document.getElementById('TRIMESTRE').value =  data.TRIMESTRE;
+                        document.getElementById('ESTADO_PSI').value =  data.ESTADO_PSI;
+                        document.getElementById('VIGENCIA_PSI').value =  data.VIGENCIA_PSI;
+                        document.getElementById('FECHA_APROBACION_PLAN_FISICO').value =  data.FECHA_APROBACION_PLAN_FISICO;
+                        document.getElementById('NUM_INFORME').value =  data.NUM_INFORME;
+                        document.getElementById('FECHA_INFORME').value =  data.FECHA_INFORME;
+                        document.getElementById('NUM_RESOLUCION').value =  data.NUM_RESOLUCION;
+                        document.getElementById('FECHA_RESOLUCION').value =  data.FECHA_RESOLUCION;
+                        document.getElementById('NUM_RESOLUCION_AMPLIACION').value =  data.NUM_RESOLUCION_AMPLIACION;
+                        document.getElementById('FECHA_RESOLUCION_AMPLIACION').value =  data.FECHA_RESOLUCION_AMPLIACION;
+                        document.getElementById('FECHA_ULTIMO_BALANCE').value =  data.FECHA_ULTIMO_BALANCE;
+                        document.getElementById('ACTIVOS').value =  data.ACTIVOS;
+                        document.getElementById('ULTIMO_RIESGO').value =  data.ULTIMO_RIESGO;
+                        document.getElementById('NUM_RESOLUCION_FIN_PSI').value =  data.NUM_RESOLUCION_FIN_PSI;
+                        document.getElementById('FECHA_RESOLUCION_FIN_PSI').value =  data.FECHA_RESOLUCION_FIN_PSI;
+                        document.getElementById('MOTIVO_CIERRE').value =  data.MOTIVO_CIERRE;
+                        document.getElementById('ESTRATEGIA_SUPERVISION').value =  data.ESTRATEGIA_SUPERVISION;
                         document.getElementById('ULTIMO_CORTE').value = data.ULTIMO_CORTE;
                         document.getElementById('EST_REGISTRO').value = data.EST_REGISTRO;
                         document.getElementById('USR_CREACION').value = data.USR_CREACION;
+                        document.getElementById('FECHA_CREACION').value =  data.FECHA_CREACION;
+                        document.getElementById('FECHA_ACTUALIZACION').value =  data.FECHA_ACTUALIZACION;
+
 
                         // Mostrar el formulario
                         document.getElementById('formPsi').style.display = 'block'; // Asegúrate de que el formulario esté oculto inicialmente
@@ -344,7 +369,7 @@ document.getElementById('confirmUploadBtn').addEventListener('click', async func
         
         // Cambiar estado del botón
         button.disabled = true;
-        button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Procesando...';
+        button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Procesando...';
         
         // Obtener y preparar datos
         const formattedData = prepareUploadData(tablaDatos);
@@ -505,7 +530,6 @@ function showUploadResult(result) {
  * Muestra errores de carga
  */
 function showUploadError(error) {
-    console.error('Error en la carga:', error);
     // Mostrar un mensaje de error con SweetAlert2
     Swal.fire({
         icon: 'error',
