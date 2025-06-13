@@ -307,7 +307,7 @@ function eliminarPsi($id)
     return $res;
 }
 
-
+// Verifica si se ha proporcionado un ID en la solicitud GET
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $result = obtenerPsiPorId($id);
@@ -319,4 +319,41 @@ if (isset($_GET['id'])) {
     }
 } else {
     //echo json_encode(['error' => 'ID no proporcionado']);
+}
+
+//verifica si se ha proporcionado una variavle action por post y ejecuta los metodos correspondientes
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+
+    switch ($action) {
+        case 'insertar':
+            $data = $_POST['data'];
+            if (insertarPsi($data)) {
+                echo json_encode(['success' => 'Registro insertado correctamente']);
+            } else {
+                echo json_encode(['error' => 'Error al insertar el registro']);
+            }
+            break;
+
+        case 'actualizar':
+            $id = $_POST['id'];
+            $data = $_POST['data'];
+            if (actualizarPsi($id, $data)) {
+                echo json_encode(['success' => 'Registro actualizado correctamente']);
+            } else {
+                echo json_encode(['error' => 'Error al actualizar el registro']);
+            }
+            break;
+
+        case 'eliminar':
+            $id = $_POST['id'];
+            if (eliminarPsi($id)) {
+                echo json_encode(['success' => 'Registro eliminado correctamente']);
+            } else {
+                echo json_encode(['error' => 'Error al eliminar el registro']);
+            }
+            break;
+        default:
+            echo json_encode(['error' => 'Acción no válida']);
+    }
 }

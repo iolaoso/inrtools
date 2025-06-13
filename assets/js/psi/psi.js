@@ -121,10 +121,6 @@ function asignarActions(button, action) {
                         document.getElementById('ULTIMO_CORTE').value = data.ULTIMO_CORTE;
                         document.getElementById('EST_REGISTRO').value = data.EST_REGISTRO;
                         document.getElementById('USR_CREACION').value = data.USR_CREACION;
-                        document.getElementById('FECHA_CREACION').value =  data.FECHA_CREACION;
-                        document.getElementById('FECHA_ACTUALIZACION').value =  data.FECHA_ACTUALIZACION;
-
-
                         // Mostrar el formulario
                         document.getElementById('formPsi').style.display = 'block'; // Asegúrate de que el formulario esté oculto inicialmente
                     }
@@ -137,7 +133,14 @@ function asignarActions(button, action) {
         case 'save':
             // Lógica para guardar los cambios
             const formData = new FormData(document.getElementById('formPsi'));
-            fetch(base_url  + '/backend/psiActions.php', {
+            //agrega action guardar al formData si formData no tiene id si no agrega editar 
+            if (!formData.has('id') || formData.get('id') === '') {
+                formData.append('id', ''); // Asegúrate de que el ID esté vacío para una nueva entrada
+                formData.append	('action', 'guardar'); // Acción para guardar un nuevo registro
+            }else {
+                formData.append('action', 'editar'); // Acción para editar un registro existente
+            }
+            fetch(base_url  + '/backend/psiList.php', {
                 method: 'POST',
                 body: formData
             })
@@ -149,8 +152,9 @@ function asignarActions(button, action) {
             })
             .then(data => {
                 if (data.success) {
+                    console.log("Registro guardado exitosamente:", data);
                     alert("Registro guardado exitosamente.");
-                    location.reload(); // Recargar la página
+                    //location.reload(); // Recargar la página
                 } else {
                     alert("Error al guardar el registro: " + data.message);
                 }
@@ -170,7 +174,7 @@ function asignarActions(button, action) {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ action: 'delete', id: id })
+                    body: JSON.stringify({ action: 'eliminar', id: id })
                 })
                 .then(response => {
                     if (!response.ok) {
