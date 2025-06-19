@@ -206,7 +206,6 @@ function obtenerPsiActivos($nickname = null, $rol = null)
                 FROM PSI 
                 WHERE EST_REGISTRO = 'ACT' 
                 AND ULTIMO_CORTE = 2 
-                AND VIGENCIA_PSI != 'PENDIENTE' 
                 ORDER BY id DESC";
 
         $stmt = $connPsi->prepare($sql);
@@ -265,6 +264,9 @@ function actualizarPsi($id, $data)
 {
     global $connPsi;
 
+    //echo "Actualizando PSI con ID: $id\n"; // Debugging
+    //echo "Datos a actualizar: " . json_encode($data) . "\n"; // Debugging
+
     // Verifica si la conexión es válida
     if (!$connPsi) {
         throw new Exception('Conexión a la base de datos no válida.');
@@ -278,17 +280,16 @@ function actualizarPsi($id, $data)
     foreach ($data as $key => $value) {
 
         // Evita actualizar el campo 'id'
-        if ($key === 'id') {
+        if ($key === 'id' || $key === 'FECHA_CORTE_INFORMACION' || $key === 'EST_REGISTRO' || $key === 'USR_CREACION' || $key === 'FECHA_CREACION' || $key === 'DELETED_AT' || $key === 'action') {
             continue;
         }
-        // Evita campos que no se deben actualizar
-        if ($key === 'EST_REGISTRO' || $key === 'USR_CREACION' || $key === 'FECHA_CREACION' || $key === 'DELETED_AT') {
-            continue;
-        }
+
         // Evita campos que no se deben actualizar
         if ($key === 'FECHA_ACTUALIZACION') {
             $value = date('Y-m-d H:i:s'); // Actualiza la fecha de actualización al momento actual
         }
+
+        $key = strtoupper($key); // Asegura que el campo esté en mayúsculass
 
         $sets[] = "$key = ?"; // Agrega el campo a actualizar
         // Determina el tipo de dato para bind_param
@@ -302,6 +303,8 @@ function actualizarPsi($id, $data)
         }
         $values[] = $value;
     }
+
+    //echo "sets: " . json_encode($sets) . "\n";
 
     $sql = "UPDATE PSI SET " . implode(',', $sets) . " WHERE id = ?";
     $types .= 'i'; // Tipo para el ID
@@ -331,14 +334,14 @@ function eliminarPsi($id)
 {
     global $connPsi;
 
-    $sql = "UPDATE PSI SET EST_REGISTRO = 'DEL', DELETED_AT = NOW() WHERE id = ?";
+    $sql = "UPDATE PSI SET EST_REGISTRO = 'INA', DELETED_AT = NOW() WHERE id = ?";
     $stmt = $connPsi->prepare($sql);
     if (!$stmt) return false;
 
     $stmt->bind_param('i', $id);
     $res = $stmt->execute();
     $stmt->close();
-    return $res;
+    return true;
 }
 
 // Verifica si se ha proporcionado un ID en la solicitud GET
@@ -358,27 +361,41 @@ if (isset($_GET['id'])) {
 //verifica si se ha proporcionado una variavle action por post y ejecuta los metodos correspondientes
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
+    //RECIBE EL BODY
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (!$data) {
+        $data = $_POST; // Si no se pudo decodificar, intenta con $_POST
+    }
+    // Verifica si se ha proporcionado un ID en la solicitud POST
+    if (isset($_POST['id'])) {
+        $id = $_POST['id'];
+    } else {
+        $id = null; // Si no se proporciona ID, lo dejamos como null
+    }
+    //imprime $data
+    //echo "Datos recibidos: " . json_encode($data) . "\n"; // Debugging
 
     switch ($action) {
         case 'insertar':
-            $data = $_POST['data'];
-            if (insertarPsi($data)) {
-                echo json_encode(['success' => 'Registro insertado correctamente']);
-            } else {
-                echo json_encode(['error' => 'Error al insertar el registro']);
-            }
+            // if (insertarPsi($data)) {
+            //     echo json_encode(['success' => 'Registro insertado correctamente']);
+            // } else {
+            //     echo json_encode(['error' => 'Error al insertar el registro']);
+            // }
             break;
-
         case 'actualizar':
+            // Verifica que se haya proporcionado un ID y datos para actualizar
+            if (($id == null) || !isset($data)) {
+                echo json_encode(['error' => 'ID o datos no proporcionados']);
+                exit;
+            }
             $id = $_POST['id'];
-            $data = $_POST['data'];
             $sets = [];
 
             if (actualizarPsi($id, $data)) {
                 echo json_encode([
                     'success' => true,
                     'message' => 'Registro actualizado correctamente',
-                    'updated_fields' => $sets, // Incluimos los campos actualizados
                     'affected_id' => $id
                 ]);
             } else {
@@ -391,12 +408,26 @@ if (isset($_POST['action'])) {
             break;
 
         case 'eliminar':
-            $id = $_POST['id'];
-            if (eliminarPsi($id)) {
-                echo json_encode(['success' => 'Registro eliminado correctamente']);
-            } else {
-                echo json_encode(['error' => 'Error al eliminar el registro']);
+            // Verifica que se haya proporcionado un ID y datos para actualizar
+            if (($id == null) || !isset($data)) {
+                echo json_encode(['error' => 'ID o datos no proporcionados']);
+                exit;
             }
+            if (eliminarPsi($id)) {
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Registro Eliminado correctamente',
+                    'affected_id' => $id
+                ]);
+            } else {
+                http_response_code(500);
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'No se realizaron cambios en el registro',
+                    'details' => 'La operación no afectó ningún campo'
+                ]);
+            }
+
             break;
         default:
             echo json_encode(['error' => 'Acción no válida']);

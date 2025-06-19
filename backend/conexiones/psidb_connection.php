@@ -31,7 +31,7 @@ if (checkServerStatus($primaryHost, $port)) {
     //echo "El servidor principal ($primaryHost) está activo.";
 } elseif (checkServerStatus($backupHost, $port)) {
     $servername = $backupHost;
-    //echo "El servidor principal no está disponible. Conectando a localhost...";
+    echo "El servidor principal no está disponible. Conectando a localhost...";
 } else {
     echo "Ambos servidores no están disponibles.";
 }

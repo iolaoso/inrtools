@@ -76,7 +76,7 @@ function asignarActions(button, action) {
     switch (action) {
         case 'edit':
             // Lógica para editar
-            console.log("Editando PSI con ID:", id);
+            //console.log("Editando PSI con ID:", id);
 
             // Nueva URL para obtener la estructura
             var url = baseurl + '/backend/psi/psiList.php?id=' + id;
@@ -92,7 +92,7 @@ function asignarActions(button, action) {
                     // Llenar los campos del formulario con los datos obtenidos
                     if (data) {
                         document.getElementById('id').value = data.id;
-                        document.getElementById('FCORTE').value = data.FECHA_CORTE_INFORMACION;
+                        document.getElementById('FECHA_CORTE_INFORMACION').value = data.FECHA_CORTE_INFORMACION;
                         document.getElementById('NUMERO').value = data.NUMERO;
                         document.getElementById('COD_UNICO').value = data.RUC + data.NUM_INFORME;
                         document.getElementById('ruc').value = data.RUC;
@@ -149,7 +149,7 @@ function asignarActions(button, action) {
                 formData.append('action', 'actualizar'); // Acción para editar un registro existente
                 console.log("Editar registro PSI id: " + formData.get('id'));
             }
-            console.log("Datos del Formulario:", Object.fromEntries(formData.entries()));
+            //console.log("Datos del Formulario:", Object.fromEntries(formData.entries()));
 
             var url = baseurl + '/backend/psi/psiList.php';
             fetch(url, {
@@ -179,33 +179,34 @@ function asignarActions(button, action) {
 
         case 'delete':
             // Lógica para eliminar
-            console.log("Eliminando PSI con ID:", id);
+            //console.log("Eliminando PSI con ID:", id);
             if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
                 // Realizar la solicitud para eliminar el registro
-                fetch(base_url + '/backend/psiActions.php', {
+                fetch(baseurl + '/backend/psi/psiList.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ action: 'eliminar', id: id })
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error en la red');
+                    body: JSON.stringify({
+                        action: 'eliminar',
+                        id: id // variable con el ID a eliminar
+                        })
+                }).then(response => {
+                    console.log("Respuesta cruda:", response); // Inspecciona la respuesta
+                    if (response.ok) {
+                        return response.text(); // Usa .text() en lugar de .json() si no hay JSON
                         }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            alert("Registro eliminado exitosamente.");
-                            location.reload(); // Recargar la página
-                        } else {
-                            alert("Error al eliminar el registro: " + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error al eliminar el registro:", error);
-                    });
+                    throw new Error('Error en la solicitud');
+                }).then(data => {
+                    if (data.success) {
+                        alert("Registro eliminado exitosamente.");
+                        //location.reload(); // Recargar la página
+                    } else {
+                        alert("Error al eliminar el registro: " + data.error);
+                    }
+                }).catch(error => {
+                    console.error("Error No se puede Eliminar el registro:", error);
+                });
             }
             break;
 
