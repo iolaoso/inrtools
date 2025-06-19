@@ -77,8 +77,7 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                                     <div class="mb-3 row">
                                         <div class="col-4">
                                             <label for="id" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id" name="id" value="0"
-                                                disabled />
+                                            <input type="text" class="form-control" id="id" name="id" readonly />
                                         </div>
 
                                         <div class="col-8">

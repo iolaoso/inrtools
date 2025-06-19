@@ -28,21 +28,37 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Datos de la Solicitud</h4>
                         </div>
                         <div class="card-body">
-                            <form id="formEstructuras" method="POST">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">RUC</span>
-                                    </div>
-                                    <input type="text" class="form-control" id="ruc" name="ruc" required>
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#catastroModal">Buscar</button>
-                                    </div>
+                            <div class="container border mb-3 p-3">
+                                <div class="mb-3 row ">
+                                    <h2>Reporte en Excel </h2>
                                 </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block">Consultar</button>
+                                <div class="mb-3 row">
+                                    <a type="button" id="btValEstExcel" class="btn btn-warning"
+                                        href="<?php echo $base_url; ?>/assets/files/reportes/valestructuras/VALEST_v2_2.xlsm">
+                                        <i class="fas fa-download"></i>
+                                        Download
+                                    </a>
+
                                 </div>
-                            </form>
+                            </div>
+                            <div class="container border mb-3 p-3">
+                                <form id="formEstructuras" method="POST">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">RUC</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="ruc" name="ruc" required>
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-toggle="modal" data-bs-target="#catastroModal">Buscar</button>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit"
+                                            class="btn btn-primary btn-sm btn-block">Consultar</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

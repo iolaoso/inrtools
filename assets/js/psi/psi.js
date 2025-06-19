@@ -1,7 +1,13 @@
 console.log("psi.js loaded");
 
+document.getElementById('formPsi').addEventListener('submit', function (e) {
+    e.preventDefault(); // Esto previene el comportamiento por defecto del formulario
+});
+
+
+
 // Obtiene la fecha actual en formato ISO
-const currentDate = new Date().toISOString(); 
+const currentDate = new Date().toISOString();
 
 // Función para cargar datos en el modal
 function cargarDatosPsi(button) {
@@ -66,14 +72,14 @@ function asignarActions(button, action) {
 
     // Obtener el ID del psi desde el botón
     const id = button.getAttribute('data-id');
-    
+
     switch (action) {
         case 'edit':
             // Lógica para editar
             console.log("Editando PSI con ID:", id);
 
             // Nueva URL para obtener la estructura
-            const url = baseurl + '/backend/psi/psiList.php?id=' + id;
+            var url = baseurl + '/backend/psi/psiList.php?id=' + id;
             // Realizar la solicitud para obtener los detalles del PSI
             fetch(url)
                 .then(response => {
@@ -96,28 +102,28 @@ function asignarActions(button, action) {
                         document.getElementById('ESTADO_JURIDICO').value = data.ESTADO_JURIDICO;
                         document.getElementById('TIPO_SUPERVISION').value = data.TIPO_SUPERVISION;
                         document.getElementById('FECHA_INICIO').value = data.FECHA_INICIO;
-                        document.getElementById('ANIO_INICIO').value =  data.ANIO_INICIO;
-                        document.getElementById('MES_INICIO').value =  data.MES_INICIO;
+                        document.getElementById('ANIO_INICIO').value = data.ANIO_INICIO;
+                        document.getElementById('MES_INICIO').value = data.MES_INICIO;
                         document.getElementById('FECHA_FIN').value = data.FECHA_FIN;
-                        document.getElementById('ANIO_VENCIMIENTO').value =  data.ANIO_VENCIMIENTO;
-                        document.getElementById('MES_VENCIMIENTO').value =  data.MES_VENCIMIENTO;
-                        document.getElementById('TRIMESTRE').value =  data.TRIMESTRE;
-                        document.getElementById('ESTADO_PSI').value =  data.ESTADO_PSI;
-                        document.getElementById('VIGENCIA_PSI').value =  data.VIGENCIA_PSI;
-                        document.getElementById('FECHA_APROBACION_PLAN_FISICO').value =  data.FECHA_APROBACION_PLAN_FISICO;
-                        document.getElementById('NUM_INFORME').value =  data.NUM_INFORME;
-                        document.getElementById('FECHA_INFORME').value =  data.FECHA_INFORME;
-                        document.getElementById('NUM_RESOLUCION').value =  data.NUM_RESOLUCION;
-                        document.getElementById('FECHA_RESOLUCION').value =  data.FECHA_RESOLUCION;
-                        document.getElementById('NUM_RESOLUCION_AMPLIACION').value =  data.NUM_RESOLUCION_AMPLIACION;
-                        document.getElementById('FECHA_RESOLUCION_AMPLIACION').value =  data.FECHA_RESOLUCION_AMPLIACION;
-                        document.getElementById('FECHA_ULTIMO_BALANCE').value =  data.FECHA_ULTIMO_BALANCE;
-                        document.getElementById('ACTIVOS').value =  data.ACTIVOS;
-                        document.getElementById('ULTIMO_RIESGO').value =  data.ULTIMO_RIESGO;
-                        document.getElementById('NUM_RESOLUCION_FIN_PSI').value =  data.NUM_RESOLUCION_FIN_PSI;
-                        document.getElementById('FECHA_RESOLUCION_FIN_PSI').value =  data.FECHA_RESOLUCION_FIN_PSI;
-                        document.getElementById('MOTIVO_CIERRE').value =  data.MOTIVO_CIERRE;
-                        document.getElementById('ESTRATEGIA_SUPERVISION').value =  data.ESTRATEGIA_SUPERVISION;
+                        document.getElementById('ANIO_VENCIMIENTO').value = data.ANIO_VENCIMIENTO;
+                        document.getElementById('MES_VENCIMIENTO').value = data.MES_VENCIMIENTO;
+                        document.getElementById('TRIMESTRE').value = data.TRIMESTRE;
+                        document.getElementById('ESTADO_PSI').value = data.ESTADO_PSI;
+                        document.getElementById('VIGENCIA_PSI').value = data.VIGENCIA_PSI;
+                        document.getElementById('FECHA_APROBACION_PLAN_FISICO').value = data.FECHA_APROBACION_PLAN_FISICO;
+                        document.getElementById('NUM_INFORME').value = data.NUM_INFORME;
+                        document.getElementById('FECHA_INFORME').value = data.FECHA_INFORME;
+                        document.getElementById('NUM_RESOLUCION').value = data.NUM_RESOLUCION;
+                        document.getElementById('FECHA_RESOLUCION').value = data.FECHA_RESOLUCION;
+                        document.getElementById('NUM_RESOLUCION_AMPLIACION').value = data.NUM_RESOLUCION_AMPLIACION;
+                        document.getElementById('FECHA_RESOLUCION_AMPLIACION').value = data.FECHA_RESOLUCION_AMPLIACION;
+                        document.getElementById('FECHA_ULTIMO_BALANCE').value = data.FECHA_ULTIMO_BALANCE;
+                        document.getElementById('ACTIVOS').value = data.ACTIVOS;
+                        document.getElementById('ULTIMO_RIESGO').value = data.ULTIMO_RIESGO;
+                        document.getElementById('NUM_RESOLUCION_FIN_PSI').value = data.NUM_RESOLUCION_FIN_PSI;
+                        document.getElementById('FECHA_RESOLUCION_FIN_PSI').value = data.FECHA_RESOLUCION_FIN_PSI;
+                        document.getElementById('MOTIVO_CIERRE').value = data.MOTIVO_CIERRE;
+                        document.getElementById('ESTRATEGIA_SUPERVISION').value = data.ESTRATEGIA_SUPERVISION;
                         document.getElementById('ULTIMO_CORTE').value = data.ULTIMO_CORTE;
                         document.getElementById('EST_REGISTRO').value = data.EST_REGISTRO;
                         document.getElementById('USR_CREACION').value = data.USR_CREACION;
@@ -133,35 +139,42 @@ function asignarActions(button, action) {
         case 'save':
             // Lógica para guardar los cambios
             const formData = new FormData(document.getElementById('formPsi'));
+
             //agrega action guardar al formData si formData no tiene id si no agrega editar 
             if (!formData.has('id') || formData.get('id') === '') {
                 formData.append('id', ''); // Asegúrate de que el ID esté vacío para una nueva entrada
-                formData.append	('action', 'guardar'); // Acción para guardar un nuevo registro
-            }else {
-                formData.append('action', 'editar'); // Acción para editar un registro existente
+                formData.append('action', 'guardar'); // Acción para guardar un nuevo registro
+                console.log("Nuevo registro PSI");
+            } else {
+                formData.append('action', 'actualizar'); // Acción para editar un registro existente
+                console.log("Editar registro PSI id: " + formData.get('id'));
             }
-            fetch(base_url  + '/backend/psiList.php', {
+            console.log("Datos del Formulario:", Object.fromEntries(formData.entries()));
+
+            var url = baseurl + '/backend/psi/psiList.php';
+            fetch(url, {
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la red');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    console.log("Registro guardado exitosamente:", data);
-                    alert("Registro guardado exitosamente.");
-                    //location.reload(); // Recargar la página
-                } else {
-                    alert("Error al guardar el registro: " + data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Error al guardar el registro:", error);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error HTTP: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        console.log("Registro guardado exitosamente:", data);
+                        alert("Registro guardado exitosamente.");
+                        // location.reload(); // Recargar la página (descomenta si lo necesitas)
+                    } else {
+                        throw new Error(data.error || "Error al guardar el registro");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error en la operación:", error);
+                    alert(error.message);
+                });
             break;
 
         case 'delete':
@@ -169,30 +182,30 @@ function asignarActions(button, action) {
             console.log("Eliminando PSI con ID:", id);
             if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
                 // Realizar la solicitud para eliminar el registro
-                fetch(base_url  + '/backend/psiActions.php', {
+                fetch(base_url + '/backend/psiActions.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ action: 'eliminar', id: id })
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la red');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        alert("Registro eliminado exitosamente.");
-                        location.reload(); // Recargar la página
-                    } else {
-                        alert("Error al eliminar el registro: " + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al eliminar el registro:", error);
-                });
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error en la red');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            alert("Registro eliminado exitosamente.");
+                            location.reload(); // Recargar la página
+                        } else {
+                            alert("Error al eliminar el registro: " + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error al eliminar el registro:", error);
+                    });
             }
             break;
 
@@ -251,7 +264,7 @@ function initializeDataTable() {
         table = $(tableId).DataTable();
         table.destroy(); // Limpiar instancia existente para reinicialización
     }
-    
+
     table = $(tableId).DataTable(defaultOptions);
 
     // Mejorar accesibilidad
@@ -264,7 +277,7 @@ function initializeDataTable() {
 }
 
 
-document.getElementById('previewBtn').addEventListener('click', function() {
+document.getElementById('previewBtn').addEventListener('click', function () {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
     if (!file) {
@@ -273,7 +286,7 @@ document.getElementById('previewBtn').addEventListener('click', function() {
     }
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         const data = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
 
@@ -352,9 +365,9 @@ document.getElementById('previewBtn').addEventListener('click', function() {
             document.getElementById('tableBody').appendChild(tr);
         }
 
-        
+
         // Uso recomendado dentro de document.ready
-        $(document).ready(function() {
+        $(document).ready(function () {
             const dataTable = initializeDataTable();
         });
         $('#previewModal').modal('show');
@@ -364,27 +377,27 @@ document.getElementById('previewBtn').addEventListener('click', function() {
 });
 
 // Configuración del evento click del botón
-document.getElementById('confirmUploadBtn').addEventListener('click', async function() {
+document.getElementById('confirmUploadBtn').addEventListener('click', async function () {
     console.log("Iniciando carga de datos...");
-    
+
     try {
         const button = this;
         const tablaDatos = $('#tablePreviewPsi').DataTable();
-        
+
         // Cambiar estado del botón
         button.disabled = true;
         button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Procesando...';
-        
+
         // Obtener y preparar datos
         const formattedData = prepareUploadData(tablaDatos);
         //console.log("Datos preparados:", formattedData);
-        
+
         // Subir datos
         const result = await uploadToDatabase(formattedData);
-        console.log("Resultado de la carga:", {result});
+        console.log("Resultado de la carga:", { result });
         // Mostrar resultado
         showUploadResult(result);
-        
+
     } catch (error) {
         console.error('Error en el proceso:', error);
         showUploadError(error);
@@ -415,53 +428,53 @@ function prepareUploadData(tablaDatos) {
     };
 
     rawData.forEach((row, index) => {
-    try {
-        // Asume que las columnas tienen un orden específico
-        const record = {
-            NUMERO: String(row[2] || ''),
-            COD_UNICO: String(row[1] || ''),
-            RUC: String(row[3] || ''),
-            RAZON_SOCIAL: String(row[4] || ''),
-            SEGMENTO: String(row[5] || ''),
-            ZONAL: String(row[6] || ''),
-            ESTADO_JURIDICO: String(row[7] || ''),
-            TIPO_SUPERVISION: String(row[8] || ''),
-            FECHA_INICIO: String(row[9] || ''),
-            FECHA_FIN: String(row[10] || ''),
-            ANIO_INICIO: Number(row[11]) || 0,
-            MES_INICIO: Number(row[12]) || 0,
-            ANIO_VENCIMIENTO: Number(row[13]) || 0,
-            MES_VENCIMIENTO: Number(row[14]) || 0,
-            TRIMESTRE: String(row[15] || ''),
-            ESTADO_PSI: String(row[16] || ''),
-            VIGENCIA_PSI: String(row[17] || ''),
-            FECHA_APROBACION_PLAN_FISICO: String(row[18] || ''),
-            NUM_INFORME: String(row[19] || ''),
-            FECHA_INFORME: String(row[20] || ''),
-            NUM_RESOLUCION: String(row[21] || ''),
-            FECHA_RESOLUCION: String(row[22] || ''),
-            NUM_RESOLUCION_AMPLIACION: String(row[23] || ''),
-            FECHA_RESOLUCION_AMPLIACION: String(row[24] || ''),
-            FECHA_ULTIMO_BALANCE: String(row[25] || ''),
-            ACTIVOS: Number(row[26]) || 0,
-            ULTIMO_RIESGO: Number(row[27]) || 0,
-            NUM_RESOLUCION_FIN_PSI: String(row[28] || ''),
-            FECHA_RESOLUCION_FIN_PSI: String(row[29] || ''),
-            MOTIVO_CIERRE: String(row[30] || ''),
-            ESTRATEGIA_SUPERVISION: String(row[31] || ''),
-            FECHA_CORTE_INFORMACION: String(row[32] || ''),
-            ULTIMO_CORTE: String(row[33] || ''),
-            EST_REGISTRO: String(row[34] || ''),
-            USR_CREACION: String(row[35] || ''),
-            FECHA_CREACION: String(row[36] || ''),
-            FECHA_ACTUALIZACION: String(row[37] || ''),
-            rowIndex: index
-        };
-        formattedData.records.push(record);
-    } catch (error) {
-        console.warn(`Error procesando fila ${index}:`, error);
-    }
-});
+        try {
+            // Asume que las columnas tienen un orden específico
+            const record = {
+                NUMERO: String(row[2] || ''),
+                COD_UNICO: String(row[1] || ''),
+                RUC: String(row[3] || ''),
+                RAZON_SOCIAL: String(row[4] || ''),
+                SEGMENTO: String(row[5] || ''),
+                ZONAL: String(row[6] || ''),
+                ESTADO_JURIDICO: String(row[7] || ''),
+                TIPO_SUPERVISION: String(row[8] || ''),
+                FECHA_INICIO: String(row[9] || ''),
+                FECHA_FIN: String(row[10] || ''),
+                ANIO_INICIO: Number(row[11]) || 0,
+                MES_INICIO: Number(row[12]) || 0,
+                ANIO_VENCIMIENTO: Number(row[13]) || 0,
+                MES_VENCIMIENTO: Number(row[14]) || 0,
+                TRIMESTRE: String(row[15] || ''),
+                ESTADO_PSI: String(row[16] || ''),
+                VIGENCIA_PSI: String(row[17] || ''),
+                FECHA_APROBACION_PLAN_FISICO: String(row[18] || ''),
+                NUM_INFORME: String(row[19] || ''),
+                FECHA_INFORME: String(row[20] || ''),
+                NUM_RESOLUCION: String(row[21] || ''),
+                FECHA_RESOLUCION: String(row[22] || ''),
+                NUM_RESOLUCION_AMPLIACION: String(row[23] || ''),
+                FECHA_RESOLUCION_AMPLIACION: String(row[24] || ''),
+                FECHA_ULTIMO_BALANCE: String(row[25] || ''),
+                ACTIVOS: Number(row[26]) || 0,
+                ULTIMO_RIESGO: Number(row[27]) || 0,
+                NUM_RESOLUCION_FIN_PSI: String(row[28] || ''),
+                FECHA_RESOLUCION_FIN_PSI: String(row[29] || ''),
+                MOTIVO_CIERRE: String(row[30] || ''),
+                ESTRATEGIA_SUPERVISION: String(row[31] || ''),
+                FECHA_CORTE_INFORMACION: String(row[32] || ''),
+                ULTIMO_CORTE: String(row[33] || ''),
+                EST_REGISTRO: String(row[34] || ''),
+                USR_CREACION: String(row[35] || ''),
+                FECHA_CREACION: String(row[36] || ''),
+                FECHA_ACTUALIZACION: String(row[37] || ''),
+                rowIndex: index
+            };
+            formattedData.records.push(record);
+        } catch (error) {
+            console.warn(`Error procesando fila ${index}:`, error);
+        }
+    });
 
     if (formattedData.records.length === 0) {
         throw new Error('No se encontraron datos válidos para enviar');
@@ -522,11 +535,11 @@ function showUploadResult(result) {
         timer: 4000, // opcional para que se cierre solo 
         showConfirmButton: false
     });
-   
+
     // Opcional: Recargar los datos después de 3 segundos
     setTimeout(() => {
-         window.location.reload(); // Recarga toda la página
-    //     $('#tablePreviewPsi').DataTable().ajax.reload(null, false);
+        window.location.reload(); // Recarga toda la página
+        //     $('#tablePreviewPsi').DataTable().ajax.reload(null, false);
     }, 4000);
 }
 

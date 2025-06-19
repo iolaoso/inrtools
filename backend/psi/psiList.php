@@ -265,29 +265,63 @@ function actualizarPsi($id, $data)
 {
     global $connPsi;
 
+    // Verifica si la conexión es válida
+    if (!$connPsi) {
+        throw new Exception('Conexión a la base de datos no válida.');
+    }
+
     $sets = [];
     $values = [];
     $types = '';
 
+    // Construye la consulta y determina los tipos de datos
     foreach ($data as $key => $value) {
-        $sets[] = "$key = ?";
-        if (is_int($value)) $types .= 'i';
-        elseif (is_double($value) || is_float($value)) $types .= 'd';
-        else $types .= 's';
+
+        // Evita actualizar el campo 'id'
+        if ($key === 'id') {
+            continue;
+        }
+        // Evita campos que no se deben actualizar
+        if ($key === 'EST_REGISTRO' || $key === 'USR_CREACION' || $key === 'FECHA_CREACION' || $key === 'DELETED_AT') {
+            continue;
+        }
+        // Evita campos que no se deben actualizar
+        if ($key === 'FECHA_ACTUALIZACION') {
+            $value = date('Y-m-d H:i:s'); // Actualiza la fecha de actualización al momento actual
+        }
+
+        $sets[] = "$key = ?"; // Agrega el campo a actualizar
+        // Determina el tipo de dato para bind_param
+        // y agrega el valor al array de valores
+        if (is_int($value)) {
+            $types .= 'i';
+        } elseif (is_double($value) || is_float($value)) {
+            $types .= 'd';
+        } else {
+            $types .= 's';
+        }
         $values[] = $value;
     }
 
     $sql = "UPDATE PSI SET " . implode(',', $sets) . " WHERE id = ?";
-    $types .= 'i';
+    $types .= 'i'; // Tipo para el ID
     $values[] = $id;
 
     $stmt = $connPsi->prepare($sql);
-    if (!$stmt) return false;
+    if (!$stmt) {
+        throw new Exception('Error al preparar la consulta: ' . $connPsi->error);
+    }
 
+    // Vincula los parámetros y ejecuta la consulta
     $stmt->bind_param($types, ...$values);
     $res = $stmt->execute();
+
+    if (!$res) {
+        throw new Exception('Error en la ejecución de la consulta: ' . $stmt->error);
+    }
+
     $stmt->close();
-    return $res;
+    return true; // Cambia a true para indicar éxito
 }
 
 /**
@@ -338,10 +372,21 @@ if (isset($_POST['action'])) {
         case 'actualizar':
             $id = $_POST['id'];
             $data = $_POST['data'];
+            $sets = [];
+
             if (actualizarPsi($id, $data)) {
-                echo json_encode(['success' => 'Registro actualizado correctamente']);
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Registro actualizado correctamente',
+                    'updated_fields' => $sets, // Incluimos los campos actualizados
+                    'affected_id' => $id
+                ]);
             } else {
-                echo json_encode(['error' => 'Error al actualizar el registro']);
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'No se realizaron cambios en el registro',
+                    'details' => 'La operación no afectó ningún campo'
+                ]);
             }
             break;
 
