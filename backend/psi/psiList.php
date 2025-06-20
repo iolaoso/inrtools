@@ -1,4 +1,5 @@
 <?php
+
 include_once __DIR__ . '/../../backend/config.php';
 include_once BASE_PATH . 'backend/session.php';
 include_once BASE_PATH . 'backend/conexiones/psidb_connection.php';
@@ -339,7 +340,7 @@ function eliminarPsi($id)
     if (!$stmt) return false;
 
     $stmt->bind_param('i', $id);
-    $res = $stmt->execute();
+    $stmt->execute();
     $stmt->close();
     return true;
 }
@@ -360,28 +361,40 @@ if (isset($_GET['id'])) {
 
 //verifica si se ha proporcionado una variavle action por post y ejecuta los metodos correspondientes
 if (isset($_POST['action'])) {
-    $action = $_POST['action'];
+
     //RECIBE EL BODY
     $data = json_decode(file_get_contents('php://input'), true);
+
     if (!$data) {
         $data = $_POST; // Si no se pudo decodificar, intenta con $_POST
     }
+
     // Verifica si se ha proporcionado un ID en la solicitud POST
-    if (isset($_POST['id'])) {
+    if (isset($data['id'])) {
+        $id = $data['id'];
+    } elseif (isset($_POST['id'])) {
+        // Si se envió por POST
         $id = $_POST['id'];
     } else {
         $id = null; // Si no se proporciona ID, lo dejamos como null
     }
-    //imprime $data
-    //echo "Datos recibidos: " . json_encode($data) . "\n"; // Debugging
+
+    $action = $data['action'];
 
     switch ($action) {
         case 'insertar':
-            // if (insertarPsi($data)) {
-            //     echo json_encode(['success' => 'Registro insertado correctamente']);
-            // } else {
-            //     echo json_encode(['error' => 'Error al insertar el registro']);
-            // }
+            if (insertarPsi($data)) {
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Registro insertado correctamente'
+                ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Error al insertar el registro',
+                    'error' => 'Error al insertar el registro'
+                ]);
+            }
             break;
         case 'actualizar':
             // Verifica que se haya proporcionado un ID y datos para actualizar
@@ -409,25 +422,15 @@ if (isset($_POST['action'])) {
 
         case 'eliminar':
             // Verifica que se haya proporcionado un ID y datos para actualizar
-            if (($id == null) || !isset($data)) {
+            if (($id == null)) {
                 echo json_encode(['error' => 'ID o datos no proporcionados']);
                 exit;
             }
-            if (eliminarPsi($id)) {
-                echo json_encode([
-                    'success' => true,
-                    'message' => 'Registro Eliminado correctamente',
-                    'affected_id' => $id
-                ]);
-            } else {
-                http_response_code(500);
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'No se realizaron cambios en el registro',
-                    'details' => 'La operación no afectó ningún campo'
-                ]);
-            }
-
+            // Lógica para eliminar...
+            echo json_encode([
+                'success' => eliminarPsi($data['id']),
+                'id' => $data['id'],
+            ]);
             break;
         default:
             echo json_encode(['error' => 'Acción no válida']);

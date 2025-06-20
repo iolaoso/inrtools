@@ -1,5 +1,10 @@
 console.log("psi.js loaded");
 
+document.addEventListener('DOMContentLoaded', function () {
+    // desabiliel formulario al cargar la pagina
+    document.getElementById('formPsi').style.display = 'none'; // Ocultar el formulario al cargar la página
+});
+
 document.getElementById('formPsi').addEventListener('submit', function (e) {
     e.preventDefault(); // Esto previene el comportamiento por defecto del formulario
 });
@@ -137,79 +142,99 @@ function asignarActions(button, action) {
             break;
 
         case 'save':
-            // Lógica para guardar los cambios
+            //recibe el formulario a enviar 
             const formData = new FormData(document.getElementById('formPsi'));
-
-            //agrega action guardar al formData si formData no tiene id si no agrega editar 
+            //agrega action insertar al formData si formData no tiene id si no agrega editar 
             if (!formData.has('id') || formData.get('id') === '') {
                 formData.append('id', ''); // Asegúrate de que el ID esté vacío para una nueva entrada
-                formData.append('action', 'guardar'); // Acción para guardar un nuevo registro
+                formData.append('action', 'insertar'); // Acción para guardar un nuevo registro
                 console.log("Nuevo registro PSI");
             } else {
                 formData.append('action', 'actualizar'); // Acción para editar un registro existente
                 console.log("Editar registro PSI id: " + formData.get('id'));
             }
-            //console.log("Datos del Formulario:", Object.fromEntries(formData.entries()));
-
+            
+            //validar los campos del formulario
+            const requiredFields = [
+                'FECHA_CORTE_INFORMACION','NUMERO', 'ruc', 'RAZON_SOCIAL', 'SEGMENTO', 'ZONAL',
+                'ESTADO_JURIDICO', 'TIPO_SUPERVISION', 'FECHA_INICIO', 'FECHA_FIN',
+                'ESTADO_PSI', 'VIGENCIA_PSI', 'FECHA_APROBACION_PLAN_FISICO',
+                'NUM_INFORME', 'FECHA_INFORME', 'FECHA_ULTIMO_BALANCE', 'ACTIVOS', 'ULTIMO_RIESGO',
+            ];
+            let isValid = true;
+            requiredFields.forEach(field => {
+                const value = formData.get(field);
+                if (!value || value.trim() === '') {
+                    isValid = false;
+                    alert(`El campo ${field} es obligatorio.`);
+                }
+            }); 
+            if (!isValid) {
+                console.error("Formulario no válido. Por favor, completa todos los campos obligatorios.");
+                return; // Detener la ejecución si el formulario no es válido
+            }
+            // Mostrar los datos del formulario en la consola
+            console.log("Datos del Formulario:", Object.fromEntries(formData.entries()));
+            //hace la peticion http 
             var url = baseurl + '/backend/psi/psiList.php';
             fetch(url, {
                 method: 'POST',
                 body: formData
-            })
-                .then(response => {
+            }).then(response => {
                     if (!response.ok) {
                         throw new Error(`Error HTTP: ${response.status}`);
                     }
                     return response.json();
-                })
-                .then(data => {
+            }).then(data => {
                     if (data.success) {
                         console.log("Registro guardado exitosamente:", data);
                         alert("Registro guardado exitosamente.");
+                        // Limpiar el formulario    
+                        document.getElementById('formPsi').reset();
+                        document.getElementById('formPsi').style.display = 'none'; // Ocultar el formulario después de guardar
                         // location.reload(); // Recargar la página (descomenta si lo necesitas)
                     } else {
                         throw new Error(data.error || "Error al guardar el registro");
                     }
-                })
-                .catch(error => {
+            }).catch(error => {
                     console.error("Error en la operación:", error);
                     alert(error.message);
-                });
+            });
+
             break;
 
         case 'delete':
             // Lógica para eliminar
-            //console.log("Eliminando PSI con ID:", id);
+            const formDataDel = new FormData();
+            // Agregar los datos al formDataDel
+            formDataDel.append('action', 'eliminar');
+            formDataDel.append('id', id);
+            console.log("FormData para eliminar:", Object.fromEntries(formDataDel.entries()));
             if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
                 // Realizar la solicitud para eliminar el registro
-                fetch(baseurl + '/backend/psi/psiList.php', {
+                var url = baseurl + '/backend/psi/psiList.php';
+                fetch(url, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        action: 'eliminar',
-                        id: id // variable con el ID a eliminar
-                        })
-                }).then(response => {
-                    console.log("Respuesta cruda:", response); // Inspecciona la respuesta
-                    if (response.ok) {
-                        return response.text(); // Usa .text() en lugar de .json() si no hay JSON
-                        }
-                    throw new Error('Error en la solicitud');
+                    body:  formDataDel
+                    }).then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error HTTP: ${response.status}`);
+                    }
+                    return response.json();
                 }).then(data => {
                     if (data.success) {
-                        alert("Registro eliminado exitosamente.");
-                        //location.reload(); // Recargar la página
+                        console.log("Registro Eliminado Exitosamente ID: ", data.id);
+                        alert("Registro Eliminado exitosamente.");
+                        location.reload(); // Recargar la página (descomenta si lo necesitas)
                     } else {
-                        alert("Error al eliminar el registro: " + data.error);
+                        throw new Error(data.error || "Error al Eliminar el registro" + data.id);
                     }
                 }).catch(error => {
-                    console.error("Error No se puede Eliminar el registro:", error);
+                        console.error("Error en la operación:", error);
+                        alert(error.message);
                 });
             }
             break;
-
         default:
             console.error("Acción no reconocida:", action);
             break;
