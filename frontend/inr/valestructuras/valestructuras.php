@@ -1,6 +1,10 @@
 <?php
 include_once __DIR__ . '/../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';
+include BASE_PATH . 'backend/catastroList.php'; // consulta catastro activas
+include BASE_PATH . 'backend/analistasList.php'; // consulta analistas
+include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir el archivo de consultas
+
 ?>
 
 <!DOCTYPE html>
