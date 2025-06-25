@@ -42,7 +42,6 @@ include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir 
                                         <i class="fas fa-download"></i>
                                         Download
                                     </a>
-
                                 </div>
                             </div>
                             <div class="container border mb-3 p-3">

@@ -3,49 +3,39 @@ console.log("valestructuras.js Funcionando");
 document.getElementById('formEstructuras').addEventListener('submit', function(event) {
     event.preventDefault();
     
-    const dataForm = new FormData(this);
-    const ruc = dataForm.get('ruc'); // Asegúrate de que el campo 'ruc' esté presente
-
+    
+    const formData = new FormData(document.getElementById('formEstructuras'));
+    
     const url = `${baseurl}/backend/valestructuras/listValestructuras.php`;
     
     fetch(url, {
         method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ ruc }) // Enviar el RUC como JSON
+        body: JSON.stringify(Object.fromEntries(formData)) // Enviar el formulario como JSON
     })
     .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
+       if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+        }
+        return response.json(); // Convertir la respuesta a JSON
     })
     .then(data => {
         // Manejar la respuesta aquí
         if (data.success) {
-            // Aquí puedes manejar el caso de éxito, por ejemplo, mostrar un mensaje o redirigir
-            alert('Validación exitosa');
-            console.log(data);
-            //llenar la tabla con los datos recibidos
+            console.log('Consulta Exitosa');
             const tableBody = document.getElementById('resultBody');
             tableBody.innerHTML = ''; // Limpiar la tabla antes de llenarla
-            // Asegúrate de que data.data sea un array
-        if (Array.isArray(data.data)) {
-            data.data.forEach(item => {
+            console.log("Datos a mostrar:", data.datos);
+            // Iterar sobre los datos y crear filas de tabla
+            data.datos.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${item.cod_estructura || 'N/A'}</td>
-                    <td>${item.nombre_estructura || 'N/A'}</td>
-                    <td>${item.fecha_corte || 'N/A'}</td>`;
-                resultBody.appendChild(row);
-            });
+                    <td>${item.NUM_RUC || ''}</td>
+                    <td>${item.FECHA_CORTE || ''}</td>
+                    <td>otro dato</td>`;
+                tableBody.appendChild(row);
+            });     
         } else {
-            throw new Error("La respuesta no contiene un array de datos.");
-        }
-
-        } else {
-            // Manejar el caso de error
-            alert('Error: ' + data.message);
+            throw new Error(data.message || "Error en la respuesta.");
         }
     })
     .catch(error => {
