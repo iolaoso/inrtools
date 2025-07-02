@@ -104,4 +104,17 @@ th, td {
     color: white; /* Cambia el color del texto si es necesario */
 }
 
+#loading {
+    position: fixed;
+    top: 20%;
+    left: 40%;
+    width: 10%;
+    height: 10%;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+}
+
 

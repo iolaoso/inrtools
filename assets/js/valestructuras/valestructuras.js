@@ -3,11 +3,15 @@ console.log("valestructuras.js Funcionando");
 document.getElementById('formEstructuras').addEventListener('submit', function(event) {
     event.preventDefault();
     
-    
     const formData = new FormData(document.getElementById('formEstructuras'));
     
     const url = `${baseurl}/backend/valestructuras/listValestructuras.php`;
     
+    // Mostrar el indicador de carga
+    const loadingIndicator = document.getElementById('loading');
+    loadingIndicator.style.display = 'block';
+
+    // hacer la peticion HTTP 
     fetch(url, {
         method: 'POST',
         body: JSON.stringify(Object.fromEntries(formData)) // Enviar el formulario como JSON
@@ -33,7 +37,10 @@ document.getElementById('formEstructuras').addEventListener('submit', function(e
                     <td>${item.FECHA_CORTE || ''}</td>
                     <td>otro dato</td>`;
                 tableBody.appendChild(row);
-            });     
+            }); 
+            
+            // Ocultar el indicador de carga
+            loadingIndicator.style.display = 'none';
         } else {
             throw new Error(data.message || "Error en la respuesta.");
         }

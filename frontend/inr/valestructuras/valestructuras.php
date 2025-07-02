@@ -84,9 +84,17 @@ include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir 
                                 <table class="table mt-4" id="resultTable">
                                     <thead>
                                         <tr>
-                                            <th>COD. ESTRUCTURA</th>
-                                            <th>NOMBRE ESTRUCTURA</th>
-                                            <th>FECHA CORTE</th>
+                                            <th>RUC_ENTIDAD</th>
+                                            <th>RAZON_SOCIAL</th>
+                                            <th>SEGMENTO</th>
+                                            <th>NVL_RIESGO</th>
+                                            <th>ESTRUCTURA</th>
+                                            <th>NOM_ESTRUCTURA</th>
+                                            <th>CUMPLE</th>
+                                            <th>MAX_FECHA_CORTE</th>
+                                            <th>FECHA_ENTREGA_ACTUAL</th>
+                                            <th>MAX_FECHA_VALIDACION</th>
+
                                         </tr>
                                     </thead>
                                     <tbody id="resultBody">
@@ -99,7 +107,16 @@ include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir 
                 </div>
             </section>
         </main>
+
+        <div id="loading" style="display: none;">
+            <img src="../../../assets/images/Loading.gif" alt="Cargando..." /><br>
+            <span>Buscando Datos</span><br>
+            <span>Espere...</span>
+
+        </div>
     </div>
+
+
 
     <div id="base_url" data-base-url="<?= $base_url; ?>"></div>
 

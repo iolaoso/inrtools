@@ -2,39 +2,125 @@
 
 include_once __DIR__ . '/../../backend/config.php';
 include_once BASE_PATH . 'backend/session.php';
-require_once BASE_PATH . '/assets/adodb5/adodb.inc.php'; // Ajusta la ruta según tu estructura
-require_once BASE_PATH . 'backend/conexiones/SPSS_connection.php'; // archivo que contiene la conexion OLAP
+require_once BASE_PATH . 'backend/conexiones/excel_connection.php';
 
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+
+
+function valEstructuras()
+{
+    try {
+        $archivoExcel = conectarExcel(BASE_PATH . 'assets\files\reportes\valestructuras\VALEST_v2_2.xlsm');
+        $spreadsheet = $archivoExcel->getSheetByName('REG_GEN');
+        $datos = $spreadsheet->toArray();
+
+        // Eliminar cabecera si existe
+        if (!empty($datos)) {
+            array_shift($datos);
+        }
+
+        $resultado = [];
+        foreach ($datos as $fila) {
+            if (count($fila) >= 3) {
+                $resultado[] = [
+                    'codigo' => $fila[0] ?? '',
+                    'nombre' => $fila[1] ?? '',
+                    'fecha' => $fila[2] ?? ''
+                ];
+            }
+        }
+
+        return $resultado;
+    } catch (Exception $e) {
+        error_log("Error en valEstructuras: " . $e->getMessage());
+        return [];
+    }
+}
+
+// Función auxiliar para formatear la fecha si es necesario
+function formatearFechaExcel($valorFecha)
+{
+    if (is_numeric($valorFecha)) {
+        //return \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($valorFecha)->format('d/m/Y');
+        return Date::excelToDateTimeObject($valorFecha)->format('d/m/Y');
+    }
+    return $valorFecha;
+}
+
+/**
+ * Obtiene datos de estructuras filtrados por RUC (comenzando desde fila 3)
+ * @param string $ruc Número de RUC a buscar (13 dígitos)
+ * @return array Resultado con estructura consistente
+ */
 function valEstructurasRuc($ruc)
 {
     try {
-        $connSPSS = getConnectionSPSS();
-        if (!$connSPSS) {
-            throw new Exception('Error al conectar a SPSS');
+        // Validar formato de RUC
+        if (!preg_match('/^[0-9]{13}$/', $ruc)) {
+            throw new InvalidArgumentException("RUC debe tener 13 dígitos");
         }
 
-        // Aquí puedes realizar la consulta a la base de datos usando $connSPSS
-        $query = "SELECT NUM_RUC,
-                         TRUNC(FECHA_CORTE) AS FECHA_CORTE
-                  FROM ODS.ODS_MVW_ACOPIO_C02 
-                  WHERE TRUNC(FECHA_CORTE) >= TO_DATE('2025-01-01', 'YYYY-MM-DD')
-                  AND NUM_RUC = ?
-                  GROUP BY NUM_RUC, TRUNC(FECHA_CORTE);";
-        $stmt = $connSPSS->prepare($query);
-        // Vincular el parámetro RUC AL PRIMER PARAMETRO ?
-        $stmt->bindParam(1, $ruc, PDO::PARAM_STR);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $connSPSS = null; // Cerrar la conexión
-        return $result;
+        $archivoExcel = conectarExcel(BASE_PATH . 'assets/files/reportes/valestructuras/VALEST_v2_2.xlsm');
+        $sheet = $archivoExcel->getSheetByName('REG_GEN');
+
+        if (!$sheet) {
+            throw new RuntimeException("Hoja 'REG_GEN' no encontrada");
+        }
+
+        // Obtener datos desde fila 5 (índice 2 en base 0)
+        $highestRow = $sheet->getHighestRow();
+        $data = [];
+
+        for ($row = 5; $row <= $highestRow; $row++) {
+            $rowData = $sheet->rangeToArray("A{$row}:Z{$row}", null, true, false)[0];
+            if (!empty($rowData[0])) {  // Filtra filas vacías
+                $data[] = $rowData;
+            }
+        }
+
+        // Filtrar por RUC (asumiendo columna A = RUC)
+        $resultados = array_filter($data, function ($fila) use ($ruc) {
+            return trim($fila[0]) === $ruc;
+        });
+
+        if (empty($resultados)) {
+            return [
+                'success' => false,
+                'message' => "RUC {$ruc} no encontrado",
+                'datos' => []
+            ];
+        }
+
+        // Procesar resultados (mapear columnas)
+        $estructuras = array_map(function ($fila) {
+            return [
+                'RUC_ENTIDAD' => $fila[0] ?? null,    // Columna A
+                'RAZON_SOCIAL' => $fila[1] ?? null,    // Columna B
+                'SEGMENTO' => $fila[2] ?? null,    // Columna C
+                'NVL_RIESGO' => $fila[3] ?? null,    // Columna D
+                'ESTRUCTURA' => $fila[4] ?? null,    // Columna E
+                'NOM_ESTRUCTURA' => $fila[5] ?? null,    // Columna F
+                'CUMPLE' => $fila[6] ?? null,    // Columna G
+                'MAX_FECHA_CORTE' => formatearFechaExcel($fila[7]) ?? null,    // Columna H
+                'FECHA_ENTREGA_ACTUAL' => formatearFechaExcel($fila[8]) ?? null,    // Columna I
+                'MAX_FECHA_VALIDACION' => formatearFechaExcel($fila[9]) ?? null,    // Columna J
+                // Añadir más campos según estructura real
+            ];
+        }, $resultados);
+
+        return [
+            'success' => true,
+            'message' => count($estructuras) . " estructuras encontradas",
+            'datos' => $estructuras,
+            'count' => count($estructuras)
+        ];
     } catch (Exception $e) {
-        error_log($e->getMessage());
-        http_response_code(500);
-        echo json_encode([
-            'status' => 'Error',
-            'message' => 'Error interno del servidor'
-        ]);
-        exit;
+        error_log("Error en valEstructurasRuc - RUC: {$ruc} - " . $e->getMessage());
+        return [
+            'success' => false,
+            'message' => "Error al buscar RUC: " . $e->getMessage(),
+            'datos' => []
+        ];
     }
 }
 
