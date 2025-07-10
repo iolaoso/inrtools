@@ -80,7 +80,7 @@ include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir 
                         <div class="card-body">
                             <input class="form-control" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
-                            <div class="table-container" style="max-height: 700px; overflow-y: auto;">
+                            <div class="table-container" style="max-height: 800px; overflow-y: auto;">
                                 <table class="table mt-4" id="resultTable">
                                     <thead>
                                         <tr>
