@@ -1,9 +1,14 @@
 <?php
-include_once __DIR__ . '/../../../backend/config.php';
+// acivar la extension ZIP en el archivo php.ini
+
+include_once __DIR__ . '/../..s/../backend/config.php';
 include BASE_PATH . 'backend/session.php';
 include BASE_PATH . 'backend/catastroList.php'; // consulta catastro activas
 include BASE_PATH . 'backend/analistasList.php'; // consulta analistas
 include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir el archivo de consultas
+
+$entidadesActSf = entidadesActivasSf();
+$analistas = obtenerAnalistas($direccion);
 
 ?>
 
@@ -117,6 +122,9 @@ include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir 
             </div>
         </main>
     </div>
+
+    <!-- Modal Buscar Catastro-->
+    <?php include BASE_PATH . 'frontend/partials/modalCatastro.php'; ?>
 
     <div id="base_url" data-base-url="<?= $base_url; ?>"></div>
 
