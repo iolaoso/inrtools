@@ -211,12 +211,18 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                     <tbody>
                                         <?php foreach ($result as $informeinr): ?>
                                             <tr>
-                                                <td><?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($informeinr['RUC_ENTIDAD'] ?? '') ?></td>
+                                                <td class="text-center button-cell">
+                                                    <?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars($informeinr['RUC_ENTIDAD'] ?? '') ?>
+                                                </td>
                                                 <td class="text-center button-cell">
                                                     <?= htmlspecialchars($informeinr['NUM_INFORME'] ?? '') ?>
                                                 </td>
-                                                <td><?= htmlspecialchars($informeinr['NUM_MEMORANDO'] ?? '') ?></td>
+                                                <td>
+                                                    <?= htmlspecialchars($informeinr['NUM_MEMORANDO'] ?? '') ?>
+                                                </td>
                                                 <td class="text-center button-cell">
                                                     <button class="btn btn-primary detalle-btn btn-sm"
                                                         data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
@@ -229,19 +235,23 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                                     class="<?= htmlspecialchars($informeinr['NEMONICO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
                                                     <?= htmlspecialchars($informeinr['NEMONICO'] ?? '') ?>
                                                 </td>
-                                                <td><?= htmlspecialchars($informeinr['USR_CREACION'] ?? '') ?></td>
-                                                <td class="text-center button-cell">
-                                                    <button class="btn btn-info edit-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
-                                                        title="Editar" onclick="editarInforme(this)">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger delete-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
-                                                        logUser="<?= htmlspecialchars($nickname ?? '') ?>" title="Eliminar"
-                                                        onclick="eliminarInforme(this)">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                <td>
+                                                    <?= htmlspecialchars($informeinr['USR_CREACION'] ?? '') ?>
+                                                </td>
+                                                <td>
+                                                    <div class="button-container">
+                                                        <button class="btn btn-info edit-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
+                                                            title="Editar" onclick="editarInforme(this)">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger delete-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
+                                                            logUser="<?= htmlspecialchars($nickname ?? '') ?>"
+                                                            title="Eliminar" onclick="eliminarInforme(this)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

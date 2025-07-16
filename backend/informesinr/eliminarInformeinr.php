@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
-include '../conexiones/db_connection.php';
+include '../conexiones/infinr_connection.php';
 
 // Verificar si se ha proporcionado un ID
 if (isset($_GET['id']) && isset($_GET['delUser'])) {
@@ -9,8 +9,8 @@ if (isset($_GET['id']) && isset($_GET['delUser'])) {
     // Recibir el ID de la estructura a eliminar
     if ($id) {
         // Preparar la consulta de eliminación (marcando como eliminado)
-        $sql = "UPDATE INFORMESINR SET EST_REGISTRO = 0, deletedAt = NOW(), deletedUsr = ? WHERE COD_INFORME = ?";
-        $stmt = $conn->prepare($sql);
+        $sql = "UPDATE T_INFORMES SET EST_REGISTRO = 'INA', deletedAt = NOW(), deletedUser = ? WHERE COD_INFORME = ?";
+        $stmt = $connInf->prepare($sql);
         $stmt->bind_param("si", $delUser, $id);
 
         // Ejecutar la consulta
@@ -30,7 +30,7 @@ if (isset($_GET['id']) && isset($_GET['delUser'])) {
         echo "ID no proporcionado.";
     }
 
-    $conn->close();
+    $connInf->close();
 } else {
     echo "Método no permitido.";
 }

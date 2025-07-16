@@ -13,15 +13,15 @@ function obtInformesInrUsr($nickname)
                 ,I.COD_TIPO_INFORME
                 ,TI.TIPO_INFORME
                 ,TI.AREA_REQUIRIENTE
-                ,I.FECHA_ASIGNACION
-                ,I.FECHA_SOLICITUD_REVISION
+                ,DATE(I.FECHA_ASIGNACION) AS FECHA_ASIGNACION
+                ,DATE(I.FECHA_SOLICITUD_REVISION) AS FECHA_SOLICITUD_REVISION
                 ,I.COD_ESTADO
                 ,CAT.NEMONICO
                 ,I.NUM_INFORME
-                ,I.FECHA_INFORME
+                ,DATE(I.FECHA_INFORME) AS FECHA_INFORME
                 ,I.NUM_MEMORANDO
-                ,I.FECHA_MEMORANDO
-                ,I.FECHA_CARGA_COMPARTIDA
+                ,DATE(I.FECHA_MEMORANDO) AS FECHA_MEMORANDO
+                ,DATE(I.FECHA_CARGA_COMPARTIDA) AS FECHA_CARGA_COMPARTIDA
                 ,I.OBSERVACIONES
                 ,I.LINEA_BASE
                 ,I.EST_REGISTRO
@@ -51,15 +51,15 @@ function obtenerInformesInrFull()
                 ,I.COD_TIPO_INFORME
                 ,TI.TIPO_INFORME
                 ,TI.AREA_REQUIRIENTE
-                ,I.FECHA_ASIGNACION
-                ,I.FECHA_SOLICITUD_REVISION
+                ,DATE(I.FECHA_ASIGNACION) AS FECHA_ASIGNACION
+                ,DATE(I.FECHA_SOLICITUD_REVISION) AS FECHA_SOLICITUD_REVISION
                 ,I.COD_ESTADO
                 ,CAT.NEMONICO
                 ,I.NUM_INFORME
-                ,I.FECHA_INFORME
+                ,DATE(I.FECHA_INFORME) AS FECHA_INFORME
                 ,I.NUM_MEMORANDO
-                ,I.FECHA_MEMORANDO
-                ,I.FECHA_CARGA_COMPARTIDA
+                ,DATE(I.FECHA_MEMORANDO) AS FECHA_MEMORANDO
+                ,DATE(I.FECHA_CARGA_COMPARTIDA) AS FECHA_CARGA_COMPARTIDA
                 ,I.OBSERVACIONES
                 ,I.LINEA_BASE
                 ,I.EST_REGISTRO
@@ -96,7 +96,7 @@ function obtenerInformesInrId($id)
                 ,DATE(I.FECHA_INFORME) AS FECHA_INFORME
                 ,I.NUM_MEMORANDO
                 ,DATE(I.FECHA_MEMORANDO) AS FECHA_MEMORANDO
-                ,DATE(I.FECHA_CARGA_COMPARTIDA) AS FEC_CARGA_COMP
+                ,DATE(I.FECHA_CARGA_COMPARTIDA) AS FECHA_CARGA_COMPARTIDA
                 ,I.OBSERVACIONES
                 ,I.LINEA_BASE
                 ,I.EST_REGISTRO

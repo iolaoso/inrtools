@@ -104,6 +104,11 @@ th, td {
     color: white; /* Cambia el color del texto si es necesario */
 }
 
+/* estilo para los botones de la tabla */
+.button-container {
+    display: flex;
+    gap: 5px; /* Espacio entre los botones */
+}
 
 /* Estilos para el indicador de carga */
 #loading {
