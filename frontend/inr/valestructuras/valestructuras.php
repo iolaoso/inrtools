@@ -80,8 +80,8 @@ include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir 
                         <div class="card-body">
                             <input class="form-control" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
-                            <div class="table-container" style="max-height: 800px; overflow-y: auto;">
-                                <table class="table mt-4" id="resultTable">
+                            <div class="table-container" style="max-height: 800px; overflow-y: auto; width: 100%;">
+                                <table class="table mt-4" id="tablaReportes">
                                     <thead>
                                         <tr>
                                             <th>RUC_ENTIDAD</th>
@@ -106,17 +106,17 @@ include BASE_PATH . 'backend/valEstructuras/listValestructuras.php'; // Incluir 
                     </div>
                 </div>
             </section>
+
+            <!-- ventana de carga de datos -->
+            <div id="loading" style="display: none;">
+                <img src="../../../assets/images/Loading.gif" alt="Cargando...">
+                <div class="loading-text">
+                    <span class="loading-title">Buscando Datos</span>
+                    <span class="loading-subtitle">Espere por favor...</span>
+                </div>
+            </div>
         </main>
-
-        <div id="loading" style="display: none;">
-            <img src="../../../assets/images/Loading.gif" alt="Cargando..." /><br>
-            <span>Buscando Datos</span><br>
-            <span>Espere...</span>
-
-        </div>
     </div>
-
-
 
     <div id="base_url" data-base-url="<?= $base_url; ?>"></div>
 

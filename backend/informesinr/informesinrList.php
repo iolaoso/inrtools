@@ -1,12 +1,12 @@
 <?php
 include_once __DIR__ . '/../../backend/config.php';
 include_once BASE_PATH . 'backend/session.php';
-include_once BASE_PATH . 'backend/db_connection.php'; // Asegúrate de incluir la conexión a la base de datos
+include_once BASE_PATH . 'backend/conexiones/infinr_connection.php';
 
 
-function obtenerInformesInrPorUsuario($nickname)
+function obtInformesInrUsr($nickname)
 {
-    global $conn; // Usar la conexión global
+    global $connInf; // Usar la conexión global
     $sql = "SELECT I.COD_INFORME
                 ,I.RUC_ENTIDAD
                 ,CSF.RAZON_SOCIAL
@@ -24,28 +24,27 @@ function obtenerInformesInrPorUsuario($nickname)
                 ,I.FECHA_CARGA_COMPARTIDA
                 ,I.OBSERVACIONES
                 ,I.LINEA_BASE
-                ,I.deletedAt
                 ,I.EST_REGISTRO
                 ,I.USR_CREACION
                 ,I.FECHA_CREACION
                 ,I.FECHA_ACTUALIZACION
-            FROM informesinr I
-            LEFT JOIN informesinrcatalogo CAT ON I.COD_ESTADO = CAT.COD_CATALOGO
-            LEFT JOIN informesinrtipoinforme TI ON I.COD_TIPO_INFORME = TI.COD_TIPO_INF
+            FROM T_INFORMES I
+            LEFT JOIN T_CATALOGO CAT ON I.COD_ESTADO = CAT.COD_CATALOGO
+            LEFT JOIN T_TIPO_INFORME TI ON I.COD_TIPO_INFORME = TI.COD_TIPO_INF
             LEFT JOIN (SELECT * 
-                        FROM CATASTROSF 
-                        WHERE FECHA_CORTE = (SELECT MAX(FECHA_CORTE) FROM catastrosf)) CSF ON I.RUC_ENTIDAD = CSF.RUC_ENTIDAD 
-            WHERE I.EST_REGISTRO =1 AND I.USR_CREACION = ?
+                        FROM T_CATASTRO 
+                        WHERE CORTE_INFORMACION = (SELECT MAX(CORTE_INFORMACION) FROM T_CATASTRO)) CSF ON I.RUC_ENTIDAD = CSF.RUC_ENTIDAD 
+            WHERE I.EST_REGISTRO ='ACT' AND I.USR_CREACION = ?
             ORDER BY I.FECHA_CREACION DESC, CAT.NEMONICO DESC";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $nickname);
+    $stmt = $connInf->prepare($sql);
+    $stmt->bind_param('s', $nickname);
     $stmt->execute();
     return $stmt->get_result();
 }
 
 function obtenerInformesInrFull()
 {
-    global $conn; // Usar la conexión global
+    global $connInf; // Usar la conexión global
     $sql = "SELECT I.COD_INFORME
                 ,I.RUC_ENTIDAD
                 ,CSF.RAZON_SOCIAL
@@ -63,28 +62,27 @@ function obtenerInformesInrFull()
                 ,I.FECHA_CARGA_COMPARTIDA
                 ,I.OBSERVACIONES
                 ,I.LINEA_BASE
-                ,I.deletedAt
                 ,I.EST_REGISTRO
                 ,I.USR_CREACION
                 ,I.FECHA_CREACION
                 ,I.FECHA_ACTUALIZACION
-            FROM informesinr I
-            LEFT JOIN informesinrcatalogo CAT ON I.COD_ESTADO = CAT.COD_CATALOGO
-            LEFT JOIN informesinrtipoinforme TI ON I.COD_TIPO_INFORME = TI.COD_TIPO_INF
+            FROM T_INFORMES I
+            LEFT JOIN T_CATALOGO CAT ON I.COD_ESTADO = CAT.COD_CATALOGO
+            LEFT JOIN T_TIPO_INFORME TI ON I.COD_TIPO_INFORME = TI.COD_TIPO_INF
             LEFT JOIN (SELECT * 
-                        FROM CATASTROSF 
-                        WHERE FECHA_CORTE = (SELECT MAX(FECHA_CORTE) FROM catastrosf)) CSF ON I.RUC_ENTIDAD = CSF.RUC_ENTIDAD 
-            WHERE I.EST_REGISTRO =1
+                        FROM T_CATASTRO 
+                        WHERE CORTE_INFORMACION = (SELECT MAX(CORTE_INFORMACION) FROM T_CATASTRO)) CSF ON I.RUC_ENTIDAD = CSF.RUC_ENTIDAD 
+            WHERE I.EST_REGISTRO ='ACT'
             ORDER BY I.FECHA_CREACION DESC, CAT.NEMONICO DESC";
-    $stmt = $conn->prepare($sql);
+    $stmt = $connInf->prepare($sql);
     $stmt->execute();
     return $stmt->get_result();
 }
 
-function obtenerInformesInrPorId($id)
+function obtenerInformesInrId($id)
 {
-    global $conn; // Asegúrate de tener acceso a la conexión de la base de datos
-    $stmt = $conn->prepare("SELECT I.COD_INFORME
+    global $connInf; // Asegúrate de tener acceso a la conexión de la base de datos
+    $stmt = $connInf->prepare("SELECT I.COD_INFORME
                 ,I.RUC_ENTIDAD
                 ,CSF.RAZON_SOCIAL
                 ,I.COD_TIPO_INFORME
@@ -101,18 +99,17 @@ function obtenerInformesInrPorId($id)
                 ,DATE(I.FECHA_CARGA_COMPARTIDA) AS FEC_CARGA_COMP
                 ,I.OBSERVACIONES
                 ,I.LINEA_BASE
-                ,I.deletedAt
                 ,I.EST_REGISTRO
                 ,I.USR_CREACION AS ANALISTA
                 ,I.FECHA_CREACION
                 ,I.FECHA_ACTUALIZACION
-            FROM informesinr I
-            LEFT JOIN informesinrcatalogo CAT ON I.COD_ESTADO = CAT.COD_CATALOGO
-            LEFT JOIN informesinrtipoinforme TI ON I.COD_TIPO_INFORME = TI.COD_TIPO_INF
+            FROM T_INFORMES I
+            LEFT JOIN T_CATALOGO CAT ON I.COD_ESTADO = CAT.COD_CATALOGO
+            LEFT JOIN T_TIPO_INFORME TI ON I.COD_TIPO_INFORME = TI.COD_TIPO_INF
             LEFT JOIN (SELECT * 
-                        FROM CATASTROSF 
-                        WHERE FECHA_CORTE = (SELECT MAX(FECHA_CORTE) FROM catastrosf)) CSF ON I.RUC_ENTIDAD = CSF.RUC_ENTIDAD 
-            WHERE I.EST_REGISTRO =1 AND I.COD_INFORME = ?
+                        FROM T_CATASTRO 
+                        WHERE CORTE_INFORMACION = (SELECT MAX(CORTE_INFORMACION) FROM T_CATASTRO)) CSF ON I.RUC_ENTIDAD = CSF.RUC_ENTIDAD 
+            WHERE I.EST_REGISTRO = 'ACT' AND I.COD_INFORME = ?
             ORDER BY I.FECHA_CREACION DESC, CAT.NEMONICO DESC");
 
     if ($stmt) {
@@ -131,13 +128,13 @@ function obtenerInformesInrPorId($id)
 
 function obtenerTiposInforme()
 {
-    global $conn; // Usar la conexión global
+    global $connInf; // Usar la conexión global
     $sql = "SELECT COD_TIPO_INF
                 ,TIPO_INFORME
                 ,AREA_REQUIRIENTE
-            FROM informesinrtipoinforme
-            WHERE EST_REGISTRO = 1";
-    $stmt = $conn->prepare($sql);
+            FROM T_TIPO_INFORME
+            WHERE EST_REGISTRO = 'ACT'";
+    $stmt = $connInf->prepare($sql);
     $stmt->execute();
     return $stmt->get_result();
 }
@@ -146,7 +143,7 @@ function obtenerTiposInforme()
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $result = obtenerInformesInrPorId($id);
+    $result = obtenerInformesInrId($id);
 
     if ($result) {
         echo json_encode($result);

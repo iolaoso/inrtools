@@ -139,7 +139,7 @@ function eliminarInforme(boton) {
 function editarInforme(boton){
     const codInforme = boton.getAttribute('data-id');
     const url = baseurl + "/backend/informesinr/informesinrList.php?id=" + codInforme;
-    //console.log(codInforme);
+    console.log(codInforme);
     fetch(url)
         .then(response => {
             if (!response.ok) {
@@ -212,41 +212,42 @@ function unirInforme() {
 // Función para cargar datos en el modal
 function cargarDatos(button) {
     const codInforme = button.getAttribute('data-id');
-    //console.log(codInforme);
+    console.log(codInforme);
     const url = baseurl + "/backend/informesinr/informesinrList.php"; // URL de tu script PHP
-
+    console.log(url);
     // Realizar la solicitud AJAX usando fetch
     fetch(`${url}?id=${codInforme}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la red');
-            }
-            return response.json();
-        })
-        .then(selectedData => {
-            if (selectedData) {
-                //console.log(selectedData.COD_INFORME);
-                document.getElementById("detalleId").value = selectedData.COD_INFORME;
-                document.getElementById("mRucEntidad").value = selectedData.RUC_ENTIDAD ;
-                document.getElementById("mRazonSocial").value = selectedData.RAZON_SOCIAL;
-                document.getElementById("mtipoInforme").value = selectedData.TIPO_INFORME ;
-                document.getElementById("mareaRequiriente").value = selectedData.AREA_REQUIRIENTE;
-                document.getElementById("mFechaAsignacion").value = selectedData.FECHA_ASIGNACION;
-                document.getElementById("mfechaSolicitud").value = selectedData.FECHA_SOLICITUD_REVISION;
-                document.getElementById("mfechaSolicitud").value = selectedData.FECHA_SOLICITUD_REVISION;
-                document.getElementById("mMemorando").value = selectedData.NUM_MEMORANDO;
-                document.getElementById("mfechaMemorando").value = selectedData.FECHA_MEMORANDO;
-                document.getElementById("mInforme").value = selectedData.NUM_INFORME;
-                document.getElementById("mfechaInforme").value = selectedData.FECHA_INFORME;
-                document.getElementById("mtbObservaciones").value = selectedData.OBSERVACIONES;
-                document.getElementById("mEstado").value = selectedData.ESTADO;
-                document.getElementById("mAnalista").value = selectedData.ANALISTA;
-                document.getElementById("mfechaCargaCompartida").value = selectedData.FEC_CARGA_COMP;
-            }
-        })
-        .catch(error => {
-            console.error("Error al cargar los datos:", error);
-        });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(selectedData => {
+        if (selectedData) {
+            console.log("ID DATOS: " + selectedData.COD_INFORME);
+            console.log('Datos obtenidos:', JSON.stringify(selectedData));
+            document.getElementById("detalleId").value = selectedData.COD_INFORME;
+            document.getElementById("mRucEntidad").value = selectedData.RUC_ENTIDAD ;
+            document.getElementById("mRazonSocial").value = selectedData.RAZON_SOCIAL;
+            document.getElementById("mtipoInforme").value = selectedData.TIPO_INFORME ;
+            document.getElementById("mareaRequiriente").value = selectedData.AREA_REQUIRIENTE;
+            document.getElementById("mFechaAsignacion").value = selectedData.FECHA_ASIGNACION;
+            document.getElementById("mfechaSolicitud").value = selectedData.FECHA_SOLICITUD_REVISION;
+            document.getElementById("mfechaSolicitud").value = selectedData.FECHA_SOLICITUD_REVISION;
+            document.getElementById("mMemorando").value = selectedData.NUM_MEMORANDO;
+            document.getElementById("mfechaMemorando").value = selectedData.FECHA_MEMORANDO;
+            document.getElementById("mInforme").value = selectedData.NUM_INFORME;
+            document.getElementById("mfechaInforme").value = selectedData.FECHA_INFORME;
+            document.getElementById("mtbObservaciones").value = selectedData.OBSERVACIONES;
+            document.getElementById("mEstado").value = selectedData.ESTADO;
+            document.getElementById("mAnalista").value = selectedData.ANALISTA;
+            document.getElementById("mfechaCargaCompartida").value = selectedData.FEC_CARGA_COMP;
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
 }
 
 
