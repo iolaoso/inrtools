@@ -38,11 +38,11 @@ if (checkServerStatus($primaryHost, $port)) {
 
 
 // Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+$connTask = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+if ($connTask->connect_error) {
+    die("Conexión fallida: " . $connTask->connect_error);
 }
 
-$conn->set_charset("utf8mb4");
+$connTask->set_charset("utf8mb4");

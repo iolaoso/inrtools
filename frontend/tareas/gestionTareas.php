@@ -9,16 +9,6 @@ include BASE_PATH . 'backend/analistasList.php'; // consulta analistas
 $entidadesActSf = entidadesActivasSf();
 $analistas = obtenerAnalistas($direccion);
 
-// Obtener registros filtrados por usuario
-if ($rol_nombre == 'SUPERUSER') {
-    //$result = obtenerGestionInrFull();
-} else {
-    if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'DIRECTOR') {
-        //$result = obtenerGestionInrDireccion($inrdireccion_id);
-    } else {
-        //$result = obtenerGestionInrPorUsuario($nickname);
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -50,91 +40,98 @@ if ($rol_nombre == 'SUPERUSER') {
                         </div>
                         <div class="card-body">
                             <form id="frmTareas" method="post" autocomplete="off"
-                                onsubmit="guardarForm('frmTareas',event)">
+                                onsubmit="guardarForm('frmTareas', event)">
                                 <div class="mb-3">
-                                    <input type="hidden" class="form-control" id="codGestion" name="codGestion" value=""
-                                        readonly>
-                                    <input type="hidden" class="form-control" id="direccionid" name="direccionid"
-                                        value="<?= htmlspecialchars($inrdireccion_id)   ?>" readonly>
-                                    <input type="hidden" class="form-control" id="direccion" name="direccion"
-                                        value="<?= htmlspecialchars($direccion)   ?>" readonly>
+                                    <label for="taskName" class="form-label">Tarea</label>
+                                    <input type="text" class="form-control" id="taskName" name="taskName" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label id="lbcbCategoria" for="cbCategoria" class="form-label">Categoría</label><br>
-                                    <button id="btCrearCat" type="button" class="btn btn-outline-success btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#newCatModal">Crear
-                                        Categoria</button>
-                                    <select class="form-control" id="cbCategoria" name="cbCategoria">
-                                        <option value="">Seleccione la Categoria</option>
-                                        <?php foreach ($categorias as $categoria): ?>
-                                            <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>">
-                                                <?= htmlspecialchars($categoria['CATEGORIA']) ?>
-                                            </option>
-                                        <?php endforeach; ?>
+                                    <label for="processType" class="form-label">Tipo de Proceso</label>
+                                    <select class="form-control" id="processType" name="processType" required>
+                                        <option value="">Seleccione el Tipo</option>
+                                        <option value="ACTUALIZACION">ACTUALIZACION</option>
+                                        <option value="BACKUP">BACKUP</option>
+                                        <option value="CREACION">CREACION</option>
+                                        <option value="GESTION">GESTION</option>
+                                        <option value="LLAMADA">LLAMADA</option>
+                                        <option value="REUNION">REUNION</option>
+                                        <option value="OTRO">OTRO</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label id="lbcbSubCategoria" for="cbSubCategoria"
-                                        class="form-label">SubCategoría</label>
-                                    <select class="form-control" id="cbSubCategoria" name="cbSubCategoria"></select>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">RUC</span>
-                                    </div>
-                                    <input type="text" class="form-control" id="ruc" name="ruc"
-                                        oninput="buscarEntidad()" data-page="gestioninr.php" required>
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#catastroModal">Buscar</button>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tbrazonSocial" class="form-label">Razón Social</label>
-                                    <textarea id="tbrazonSocial" name="tbrazonSocial"
-                                        class="form-control textarea small" disabled></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="fechaOficio" class="form-label">Fecha de
-                                        Oficio/Trámite/Memorando/Correo</label>
-                                    <input type="date" class="form-control" id="fechaOficio" name="fechaOficio"
-                                        required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="oficio" class="form-label">Oficio/Trámite/Memorando/Correo</label>
-                                    <input type="text" class="form-control" id="oficio" name="oficio"
-                                        style="text-transform: uppercase;" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label id="lbanalistaSelect" style="display: none;" for="analistaSelect"
-                                        class="form-label">Asignar
-                                        Analista</label>
-                                    <select class="form-control" id="analistaSelect" name="analistaSelect"
-                                        style="display: none;" onchange="actualizarAnalista()">
-                                        <option value="">Seleccione un analista</option>
-                                        <?php foreach ($analistas as $analista): ?>
-                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                            </option>
-                                        <?php endforeach; ?>
+                                    <label for="frequency" class="form-label">Frecuencia</label>
+                                    <select class="form-control" id="frequency" name="frequency" required>
+                                        <option value="">Seleccione la Frecuencia</option>
+                                        <option value="DIARIA">DIARIA</option>
+                                        <option value="SEMANAL">SEMANAL</option>
+                                        <option value="MENSUAL">MENSUAL</option>
+                                        <option value="TRIMESTRAL">TRIMESTRAL</option>
+                                        <option value="SEMESTRAL">SEMESTRAL</option>
+                                        <option value="ANUAL">ANUAL</option>
+                                        <option value="UNICO">UNICO</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="analista" class="form-label">Analista</label>
-                                    <input class="form-control" id="analista" name="analista"
-                                        value="<?= htmlspecialchars($nickname)   ?>" readonly>
+                                    <label for="ruc" class="form-label">RUC (Opcional)</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="ruc" name="ruc">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-toggle="modal" data-bs-target="#catastroModal">Buscar</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tbcomentario" class="form-label">Comentario</label>
-                                    <textarea id="tbcomentario" name="tbcomentario" class="form-control textarea small"
+                                    <label for="description" class="form-label">Descripción</label>
+                                    <textarea class="form-control" id="description" name="description" rows="3"
                                         required></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block">
-                                        Guardar Registro
-                                    </button>
-                                    <button type="submit" class="btn btn-secondary btn-sm btn-block"
-                                        onclick="limpiarForm('frmGestionesInr')">Limpiar</button>
+                                    <label for="nextExecutionDate" class="form-label">Próxima Fecha de Ejecución</label>
+                                    <input type="date" class="form-control" id="nextExecutionDate"
+                                        name="nextExecutionDate" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nextExecutionTime" class="form-label">Próxima Hora de Ejecución</label>
+                                    <input type="time" class="form-control" id="nextExecutionTime"
+                                        name="nextExecutionTime" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lastExecution" class="form-label">Última Fecha y Hora de
+                                        Ejecución</label>
+                                    <input type="datetime-local" class="form-control" id="lastExecution"
+                                        name="lastExecution" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="assignAnalyst" class="form-label">Asignar Analista</label>
+                                    <select class="form-control" id="assignAnalyst" name="assignAnalyst" required>
+                                        <option value="">Seleccione un Analista</option>
+                                        <?php foreach ($analistas as $analista): ?>
+                                        <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                            <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="analistaEjecutante" class="form-label">Analista Ejecutante</label>
+                                    <input class="form-control" id="analistaEjecutante" name="analistaEjecutante"
+                                        value="<?= htmlspecialchars($nickname)   ?>" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="taskStatus" class="form-label">Estado de Tarea</label>
+                                    <select class="form-control" id="taskStatus" name="taskStatus" required>
+                                        <option value="">Seleccione Estado</option>
+                                        <option value="PENDIENTE">PENDIENTE</option>
+                                        <option value="COMPLETADA">COMPLETADA</option>
+                                        <option value="CANCELADA">CANCELADA</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-block">Guardar
+                                        Tarea</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block"
+                                        onclick="limpiarForm('frmTareas')">Limpiar</button>
                                 </div>
                             </form>
                         </div>
@@ -142,8 +139,7 @@ if ($rol_nombre == 'SUPERUSER') {
                 </div>
                 <div class="col-md-8">
                     <div class="card h-100 d-flex flex-column border-secondary">
-                        <div
-                            class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
+                        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">Tareas Pendientes</h4>
                             <button id="verTablaCompleta" class="btn btn-primary">Reporte Completo</button>
                         </div>
@@ -153,136 +149,61 @@ if ($rol_nombre == 'SUPERUSER') {
                                     id="tablaActividades">
                                     <thead>
                                         <tr>
-                                            <th>COD</th>
+                                            <th>Tarea</th>
+                                            <th>Tipo de Proceso</th>
+                                            <th>Frecuencia</th>
                                             <th>RUC</th>
-                                            <th>DIRECCION</th>
-                                            <th>CATEGORIA</th>
-                                            <th>FEC. OFICIO</th>
-                                            <th>OFICIO</th>
-                                            <th>DETALLE</th>
-                                            <th>ANALISTA</th>
-                                            <th>ACCIÓN</th>
+                                            <th>Descripción</th>
+                                            <th>Próxima Fecha</th>
+                                            <th>Próxima Hora</th>
+                                            <th>Última Ejecución</th>
+                                            <th>Analista Asignado</th>
+                                            <th>Estado</th>
+                                            <th>Hecho</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($result as $gestioninr): ?>
+                                        <!-- <?php foreach ($result as $gestionTarea): ?>
                                             <tr>
-                                                <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
-                                                <td class="text-center button-cell">
-                                                    <?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?>
-                                                </td>
-                                                <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestioninr['FECHA_OFIC_TRAM'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestioninr['OFICIO_TRAMITE'] ?? '') ?></td>
-                                                <td class="text-center button-cell">
-                                                    <button class="btn btn-primary detalle-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                        title="Detalle" data-bs-toggle="modal"
-                                                        data-bs-target="#detalleModal" onclick="cargarDatos(this)">
-                                                        <i class="fa-solid fa-comment"></i>
+                                                <td><?= htmlspecialchars($gestionTarea['TAREA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['TIPO_PROCESO'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['FRECUENCIA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['RUC'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['DESCRIPCION'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['PROXIMA_FECHA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['PROXIMA_HORA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['ULTIMA_EJECUCION'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['ANALISTA_ASIGNADO'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestionTarea['ESTADO'] ?? '') ?></td>
+                                                <td>
+                                                    <button class="btn btn-primary doit-btn btn-sm"
+                                                        data-id="<?= htmlspecialchars($gestionTarea['id']) ?>" title="Hecho"
+                                                        onclick="asignarEventosBotones();">
+                                                        <i class="fas fa-save"></i>
                                                     </button>
-                                                </td>
-                                                <td class="text-center button-cell">
-                                                    <?= htmlspecialchars($gestioninr['ANALISTA'] ?? '') ?>
-                                                </td>
-                                                <td class="text-center button-cell">
+                                                <td>
                                                     <button class="btn btn-info edit-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                        title="Editar" onclick="cargarDatosForm(this)">
+                                                        data-id="<?= htmlspecialchars($gestionTarea['id']) ?>"
+                                                        title="Editar" onclick="asignarEventosBotones();">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                     <button class="btn btn-danger delete-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                        logUser="<?= htmlspecialchars($nickname ?? '') ?>" title="Eliminar"
-                                                        onclick="eliminarRegistro(this)">
+                                                        data-id="<?= htmlspecialchars($gestionTarea['id']) ?>"
+                                                        title="Eliminar" onclick="asignarEventosBotones();">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
+                                        <?php endforeach; ?> -->
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </section>
         </main>
-    </div>
-
-    <!-- Modal detalleModal -->
-    <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModal" aria-hidden="false">
-        <div class="modal-dialog modal-dialog-centered modal-lg bg-primary" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel">Detalle de la Gestión Realizada</h5>
-                    <div class="input-group ms-auto" style="width: 30%;">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">ID</span>
-                        </div>
-                        <input type="text" class="form-control" id="detalleId" disabled>
-
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="detalleForm">
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="mRucEntidad">RUC Entidad</label>
-                                <input type="text" class="form-control" id="mRucEntidad" readonly>
-                            </div>
-                            <div class="col-12">
-                                <label for="mRazonSocial">Razón Social</label>
-                                <input type="text" class="form-control" id="mRazonSocial" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="mCategoria">Categoría</label>
-                                <input type="text" class="form-control" id="mCategoria" readonly>
-                            </div>
-                            <div class="col-6">
-                                <label for="mSubCategoria">SubCategoría</label>
-                                <input type="text" class="form-control" id="mSubCategoria" readonly>
-                            </div>
-                        </div>
-
-                        <div class="row mb3">
-                            <div class="col-6">
-                                <label for="mFechaOficTram">Fecha Oficio / Trámite</label>
-                                <input type="date" class="form-control" id="mFechaOficTram" readonly>
-                            </div>
-                            <div class="col-6">
-                                <label for="mOficioTramite">Oficio / Trámite</label>
-                                <input type="text" class="form-control" id="mOficioTramite" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <label for="mComentario">Comentario</label>
-                                <textarea class="form-control" id="mComentario" rows="3" readonly></textarea>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="mFechaRegistro">Fecha Registro</label>
-                                <input type="date" class="form-control" id="mFechaRegistro" readonly>
-                            </div>
-                            <div class="col-6">
-                                <label for="mAnalista">Analista</label>
-                                <input type="text" class="form-control" id="mAnalista" readonly>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Modal Buscar Catastro-->
