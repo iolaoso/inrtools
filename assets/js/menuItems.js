@@ -115,7 +115,8 @@ const menuItems = [
         title: 'DNS',
         subMenu: [
             { title: 'Informes', 
-                url: '/INRtools/frontend/dns/informes/informes.php',
+                url: '/INRtools/frontend/enConstruccion.php',
+                //url: '/INRtools/frontend/dns/informes/informes.php',
                 //direccion: ['DNS'],
                 direccion: (usrRol === 'SUPERUSER') ? ['ALL'] : ['DNS'], 
                 rol: ['SUPERUSER']//,'ADMINISTRADOR','ANALISTA','DIRECTOR']
