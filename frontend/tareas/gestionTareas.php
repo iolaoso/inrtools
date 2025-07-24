@@ -107,9 +107,9 @@ $analistas = obtenerAnalistas($direccion);
                                     <select class="form-control" id="assignAnalyst" name="assignAnalyst" required>
                                         <option value="">Seleccione un Analista</option>
                                         <?php foreach ($analistas as $analista): ?>
-                                        <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                            <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                        </option>
+                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -163,40 +163,7 @@ $analistas = obtenerAnalistas($direccion);
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <!-- <?php foreach ($result as $gestionTarea): ?>
-                                            <tr>
-                                                <td><?= htmlspecialchars($gestionTarea['TAREA'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['TIPO_PROCESO'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['FRECUENCIA'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['RUC'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['DESCRIPCION'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['PROXIMA_FECHA'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['PROXIMA_HORA'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['ULTIMA_EJECUCION'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['ANALISTA_ASIGNADO'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($gestionTarea['ESTADO'] ?? '') ?></td>
-                                                <td>
-                                                    <button class="btn btn-primary doit-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($gestionTarea['id']) ?>" title="Hecho"
-                                                        onclick="asignarEventosBotones();">
-                                                        <i class="fas fa-save"></i>
-                                                    </button>
-                                                <td>
-                                                    <button class="btn btn-info edit-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($gestionTarea['id']) ?>"
-                                                        title="Editar" onclick="asignarEventosBotones();">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger delete-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($gestionTarea['id']) ?>"
-                                                        title="Eliminar" onclick="asignarEventosBotones();">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?> -->
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>

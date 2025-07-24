@@ -20,7 +20,7 @@ function agregarTarea($data)
 function obtenerTareas()
 {
     global $connTask;
-    $result = $connTask->query("SELECT * FROM tareas");
+    $result = $connTask->query("SELECT * FROM VI_TAREAS_ACCIONES");
     $tareas = [];
 
     while ($row = $result->fetch_assoc()) {
