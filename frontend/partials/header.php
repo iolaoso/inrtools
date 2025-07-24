@@ -12,6 +12,10 @@
         </span>
     </div>
     <div>
+        <a href="<?php echo $base_url; ?>/frontend/tareas/gestionTareas.php" class="btn btn-info btn-sm"
+            style="margin-right: 20px;">
+            <i class="fa-solid fa-list-check"></i> Gestor de Tareas
+        </a>
         <a href="<?php echo $base_url; ?>/backend/logout.php" class="btn btn-danger btn-sm">
             <i class="fas fa-sign-out-alt"></i> Cerrar sesión
         </a>
