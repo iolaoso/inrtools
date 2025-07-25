@@ -1,91 +1,5 @@
 console.log("informesinr.js Fuuncionando");
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    const denominacionInf = 'SEPS-INR-DNS-'
-
-    // Obtener el año actual
-    const year = new Date().getFullYear();
-    
-    // Obtener el elemento input
-    const span = document.getElementById('informe');
-    
-    // Actualizar el valor del input
-    span.innerHTML = denominacionInf +  year + '-';
-    
-    // para mostrar el select de analistas 
-    const isDirector = usrRol; 
-    mostrarAnalista(isDirector);
-
-    function actualizarAreaRequiriente() {
-        const select = document.getElementById('cbTipoInforme');
-        const input = document.getElementById('areaRequiriente');
-
-        if (select) { // Verifica si el select existe
-            const selectedOption = select.options[select.selectedIndex];
-            
-            if (selectedOption) { // Verifica si hay una opción seleccionada
-                const areaReq = selectedOption.getAttribute('areaReq');
-                input.value= areaReq; // Muestra el valor del atributo areaReq 
-            } else {
-                input.value= 'No hay opción seleccionada.';
-            }
-        } else {
-            input.value= 'El elemento "cbTipoInforme" no se encontró.';
-        }
-    }
-
-    // Añadir el listener al select
-    const selectElement = document.getElementById('cbTipoInforme');
-    if (selectElement) {
-        selectElement.addEventListener('change', actualizarAreaRequiriente);
-    } else {
-        console.error('No se pudo añadir el listener porque el elemento no existe.');
-    }
-   
-});
-
-// Combierte la Tabla a Datatable 
-$(document).ready(function() {   
-    $('#tablaInformes').DataTable({
-        "autoWidth": true, // Habilita el ajuste automático de ancho
-        "dom": '<"botones"B><"filtro"f><"ctabla"rt><"pie"ip>',
-        "buttons": [{
-                        extend: 'pdfHtml5',
-                        messageTop: 'Información de las Gestiones realizadas por la Intendencia Nacional de Riesgos',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        download: 'open'
-                    },
-                    'colvis',
-        ],
-        "paging": true, // Activa la paginación
-        //"lengthMenu": [5, 10, 25, 50], // Opciones de número de filas por página
-        "lengthChange": false, // Oculta el menú de selección de entradas
-        "pageLength": 10, // Número de registros por página
-        "ordering": true, // Habilita la ordenación
-        "order": [[0, 'desc'],], // Ordena la primera columna (ID) en orden descendente
-        "columnDefs": [
-            { "orderable": false, "targets": [1, 2, 3, 4, 5, 6, 7] }], // Deshabilita la ordenación para las demás columnas
-        "language": {
-            //"lengthMenu": "Mostrar _MENU_ registros por página",
-            "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando página _PAGE_ de _PAGES_",
-            "infoEmpty": "No hay registros disponibles",
-            "infoFiltered": "(filtrado de _MAX_ registros totales)",
-            "search": "Buscar:",
-            "paginate": {
-                "first": "Primero",
-                "last": "Último",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
-    });
-
-});
-
-
 function mostrarAnalista(isDirector) {
     const select = document.getElementById('analistaSelect');
     const label = document.getElementById('lbanalistaSelect');
@@ -225,8 +139,8 @@ function cargarDatos(button) {
     })
     .then(selectedData => {
         if (selectedData) {
-            console.log("ID DATOS: " + selectedData.COD_INFORME);
-            console.log('Datos obtenidos:', JSON.stringify(selectedData));
+            //console.log("ID DATOS: " + selectedData.COD_INFORME);
+            //console.log('Datos obtenidos:', JSON.stringify(selectedData));
             document.getElementById("detalleId").value = selectedData.COD_INFORME;
             document.getElementById("mRucEntidad").value = selectedData.RUC_ENTIDAD ;
             document.getElementById("mRazonSocial").value = selectedData.RAZON_SOCIAL;
@@ -250,6 +164,187 @@ function cargarDatos(button) {
     });
 }
 
+//consulta areas requirientes 
+function consultarAreasRequirientes() {
+    const url = baseurl + "/backend/informesinr/consultarAreasRequirientes.php";
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+        }
+        return response.json();
+    }).then(data => {
+        const select = document.getElementById('selectAreaRequiriente');
+        if (select) {
+            select.innerHTML = ''; // Limpiar opciones existentes
+            data.forEach(area => {
+                const option = document.createElement('option');
+                option.value = area.AREA_REQUIRIENTE;
+                option.textContent = area.AREA_REQUIRIENTE;
+                option.setAttribute('areaReq', area.AREA_REQUIRIENTE); // Añadir atributo personalizado
+                select.appendChild(option);
+            });
+        } else {
+            console.error('El elemento selectAreaRequiriente no se encontró en el DOM.');
+        }
+    }).catch(error => {
+        console.error('Error al consultar áreas requerientes:', error);
+    });
+}
+
+function selectedArea(areaSeleccionada){
+   document.getElementById('newAreaRequiriente').value = areaSeleccionada
+}
+
+async function guardarForm(formId, event) {
+    event.preventDefault();
+    const form = document.getElementById(formId);
+    const formData = new FormData(form);
+    const url = baseurl + "/backend/informesinr/guardarInforme.php";
+    if (!form.checkValidity()) {
+        return; // Salir si el formulario no es válido
+    }
+    // llamada fetch a la ruta 
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+        if (!response.ok) throw new Error("Error en la respuesta del servidor");
+        const message = await response.json();
+        console.log("Mensaje del servidor:", message);
+        await Swal.fire({
+            icon: 'info',
+            title: message.message,
+            text: message.code + ' - ' + message.error,
+        });
+        form.reset();
+    } catch (error) {
+        console.error("Error al guardar la estructura:", error);
+        alert(`Error al guardar la estructura: ${error.message}`);
+    }
+}
+
+async function guardarNewTipoInf(formId, event) {
+    event.preventDefault();
+    const form = document.getElementById(formId);
+    const formData = new FormData(form);
+    const url = baseurl + "/backend/informesinr/guardarNewArea.php";
+    if (!form.checkValidity()) {
+        return; // Salir si el formulario no es válido
+    }
+    // llamada fetch a la ruta 
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+        if (!response.ok) throw new Error("Error en la respuesta del servidor");
+        const message = await response.json();
+        console.log("Mensaje del servidor:", message);
+        await Swal.fire({
+            icon: 'info',
+            title: message.message,
+            text: message.code + ' - ' + message.error,
+        });
+        form.reset();
+    } catch (error) {
+        console.error("Error al guardar la estructura:", error);
+        alert(`Error al guardar la estructura: ${error.message}`);
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const denominacionInf = 'SEPS-INR-DNS-'
+
+    // Obtener el año actual
+    const year = new Date().getFullYear();
+    
+    // Obtener el elemento input
+    const span = document.getElementById('informe');
+    
+    // Actualizar el valor del input
+    span.innerHTML = denominacionInf +  year + '-';
+    
+    // para mostrar el select de analistas 
+    const isDirector = usrRol; 
+    mostrarAnalista(isDirector);
+
+    function actualizarAreaRequiriente() {
+        const select = document.getElementById('cbTipoInforme');
+        const input = document.getElementById('areaRequiriente');
+
+        if (select) { // Verifica si el select existe
+            const selectedOption = select.options[select.selectedIndex];
+            
+            if (selectedOption) { // Verifica si hay una opción seleccionada
+                const areaReq = selectedOption.getAttribute('areaReq');
+                input.value= areaReq; // Muestra el valor del atributo areaReq 
+            } else {
+                input.value= 'No hay opción seleccionada.';
+            }
+        } else {
+            input.value= 'El elemento "cbTipoInforme" no se encontró.';
+        }
+    }
+
+    // Añadir el listener al select
+    const selectElement = document.getElementById('cbTipoInforme');
+    if (selectElement) {
+        selectElement.addEventListener('change', actualizarAreaRequiriente);
+    } else {
+        console.error('No se pudo añadir el listener porque el elemento no existe.');
+    }
+   
+});
+
+// Combierte la Tabla a Datatable 
+$(document).ready(function() {   
+    $('#tablaInformes').DataTable({
+        "autoWidth": true, // Habilita el ajuste automático de ancho
+        "dom": '<"botones"B><"filtro"f><"ctabla"rt><"pie"ip>',
+        "buttons": [{
+                        extend: 'pdfHtml5',
+                        messageTop: 'Información de las Gestiones realizadas por la Intendencia Nacional de Riesgos',
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        download: 'open'
+                    },
+                    'colvis',
+        ],
+        "paging": true, // Activa la paginación
+        //"lengthMenu": [5, 10, 25, 50], // Opciones de número de filas por página
+        "lengthChange": false, // Oculta el menú de selección de entradas
+        "pageLength": 10, // Número de registros por página
+        "ordering": true, // Habilita la ordenación
+        "order": [[0, 'desc'],], // Ordena la primera columna (ID) en orden descendente
+        "columnDefs": [
+            { "orderable": false, "targets": [1, 2, 3, 4, 5, 6, 7] }], // Deshabilita la ordenación para las demás columnas
+        "language": {
+            //"lengthMenu": "Mostrar _MENU_ registros por página",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    });
+
+   // Listener para abrir el modal
+    $('#newTipoInfModal').on('show.bs.modal', function() {
+        // Llamar a la función para obtener áreas requerientes
+        consultarAreasRequirientes();
+    }); 
+
+});
 
 
 

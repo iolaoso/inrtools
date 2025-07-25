@@ -85,10 +85,10 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                         <option areaReq="SIN SELECCION" value="0">--- Seleccione ---
                                         </option>
                                         <?php foreach ($tiposInf as $tInf): ?>
-                                            <option areaReq="<?= htmlspecialchars($tInf['AREA_REQUIRIENTE']) ?>"
-                                                value="<?= htmlspecialchars($tInf['COD_TIPO_INF']) ?>">
-                                                <?= htmlspecialchars($tInf['TIPO_INFORME']) ?>
-                                            </option>
+                                        <option areaReq="<?= htmlspecialchars($tInf['AREA_REQUIRIENTE']) ?>"
+                                            value="<?= htmlspecialchars($tInf['COD_TIPO_INF']) ?>">
+                                            <?= htmlspecialchars($tInf['TIPO_INFORME']) ?>
+                                        </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -118,9 +118,12 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                         </div>
                                         <input type="number" class="form-control" id="numinforme" name="numinforme"
                                             oninput="unirInforme()">
-                                    </div></br>
-                                    <input type="hidden" class="form-control" id="numinformeFull" name="numinformeFull"
-                                        redonly>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="numinformeFull" class="form-label">Número Informe</label><br>
+                                    <input type="text" class="form-control" id="numinformeFull" name="numinformeFull"
+                                        style="text-transform: uppercase; background-color: #EBF7F5;" redonly>
                                 </div>
                                 <div class="mb-3">
                                     <label for="fInforme" class="form-label">F. Informe</label>
@@ -163,16 +166,16 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                         style="display: none;" onchange="actualizarAnalista()">
                                         <option value="">Analista</option>
                                         <?php foreach ($analistas as $analista): ?>
-                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                            </option>
+                                        <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                            <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                        </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="analista" class="form-label">Analista</label>
                                     <input class="form-control" id="analista" name="analista"
-                                        value="<?= htmlspecialchars($nickname)   ?>" readonly>
+                                        value="<?= htmlspecialchars($nickname) ?>" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary btn-sm btn-block">
@@ -210,50 +213,50 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                     </thead>
                                     <tbody>
                                         <?php foreach ($result as $informeinr): ?>
-                                            <tr>
-                                                <td class="text-center button-cell">
-                                                    <?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>
-                                                </td>
-                                                <td>
-                                                    <?= htmlspecialchars($informeinr['RUC_ENTIDAD'] ?? '') ?>
-                                                </td>
-                                                <td class="text-center button-cell">
-                                                    <?= htmlspecialchars($informeinr['NUM_INFORME'] ?? '') ?>
-                                                </td>
-                                                <td>
-                                                    <?= htmlspecialchars($informeinr['NUM_MEMORANDO'] ?? '') ?>
-                                                </td>
-                                                <td class="text-center button-cell">
-                                                    <button class="btn btn-primary detalle-btn btn-sm"
+                                        <tr>
+                                            <td class="text-center button-cell">
+                                                <?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>
+                                            </td>
+                                            <td>
+                                                <?= htmlspecialchars($informeinr['RUC_ENTIDAD'] ?? '') ?>
+                                            </td>
+                                            <td class="text-center button-cell">
+                                                <?= htmlspecialchars($informeinr['NUM_INFORME'] ?? '') ?>
+                                            </td>
+                                            <td>
+                                                <?= htmlspecialchars($informeinr['NUM_MEMORANDO'] ?? '') ?>
+                                            </td>
+                                            <td class="text-center button-cell">
+                                                <button class="btn btn-primary detalle-btn btn-sm"
+                                                    data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
+                                                    title="Detalle" data-bs-toggle="modal"
+                                                    data-bs-target="#detalleModal" onclick="cargarDatos(this)">
+                                                    <i class="fa-solid fa-comment"></i>
+                                                </button>
+                                            </td>
+                                            <td
+                                                class="<?= htmlspecialchars($informeinr['NEMONICO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
+                                                <?= htmlspecialchars($informeinr['NEMONICO'] ?? '') ?>
+                                            </td>
+                                            <td>
+                                                <?= htmlspecialchars($informeinr['USR_CREACION'] ?? '') ?>
+                                            </td>
+                                            <td>
+                                                <div class="button-container">
+                                                    <button class="btn btn-info edit-btn btn-sm"
                                                         data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
-                                                        title="Detalle" data-bs-toggle="modal"
-                                                        data-bs-target="#detalleModal" onclick="cargarDatos(this)">
-                                                        <i class="fa-solid fa-comment"></i>
+                                                        title="Editar" onclick="editarInforme(this)">
+                                                        <i class="fas fa-edit"></i>
                                                     </button>
-                                                </td>
-                                                <td
-                                                    class="<?= htmlspecialchars($informeinr['NEMONICO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
-                                                    <?= htmlspecialchars($informeinr['NEMONICO'] ?? '') ?>
-                                                </td>
-                                                <td>
-                                                    <?= htmlspecialchars($informeinr['USR_CREACION'] ?? '') ?>
-                                                </td>
-                                                <td>
-                                                    <div class="button-container">
-                                                        <button class="btn btn-info edit-btn btn-sm"
-                                                            data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
-                                                            title="Editar" onclick="editarInforme(this)">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger delete-btn btn-sm"
-                                                            data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
-                                                            logUser="<?= htmlspecialchars($nickname ?? '') ?>"
-                                                            title="Eliminar" onclick="eliminarInforme(this)">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    <button class="btn btn-danger delete-btn btn-sm"
+                                                        data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
+                                                        logUser="<?= htmlspecialchars($nickname ?? '') ?>"
+                                                        title="Eliminar" onclick="eliminarInforme(this)">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -362,6 +365,46 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nuevo Tipo de Informe -->
+    <div class="modal fade" id="newTipoInfModal" tabindex="-1" aria-labelledby="newTipoInfModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newTipoInfModalLabel">Nuevo Tipo de Informe</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="selectAreaRequiriente" class="form-label">Área Requiriente Existente</label>
+                        <select class="form-control" id="selectAreaRequiriente" name="selectAreaRequiriente"
+                            onclick="selectedArea(this.value)">
+                            <!-- AREAS VIENEN DESDE LA BASE -->
+                        </select>
+                    </div>
+                    <form id="frmNewTipoInf" method="POST" autocomplete="off"
+                        onsubmit="guardarNewTipoInf('frmNewTipoInf', event)">
+                        <div class="mb-3">
+                            <input type="hidden" class="form-control" id="usrCreacion" name="usrCreacion"
+                                value="<?= htmlspecialchars($nickname) ?>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newAreaRequiriente" class="form-label">Área Requiriente</label>
+                            <input type="text" class="form-control" id="newAreaRequiriente" name="newAreaRequiriente"
+                                style="text-transform: uppercase;" require>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newTipoInforme" class="form-label">Tipo de Informe</label>
+                            <input type="text" class="form-control" id="newTipoInforme" name="newTipoInforme"
+                                style="text-transform: uppercase;" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
                 </div>
             </div>
         </div>
