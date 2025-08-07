@@ -51,7 +51,7 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
                            class="btn btn-sm btn-primary" download="${archivo.name}" title="Descargar ${archivo.name}">
                             <i class="fas fa-download"></i> Descargar
                         </a>
-                        <a href="${baseurl}/backend/reportes/validarRepDiag.php"
+                        <a href="${baseurl}/backend/reportes/validarRepDiag.php?archivo=${encodeURIComponent(archivo.name)}"
                            class="btn btn-sm btn-danger">
                             <i class="fas fa-download"></i> Descargar2
                         </a>

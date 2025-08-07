@@ -1,10 +1,19 @@
 <?php
 // test_file_access.php
-header('Content-Type: text/plain; charset=utf-8');
+//header('Content-Type: text/plain; charset=utf-8');
+
+
+// nombre del archivo por GET
+echo "\n=== INFORMACIÓN DEL ARCHIVO GET ===\n";
+if (isset($_GET['archivo']) && !empty($_GET['archivo'])) {
+    echo 'Archivo solicitado: ' . htmlspecialchars($_GET['archivo']) . "\n";
+} else {
+    echo 'No se proporcionó un archivo válido.' . "\n";
+    exit;
+}
 
 // Configuración
 $file = '\\\\Seps-mv-fileser\\inr\\Gestión de IR\\DIR-NAC-RPLA\\5. Productos\\Reporte de Diagnostico\\' . $_GET['archivo'];
-
 
 
 // Función para verificar archivo con detalles extendidos
@@ -65,6 +74,9 @@ foreach ($fileInfo as $key => $value) {
     echo str_pad($key . ':', 25) . $value . "\n";
 }
 
+echo "\n=== link de descarga ===\n";
+echo '<a href="' . htmlspecialchars($file) . '" download>Descargar archivo</a>' . "\n";
+
 // Información adicional del servidor
 echo "\n=== INFORMACIÓN DEL SERVIDOR ===\n";
 echo 'Sistema Operativo: ' . php_uname() . "\n";
@@ -72,7 +84,3 @@ echo 'Usuario PHP: ' . get_current_user() . "\n";
 echo 'Módulos Apache: ' . (function_exists('apache_get_modules') ? implode(', ', apache_get_modules()) : 'N/A') . "\n";
 echo 'allow_url_fopen: ' . (ini_get('allow_url_fopen') ? 'On' : 'Off') . "\n";
 echo 'safe_mode: ' . (ini_get('safe_mode') ? 'On' : 'Off') . "\n";
-
-// nombre del archivo por GET
-echo "\n=== INFORMACIÓN DEL ARCHIVO GET ===\n";
-echo $_GET['archivo'];
