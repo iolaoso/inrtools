@@ -23,6 +23,11 @@ const menuItems = [
             {
                 title: 'Reportes',
                 subMenu: [
+                    {   title: 'Reporte de Diagnóstico', 
+                        url: '/INRtools/frontend/inr/reportes/rdiagnostico/rdiagnostico.php',
+                        direccion: ['ALL'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
+                    },
                     {   title: 'Comite', 
                         url: '/INRtools/frontend/inr/reportes/comite/comiteTecnico.php',
                         direccion: ['ALL'],
@@ -59,27 +64,27 @@ const menuItems = [
                 subMenu: [
                     {   title: 'Brechas', 
                         url: '/INRtools/frontend/dnr/reportes/brechas/brechas.php',
-                        direccion: ['ALL'],
+                        direccion: ['DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
                     },
                     {   title: 'Endeudamiento', 
                         url: '/INRtools/frontend/dnr/reportes/endeudamiento/endeudamiento.php',
-                        direccion: ['ALL'],
+                        direccion: ['DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
                     },
                     {   title: 'Saras', 
                         url: '/INRtools/frontend/dnr/reportes/saras/saras.php',
-                        direccion: ['ALL'],
+                        direccion: ['DNR', 'DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
                     },
                     {   title: 'Conafips', 
                         url: '/INRtools/frontend/dnr/reportes/conafips/conafips.php',
-                        direccion: ['ALL'],
+                        direccion: ['DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
                     },
                     {   title: 'Riesgo Ambiental', 
                         url: '/INRtools/frontend/dnr/reportes/rambiental/rambiental.php',
-                        direccion: ['ALL'],
+                        direccion: ['DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
                     }
                 ],
@@ -149,6 +154,7 @@ const menuItems = [
                         direccion: ['DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
                     }
+                    
                 ],
                 direccion: ['ALL'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
