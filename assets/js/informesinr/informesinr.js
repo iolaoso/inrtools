@@ -96,22 +96,25 @@ function editarInforme(boton){
 
 }
 
-function limpiarForm(formId){
-    //console.log("limiarForm");
-    // Selecciona el formulario por su ID (ajusta el ID según sea necesario)
+// Función para limpiar el formulario
+function limpiarForm(formId) {
     const form = document.getElementById(formId);
-
-    // Limpia todos los campos de entrada en el formulario
     if (form) {
-        const inputs = form.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
-            input.value = ''; // Limpia el valor
-            if (input.type === 'checkbox' || input.type === 'radio') {
-                input.checked = false; // Desmarca checkboxes y radios
-            }
-        });
+        // Resetea los campos del formulario
+        form.reset();
+        
+        // Limpia selects2 si los usas
+        if ($().select2) {
+            $(form).find('select').each(function() {
+                if ($(this).hasClass('select2-hidden-accessible')) {
+                    $(this).val(null).trigger('change');
+                }
+            });
+        }
+        document.getElementById('analista').value = nickname;
+        // Muestra feedback al usuario
+        console.log('Formulario limpiado correctamente');
     }
-    document.getElementById('analista').value = nickname;
 }
 
 function unirInforme() {
@@ -156,7 +159,7 @@ function cargarDatos(button) {
             document.getElementById("mtbObservaciones").value = selectedData.OBSERVACIONES;
             document.getElementById("mEstado").value = selectedData.ESTADO;
             document.getElementById("mAnalista").value = selectedData.ANALISTA;
-            document.getElementById("mfechaCargaCompartida").value = selectedData.FEC_CARGA_COMP;
+            document.getElementById("mfechaCargaCompartida").value = selectedData.FECHA_CARGA_COMPARTIDA;
         }
     })
     .catch(error => {
@@ -219,6 +222,8 @@ async function guardarForm(formId, event) {
             text: message.code + ' - ' + message.error,
         });
         form.reset();
+        //actualizar tabla
+        location.reload(); // O puedes actualizar la tabla sin recargar
     } catch (error) {
         console.error("Error al guardar la estructura:", error);
         alert(`Error al guardar la estructura: ${error.message}`);
@@ -300,30 +305,50 @@ document.addEventListener('DOMContentLoaded', function() {
    
 });
 
-// Combierte la Tabla a Datatable 
-$(document).ready(function() {   
+
+$(document).ready(function() {
     $('#tablaInformes').DataTable({
-        "autoWidth": true, // Habilita el ajuste automático de ancho
-        "dom": '<"botones"B><"filtro"f><"ctabla"rt><"pie"ip>',
-        "buttons": [{
-                        extend: 'pdfHtml5',
-                        messageTop: 'Información de las Gestiones realizadas por la Intendencia Nacional de Riesgos',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        download: 'open'
-                    },
-                    'colvis',
+        "autoWidth": true,
+        "dom": '<"row mb-3"<"col-md-6"B><"col-md-6"f>><"row"<"col-12"tr>><"row"<"col-md-5"i><"col-md-7"p>>',
+        "buttons": [
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf"></i> PDF',
+                title: 'Información de las Gestiones realizadas por la Intendencia Nacional de Riesgos',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                className: 'btn btn-danger btn-sm mr-2',
+                exportOptions: {
+                    columns: ':visible'
+                },
+                customize: function(doc) {
+                    doc.content[1].margin = [50, 0, 50, 0] // márgenes izquierdo y derecho
+                }
+            },
+            {
+                extend: 'excel',
+                text: '<i class="fas fa-file-excel"></i> Excel',
+                title: 'Información de las Gestiones realizadas por la Intendencia Nacional de Riesgos',
+                className: 'btn btn-success btn-sm mr-2',
+                exportOptions: {
+                    columns: ':visible',
+                    modifier: {
+                        page: 'all'
+                    }
+                },
+                filename: 'gestiones_intendencia_riesgos_' + new Date().toISOString().slice(0,10)
+            },
+          
         ],
-        "paging": true, // Activa la paginación
-        //"lengthMenu": [5, 10, 25, 50], // Opciones de número de filas por página
-        "lengthChange": false, // Oculta el menú de selección de entradas
-        "pageLength": 10, // Número de registros por página
-        "ordering": true, // Habilita la ordenación
-        "order": [[0, 'desc'],], // Ordena la primera columna (ID) en orden descendente
+        "paging": true,
+        "lengthChange": false,
+        "pageLength": 10,
+        "ordering": true,
+        "order": [[0, 'desc']],
         "columnDefs": [
-            { "orderable": false, "targets": [1, 2, 3, 4, 5, 6, 7] }], // Deshabilita la ordenación para las demás columnas
+            { "orderable": false, "targets": [1, 2, 3, 4, 5, 6, 7] }
+        ],
         "language": {
-            //"lengthMenu": "Mostrar _MENU_ registros por página",
             "zeroRecords": "No se encontraron resultados",
             "info": "Mostrando página _PAGE_ de _PAGES_",
             "infoEmpty": "No hay registros disponibles",
@@ -335,16 +360,13 @@ $(document).ready(function() {
                 "next": "Siguiente",
                 "previous": "Anterior"
             }
-        }
+        },
+        "responsive": true,
+        "stateSave": true
     });
-
-   // Listener para abrir el modal
-    $('#newTipoInfModal').on('show.bs.modal', function() {
-        // Llamar a la función para obtener áreas requerientes
-        consultarAreasRequirientes();
-    }); 
-
 });
+
+
 
 
 

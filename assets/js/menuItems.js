@@ -124,7 +124,7 @@ const menuItems = [
                 url: '/INRtools/frontend/dns/informes/informes.php',
                 //direccion: ['DNS'],
                 direccion: (usrRol === 'SUPERUSER') ? ['ALL'] : ['DNS'], 
-                rol: ['SUPERUSER']//,'ADMINISTRADOR','ANALISTA','DIRECTOR']
+                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR']
             },
             {
                 title: 'Reportes',

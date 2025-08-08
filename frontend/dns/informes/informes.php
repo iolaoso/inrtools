@@ -177,12 +177,14 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                     <input class="form-control" id="analista" name="analista"
                                         value="<?= htmlspecialchars($nickname) ?>" readonly>
                                 </div>
-                                <div class="mb-3">
+                                <div class="text-center mb-3">
                                     <button type="submit" class="btn btn-primary btn-sm btn-block">
-                                        Guardar Registro
+                                        <i class="fas fa-save me-2"></i>Guardar Registro
                                     </button>
-                                    <button type="submit" class="btn btn-secondary btn-sm btn-block"
-                                        onclick="limpiarForm('frmGestionesInr')">Limpiar</button>
+                                    <button type="button" class="btn btn-secondary btn-sm btn-block"
+                                        onclick="limpiarForm('frmInformesInr')">
+                                        <i class="fas fa-broom me-2"></i>Limpiar Formulario
+                                    </button>
                                 </div>
                             </form>
                         </div>
