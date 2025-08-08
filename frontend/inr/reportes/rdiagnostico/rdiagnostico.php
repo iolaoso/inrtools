@@ -124,7 +124,8 @@ include BASE_PATH . 'backend/session.php';
     <!-- Incluir el archivo AJAX -->
     <script>
     // Define la carpeta que deseas usar
-    const carpetaReportes = '//Seps-mv-fileser/inr/Gestión de IR/DIR-NAC-RPLA/5. Productos/Reporte de Diagnostico';
+    //const carpetaReportes = '//Seps-mv-fileser/inr/Gestión de IR/DIR-NAC-RPLA/5. Productos/Reporte de Diagnostico';
+    const carpetaReportes = 'assets/files/reportes/reportesDiagnostico';
     </script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesDiagnostico.js"></script>
 </body>

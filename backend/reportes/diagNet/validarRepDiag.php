@@ -1,6 +1,6 @@
 <?php
 // test_file_access.php
-//header('Content-Type: text/plain; charset=utf-8');
+header('Content-Type: text/plain; charset=utf-8');
 
 
 // nombre del archivo por GET
@@ -69,7 +69,7 @@ function testNetworkConnection($path)
 $fileInfo = checkFileAccess($file);
 
 // Mostrar resultados
-echo "=== VERIFICACIÓN DE ACCESO A ARCHIVO EN RED ===\n\n";
+echo "\n=== VERIFICACIÓN DE ACCESO A ARCHIVO EN RED ===\n\n";
 foreach ($fileInfo as $key => $value) {
     echo str_pad($key . ':', 25) . $value . "\n";
 }

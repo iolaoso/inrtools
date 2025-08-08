@@ -1,66 +1,59 @@
 <?php
-// files.php - Backend para listar archivos
-header('Content-Type: application/json');
 include_once __DIR__ . '/../../backend/config.php';
 
-// Validar sesión primero
-include BASE_PATH . 'backend/session.php';
-//session_start();
+// Función para obtener los archivos de diagnóstico
+function obtenerReportesDiag($carpetaReportes)
+{
+    $directory = BASE_PATH . $carpetaReportes;
+    // Obtener archivos
+    $archivos = [];
 
-// Obtener parámetros
-$carpetaSolicitada = isset($_GET['carpeta']) ? $_GET['carpeta'] : '';
+    // Verificar si el directorio existe
+    if (is_dir($directory)) {
+        $files = scandir($directory);
+        $extensionesPermitidas = ['xlsm', 'xls', 'xlsx']; // Extensiones permitidas
+        $archivos = [];
+        foreach ($files as $file) {
+            $filePath = $directory . DIRECTORY_SEPARATOR . $file;
+            $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-// Validar ruta - seguridad importante
-//$rutaBase = '//Seps-mv-fileser/inr/Gestión de IR/DIR-NAC-RPLA/5. Productos/Reporte de Diagnostico';
-$rutaBase = $carpetaSolicitada;
-$rutaCompleta = realpath($rutaBase);
+            if (is_file($filePath) && in_array($extension, $extensionesPermitidas)) {
+                $modTime = filemtime($filePath);
+                $archivos[] = [
+                    'name' => $file,
+                    'path' => $carpetaReportes,
+                    'directory' => $directory,
+                    'filePath' => $filePath,  // Añadido para acceso directo
+                    'lastModified' => date('Y-m-d H:i:s', $modTime),
+                    'size' => filesize($filePath),
+                    'extension' => $extension,
+                    'timestamp' => $modTime  // Para ordenar más eficientemente
+                ];
+            }
+        }
 
-// Verificar que la ruta solicitada esté dentro del directorio permitido
-if (strpos(realpath($carpetaSolicitada), $rutaCompleta) !== 0) {
-    http_response_code(403);
-    echo json_encode(['error' => 'Acceso no autorizado a la ruta especificada']);
-    exit;
-}
-
-// Verificar si el directorio existe
-if (!is_dir($carpetaSolicitada)) {
-    http_response_code(404);
-    echo json_encode(['error' => 'El directorio no existe']);
-    exit;
-}
-
-// Obtener archivos
-$archivos = [];
-$elementos = scandir($carpetaSolicitada);
-$extensionesPermitidas = ['xlsm', 'xls', 'xlsx']; // Extensiones permitidas
-
-foreach ($elementos as $elemento) {
-    if ($elemento === '.' || $elemento === '..') continue;
-
-    // Saltar archivos ocultos (que comienzan con punto)
-    if (substr($elemento, 0, 1) === '.' || substr($elemento, 0, 1) === '~') continue;
-
-    //$ruta = $carpetaSolicitada . DIRECTORY_SEPARATOR . $elemento;
-    $ruta = $carpetaSolicitada . "/" . $elemento;
-    $extension = strtolower(pathinfo($elemento, PATHINFO_EXTENSION));
-    $rutaNet = str_replace('/', '\\', $ruta); // Reemplaza / por \
-
-    // Solo archivos (no directorios) con extensiones permitidas
-    if (is_file($ruta) && in_array($extension, $extensionesPermitidas)) {
-        $archivos[] = [
-            'name' => $elemento,
-            'path' => $ruta,
-            'net_path' => $rutaNet,
-            'lastModified' => date('Y-m-d H:i:s', filemtime($ruta)),
-            'size' => filesize($ruta),
-            'extension' => $extension
-        ];
+        // Ordenar por fecha de modificación (más reciente primero)
+        usort($archivos, function ($a, $b) {
+            return $b['timestamp'] - $a['timestamp'];  // Usamos el timestamp precalculado
+        });
+    } else {
+        http_response_code(404);
+        echo json_encode([
+            'error' => 'El directorio no existe',
+            'ruta' => $directory
+        ]);
+        exit;
     }
+    echo json_encode($archivos);
 }
 
-// Ordenar por fecha de modificación (más reciente primero)
-usort($archivos, function ($a, $b) {
-    return filemtime($b['path']) - filemtime($a['path']);
-});
+// Llama a la función con el nombre de la carpeta recibido como parámetro
+$carpetaReportes = isset($_GET['carpeta']) ? $_GET['carpeta'] : '';
 
-echo json_encode($archivos);
+if (empty($carpetaReportes)) {
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'La carpeta no puede estar vacía.']);
+    exit;
+}
+
+obtenerReportesDiag($carpetaReportes);

@@ -47,9 +47,13 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
                     <td class="text-center">${(archivo.size / (1024 * 1024)).toFixed(2)} MB</td>
                     <td class="text-center">${fechaFormateada}</td>
                     <td class="text-center">
-                        <a href="${baseurl}/${archivo.path}/${archivo.name}"
-                           class="btn btn-sm btn-primary" title="Descargar ${archivo.name}">
+                        <a href="${baseurl}/backend/reportes/downloadDiag.php?archivo=${encodeURIComponent(archivo.path)}"
+                           class="btn btn-sm btn-primary" download="${archivo.name}" title="Descargar ${archivo.name}">
                             <i class="fas fa-download"></i> Descargar
+                        </a>
+                        <a href="${baseurl}/backend/reportes/validarRepDiag.php?archivo=${encodeURIComponent(archivo.name)}"
+                           class="btn btn-sm btn-danger">
+                            <i class="fas fa-download"></i> Descargar2
                         </a>
                     </td>
                 </tr>
