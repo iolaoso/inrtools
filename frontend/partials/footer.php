@@ -5,5 +5,6 @@
         <span style="font-weight: bold;">Powered by: </span><span>Intendencia Nacional de Riesgos - DNR - IL -
             2025</span>
     </div>
-    <div id="contador-sesion" class="text-secondary">ExpireAt: <span id="tiempo-restante"></span></div>
+    <div id="contador-sesion" class="text-secondary">Date: <span id="tiempo-restante"><?php echo date("d-m-Y"); ?>
+        </span></div>
 </footer>

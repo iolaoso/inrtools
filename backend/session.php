@@ -2,7 +2,7 @@
 session_start();
 
 // Tiempo máximo de inactividad (20 minutos)
-$tiempo_maximo = 1200;
+//$tiempo_maximo = 1200;
 
 
 // Verificar si el usuario está logueado
@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_id'])) {
     }
 }
 
-// Verificar tiempo de actividad
+/* // Verificar tiempo de actividad
 if (isset($_SESSION['LAST_ACTIVITY'])) {
     if (time() - $_SESSION['LAST_ACTIVITY'] > $tiempo_maximo) {
         session_unset();     // Eliminar variables de sesión
@@ -29,7 +29,7 @@ if (isset($_SESSION['LAST_ACTIVITY'])) {
         exit();
     }
 }
-$_SESSION['LAST_ACTIVITY'] = time(); // Actualiza tiempo de actividad
+$_SESSION['LAST_ACTIVITY'] = time(); // Actualiza tiempo de actividad */
 
 // Obtener todas las variables de sesión
 $user_id = $_SESSION['user_id'];

@@ -1,4 +1,4 @@
-const TIEMPO_LIMITE = 20 * 60; // 20 minutos en segundos (constante en mayúsculas)
+/* const TIEMPO_LIMITE = 20 * 60; // 20 minutos en segundos (constante en mayúsculas)
 const AVISO_TIEMPO = 5 * 60; // 5 minutos para el aviso
 let intervaloContador;
 
@@ -45,6 +45,6 @@ function resetContador() {
 }
 
 // Iniciar el contador al cargar la página y configurar event listeners
-window.addEventListener('load', iniciarContador);
-document.addEventListener('mousemove', resetContador);
-document.addEventListener('keypress', resetContador);
+//window.addEventListener('load', iniciarContador);
+//document.addEventListener('mousemove', resetContador);
+//document.addEventListener('keypress', resetContador); */

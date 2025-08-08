@@ -56,7 +56,7 @@ include BASE_PATH . 'backend/session.php';
                 <!-- Reportes de Diagnóstico Simplificado  -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-info text-white">
+                        <div class="card-header text-white" style="background-color: #05829bff;">
                             <h4>Reporte de Diagnóstico Simplificado</h4>
                         </div>
                         <div class="card-body">
