@@ -85,8 +85,8 @@ $analistas = obtenerAnalistas($direccion);
                         <div class="card-body">
                             <input class="form-control" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
-                            <div class="table-container" style="max-height: 800px; overflow-y: auto; width: 100%;">
-                                <table class="table mt-4" id="tablaReportes">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm" style="font-size: 12px;" id="tablaReportes">
                                     <thead>
                                         <tr>
                                             <th>RUC_ENTIDAD</th>
@@ -112,15 +112,17 @@ $analistas = obtenerAnalistas($direccion);
                 </div>
             </section>
 
-            <!-- ventana de carga de datos -->
-            <div id="loading" style="display: none;">
-                <img src="../../../assets/images/Loading.gif" alt="Cargando...">
-                <div class="loading-text">
-                    <span class="loading-title">Buscando Datos</span>
-                    <span class="loading-subtitle">Espere por favor...</span>
-                </div>
-            </div>
+
         </main>
+    </div>
+
+    <!-- ventana de carga de datos -->
+    <div id="loading" style="display: none;">
+        <img src="../../../assets/images/Loading.gif" alt="Cargando...">
+        <div class="loading-text">
+            <span class="loading-title">Buscando Datos</span>
+            <span class="loading-subtitle">Espere por favor...</span>
+        </div>
     </div>
 
     <!-- Modal Buscar Catastro-->
