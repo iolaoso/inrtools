@@ -1,10 +1,11 @@
 <script>
-// Obtener la dirección y rol del usuario (esto debería venir del servidor)
-const currentPage = '<?php echo $current_page; ?>'; // Obtener la página actual
-const baseurl = '<?php echo $base_url; ?>';
-const nickname = '<?php echo $nickname; ?>';
-const usrDir = '<?php echo $direccion; ?>';
-const usrRol = '<?php echo $rol_nombre; ?>';
+    // Obtener la dirección y rol del usuario (esto debería venir del servidor)
+    const currentPage = '<?php echo $current_page; ?>'; // Obtener la página actual
+    const baseurl = '<?php echo $base_url; ?>';
+    const nickname = '<?php echo $nickname; ?>';
+    const usrDir = '<?php echo $direccion; ?>';
+    const usrRol = '<?php echo $rol_nombre; ?>';
+    const usrName = '<?php echo $nickname; ?>';
 </script>
 <script src="<?php echo $base_url; ?>/assets/js/menuItems.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/sidebarFunctions.js?v=<?= time(); ?>"></script>

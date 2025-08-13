@@ -1,14 +1,12 @@
 <?php
-include_once __DIR__ . '/../../backend/config.php';
-include BASE_PATH . 'backend/session.php';
+include_once __DIR__ . '/../../../backend/config.php';
 include BASE_PATH . 'backend/tareas/gestionTareasList.php'; // Incluir el archivo de consultas
 include BASE_PATH . 'backend/catastroList.php'; // consulta catastro activas
 include BASE_PATH . 'backend/analistasList.php'; // consulta analistas
 
-
 $entidadesActSf = entidadesActivasSf();
 $analistas = obtenerAnalistas($direccion);
-
+$tareas = getTareas($nickname);
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +16,6 @@ $analistas = obtenerAnalistas($direccion);
 <?php include_once BASE_PATH . '/frontend/partials/head.php'; ?>
 
 <body>
-
     <!-- Incluir el Header -->
     <?php include_once BASE_PATH . 'frontend/partials/header.php'; ?>
 
@@ -163,7 +160,68 @@ $analistas = obtenerAnalistas($direccion);
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody id="bodyActividades">
+                                        <?php foreach ($tareas as $tarea): ?>
+                                            <tr>
+                                                <td>
+                                                    <?= isset($tarea['TAREA']) ? htmlspecialchars($tarea['TAREA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tarea['TIPO_PROCESO']) ? htmlspecialchars($tarea['TIPO_PROCESO']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tarea['FRECUENCIA']) ? htmlspecialchars($tarea['FRECUENCIA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tarea['RUC']) ? htmlspecialchars($tarea['RUC']) : '' ?></td>
+                                                <td>
+                                                    <?= isset($tarea['DESCRIPCION']) ? htmlspecialchars($tarea['DESCRIPCION']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tarea['PROXIMA_FECHA']) ? htmlspecialchars($tarea['PROXIMA_FECHA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tarea['PROXIMA_HORA']) ? htmlspecialchars($tarea['PROXIMA_HORA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tarea['ULTIMA_EJECUCION']) ? htmlspecialchars($tarea['ULTIMA_EJECUCION']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tarea['ANALISTA_ASIGNADO']) ? htmlspecialchars($tarea['ANALISTA_ASIGNADO']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tarea['ESTADO_TAREA']) ? htmlspecialchars($tarea['ESTADO_TAREA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?php if (($tarea['ESTADO_TAREA'] ?? '') === "COMPLETADA"): ?>
+                                                        <button class="btn btn-success complete-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($tarea['id'] ?? '', ENT_QUOTES) ?>"
+                                                            title="Marcar como completada" disabled>
+                                                            <i class="fa-solid fa-check-double"></i>
+                                                        </button>
+                                                    <?php else: ?>
+                                                        <button class="btn btn-warning complete-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($tarea['id'] ?? '', ENT_QUOTES) ?>"
+                                                            title="Marcar como completada">
+                                                            <i class="fa-solid fa-marker"></i>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-info edit-btn btn-sm"
+                                                        data-id="<?= htmlspecialchars($tarea['id']) ?>" title="Editar"
+                                                        onclick="asignarActions(this, 'edit');">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-danger delete-btn btn-sm"
+                                                        data-id="<?= htmlspecialchars($tarea['id']) ?>" title="Eliminar"
+                                                        onclick="asignarActions(this, 'delete');">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

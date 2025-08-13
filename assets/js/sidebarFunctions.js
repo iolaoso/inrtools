@@ -21,16 +21,22 @@ window.addEventListener('load', () => {
     sidebar.classList.add('collapsed');
 });
 
-function generateMenu(usrDir, usrRol) {
+
+function generateMenu(usrDir, usrRol, usrName) {
     const menu = document.getElementById('menu');
     const fragment = document.createDocumentFragment();
 
     console.log('usrDir:', usrDir);
     console.log('usrRol:', usrRol);
+    console.log('usrName:', usrName);
 
     menuItems.forEach(item => {
         // Validar acceso al menú principal
-        if ((item.direccion.includes(usrDir) || item.direccion.includes('ALL')) && 
+        const hasUserRestriction = item.usuarios && item.usuarios.length > 0;
+        const userAllowed = hasUserRestriction ? item.usuarios.includes(usrName) : true;
+        
+        if (userAllowed && 
+            (item.direccion.includes(usrDir) || item.direccion.includes('ALL')) && 
             (item.rol.includes(usrRol) || item.rol.includes('ALL'))) {
 
             const li = document.createElement('li');
@@ -58,7 +64,11 @@ function generateMenu(usrDir, usrRol) {
 
                 item.subMenu.forEach(subItem => {
                     // Validar acceso al submenú
-                    if ((subItem.direccion.includes(usrDir) || subItem.direccion.includes('ALL')) && 
+                    const subHasUserRestriction = subItem.usuarios && subItem.usuarios.length > 0;
+                    const subUserAllowed = subHasUserRestriction ? subItem.usuarios.includes(usrName) : true;
+                    
+                    if (subUserAllowed &&
+                        (subItem.direccion.includes(usrDir) || subItem.direccion.includes('ALL')) && 
                         (subItem.rol.includes(usrRol) || subItem.rol.includes('ALL'))) {
 
                         const subLi = document.createElement('li');
@@ -89,7 +99,11 @@ function generateMenu(usrDir, usrRol) {
                         
                             subItem.subMenu.forEach(thirdItem => {
                                 // Validar acceso al tercer nivel
-                                if ((thirdItem.direccion.includes(usrDir) || thirdItem.direccion.includes('ALL')) && 
+                                const thirdHasUserRestriction = thirdItem.usuarios && thirdItem.usuarios.length > 0;
+                                const thirdUserAllowed = thirdHasUserRestriction ? thirdItem.usuarios.includes(usrName) : true;
+                                
+                                if (thirdUserAllowed &&
+                                    (thirdItem.direccion.includes(usrDir) || thirdItem.direccion.includes('ALL')) && 
                                     (thirdItem.rol.includes(usrRol) || thirdItem.rol.includes('ALL'))) {
 
                                     const thirdLi = document.createElement('li');
@@ -146,5 +160,8 @@ function generateMenu(usrDir, usrRol) {
     menu.appendChild(fragment);
 }
 
-// Inicializar el menú con las variables usrDir y usrRol definidas en tu contexto
-generateMenu(usrDir, usrRol);
+// Inicializar el menú con las variables usrDir, usrRol y usrName definidas en tu contexto
+generateMenu(usrDir, usrRol, usrName);
+
+
+
