@@ -1,106 +1,68 @@
 <?php
 include_once __DIR__ . '/../../backend/config.php';
-include_once BASE_PATH . 'backend/conexiones/tareas_connection.php'; // Incluir la conexión a la base de datos
+include_once BASE_PATH . 'backend/conexiones/tareas_connection.php';
 include_once BASE_PATH . 'backend/session.php';
 
-// Asegúrate de que $nickname existe y tiene valor
 if (!isset($nickname)) {
     http_response_code(400);
     die(json_encode(['error' => 'Nickname no definido']));
 }
 
-// funcion para obtener la lista de tareas
-function getTareas($filtro_analista = null)
+function getTareas($estado, $analista)
 {
     global $connTask;
-    $sql = "SELECT * 
-            FROM VI_TAREAS_ACCIONES 
+    $sql = "SELECT * FROM tareas  
             WHERE EST_REGISTRO='ACT' 
+            AND ESTADO_TAREA = ? 
             AND ANALISTA_ASIGNADO = ? 
-            ORDER BY ESTADO_TAREA DESC";
-    if ($connTask->connect_error) {
-        die(json_encode(['status' => 'error', 'message' => 'Conexión fallida: ' . $connTask->connect_error]));
-    }
+            ORDER BY PROXIMA_FECHA ASC";
+
     $stmt = $connTask->prepare($sql);
-    $stmt->bind_param("s", $filtro_analista);
+    $stmt->bind_param("ss", $estado, $analista);
     $stmt->execute();
-    return $stmt->get_result();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-// Funcion para marcar una tarea como hecha
-function marcarTareaComoHecha($id)
+function getTareasPendientes($analista)
+{
+    return getTareas('PENDIENTE', $analista);
+}
+
+function getTareasCompletas($analista)
+{
+    return getTareas('COMPLETADA', $analista);
+}
+
+function manejarTarea($id, $accion)
 {
     global $connTask;
-    $stmt = $connTask->prepare("UPDATE tareas SET ESTADO_TAREA='COMPLETADA' WHERE id=?");
+
+    $accionesValidas = [
+        'completar' => "UPDATE tareas SET ESTADO_TAREA='COMPLETADA', ULTIMA_EJECUCION=NOW() WHERE id=?",
+        'editar' => "UPDATE tareas SET ESTADO_TAREA='EDITADA' WHERE id=?",
+        'eliminar' => "UPDATE tareas SET EST_REGISTRO='ELIMINADA' WHERE id=?"
+    ];
+
+    if (!array_key_exists($accion, $accionesValidas)) {
+        return ['success' => false, 'message' => 'Acción no válida'];
+    }
+
+    $stmt = $connTask->prepare($accionesValidas[$accion]);
     $stmt->bind_param("i", $id);
 
-    if ($stmt->execute()) {
-        return [
-            'success' => true,
-            'message' => 'Tarea marcada como completada'
-        ];
-    } else {
-        return ['success' => false, 'message' => $stmt->error];
-    }
+    return $stmt->execute()
+        ? ['success' => true]
+        : ['success' => false, 'message' => $stmt->error];
 }
 
-// Funcion para editar una tarea
-function editarTarea($id)
-{
-    global $connTask;
-    // Aquí podrías implementar la lógica para editar una tarea
-    // Por ahora, simplemente retornamos un mensaje de éxito
-    $stmt = $connTask->prepare("UPDATE tareas SET ESTADO_TAREA='EDITADA' WHERE id=?");
-    $stmt->bind_param("i", $id);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
 
-    if ($stmt->execute()) {
-        return ['success' => true];
-    } else {
-        return ['success' => false, 'message' => $stmt->error];
-    }
-}
-
-// Funcion para eliminar una tarea
-function elimimarTarea($id)
-{
-    global $connTask;
-    $stmt = $connTask->prepare("UPDATE tareas SET EST_REGISTRO='ELIMINADA' WHERE id=?");
-    $stmt->bind_param("i", $id);
-
-    if ($stmt->execute()) {
-        return ['success' => true];
-    } else {
-        return ['success' => false, 'message' => $stmt->error];
-    }
-}
-
-function asignarActions($tareaId, $accion)
-{
-    // Asegúrate de que $tareaId y $accion son válidos
-    if (empty($tareaId) || empty($accion)) {
-        return ['success' => false, 'message' => 'ID de tarea o acción no válidos'];
-    }
-    //define las acciones por tarea con un switch
-    switch ($accion) {
-        case 'marcar_como_hecha':
-            return marcarTareaComoHecha($tareaId);
-        case 'editar':
-            // Aquí podrías implementar la lógica para editar una tarea
-            return editarTarea($tareaId);
-        case 'eliminar':
-            return elimimarTarea($tareaId);
-        default:
-            return ['success' => false, 'message' => 'Acción no reconocida'];
-    }
-}
-
-// Manejo de la solicitud
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET['id']) && isset($_GET['accion'])) {
-        $tareaId = $_GET['id'];
-        $accion = $_GET['accion'];
-        $response = asignarActions($tareaId, $accion);
+    if (isset($data['id']) && isset($data['action'])) {
+        $response = manejarTarea($data['id'], $data['action']);
+        header('Content-Type: application/json');
         echo json_encode($response);
+        exit;
     }
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
