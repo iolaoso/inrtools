@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode($input, true) ?? $_POST;
 
     if (isset($data['action'])) {
-        if ($data['action'] === 'insertar' || $data['action'] === 'editar') {
+        if ($data['action'] == 'insertar' || $data['action'] == 'editar') {
             $response = tareaSaveEdit($data, $nickname);
         } else {
             $response = manejarTarea($data['id'], $data['action'], $nickname);

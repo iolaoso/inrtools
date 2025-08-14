@@ -209,7 +209,7 @@ $tareasCompletas = getTareasCompletas($nickname);
                                                     <i class="fa-solid fa-check-double"></i>
                                                 </button>
                                                 <?php else: ?>
-                                                <button class="btn btn-warning complete-btn btn-sm"
+                                                <button class="btn btn-sm btn-warning complete-btn "
                                                     data-id="<?= htmlspecialchars($tarea['id'] ?? '', ENT_QUOTES) ?>"
                                                     title="Marcar como completada">
                                                     <i class="fa-solid fa-marker"></i>
