@@ -1,17 +1,18 @@
 <script>
-    // Obtener la dirección y rol del usuario (esto debería venir del servidor)
-    const currentPage = '<?php echo $current_page; ?>'; // Obtener la página actual
-    const baseurl = '<?php echo $base_url; ?>';
-    const nickname = '<?php echo $nickname; ?>';
-    const usrDir = '<?php echo $direccion; ?>';
-    const usrRol = '<?php echo $rol_nombre; ?>';
-    const usrName = '<?php echo $nickname; ?>';
+// Obtener la dirección y rol del usuario (esto debería venir del servidor)
+const currentPage = '<?php echo $current_page; ?>'; // Obtener la página actual
+const baseurl = '<?php echo $base_url; ?>';
+const nickname = '<?php echo $nickname; ?>';
+const usrDir = '<?php echo $direccion; ?>';
+const usrRol = '<?php echo $rol_nombre; ?>';
+const usrName = '<?php echo $nickname; ?>';
 </script>
 <script src="<?php echo $base_url; ?>/assets/js/menuItems.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/sidebarFunctions.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/exportarTabla.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/filtrarTablas.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/entidades.js?v=<?= time(); ?>"></script>
+<script src="<?php echo $base_url; ?>/assets/js/analistas.js?v=<?= time(); ?>"></script>
 <!-- Enlazar JavaScript para la caducidad de sesión -->
 <script src="<?php echo $base_url; ?>/assets/js/session_timeout.js?v=<?= time(); ?>"></script>
 <!-- Icons -->

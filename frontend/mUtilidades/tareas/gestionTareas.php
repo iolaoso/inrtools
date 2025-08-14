@@ -37,8 +37,10 @@ $tareasCompletas = getTareasCompletas($nickname);
                             <h4>Crear Tarea</h4>
                         </div>
                         <div class="card-body">
-                            <form id="frmTareas" method="post" autocomplete="off"
-                                onsubmit="guardarForm('frmTareas', event)">
+                            <form id="frmTareas" method="POST" autocomplete="off">
+                                <div class="mb-3">
+                                    <input type="text" id="taskId" name="taskId" value="">
+                                </div>
                                 <div class="mb-3">
                                     <label for="taskName" class="form-label">Tarea</label>
                                     <input type="text" class="form-control" id="taskName" name="taskName" required>
@@ -92,7 +94,7 @@ $tareasCompletas = getTareasCompletas($nickname);
                                 <div class="mb-3">
                                     <label for="nextExecutionTime" class="form-label">Próxima Hora de Ejecución</label>
                                     <input type="time" class="form-control" id="nextExecutionTime"
-                                        name="nextExecutionTime" readonly>
+                                        name="nextExecutionTime" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="lastExecution" class="form-label">Última Fecha y Hora de
@@ -101,9 +103,12 @@ $tareasCompletas = getTareasCompletas($nickname);
                                         name="lastExecution" readonly>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="assignAnalyst" class="form-label">Asignar Analista</label>
-                                    <select class="form-control" id="assignAnalyst" name="assignAnalyst" required>
-                                        <option value="">Seleccione un Analista</option>
+                                    <label id="lbAnalistaEjecutanteSelect" for="analistaEjecutanteSelect"
+                                        class="form-label">Asignar Analista</label>
+                                    <select class="form-control" id="analistaEjecutanteSelect"
+                                        name="analistaEjecutanteSelect" style="display: none;"
+                                        onchange="actualizarInputAnalista()">
+                                        <option value="">Seleccione un analista</option>
                                         <?php foreach ($analistas as $analista): ?>
                                         <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
                                             <?= htmlspecialchars($analista['NOMBRE']) ?>
@@ -111,6 +116,7 @@ $tareasCompletas = getTareasCompletas($nickname);
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
+                                <!-- assignAnalyst -->
                                 <div class="mb-3">
                                     <label for="analistaEjecutante" class="form-label">Analista Ejecutante</label>
                                     <input class="form-control" id="analistaEjecutante" name="analistaEjecutante"
@@ -126,7 +132,7 @@ $tareasCompletas = getTareasCompletas($nickname);
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block">Guardar
+                                    <button type="button" class="btn btn-primary btn-sm btn-block save-btn">Guardar
                                         Tarea</button>
                                     <button type="button" class="btn btn-secondary btn-sm btn-block"
                                         onclick="limpiarForm('frmTareas')">Limpiar</button>
@@ -307,11 +313,11 @@ $tareasCompletas = getTareasCompletas($nickname);
                                             <td>
                                                 <div class="btn-group">
                                                     <button class="btn btn-sm btn-info edit-btn"
-                                                        data-id="<?= $tarea['id'] ?>" title="Editar">
+                                                        data-id="<?= $tareaC['id'] ?>" title="Editar">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                     <button class="btn btn-sm btn-danger delete-btn"
-                                                        data-id="<?= $tarea['id'] ?>" title="Eliminar">
+                                                        data-id="<?= $tareaC['id'] ?>" title="Eliminar">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
