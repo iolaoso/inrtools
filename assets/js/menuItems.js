@@ -73,6 +73,125 @@ const menuItems = [
             {
                 title: 'Reportes',
                 subMenu: [
+                    {   title: 'Riesgo de Crédito', 
+                        subMenu: [
+                            {   title: 'Perdidas Esperadas', 
+                                url: '/INRtools/frontend/dnr/reportes/alertas/perdidas_esperadas.php',
+                                //url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                            {   title: 'Monitoreo Mora', 
+                                //url: '/INRtools/frontend/dnr/reportes/alertas/monitoreo_mora.php',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                            {   title: 'Reporte Cosechas Cubo', 
+                                //url: '/INRtools/frontend/dnr/reportes/alertas/reporte_cosechas.php',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                            {   title: 'Cartera Socios Clientes', 
+                                //url: '/INRtools/',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                        ],
+                        direccion: ['DNR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        usuarios: []
+                    },
+                    {   title: 'Riesgo de Liquidez',    
+                        subMenu: [
+                            {   title: 'Cumplimiento Liquidez Estructural', 
+                                //url: '/INRtools/',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                            {   title: 'Reporte liquidez diaria', 
+                                //url: '/INRtools/frontend/dnr/reportes/alertas/reporte_liquidez_diaria.php',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                            {   title: 'Reporte liquidez', 
+                                //url: '/INRtools/frontend/dnr/reportes/alertas/reporte_liquidez.php',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            }
+                        ],
+                        direccion: ['DNR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        usuarios: []
+                    },
+                    {   title: 'Calidad de Activos',
+                        subMenu: [
+                            {   title: 'Reporte Inversiones y fondos disponibles', 
+                                //url: '/INRtools/frontend/dnr/reportes/alertas/reporte_inversiones.php',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            }
+                        ],
+                        direccion: ['DNR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        usuarios: []
+                    },
+                    {   title: 'Calidad de Resultados',
+                        subMenu: [
+                            {   title: 'Alertas Rentabilidad', 
+                                //url: '/INRtools/frontend/dnr/reportes/alertas/alertas_rentabilidad.php',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            }
+                        ],
+                        direccion: ['DNR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        usuarios: []
+                    },
+                    {   title: 'Riesgo de Mercado',
+                        subMenu: [
+                            {   title: 'Tasas ponderadas activas', 
+                                //url: '/INRtools/frontend/dnr/reportes/alertas/tasas_ponderadas_activas.php',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            }
+                        ],
+                        direccion: ['DNR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        usuarios: []
+                    },
+                    {   title: 'Riesgo de Interconexión',
+                        subMenu: [
+                            {   title: 'Base de cálculo ranking total               ', 
+                                //url: '/INRtools/frontend/dnr/reportes/alertas/base_calculo_ranking.php',
+                                url: '/INRtools/frontend/enConstruccion.php',
+                                direccion: ['ALL'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                        ],
+                        direccion: ['DNR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        usuarios: [] 
+                    },
                     {   title: 'Brechas', 
                         url: '/INRtools/frontend/dnr/reportes/brechas/brechas.php',
                         direccion: ['DNR'],

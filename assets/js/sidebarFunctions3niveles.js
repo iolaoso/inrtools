@@ -21,6 +21,7 @@ window.addEventListener('load', () => {
     sidebar.classList.add('collapsed');
 });
 
+
 function generateMenu(usrDir, usrRol, usrName) {
     const menu = document.getElementById('menu');
     const fragment = document.createDocumentFragment();
@@ -94,7 +95,7 @@ function generateMenu(usrDir, usrRol, usrName) {
                         
                             const thirdMenu = document.createElement('ul');
                             thirdMenu.classList.add('third-menu');
-                            thirdMenu.style.display = 'none';
+                            thirdMenu.style.display = 'none'; // Ocultar por defecto
                         
                             subItem.subMenu.forEach(thirdItem => {
                                 // Validar acceso al tercer nivel
@@ -117,51 +118,6 @@ function generateMenu(usrDir, usrRol, usrName) {
                             
                                     thirdLi.appendChild(thirdHeader);
                                     thirdHeader.appendChild(thirdAnchor);
-
-                                    // Agregar cuarto nivel de menú
-                                    if (thirdItem.subMenu && thirdItem.subMenu.length > 0) {
-                                        const thirdArrow = document.createElement('i');
-                                        thirdArrow.className = 'fas fa-chevron-right arrow';
-                                        thirdHeader.appendChild(thirdArrow);
-                                    
-                                        const fourthMenu = document.createElement('ul');
-                                        fourthMenu.classList.add('fourth-menu');
-                                        fourthMenu.style.display = 'none';
-                                    
-                                        thirdItem.subMenu.forEach(fourthItem => {
-                                            // Validar acceso al cuarto nivel
-                                            const fourthHasUserRestriction = fourthItem.usuarios && fourthItem.usuarios.length > 0;
-                                            const fourthUserAllowed = fourthHasUserRestriction ? fourthItem.usuarios.includes(usrName) : true;
-                                            
-                                            if (fourthUserAllowed &&
-                                                (fourthItem.direccion.includes(usrDir) || fourthItem.direccion.includes('ALL')) && 
-                                                (fourthItem.rol.includes(usrRol) || fourthItem.rol.includes('ALL'))) {
-
-                                                const fourthLi = document.createElement('li');
-                                                const fourthHeader = document.createElement('div');
-                                                fourthHeader.classList.add('menu-header');
-                                        
-                                                const fourthAnchor = document.createElement('a');
-                                                fourthAnchor.href = fourthItem.url || '#';
-                                                fourthAnchor.textContent = fourthItem.title;
-                                                fourthAnchor.style.color = '#fff';
-                                                fourthAnchor.style.textDecoration = 'none';
-                                        
-                                                fourthLi.appendChild(fourthHeader);
-                                                fourthHeader.appendChild(fourthAnchor);
-                                                fourthMenu.appendChild(fourthLi);
-                                            }
-                                        });
-                                    
-                                        thirdLi.appendChild(fourthMenu);
-                                    
-                                        thirdHeader.addEventListener('click', (e) => {
-                                            e.stopPropagation();
-                                            fourthMenu.style.display = fourthMenu.style.display === 'none' ? 'block' : 'none';
-                                            thirdArrow.classList.toggle('rotate');
-                                        });
-                                    }
-
                                     thirdMenu.appendChild(thirdLi);
                                 }
                             });
@@ -206,3 +162,6 @@ function generateMenu(usrDir, usrRol, usrName) {
 
 // Inicializar el menú con las variables usrDir, usrRol y usrName definidas en tu contexto
 generateMenu(usrDir, usrRol, usrName);
+
+
+
