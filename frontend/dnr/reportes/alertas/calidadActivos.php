@@ -23,7 +23,7 @@ include BASE_PATH . 'backend/session.php';
             </div>
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
-                <!-- Reportes de Diagnóstico -->
+                <!-- Reporte de Inversiones y Fondos Disponibles -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
@@ -31,8 +31,7 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" style="font-size: 12px;"
-                                    id="tablaRepDiagnostico">
+                                <div class="table table-striped table-sm" style="font-size: 12px;" id="tablaRepInvFD">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
                                             <tr>
@@ -43,7 +42,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rTBodyDiag">
+                                        <tbody id="rTBodyRepInvFD">
                                         </tbody>
                                     </table>
                                 </div>
@@ -67,9 +66,9 @@ include BASE_PATH . 'backend/session.php';
     <!-- Incluir el archivo AJAX -->
     <script>
         // Define la carpeta que deseas usar
-        const folderInversionesFD = 'assets/files/reportes/alertas/calidadActivos/inversionesFD';
+        const carpetaReportes = 'assets/files/reportes/alertas/calidadActivos';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesDiagnostico.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesCalidadActivos.js"></script>
 </body>
 
 </html>
