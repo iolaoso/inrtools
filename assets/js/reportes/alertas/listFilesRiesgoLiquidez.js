@@ -1,4 +1,4 @@
-console.log("listFilesRiesgoCredito.js funcionando");
+console.log("listFilesRiesgoLiquidez.js funcionando");
 
 // Función para ordenar archivos (por versión y fecha)
 function ordenarArchivos(archivos) {
@@ -68,7 +68,7 @@ function mostrarErrorEnTodasTablas(mensaje) {
 }
 
 // Función reportes Perdidas Esperadas
-function fetchRiesgoCredito(carpetaReportes) {
+function fetchRiesgoLiquidez(carpetaReportes) {
     const url = `${baseurl}/backend/reportes/listFilesReportesAlertas.php?carpeta=${encodeURIComponent(carpetaReportes)}`;
     console.log("Fetching URL:", url);
 
@@ -80,21 +80,17 @@ function fetchRiesgoCredito(carpetaReportes) {
         .then(data => {
             console.log("Datos recibidos:", data);
             const categorias = {
-                perdidasEsperadas: {
-                    archivos: data.filter(item => item.name.includes('perdidas_esperadas')),
-                    tablaId: 'rTBodyPerdidasEsperadas'
+                cumpLiquidezEst: {
+                    archivos: data.filter(item => item.name.includes('1.- Cumplimiento liquidez estructural')),
+                    tablaId: 'rTBodyCumplLiquidezEst'
                 },
-                monitoreoMora: {
-                    archivos: data.filter(item => item.name.includes('Monitoreo Mora')),
-                    tablaId: 'rTBodyMonitoreoMora'
+                liquidezDiaria: {
+                    archivos: data.filter(item => item.name.includes('2.- Reporte liquidez diaria')),
+                    tablaId: 'rTBodyLiquidezDiaria'
                 },
-                cosechas: {
-                    archivos: data.filter(item => item.name.includes('Cosechas')),
-                    tablaId: 'rTBodyCosechas'
-                },
-                cartSociosClientes: {
-                   archivos: data.filter(item => item.name.toLowerCase().includes('cartera_socios_clientes')),
-                    tablaId: 'rTBodyCartSociosCli'
+                liquidez: {
+                    archivos: data.filter(item => item.name.includes('3.- Reporte liquidez')),
+                    tablaId: 'rTBodyLiquidez'
                 }
             };
             Object.values(categorias).forEach(({ archivos, tablaId }) => {
@@ -110,7 +106,7 @@ function fetchRiesgoCredito(carpetaReportes) {
 // Inicialización cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof carpetaReportes !== 'undefined') {
-        fetchRiesgoCredito(carpetaReportes);
+        fetchRiesgoLiquidez(carpetaReportes);
     } else {
         console.error("La variable 'carpetaReportes' no está definida");
         mostrarErrorEnTodasTablas("Error de configuración: ruta no definida");

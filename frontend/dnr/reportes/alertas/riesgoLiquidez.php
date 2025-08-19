@@ -22,17 +22,16 @@ include BASE_PATH . 'backend/session.php';
                 <p>Alertas relacionados con Liquidez</p>
             </div>
             <section class="row align-items-stretch mb-4">
-                <!-- Cambiar align-items-center a align-items-stretch -->
-                <!-- Reportes de Diagnóstico -->
+                <!-- Cumplimiento Liquidez Estructural -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
-                            <h4>Cumplimiento Liquidez Estructural/h4>
+                            <h4>Cumplimiento Liquidez Estructural</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
                                 <div class="table table-striped table-sm" style="font-size: 12px;"
-                                    id="tablaRepDiagnostico">
+                                    id="tablaCumplLiquidezEst">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
                                             <tr>
@@ -43,7 +42,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rTBodyDiag">
+                                        <tbody id="rTBodyCumplLiquidezEst">
                                         </tbody>
                                     </table>
                                 </div>
@@ -53,7 +52,7 @@ include BASE_PATH . 'backend/session.php';
                 </div>
             </section>
             <section class="row align-items-stretch mb-4">
-                <!-- Reportes de Diagnóstico Simplificado  -->
+                <!-- Reporte Liquidez Diaria  -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
@@ -62,7 +61,7 @@ include BASE_PATH . 'backend/session.php';
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
                                 <div class="table table-striped table-sm" style="font-size: 12px;"
-                                    id="tablaRepDiagSimplificado">
+                                    id="tablaLiquidezDiaria">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
                                             <tr>
@@ -72,7 +71,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rTBodyDiagSimpli">
+                                        <tbody id="rTBodyLiquidezDiaria">
                                         </tbody>
                                     </table>
                                 </div>
@@ -82,7 +81,7 @@ include BASE_PATH . 'backend/session.php';
                 </div>
             </section>
             <section class="row align-items-stretch mb-4">
-                <!-- Informe de Diagnóstico SNF -->
+                <!-- Reporte Liquidez -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
@@ -90,7 +89,7 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" style="font-size: 12px;" id="tablaRepDiagSNF">
+                                <div class="table table-striped table-sm" style="font-size: 12px;" id="tablaLiquidez">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
                                             <tr>
@@ -100,7 +99,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rTBodyDiagSNF">
+                                        <tbody id="rTBodyLiquidez">
                                         </tbody>
                                     </table>
                                 </div>
@@ -124,11 +123,9 @@ include BASE_PATH . 'backend/session.php';
     <!-- Incluir el archivo AJAX -->
     <script>
         // Define la carpeta que deseas usar
-        const folderCumpLiquidez = 'assets/files/reportes/alertas/riesgoLiquidez/cumpLiquidez';
-        const folderLiquidezDiaria = 'assets/files/reportes/alertas/riesgoLiquidez/liquidezDiaria';
-        const folderLiquidez = 'assets/files/reportes/alertas/riesgoLiquidez/liquidez';
+        const carpetaReportes = 'assets/files/reportes/alertas/riesgoLiquidez';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesDiagnostico.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesRiesgoLiquidez.js"></script>
 </body>
 
 </html>

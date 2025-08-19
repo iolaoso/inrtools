@@ -80,8 +80,8 @@ const menuItems = [
                         usuarios: []
                     },
                     {   title: 'Riesgo de Liquidez', 
-                        //url: '/INRtools/frontend/dnr/reportes/alertas/riesgoLiquidez.php',
-                        url: '/INRtools/frontend/enConstruccion.php',
+                        url: '/INRtools/frontend/dnr/reportes/alertas/riesgoLiquidez.php',
+                        //url: '/INRtools/frontend/enConstruccion.php',
                         direccion: ['DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: []
