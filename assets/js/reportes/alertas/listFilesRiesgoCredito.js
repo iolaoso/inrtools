@@ -1,4 +1,4 @@
-console.log("listFilesAlertas.js funcionando");
+console.log("listFilesRiesgoCredito.js funcionando");
 
 // Función para ordenar archivos (por versión y fecha)
 function ordenarArchivos(archivos) {
@@ -59,7 +59,7 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
 
 // Función para mostrar errores en todas las tablas
 function mostrarErrorEnTodasTablas(mensaje) {
-    ['rTBodyAlertas'].forEach(id => {
+    ['rTBodyDiag', 'rTBodyDiagSimpli', 'rTBodyDiagSNF'].forEach(id => {
         const tbody = document.getElementById(id);
         if (tbody) {
             tbody.innerHTML = `<tr><td colspan="4" class="text-center text-danger">${mensaje}</td></tr>`;
@@ -67,8 +67,8 @@ function mostrarErrorEnTodasTablas(mensaje) {
     });
 }
 
-// Función principal para obtener y mostrar reportes
-function fetchReportsDiag(carpetaReportes) {
+// Función reportes Perdidas Esperadas
+function fetchRiesgoCredito(carpetaReportes) {
     const url = `${baseurl}/backend/reportes/listFilesReportesAlertas.php?carpeta=${encodeURIComponent(carpetaReportes)}`;
     console.log("Fetching URL:", url);
 
@@ -80,19 +80,21 @@ function fetchReportsDiag(carpetaReportes) {
         .then(data => {
             console.log("Datos recibidos:", data);
             const categorias = {
-                diagnostico: {
-                    archivos: data.filter(item => item.name.includes('Reporte Diagnostico') && 
-                                                    !item.name.toLowerCase().includes('simplificado') && 
-                                                    !item.name.toLowerCase().includes('snf')),
-                    tablaId: 'rTBodyDiag'
+                perdidasEsperadas: {
+                    archivos: data.filter(item => item.name.includes('perdidas_esperadas')),
+                    tablaId: 'rTBodyPerdidasEsperadas'
                 },
-                simplificado: {
-                    archivos: data.filter(item => item.name.toLowerCase().includes('simplificado')),
-                    tablaId: 'rTBodyDiagSimpli'
+                monitoreoMora: {
+                    archivos: data.filter(item => item.name.includes(' Monitoreo Mora')),
+                    tablaId: 'rTBodyMonitoreoMora'
                 },
-                snf: {
-                    archivos: data.filter(item => /diagnóstico snf/i.test(item.name)),
-                    tablaId: 'rTBodyDiagSNF'
+                cosechas: {
+                    archivos: data.filter(item => item.name.includes('Cosechas')),
+                    tablaId: 'rTBodyCosechas'
+                },
+                cartSociosClientes: {
+                   archivos: data.filter(item => item.name.toLowerCase().includes('cartera_socios_clientes')),
+                    tablaId: 'rTBodyCartSociosCli'
                 }
             };
             Object.values(categorias).forEach(({ archivos, tablaId }) => {
@@ -108,7 +110,7 @@ function fetchReportsDiag(carpetaReportes) {
 // Inicialización cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof carpetaReportes !== 'undefined') {
-        fetchReportsDiag(carpetaReportes);
+        fetchRiesgoCredito(carpetaReportes);
     } else {
         console.error("La variable 'carpetaReportes' no está definida");
         mostrarErrorEnTodasTablas("Error de configuración: ruta no definida");

@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '../../../../../backend/config.php';
+include_once __DIR__ . '/../../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';
 ?>
 
@@ -18,8 +18,8 @@ include BASE_PATH . 'backend/session.php';
         <!-- Contenido principal -->
         <main class="content p-3" id="main-content">
             <div class="row align-items-center mb-1">
-                <h1 class="display-6 tituloPagina">REPORTE DE PERDIDAS ESPERADAS</h1>
-                <p>Archivos reportados</p>
+                <h1 class="display-6 tituloPagina">CALIDAD DE ACTIVOS</h1>
+                <p>Alertas relacionados con la calidad de los activos</p>
             </div>
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
@@ -27,7 +27,7 @@ include BASE_PATH . 'backend/session.php';
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
-                            <h4>Reporte de Diagnóstico</h4>
+                            <h4>Reporte de Inversiones y Fondos Disponibles</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
@@ -43,7 +43,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rTBodyAlertas">
+                                        <tbody id="rTBodyDiag">
                                         </tbody>
                                     </table>
                                 </div>
@@ -67,10 +67,9 @@ include BASE_PATH . 'backend/session.php';
     <!-- Incluir el archivo AJAX -->
     <script>
         // Define la carpeta que deseas usar
-        //const carpetaReportes = '//Seps-mv-fileser/inr/Gestión de IR/DIR-NAC-RPLA/5. Productos/Reporte de Diagnostico';
-        const carpetaReportes = 'assets/files/reportes/alertas/perdidas_esperadas';
+        const folderInversionesFD = 'assets/files/reportes/alertas/calidadActivos/inversionesFD';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesalertas.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesDiagnostico.js"></script>
 </body>
 
 </html>

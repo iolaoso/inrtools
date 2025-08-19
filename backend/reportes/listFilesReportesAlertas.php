@@ -11,7 +11,7 @@ function obtenerReportesAlertas($carpetaReportes)
     // Verificar si el directorio existe
     if (is_dir($directory)) {
         $files = scandir($directory);
-        $extensionesPermitidas = ['xlsm', 'xls', 'xlsx']; // Extensiones permitidas
+        $extensionesPermitidas = ['xlsm', 'xls', 'xlsx', 'pbix']; // Extensiones permitidas
         $archivos = [];
         foreach ($files as $file) {
             $filePath = $directory . DIRECTORY_SEPARATOR . $file;
