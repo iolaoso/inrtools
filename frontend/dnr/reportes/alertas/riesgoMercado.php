@@ -32,7 +32,7 @@ include BASE_PATH . 'backend/session.php';
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
                                 <div class="table table-striped table-sm" style="font-size: 12px;"
-                                    id="tablaRepDiagnostico">
+                                    id="tablaTasasPondAct">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
                                             <tr>
@@ -43,7 +43,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rTBodyDiag">
+                                        <tbody id="rTBodyTasasPondAct">
                                         </tbody>
                                     </table>
                                 </div>
@@ -66,13 +66,10 @@ include BASE_PATH . 'backend/session.php';
 
     <!-- Incluir el archivo AJAX -->
     <script>
-        // Define la carpeta que deseas usar
-        const folderPerdidasEsperadas = 'assets/files/reportes/alertas/riesgoCredito/perdidadEsperadas';
-        const folderMonitoreoMora = 'assets/files/reportes/alertas/riesgoCredito/monitoreoMora';
-        const folderCosechas = 'assets/files/reportes/alertas/riesgoCredito/reporteCosechasCubo';
-        const folderCartSociosClientes = 'assets/files/reportes/alertas/riesgoCredito/carteraSociosClientes';
+    // Define la carpeta que deseas usar
+    const carpetaReportes = 'assets/files/reportes/alertas/riesgoMercado';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesDiagnostico.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesRiesgoMercado.js"></script>
 </body>
 
 </html>

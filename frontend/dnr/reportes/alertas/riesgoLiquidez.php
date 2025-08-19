@@ -122,8 +122,8 @@ include BASE_PATH . 'backend/session.php';
 
     <!-- Incluir el archivo AJAX -->
     <script>
-        // Define la carpeta que deseas usar
-        const carpetaReportes = 'assets/files/reportes/alertas/riesgoLiquidez';
+    // Define la carpeta que deseas usar
+    const carpetaReportes = 'assets/files/reportes/alertas/riesgoLiquidez';
     </script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesRiesgoLiquidez.js"></script>
 </body>

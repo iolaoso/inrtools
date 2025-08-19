@@ -87,15 +87,13 @@ const menuItems = [
                         usuarios: []
                     },
                     {   title: 'Riesgo de Mercado', 
-                        //url: '/INRtools/frontend/dnr/reportes/alertas/riesgoMercado.php',
-                        url: '/INRtools/frontend/enConstruccion.php',
+                        url: '/INRtools/frontend/dnr/reportes/alertas/riesgoMercado.php',
                         direccion: ['DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: []
                     },
                     {   title: 'Riesgo de Interconexion', 
-                        //url: '/INRtools/frontend/dnr/reportes/alertas/riesgoInterconexion.php',
-                        url: '/INRtools/frontend/enConstruccion.php',
+                        url: '/INRtools/frontend/dnr/reportes/alertas/riesgoInterconexion.php',
                         direccion: ['DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: []
