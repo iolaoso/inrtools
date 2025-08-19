@@ -105,8 +105,7 @@ const menuItems = [
                         usuarios: []
                     },
                     {   title: 'Calidad de Resultados', 
-                        //url: '/INRtools/frontend/dnr/reportes/alertas/calidadResultados.php',
-                        url: '/INRtools/frontend/enConstruccion.php',
+                        url: '/INRtools/frontend/dnr/reportes/alertas/calidadResultados.php',
                         direccion: ['DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: []

@@ -22,8 +22,7 @@ include BASE_PATH . 'backend/session.php';
                 <p>Alertas relacionados con la calidad de los resultados</p>
             </div>
             <section class="row align-items-stretch mb-4">
-                <!-- Cambiar align-items-center a align-items-stretch -->
-                <!-- Reportes de Diagnóstico -->
+                <!-- Alertas Rentabilidad -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
@@ -43,7 +42,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rTBodyDiag">
+                                        <tbody id="rTBodyRentabilidad">
                                         </tbody>
                                     </table>
                                 </div>
@@ -67,9 +66,9 @@ include BASE_PATH . 'backend/session.php';
     <!-- Incluir el archivo AJAX -->
     <script>
         // Define la carpeta que deseas usar
-        const folderRentabilidad = 'assets/files/reportes/alertas/calidadResultados/alertasRentabilidad';
+        const carpetaReportes = 'assets/files/reportes/alertas/calidadResultados';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesDiagnostico.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesCalidadResultados.js"></script>
 </body>
 
 </html>
