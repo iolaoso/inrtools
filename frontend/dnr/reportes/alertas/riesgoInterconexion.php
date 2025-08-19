@@ -22,8 +22,7 @@ include BASE_PATH . 'backend/session.php';
                 <p>Alertas relacionados con la interconexión de las Entidades</p>
             </div>
             <section class="row align-items-stretch mb-4">
-                <!-- Cambiar align-items-center a align-items-stretch -->
-                <!-- Reportes de Diagnóstico -->
+                <!-- Base Cálculo Ranking Total -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
@@ -32,7 +31,7 @@ include BASE_PATH . 'backend/session.php';
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
                                 <div class="table table-striped table-sm" style="font-size: 12px;"
-                                    id="tablaRepDiagnostico">
+                                    id="tablaBaseCalRankTot">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
                                             <tr>
@@ -43,7 +42,37 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rTBodyDiag">
+                                        <tbody id="rTBodyBaseCalRankTot">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="row align-items-stretch mb-4">
+                <!-- Base Cálculo Ranking Total -->
+                <div class="col-md-12">
+                    <div class="card h-100 d-flex flex-column border-secondary">
+                        <div class="card-header text-white" style="background-color: #05829bff;">
+                            <h4>Interconexión</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
+                                <div class="table table-striped table-sm" style="font-size: 12px;"
+                                    id="tablaInterconexion">
+                                    <table class="table table-bordered table-striped table-hover">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>Versión</th>
+                                                <th>Archivo</th>
+                                                <th>Tamaño</th>
+                                                <th>Fecha Modificación</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rTBodyInterconexion">
                                         </tbody>
                                     </table>
                                 </div>
@@ -67,9 +96,9 @@ include BASE_PATH . 'backend/session.php';
     <!-- Incluir el archivo AJAX -->
     <script>
         // Define la carpeta que deseas usar
-        const folderBaseCalRankTot = 'assets/files/reportes/alertas/riesgoInterconexion/BaseCalRankTot';
+        const carpetaReportes = 'assets/files/reportes/alertas/riesgoInterconexion';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesDiagnostico.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesRiesgoInterconexion.js"></script>
 </body>
 
 </html>
