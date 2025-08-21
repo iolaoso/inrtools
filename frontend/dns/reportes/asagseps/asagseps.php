@@ -19,7 +19,7 @@ include BASE_PATH . 'backend/session.php';
         <main class="content p-3" id="main-content">
             <div class="row align-items-center mb-1">
                 <h1 class="display-6 tituloPagina">AS AGSEPS</h1>
-                <p>Reporte de los informes contenidos en el formulario SNFAE con formato similar al reporte del AGSEPS
+                <p>Reporte de los informes contenidos en el formulario SNFGHAL con formato similar al reporte del AGSEPS
                 </p>
             </div>
             <section class="row align-items-stretch">
