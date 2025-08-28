@@ -30,7 +30,7 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" style="font-size: 12px;"
+                                <div class="table table-striped table-sm"
                                     id="tablaBaseCalRankTot">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
@@ -60,7 +60,7 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" style="font-size: 12px;"
+                                <div class="table table-striped table-sm"
                                     id="tablaInterconexion">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">

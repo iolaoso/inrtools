@@ -79,6 +79,7 @@ thead {
 .table-responsive {
         max-height: 1200px;
         overflow-y: auto;
+        font-size: 11px;
     }
     table {
         width: 100%;

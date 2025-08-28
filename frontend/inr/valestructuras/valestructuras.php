@@ -86,7 +86,7 @@ $analistas = obtenerAnalistas($direccion);
                             <input class="form-control" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
                             <div class="table-responsive">
-                                <table class="table table-striped table-sm" style="font-size: 12px;" id="tablaReportes">
+                                <table class="table table-striped table-sm" id="tablaReportes">
                                     <thead>
                                         <tr>
                                             <th>RUC_ENTIDAD</th>

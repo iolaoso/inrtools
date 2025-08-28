@@ -61,7 +61,7 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                             <div class="d-flex justify-content-center">
                                 <div class="table-responsive"
                                     style="max-height: 500px; max-width: 1200px; overflow-y: auto;">
-                                    <table class="table table-striped table-sm" style="font-size: 12px;"
+                                    <table class="table table-striped table-sm"
                                         id="tablaInfRepGen">
                                         <thead>
                                             <tr>
@@ -97,62 +97,62 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                                         </thead>
                                         <tbody>
                                             <?php foreach ($result as $informeinr): ?>
-                                            <tr>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($informeinr['RUC_ENTIDAD'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($informeinr['NOMBRE_CORTO'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['COD_TIPO_INFORME'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($informeinr['TIPO_INFORME'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($informeinr['AREA_REQUIRIENTE'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['FECHA_ASIGNACION'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['ANIO_ASIGNACION'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['FECHA_SOLICITUD_REVISION'] ?? '') ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['ANIO_SOLREV'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['COD_ESTADO'] ?? '') ?></td>
-                                                <td
-                                                    class="<?= htmlspecialchars($informeinr['ESTADO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
-                                                    <?= htmlspecialchars($informeinr['ESTADO'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['NUM_INFORME'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['FECHA_INFORME'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['ANIO_INFORME'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['NUM_MEMORANDO'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['FECHA_MEMORANDO'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['ANIO_MEMO'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['FECHA_CARGA_COMPARTIDA'] ?? '') ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['ANIO_CARGACOMP'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($informeinr['OBSERVACIONES'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['EST_REGISTRO'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($informeinr['ANALISTA'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['FECHA_CREACION'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['FECHA_ACTUALIZACION'] ?? '') ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['LINEA_BASE'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['USR_IDEN'] ?? '') ?></td>
-                                                <td class="text-center">
-                                                    <?= htmlspecialchars($informeinr['USR_DIRECCION'] ?? '') ?></td>
-                                            </tr>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($informeinr['RUC_ENTIDAD'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($informeinr['NOMBRE_CORTO'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['COD_TIPO_INFORME'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($informeinr['TIPO_INFORME'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($informeinr['AREA_REQUIRIENTE'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['FECHA_ASIGNACION'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['ANIO_ASIGNACION'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['FECHA_SOLICITUD_REVISION'] ?? '') ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['ANIO_SOLREV'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['COD_ESTADO'] ?? '') ?></td>
+                                                    <td
+                                                        class="<?= htmlspecialchars($informeinr['ESTADO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
+                                                        <?= htmlspecialchars($informeinr['ESTADO'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['NUM_INFORME'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['FECHA_INFORME'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['ANIO_INFORME'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['NUM_MEMORANDO'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['FECHA_MEMORANDO'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['ANIO_MEMO'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['FECHA_CARGA_COMPARTIDA'] ?? '') ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['ANIO_CARGACOMP'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($informeinr['OBSERVACIONES'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['EST_REGISTRO'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($informeinr['ANALISTA'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['FECHA_CREACION'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['FECHA_ACTUALIZACION'] ?? '') ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['LINEA_BASE'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['USR_IDEN'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($informeinr['USR_DIRECCION'] ?? '') ?></td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </tbody>
 

@@ -31,7 +31,7 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" style="font-size: 12px;" id="tablaRepInvFD">
+                                <div class="table table-striped table-sm" id="tablaRepInvFD">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
                                             <tr>

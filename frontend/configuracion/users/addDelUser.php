@@ -50,7 +50,7 @@ require_once BASE_PATH . 'frontend/partials/head.php';
                         </div>
                         <div class="card-body">
                             <?php if (isset($_GET['success'])): ?>
-                            <div class="alert alert-success">Usuario agregado exitosamente.</div>
+                                <div class="alert alert-success">Usuario agregado exitosamente.</div>
                             <?php endif; ?>
 
                             <form id="addUserForm" method="POST">
@@ -60,9 +60,9 @@ require_once BASE_PATH . 'frontend/partials/head.php';
                                     <select name="persona_id" class="form-control" required>
                                         <option value="">Seleccione una persona</option>
                                         <?php while ($persona = $personas_result->fetch_assoc()): ?>
-                                        <option value="<?= $persona['id'] ?>">
-                                            <?php echo $persona['identificacion'] . ' - ' . $persona['nombre'] ?>
-                                        </option>
+                                            <option value="<?= $persona['id'] ?>">
+                                                <?php echo $persona['identificacion'] . ' - ' . $persona['nombre'] ?>
+                                            </option>
                                         <?php endwhile; ?>
                                     </select>
                                 </div>
@@ -83,7 +83,7 @@ require_once BASE_PATH . 'frontend/partials/head.php';
                                     <select name="rol_id" class="form-control" required>
                                         <option value="">Seleccione un Rol</option>
                                         <?php while ($rolItem = $rolesList_result->fetch_assoc()): ?>
-                                        <option value="<?= $rolItem['id'] ?>"><?php echo $rolItem['rolName'] ?></option>
+                                            <option value="<?= $rolItem['id'] ?>"><?php echo $rolItem['rolName'] ?></option>
                                         <?php endwhile; ?>
                                     </select>
                                 </div>
@@ -101,7 +101,7 @@ require_once BASE_PATH . 'frontend/partials/head.php';
                             <input class="form-control" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaUsuarios')" placeholder="Buscar...">
                             <div class="table-container" style="max-height: 400px; overflow-y: auto;">
-                                <table class="table table-striped table-sm" style="font-size: 12px;" id="tablaUsuarios">
+                                <table class="table table-striped table-sm" id="tablaUsuarios">
                                     <thead>
                                         <tr>
                                             <th>P.identificacion</th>
@@ -114,20 +114,20 @@ require_once BASE_PATH . 'frontend/partials/head.php';
                                     </thead>
                                     <tbody>
                                         <?php while ($usuario = $usuarios_result->fetch_assoc()): ?>
-                                        <tr>
-                                            <td><?= $usuario['identificacion'] ?></td>
-                                            <td><?= $usuario['nombre'] ?></td>
-                                            <td><?= $usuario['direccion'] ?></td>
-                                            <td><?= $usuario['nickname'] ?></td>
-                                            <td><?= $usuario['rol'] ?></td>
-                                            <td>
-                                                <button class="btn btn-danger delete-btn btn-sm"
-                                                    data-id="<?= htmlspecialchars($usuario['id']) ?>" title="Eliminar"
-                                                    onclick="deleteUser($usuario['id']);">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td><?= $usuario['identificacion'] ?></td>
+                                                <td><?= $usuario['nombre'] ?></td>
+                                                <td><?= $usuario['direccion'] ?></td>
+                                                <td><?= $usuario['nickname'] ?></td>
+                                                <td><?= $usuario['rol'] ?></td>
+                                                <td>
+                                                    <button class="btn btn-danger delete-btn btn-sm"
+                                                        data-id="<?= htmlspecialchars($usuario['id']) ?>" title="Eliminar"
+                                                        onclick="deleteUser($usuario['id']);">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         <?php endwhile; ?>
                                     </tbody>
                                 </table>
@@ -138,11 +138,11 @@ require_once BASE_PATH . 'frontend/partials/head.php';
             </section>
 
             <script>
-            function deleteUser(userId) {
-                if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
-                    window.location.href = "delete_user.php?id=" + userId; // Cambia 'delete_user.php' según tu lógica
+                function deleteUser(userId) {
+                    if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+                        window.location.href = "delete_user.php?id=" + userId; // Cambia 'delete_user.php' según tu lógica
+                    }
                 }
-            }
             </script>
 
         </main>

@@ -76,9 +76,9 @@ if ($rol_nombre == 'SUPERUSER') {
                                     <select class="form-control" id="cbCategoria" name="cbCategoria">
                                         <option value="">Seleccione la Categoria</option>
                                         <?php foreach ($categorias as $categoria): ?>
-                                        <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>">
-                                            <?= htmlspecialchars($categoria['CATEGORIA']) ?>
-                                        </option>
+                                            <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>">
+                                                <?= htmlspecialchars($categoria['CATEGORIA']) ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -122,9 +122,9 @@ if ($rol_nombre == 'SUPERUSER') {
                                         style="display: none;" onchange="actualizarAnalista()">
                                         <option value="">Seleccione un analista</option>
                                         <?php foreach ($analistas as $analista): ?>
-                                        <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                            <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                        </option>
+                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -158,7 +158,7 @@ if ($rol_nombre == 'SUPERUSER') {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-sm" style="font-size: 12px;"
+                                <table class="table table-striped table-sm"
                                     id="tablaActividades">
                                     <thead>
                                         <tr>
@@ -175,42 +175,42 @@ if ($rol_nombre == 'SUPERUSER') {
                                     </thead>
                                     <tbody>
                                         <?php foreach ($result as $gestioninr): ?>
-                                        <tr>
-                                            <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
-                                            <td class="text-center">
-                                                <?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?>
-                                            </td>
-                                            <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['FECHA_OFIC_TRAM'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['OFICIO_TRAMITE'] ?? '') ?></td>
-                                            <td class="text-center">
-                                                <button class="btn btn-primary detalle-btn btn-sm"
-                                                    data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                    title="Detalle" data-bs-toggle="modal"
-                                                    data-bs-target="#detalleModal" onclick="cargarDatos(this)">
-                                                    <i class="fa-solid fa-comment"></i>
-                                                </button>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= htmlspecialchars($gestioninr['ANALISTA'] ?? '') ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="btn-group">
-                                                    <button class="btn btn-info edit-btn btn-sm"
+                                            <tr>
+                                                <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
+                                                <td class="text-center">
+                                                    <?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?>
+                                                </td>
+                                                <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['FECHA_OFIC_TRAM'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['OFICIO_TRAMITE'] ?? '') ?></td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-primary detalle-btn btn-sm"
                                                         data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                        title="Editar" onclick="cargarDatosForm(this)">
-                                                        <i class="fas fa-edit"></i>
+                                                        title="Detalle" data-bs-toggle="modal"
+                                                        data-bs-target="#detalleModal" onclick="cargarDatos(this)">
+                                                        <i class="fa-solid fa-comment"></i>
                                                     </button>
-                                                    <button class="btn btn-danger delete-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                        logUser="<?= htmlspecialchars($nickname ?? '') ?>"
-                                                        title="Eliminar" onclick="eliminarRegistro(this)">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= htmlspecialchars($gestioninr['ANALISTA'] ?? '') ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info edit-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
+                                                            title="Editar" onclick="cargarDatosForm(this)">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger delete-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
+                                                            logUser="<?= htmlspecialchars($nickname ?? '') ?>"
+                                                            title="Eliminar" onclick="eliminarRegistro(this)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -319,10 +319,10 @@ if ($rol_nombre == 'SUPERUSER') {
                             <select class="form-control" id="cbCat" name="cbCat" onchange="selecCatExistente()">
                                 <option value="0">Seleccione la Categoria</option>
                                 <?php foreach ($categorias as $categoria): ?>
-                                <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>"
-                                    data-text="<?= htmlspecialchars($categoria['CATEGORIA']) ?>">
-                                    <?= htmlspecialchars($categoria['CATEGORIA']) ?>
-                                </option>
+                                    <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>"
+                                        data-text="<?= htmlspecialchars($categoria['CATEGORIA']) ?>">
+                                        <?= htmlspecialchars($categoria['CATEGORIA']) ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

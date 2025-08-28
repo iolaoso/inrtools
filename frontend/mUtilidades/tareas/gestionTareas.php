@@ -150,8 +150,7 @@ $tareasCompletas = getTareasCompletas($nickname);
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-sm" style="font-size: 12px;"
-                                    id="tablaActividades">
+                                <table class="table table-striped table-sm" id="tablaActividades">
                                     <thead>
                                         <tr>
                                             <th>Tarea</th>
@@ -244,8 +243,7 @@ $tareasCompletas = getTareasCompletas($nickname);
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped table-sm" style="font-size: 12px;"
-                                    id="tablaCompletadas">
+                                <table class="table table-striped table-sm" id="tablaCompletadas">
                                     <thead>
                                         <tr>
                                             <th>Tarea</th>

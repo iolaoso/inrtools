@@ -160,8 +160,7 @@ $analistas = obtenerAnalistas($direccion);
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
                             <div class="d-flex justify-content-center">
                                 <div class="table-responsive" style="max-height: 700px; overflow-y: auto;">
-                                    <table class="table table-striped table-sm" style="font-size: 12px;"
-                                        id="tablaReportes">
+                                    <table class="table table-striped table-sm" id="tablaReportes">
                                         <thead>
                                             <tr>
                                                 <th>Solicitante</th>

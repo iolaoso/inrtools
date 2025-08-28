@@ -30,7 +30,7 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" style="font-size: 12px;"
+                                <div class="table table-striped table-sm"
                                     id="tablaCumplLiquidezEst">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
@@ -60,7 +60,7 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" style="font-size: 12px;"
+                                <div class="table table-striped table-sm"
                                     id="tablaLiquidezDiaria">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
@@ -89,7 +89,7 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" style="font-size: 12px;" id="tablaLiquidez">
+                                <div class="table table-striped table-sm" id="tablaLiquidez">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="text-center">
                                             <tr>
@@ -122,8 +122,8 @@ include BASE_PATH . 'backend/session.php';
 
     <!-- Incluir el archivo AJAX -->
     <script>
-    // Define la carpeta que deseas usar
-    const carpetaReportes = 'assets/files/reportes/alertas/riesgoLiquidez';
+        // Define la carpeta que deseas usar
+        const carpetaReportes = 'assets/files/reportes/alertas/riesgoLiquidez';
     </script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesRiesgoLiquidez.js"></script>
 </body>
