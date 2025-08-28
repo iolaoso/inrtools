@@ -10,7 +10,7 @@ $analistas = obtenerAnalistas($direccion);
 $tiposInf = obtenerTiposInforme();
 
 // Obtener registros filtrados por usuario
-if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'DIRECTOR') {
+if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'DIRECTOR' || $rol_nombre == 'DIRADMIN') {
     $result = obtenerInformesInrFull();
 } else {
     $result = obtInformesInrUsr($nickname);
@@ -196,7 +196,7 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                         <div
                             class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">Informes Analista</h4>
-                            <button id="reporteInformes" class="btn btn-primary">Reporte Informes</button>
+                            <button id="btRepInformes" class="btn btn-primary">Reporte Informes</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -237,8 +237,8 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                                 </button>
                                             </td>
                                             <td
-                                                class="<?= htmlspecialchars($informeinr['NEMONICO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
-                                                <?= htmlspecialchars($informeinr['NEMONICO'] ?? '') ?>
+                                                class="<?= htmlspecialchars($informeinr['ESTADO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
+                                                <?= htmlspecialchars($informeinr['ESTADO'] ?? '') ?>
                                             </td>
                                             <td>
                                                 <?= htmlspecialchars($informeinr['USR_CREACION'] ?? '') ?>

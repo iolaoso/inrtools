@@ -1,4 +1,4 @@
-console.log("informesinr.js Fuuncionando");
+console.log("informesinr.js Funcionando");
 
 function mostrarAnalista(isDirector) {
     const select = document.getElementById('analistaSelect');
@@ -259,6 +259,13 @@ async function guardarNewTipoInf(formId, event) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function(e) {
+    // Evento para llenar subcategorías
+   document.getElementById('cbCategoria').addEventListener('change', subCategoryChange);
+
+   
+});
+
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -302,6 +309,10 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('No se pudo añadir el listener porque el elemento no existe.');
     }
+
+    document.getElementById('btRepInformes').addEventListener('click', function() {
+    window.location.href = 'informesRepGeneral.php'; // Cambia 'paginaCompleta.html' al nombre de tu nueva página
+});
    
 });
 
@@ -314,7 +325,7 @@ $(document).ready(function() {
             {
                 extend: 'pdfHtml5',
                 text: '<i class="fas fa-file-pdf"></i> PDF',
-                title: 'Información de las Gestiones realizadas por la Intendencia Nacional de Riesgos',
+                title: 'Información de los Informes realizadas por la Intendencia Nacional de Riesgos',
                 orientation: 'landscape',
                 pageSize: 'LEGAL',
                 className: 'btn btn-danger btn-sm mr-2',
@@ -328,7 +339,7 @@ $(document).ready(function() {
             {
                 extend: 'excel',
                 text: '<i class="fas fa-file-excel"></i> Excel',
-                title: 'Información de las Gestiones realizadas por la Intendencia Nacional de Riesgos',
+                title: 'Información de los Informes realizadas por la Intendencia Nacional de Riesgos',
                 className: 'btn btn-success btn-sm mr-2',
                 exportOptions: {
                     columns: ':visible',
@@ -336,7 +347,7 @@ $(document).ready(function() {
                         page: 'all'
                     }
                 },
-                filename: 'gestiones_intendencia_riesgos_' + new Date().toISOString().slice(0,10)
+                filename: 'Informes_intendencia_riesgos_' + new Date().toISOString().slice(0,10)
             },
           
         ],

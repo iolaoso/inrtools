@@ -84,6 +84,10 @@ function fetchRiesgoCredito(carpetaReportes) {
                     archivos: data.filter(item => item.name.includes('perdidas_esperadas')),
                     tablaId: 'rTBodyPerdidasEsperadas'
                 },
+                perdidasEsperadasMT: {
+                    archivos: data.filter(item => item.name.includes('Perdidas esperadas_mod')),
+                    tablaId: 'rTBodyPerdidasEsperadasMT'
+                },
                 monitoreoMora: {
                     archivos: data.filter(item => item.name.includes('Monitoreo Mora')),
                     tablaId: 'rTBodyMonitoreoMora'
