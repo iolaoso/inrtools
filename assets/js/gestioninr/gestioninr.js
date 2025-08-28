@@ -106,7 +106,14 @@ function mostrarAnalista(isDirector) {
     const label = document.getElementById('lbanalistaSelect');
     const tbNewCat = document.getElementById('btCrearCat');
     const deleteButtons = document.querySelectorAll('.delete-btn');
-    if (isDirector == 'DIRECTOR' || isDirector == 'ADMNINSTRADOR' || isDirector == 'SUPERUSER') {
+    if (isDirector == 'DIRECTOR' || 
+        isDirector == 'ADMNINSTRADOR' || 
+        isDirector == 'SUPERUSER' || 
+        isDirector == 'DIRADMINDNR' || 
+        isDirector == 'DIRADMINDNS' ||
+        isDirector == 'DIRADMINDNSES' ||  
+        isDirector == 'DIRADMINDNPLA'
+    ) {
         select.style.display = 'block'; // Muestra el select
         label.style.display ='block';   
         tbNewCat.style.display ='block'; // Muestra boton new Cat
