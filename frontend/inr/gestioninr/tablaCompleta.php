@@ -3,17 +3,24 @@ include_once __DIR__ . '/../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';  // Incluye la sesión
 include BASE_PATH . 'backend/gestioninr/gestioninrList.php'; // Incluir el archivo de consultas
 
-// Obtener registros filtrados por usuario
+// Definir roles con acceso a nivel de dirección
+$rolesDireccion = [
+    'ADMINISTRADOR',
+    'DIRECTOR',
+    'DIRADMINDR',
+    'DIRADMINDNS',
+    'DIRADMINDNSES',
+    'DIRADMINPLA'
+];
+
+// Optimización usando array y condicionales simplificadas
 if ($rol_nombre == 'SUPERUSER') {
     $result = obtenerGestionInrFull();
+} elseif (in_array($rol_nombre, $rolesDireccion)) {
+    $result = obtenerGestionInrDireccion($inrdireccion_id);
 } else {
-    if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'DIRECTOR') {
-        $result = obtenerGestionInrDireccion($inrdireccion_id);
-    } else {
-        $result = obtenerGestionInrPorUsuario($nickname);
-    }
+    $result = obtenerGestionInrPorUsuario($nickname);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +36,7 @@ if ($rol_nombre == 'SUPERUSER') {
 
     <div class="d-flex">
         <!-- Incluir el Sidebar -->
+        <?php include_once BASE_PATH . 'frontend/partials/sidebar.php'; ?>
 
 
         <!-- Contenido principal -->
@@ -43,55 +51,58 @@ if ($rol_nombre == 'SUPERUSER') {
                         <div
                             class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">Registros Analista</h4>
-                            <button id="btnformBack" class="btn btn-primary">Reporte Completo</button>
+                            <button id="btnformBack" class="btn btn-warning btn-sm">Regresar al Formulario</button>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-sm display" style="font-size: 12px;"
-                                    id="tablaActividadesFull">
-                                    <thead>
-                                        <tr>
-                                            <th>COD</th>
-                                            <th>SEGMENTO</th>
-                                            <th>RUC</th>
-                                            <th>RAZON SOCIAL</th>
-                                            <th>DIRECCION</th>
-                                            <th>COD_CAT</th>
-                                            <th>CATEGORIA</th>
-                                            <th>COD_SUBCAT</th>
-                                            <th>SUBCATEGORIA</th>
-                                            <th>COMPLEJIDAD</th>
-                                            <th>FEC. REGISTRO</th>
-                                            <th>FEC. OFICIO</th>
-                                            <th>OFICIO</th>
-                                            <th>COMENTARIO</th>
-                                            <th>ANALISTA</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($result as $gestioninr): ?>
-                                        <tr>
-                                            <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['SEGMENTO'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['RAZON_SOCIAL'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['COD_CATEGORIA'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['COD_SUBCATEGORIA'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['SUBCATEGORIA'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['COMPLEJIDAD'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['FECHA_REGISTRO'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['FECHA_OFIC_TRAM'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['OFICIO_TRAMITE'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($gestioninr['COMENTARIO'] ?? '') ?></td>
-                                            <td class="text-center button-cell">
-                                                <?= htmlspecialchars($gestioninr['ANALISTA'] ?? '') ?>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive"
+                                    style="max-height: 500px; max-width: 1000px; overflow-y: auto;">
+                                    <table class="table table-striped table-sm display" style="font-size: 12px;"
+                                        id="tablaActividadesFull">
+                                        <thead>
+                                            <tr>
+                                                <th>COD</th>
+                                                <th>SEGMENTO</th>
+                                                <th>RUC</th>
+                                                <th>RAZON SOCIAL</th>
+                                                <th>DIRECCION</th>
+                                                <th>COD_CAT</th>
+                                                <th>CATEGORIA</th>
+                                                <th>COD_SUBCAT</th>
+                                                <th>SUBCATEGORIA</th>
+                                                <th>COMPLEJIDAD</th>
+                                                <th>FEC. REGISTRO</th>
+                                                <th>FEC. OFICIO</th>
+                                                <th>OFICIO</th>
+                                                <th>COMENTARIO</th>
+                                                <th>ANALISTA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($result as $gestioninr): ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['SEGMENTO'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['RAZON_SOCIAL'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['COD_CATEGORIA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['COD_SUBCATEGORIA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['SUBCATEGORIA'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['COMPLEJIDAD'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['FECHA_REGISTRO'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['FECHA_OFIC_TRAM'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['OFICIO_TRAMITE'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($gestioninr['COMENTARIO'] ?? '') ?></td>
+                                                <td class="text-center button-cell">
+                                                    <?= htmlspecialchars($gestioninr['ANALISTA'] ?? '') ?>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
