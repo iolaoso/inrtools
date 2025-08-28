@@ -236,7 +236,7 @@ const menuItems = [
         usuarios: [] 
     },
     {
-        title: 'CONFIGURACIÓN',
+        title: 'Configuración',
         subMenu: [
             { title: 'New Person', 
                 url: '/INRtools/frontend/configuracion/users/newPerson.php',
@@ -257,7 +257,7 @@ const menuItems = [
         usuarios: [] 
     },
     {
-        title: 'PERFIL',
+        title: 'Perfil',
         subMenu: [],
         icon: 'fa-solid fa-user',
         url: '/INRtools/frontend/profile.php',

@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-/* $(document).ready(function() {
+$(document).ready(function() {
     $('#tablaInformes').DataTable({
         "autoWidth": true,
         "dom": '<"row mb-3"<"col-md-6"B><"col-md-6"f>><"row"<"col-12"tr>><"row"<"col-md-5"i><"col-md-7"p>>',
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "responsive": true,
         "stateSave": true
     });
-}); */
+}); 
 
 
 
