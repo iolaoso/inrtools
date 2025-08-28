@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 });
 });
 
-/* $(document).ready(function() {
+$(document).ready(function() {
     $('#tablaInfRepGen').DataTable({
         "autoWidth": false, // Habilita el ajuste automático de ancho
         "scrollX": true,    // Habilita el scroll horizontal
@@ -64,4 +64,4 @@ document.addEventListener('DOMContentLoaded', function(e) {
             }
         ]
     });
-}); */
+}); 
