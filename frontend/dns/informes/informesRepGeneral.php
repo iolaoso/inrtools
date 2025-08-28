@@ -45,7 +45,7 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                         <div
                             class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">Registros Analista</h4>
-                            <button id="btnInfFormBack" class="btn btn-primary">Regresar Al Formulario</button>
+                            <button id="btnInfFormBack" class="btn btn-warning btn-sm">Regresar al Formulario</button>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">

@@ -196,7 +196,7 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                         <div
                             class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">Informes Analista</h4>
-                            <button id="btRepInformes" class="btn btn-primary">Reporte Informes</button>
+                            <button id="btRepInformes" class="btn btn-warning btn-sm">Reporte General Informes</button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -241,7 +241,7 @@ if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre 
                                                 <?= htmlspecialchars($informeinr['ESTADO'] ?? '') ?>
                                             </td>
                                             <td>
-                                                <?= htmlspecialchars($informeinr['USR_CREACION'] ?? '') ?>
+                                                <?= htmlspecialchars($informeinr['ANALISTA'] ?? '') ?>
                                             </td>
                                             <td>
                                                 <div class="button-container">

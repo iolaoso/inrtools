@@ -9,7 +9,7 @@ function obtInformesInrUsr($nickname)
     global $connInf; // Usar la conexión global
     $sql = "SELECT *
             FROM vi_allinformes 
-            WHERE EST_REGISTRO ='ACT' AND USR_CREACION = ?
+            WHERE EST_REGISTRO ='ACT' AND ANALISTA = ?
             ORDER BY FECHA_CREACION DESC, ESTADO DESC";
     $stmt = $connInf->prepare($sql);
     $stmt->bind_param('s', $nickname);
