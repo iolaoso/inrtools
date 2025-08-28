@@ -29,10 +29,10 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Alertas Rentabilidad</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm"
-                                    id="tablaRepDiagnostico">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaRepDiagnostico">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Versión</th>
@@ -65,8 +65,8 @@ include BASE_PATH . 'backend/session.php';
 
     <!-- Incluir el archivo AJAX -->
     <script>
-        // Define la carpeta que deseas usar
-        const carpetaReportes = 'assets/files/reportes/alertas/calidadResultados';
+    // Define la carpeta que deseas usar
+    const carpetaReportes = 'assets/files/reportes/alertas/calidadResultados';
     </script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesCalidadResultados.js"></script>
 </body>

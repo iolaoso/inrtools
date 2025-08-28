@@ -29,10 +29,10 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Perdidas Esperadas</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm"
-                                    id="tablaPerdidasEsperadas">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaPerdidasEsperadas">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Versión</th>
@@ -59,10 +59,10 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Perdidas Esperadas - Matriz de transición</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm"
-                                    id="tablaPerdidasEsperadas">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaPerdidasEsperadas">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Versión</th>
@@ -89,10 +89,10 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Monitoreo Mora</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm"
-                                    id="tablaMonitoreoMora">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaMonitoreoMora">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Versión</th>
@@ -118,10 +118,10 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Reporte Cosechas Cubo</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm"
-                                    id="tablaReporteCosechasCubo">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaReporteCosechasCubo">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Versión</th>
@@ -147,10 +147,10 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Cartera, Socios y Clientes</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm"
-                                    id="tablaCarteraSociosClientes">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaCarteraSociosClientes">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Versión</th>
@@ -182,8 +182,8 @@ include BASE_PATH . 'backend/session.php';
 
     <!-- Incluir el archivo AJAX -->
     <script>
-        // Define la carpeta que deseas usar
-        const carpetaReportes = 'assets/files/reportes/alertas/riesgoCredito';
+    // Define la carpeta que deseas usar
+    const carpetaReportes = 'assets/files/reportes/alertas/riesgoCredito';
     </script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesRiesgoCredito.js"></script>
 </body>

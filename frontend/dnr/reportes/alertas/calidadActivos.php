@@ -30,9 +30,9 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Reporte de Inversiones y Fondos Disponibles</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" id="tablaRepInvFD">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <div class="d-flex justify-content-center">
+                                <div class="responsive" style="max-height: 300px; overflow-y: auto;">
+                                    <table class="table table-striped table-sm" id="tablaRepInvFD">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Versión</th>
@@ -49,7 +49,6 @@ include BASE_PATH . 'backend/session.php';
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
     </div>
     </section>
@@ -65,8 +64,8 @@ include BASE_PATH . 'backend/session.php';
 
     <!-- Incluir el archivo AJAX -->
     <script>
-        // Define la carpeta que deseas usar
-        const carpetaReportes = 'assets/files/reportes/alertas/calidadActivos';
+    // Define la carpeta que deseas usar
+    const carpetaReportes = 'assets/files/reportes/alertas/calidadActivos';
     </script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/alertas/listFilesCalidadActivos.js"></script>
 </body>

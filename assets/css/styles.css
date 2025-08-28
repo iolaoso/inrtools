@@ -63,6 +63,7 @@ body {
     max-height: 400px; /* Ajusta la altura según sea necesario */
     overflow-y: auto;  /* Activa el desplazamiento vertical */
     border: 1px solid #dee2e6; /* Opcional: agrega un borde */
+    font-size: 12px;
 }
 
 .table {
