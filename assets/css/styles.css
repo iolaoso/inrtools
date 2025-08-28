@@ -69,7 +69,6 @@ body {
     border-collapse: collapse; /* Colapsa los bordes */
 }
 
-
 thead {
     position: sticky; /* Fija la posición */
     top: 0; /* Fija en la parte superior del contenedor */
@@ -77,16 +76,8 @@ thead {
     z-index: 10; /* Asegura que el encabezado esté por encima del contenido */
 }
 
-th, td {
-    padding: 8px; /* Espaciado interno */
-    text-align: left; /* Alineación del texto */
-    border-bottom: 1px solid #dee2e6; /* Línea inferior */
-    word-wrap: break-word; /* Permite que las palabras largas se dividan */
-    white-space: normal; /* Permite el ajuste de línea */
-}
-
 .table-responsive {
-        max-height: 700px;
+        max-height: 1200px;
         overflow-y: auto;
     }
     table {
@@ -98,8 +89,8 @@ th, td {
         padding: 8px;
         text-align: left;
         border-bottom: 1px solid #dee2e6;
-        word-wrap: break-word;
-        white-space: normal;
+        overflow-wrap: break-word; /* Permite que el texto largo se divida en varias líneas */
+        white-space: normal; /* Permite el ajuste de línea */
     }
     th {
         width: 15%; /* Ajusta según lo necesites */

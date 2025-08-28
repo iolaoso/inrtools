@@ -209,69 +209,72 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                             <button id="btRepInformes" class="btn btn-warning btn-sm">Reporte General Informes</button>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-sm" style="font-size: 12px;" id="tablaInformes">
-                                    <thead>
-                                        <tr>
-                                            <th>COD</th>
-                                            <th>RUC</th>
-                                            <th>INFORME</th>
-                                            <th>MEMORANDO</th>
-                                            <th>DETALLE</th>
-                                            <th>ESTADO</th>
-                                            <th>ANALISTA</th>
-                                            <th>ACCION</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($result as $informeinr): ?>
-                                        <tr>
-                                            <td class="text-center button-cell">
-                                                <?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>
-                                            </td>
-                                            <td>
-                                                <?= htmlspecialchars($informeinr['RUC_ENTIDAD'] ?? '') ?>
-                                            </td>
-                                            <td class="text-center button-cell">
-                                                <?= htmlspecialchars($informeinr['NUM_INFORME'] ?? '') ?>
-                                            </td>
-                                            <td>
-                                                <?= htmlspecialchars($informeinr['NUM_MEMORANDO'] ?? '') ?>
-                                            </td>
-                                            <td class="text-center button-cell">
-                                                <button class="btn btn-primary detalle-btn btn-sm"
-                                                    data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
-                                                    title="Detalle" data-bs-toggle="modal"
-                                                    data-bs-target="#detalleModal" onclick="cargarDatos(this)">
-                                                    <i class="fa-solid fa-comment"></i>
-                                                </button>
-                                            </td>
-                                            <td
-                                                class="<?= htmlspecialchars($informeinr['ESTADO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
-                                                <?= htmlspecialchars($informeinr['ESTADO'] ?? '') ?>
-                                            </td>
-                                            <td>
-                                                <?= htmlspecialchars($informeinr['ANALISTA'] ?? '') ?>
-                                            </td>
-                                            <td>
-                                                <div class="button-container">
-                                                    <button class="btn btn-info edit-btn btn-sm"
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-sm" style="font-size: 12px;"
+                                        id="tablaInformes">
+                                        <thead>
+                                            <tr>
+                                                <th>COD</th>
+                                                <th>RUC</th>
+                                                <th>INFORME</th>
+                                                <th>MEMORANDO</th>
+                                                <th>DETALLE</th>
+                                                <th>ESTADO</th>
+                                                <th>ANALISTA</th>
+                                                <th>ACCION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($result as $informeinr): ?>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars($informeinr['RUC_ENTIDAD'] ?? '') ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars($informeinr['NUM_INFORME'] ?? '') ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars($informeinr['NUM_MEMORANDO'] ?? '') ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-primary detalle-btn btn-sm"
                                                         data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
-                                                        title="Editar" onclick="editarInforme(this)">
-                                                        <i class="fas fa-edit"></i>
+                                                        title="Detalle" data-bs-toggle="modal"
+                                                        data-bs-target="#detalleModal" onclick="cargarDatos(this)">
+                                                        <i class="fa-solid fa-comment"></i>
                                                     </button>
-                                                    <button class="btn btn-danger delete-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
-                                                        logUser="<?= htmlspecialchars($nickname ?? '') ?>"
-                                                        title="Eliminar" onclick="eliminarInforme(this)">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                                </td>
+                                                <td
+                                                    class="<?= htmlspecialchars($informeinr['ESTADO'] ?? '') == 'PENDIENTE' ? 'text-danger' : 'text-success' ?>">
+                                                    <?= htmlspecialchars($informeinr['ESTADO'] ?? '') ?>
+                                                </td>
+                                                <td>
+                                                    <?= htmlspecialchars($informeinr['ANALISTA'] ?? '') ?>
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info edit-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
+                                                            title="Editar" onclick="editarInforme(this)">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger delete-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($informeinr['COD_INFORME'] ?? '') ?>"
+                                                            logUser="<?= htmlspecialchars($nickname ?? '') ?>"
+                                                            title="Eliminar" onclick="eliminarInforme(this)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
