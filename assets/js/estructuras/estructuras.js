@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('fechaRegistro').value = today;
     document.getElementById('fechaActualizacion').value = today;
 
-    if (usrRol == "ADMINISTRADOR") {
+    if (usrRol == "ADMINISTRADOR" || usrRol == "SUPERUSUARIO" || usrRol == "DIRECTOR") {
         document.getElementById('analistaEjecutante').removeAttribute('readonly'); // Elimina el atributo readonly
         //console.log(usrRol)
     } else {
@@ -75,12 +75,14 @@ function actualizarTabla() {
                 </td>
                 <td>${item.analista_ejecutante}</td>
                 <td>
-                    <button class="btn btn-info edit-btn btn-sm" data-id="${item.id}" title="Editar">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-danger delete-btn btn-sm" data-id="${item.id}" title="Eliminar">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <div class="btn-group">
+                        <button class="btn btn-info edit-btn btn-sm" data-id="${item.id}" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger delete-btn btn-sm" data-id="${item.id}" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>">
                 </td>
             `;
             tbody.appendChild(row);

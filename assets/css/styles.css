@@ -81,7 +81,29 @@ th, td {
     padding: 8px; /* Espaciado interno */
     text-align: left; /* Alineación del texto */
     border-bottom: 1px solid #dee2e6; /* Línea inferior */
+    word-wrap: break-word; /* Permite que las palabras largas se dividan */
+    white-space: normal; /* Permite el ajuste de línea */
 }
+
+.table-responsive {
+        max-height: 700px;
+        overflow-y: auto;
+    }
+    table {
+        width: 100%;
+        table-layout: fixed; /* Anchos fijos */
+        border-collapse: collapse; /* Colapsar bordes */
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #dee2e6;
+        word-wrap: break-word;
+        white-space: normal;
+    }
+    th {
+        width: 15%; /* Ajusta según lo necesites */
+    }
 
 /* Tamaño personalizado para el modal */
 .modal-custom {

@@ -5,10 +5,18 @@ include BASE_PATH . 'backend/estructuras/estructurasList.php'; // Incluir el arc
 include BASE_PATH . 'backend/catastroList.php'; // consulta catastro activas
 include BASE_PATH . 'backend/analistasList.php'; // consulta analistas
 
-
+$rolesDireccion = [
+    'SUPERUSER',
+    'ADMINISTRADOR',
+    'DIRECTOR',
+    'DIRADMINDR',
+    'DIRADMINDNS',
+    'DIRADMINDNSES',
+    'DIRADMINPLA'
+];
 
 // Obtener registros filtrados por usuario
-if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre == 'DIRECTOR') {
+if (in_array($rol_nombre, $rolesDireccion)) {
     $result = obtenerEstructurasFull();
     $catEstructuras = obtenerCatalogoEstructuras();
 } else {
@@ -38,7 +46,7 @@ $analistas = obtenerAnalistas($direccion);
         <main class="content p-3" id="main-content">
             <div class="row align-items-center mb-1">
                 <h1 class="display-6 tituloPagina">Estructuras Generadas</h1>
-                <p>Registro las estructuras que fueron generadas por los Analistas</p>
+                <p>Registro las estructuras solicitadas por los Analistas</p>
             </div>
             <section class="row align-items-stretch">
                 <!-- Cambiar align-items-center a align-items-stretch -->
@@ -101,9 +109,9 @@ $analistas = obtenerAnalistas($direccion);
                                         onchange="actualizarInputAnalista()">
                                         <option value="">Seleccione un analista</option>
                                         <?php foreach ($analistas as $analista): ?>
-                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                            </option>
+                                        <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                            <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                        </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -150,25 +158,29 @@ $analistas = obtenerAnalistas($direccion);
                         <div class="card-body">
                             <input class="form-control" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
-                            <div class="table-container" style="max-height: 700px; overflow-y: auto;">
-                                <table class="table table-striped table-sm" style="font-size: 12px;" id="tablaReportes">
-                                    <thead>
-                                        <tr>
-                                            <th>Solicitante</th>
-                                            <th>Dirección</th>
-                                            <th>Ruc</th>
-                                            <th>Estructura</th>
-                                            <th>Fecha Corte</th>
-                                            <th>Fecha de Solicitud</th>
-                                            <th>Estado</th>
-                                            <th>Ejecutante</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($result as $estructura): ?>
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 700px; overflow-y: auto;">
+                                    <table class="table table-striped table-sm" style="font-size: 12px;"
+                                        id="tablaReportes">
+                                        <thead>
                                             <tr>
-                                                <td><?= htmlspecialchars($estructura['solicitante']) ?></td>
+                                                <th>Solicitante</th>
+                                                <th>Dirección</the=>
+                                                <th>Ruc</th>
+                                                <th>Estructura</th>
+                                                <th>Fecha Corte</th>
+                                                <th>Fecha de Solicitud</th>
+                                                <th>Estado</th>
+                                                <th>Ejecutante</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($result as $estructura): ?>
+                                            <tr>
+                                                <td style="width: 30%">
+                                                    <?= htmlspecialchars($estructura['solicitante']) ?>
+                                                </td>
                                                 <td><?= htmlspecialchars($estructura['direccion_solicitante']) ?></td>
                                                 <td><?= htmlspecialchars($estructura['ruc']) ?></td>
                                                 <td><?= htmlspecialchars($estructura['estructura']) ?></td>
@@ -179,21 +191,24 @@ $analistas = obtenerAnalistas($direccion);
                                                     <?= htmlspecialchars($estructura['estado']) ?></td>
                                                 <td><?= htmlspecialchars($estructura['analista_ejecutante']) ?></td>
                                                 <td>
-                                                    <button class="btn btn-info edit-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($estructura['id']) ?>" title="Editar"
-                                                        onclick="asignarEventosBotones();">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger delete-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($estructura['id']) ?>"
-                                                        title="Eliminar" onclick="asignarEventosBotones();">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info edit-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($estructura['id']) ?>"
+                                                            title="Editar" onclick="asignarEventosBotones();">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger delete-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($estructura['id']) ?>"
+                                                            title="Eliminar" onclick="asignarEventosBotones();">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,10 +234,10 @@ $analistas = obtenerAnalistas($direccion);
                         <label for="categoria" class="form-label">Categoría</label>
                         <ul class="list-group scrollable-list" id="categoriaList">
                             <?php foreach ($catEstructuras as $catEst): ?>
-                                <li class="list-group-item list-group-item-action"
-                                    onclick="seleccionarCategoria('<?= htmlspecialchars($catEst['estNombre']) ?>', '<?= htmlspecialchars($catEst['estNombre']) ?>')">
-                                    <?= htmlspecialchars($catEst['estNombre']) ?>
-                                </li>
+                            <li class="list-group-item list-group-item-action"
+                                onclick="seleccionarCategoria('<?= htmlspecialchars($catEst['estNombre']) ?>', '<?= htmlspecialchars($catEst['estNombre']) ?>')">
+                                <?= htmlspecialchars($catEst['estNombre']) ?>
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>

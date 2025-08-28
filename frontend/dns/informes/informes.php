@@ -9,8 +9,18 @@ $entidadesActSf = entidadesActivasSf();
 $analistas = obtenerAnalistas($direccion);
 $tiposInf = obtenerTiposInforme();
 
+$rolesDireccion = [
+    'SUPERUSER',
+    'ADMINISTRADOR',
+    'DIRECTOR',
+    'DIRADMINDR',
+    'DIRADMINDNS',
+    'DIRADMINDNSES',
+    'DIRADMINPLA'
+];
+
 // Obtener registros filtrados por usuario
-if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'DIRECTOR' || $rol_nombre == 'DIRADMIN' || $rol_nombre == 'DIRADMINDNS') {
+if (in_array($rol_nombre, $rolesDireccion)) {
     $result = obtenerInformesInrFull();
 } else {
     $result = obtInformesInrUsr($nickname);

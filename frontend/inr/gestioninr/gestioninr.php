@@ -10,15 +10,23 @@ $entidadesActSf = entidadesActivasSf();
 $analistas = obtenerAnalistas($direccion);
 $categorias = obtenerCategorias($inrdireccion_id, $rol_id);
 
-// Obtener registros filtrados por usuario
+// Definir roles con acceso a nivel de dirección
+$rolesDireccion = [
+    'ADMINISTRADOR',
+    'DIRECTOR',
+    'DIRADMINDR',
+    'DIRADMINDNS',
+    'DIRADMINDNSES',
+    'DIRADMINPLA'
+];
+
+// Optimización usando array y condicionales simplificadas
 if ($rol_nombre == 'SUPERUSER') {
     $result = obtenerGestionInrFull();
+} elseif (in_array($rol_nombre, $rolesDireccion)) {
+    $result = obtenerGestionInrDireccion($inrdireccion_id);
 } else {
-    if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'DIRECTOR') {
-        $result = obtenerGestionInrDireccion($inrdireccion_id);
-    } else {
-        $result = obtenerGestionInrPorUsuario($nickname);
-    }
+    $result = obtenerGestionInrPorUsuario($nickname);
 }
 ?>
 
