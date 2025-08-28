@@ -10,7 +10,7 @@ $analistas = obtenerAnalistas($direccion);
 $tiposInf = obtenerTiposInforme();
 
 // Obtener registros filtrados por usuario
-if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'DIRECTOR' || $rol_nombre == 'DIRADMIN') {
+if ($rol_nombre == 'SUPERUSER' || $rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'DIRECTOR' || $rol_nombre == 'DIRADMIN' || $rol_nombre == 'DIRADMINDNS') {
     $result = obtenerInformesInrFull();
 } else {
     $result = obtInformesInrUsr($nickname);
