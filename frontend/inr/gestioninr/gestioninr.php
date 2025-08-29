@@ -76,9 +76,9 @@ if ($rol_nombre == 'SUPERUSER') {
                                     <select class="form-control" id="cbCategoria" name="cbCategoria">
                                         <option value="">Seleccione la Categoria</option>
                                         <?php foreach ($categorias as $categoria): ?>
-                                            <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>">
-                                                <?= htmlspecialchars($categoria['CATEGORIA']) ?>
-                                            </option>
+                                        <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>">
+                                            <?= htmlspecialchars($categoria['CATEGORIA']) ?>
+                                        </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -122,9 +122,9 @@ if ($rol_nombre == 'SUPERUSER') {
                                         style="display: none;" onchange="actualizarAnalista()">
                                         <option value="">Seleccione un analista</option>
                                         <?php foreach ($analistas as $analista): ?>
-                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                            </option>
+                                        <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                            <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                        </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -157,24 +157,25 @@ if ($rol_nombre == 'SUPERUSER') {
                             <button id="verTablaCompleta" class="btn btn-warning btn-sm">Reporte Completo</button>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-sm"
-                                    id="tablaActividades">
-                                    <thead>
-                                        <tr>
-                                            <th>COD</th>
-                                            <th>RUC</th>
-                                            <th>DIRECCION</th>
-                                            <th>CATEGORIA</th>
-                                            <th>FEC. OFICIO</th>
-                                            <th>OFICIO</th>
-                                            <th>DETALLE</th>
-                                            <th>ANALISTA</th>
-                                            <th>ACCIÓN</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($result as $gestioninr): ?>
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaActividades">
+                                        <thead>
+                                            <tr>
+                                                <th>COD</th>
+                                                <th>RUC</th>
+                                                <th>DIRECCION</th>
+                                                <th>CATEGORIA</th>
+                                                <th>FEC. OFICIO</th>
+                                                <th>OFICIO</th>
+                                                <th>DETALLE</th>
+                                                <th>ANALISTA</th>
+                                                <th>ACCIÓN</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($result as $gestioninr): ?>
                                             <tr>
                                                 <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
                                                 <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
@@ -211,11 +212,11 @@ if ($rol_nombre == 'SUPERUSER') {
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -319,10 +320,10 @@ if ($rol_nombre == 'SUPERUSER') {
                             <select class="form-control" id="cbCat" name="cbCat" onchange="selecCatExistente()">
                                 <option value="0">Seleccione la Categoria</option>
                                 <?php foreach ($categorias as $categoria): ?>
-                                    <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>"
-                                        data-text="<?= htmlspecialchars($categoria['CATEGORIA']) ?>">
-                                        <?= htmlspecialchars($categoria['CATEGORIA']) ?>
-                                    </option>
+                                <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>"
+                                    data-text="<?= htmlspecialchars($categoria['CATEGORIA']) ?>">
+                                    <?= htmlspecialchars($categoria['CATEGORIA']) ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

@@ -31,8 +31,9 @@ include BASE_PATH . 'backend/session.php';
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
-                                <div class="responsive" style="max-height: 300px; overflow-y: auto;">
-                                    <table class="table table-striped table-sm" id="tablaRepInvFD">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaRepInvFD">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Versión</th>

@@ -332,25 +332,27 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                         <div class="card-body" style="overflow-x: auto;">
                             <input class="form-control" type="text" id="searchInput" onkeyup="filterTable('tablaPsi')"
                                 placeholder="Buscar...">
-                            <div class="table-container" style="max-height: 700px; overflow-y: auto;">
-                                <table class="table table-striped table-sm" id="tablaPsi">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>FEC. CORTE</th>
-                                            <th>RUC</th>
-                                            <th>RAZON SOCIAL</th>
-                                            <th>INFORME</th>
-                                            <th>RESOLUCION</th>
-                                            <th>ESTADO</th>
-                                            <th>VIGENCIA</th>
-                                            <th>VENCIMIENTO</th>
-                                            <th>DETALLE</th>
-                                            <th>ACCIONES</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($result as $psi): ?>
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaPsi">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>FEC. CORTE</th>
+                                                <th>RUC</th>
+                                                <th>RAZON SOCIAL</th>
+                                                <th>INFORME</th>
+                                                <th>RESOLUCION</th>
+                                                <th>ESTADO</th>
+                                                <th>VIGENCIA</th>
+                                                <th>VENCIMIENTO</th>
+                                                <th>DETALLE</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($result as $psi): ?>
                                             <tr data-id="<?= htmlspecialchars($psi['id']) ?>">
                                                 <td><?= htmlspecialchars($psi['id']) ?></td>
                                                 <td>
@@ -367,7 +369,8 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                                                     <button class="btn btn-primary detalle-btn btn-sm"
                                                         data-id="<?= htmlspecialchars($psi['id'] ?? '') ?>"
                                                         title="Detalle PSI" data-bs-toggle="modal"
-                                                        data-bs-target="#detalleModalPsi" onclick="cargarDatosPsi(this)">
+                                                        data-bs-target="#detalleModalPsi"
+                                                        onclick="cargarDatosPsi(this)">
                                                         <i class="fa-solid fa-comment"></i>
                                                     </button>
                                                 </td>
@@ -384,14 +387,15 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                                                     </button>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
-                                        <?php if (empty($result)): ?>
+                                            <?php endforeach; ?>
+                                            <?php if (empty($result)): ?>
                                             <tr>
                                                 <td colspan="8" class="text-center">No hay registros para mostrar.</td>
                                             </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -546,13 +550,15 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-container" style="max-height: 700px; overflow-y: auto;">
-                        <table id="tablePreviewPsi" class="table table-striped table-sm">
-                            <thead>
-                                <tr id="tableHeaders"></tr>
-                            </thead>
-                            <tbody id="tableBody"></tbody>
-                        </table>
+                    <div class="d-flex justify-content-center">
+                        <div class="table-responsive" style="max-height: 300px;">
+                            <table class="table table-bordered table-striped table-hover table-sm" id="tablePreviewPsi">
+                                <thead>
+                                    <tr id="tableHeaders"></tr>
+                                </thead>
+                                <tbody id="tableBody"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -577,75 +583,75 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
 
 
     <script>
-        // Filtrar tabla por búsqueda
-        function filterTable() {
-            const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
-            const rows = document.querySelectorAll('#tablaPsi tbody tr');
+    // Filtrar tabla por búsqueda
+    function filterTable() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const rows = document.querySelectorAll('#tablaPsi tbody tr');
 
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.indexOf(filter) > -1 ? '' : 'none';
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.indexOf(filter) > -1 ? '' : 'none';
+        });
+    }
+
+    // Cargar datos del registro en el formulario para editar
+    document.querySelectorAll('.btn-editar').forEach(button => {
+        button.addEventListener('click', () => {
+            const tr = button.closest('tr');
+            const id = tr.getAttribute('data-id');
+
+            // Recorremos las celdas para llenar el formulario según los campos
+            document.getElementById('id').value = id;
+            document.getElementById('NUMERO').value = tr.children[1].textContent.trim();
+            document.getElementById('COD_UNICO').value = tr.children[2].textContent.trim();
+            document.getElementById('RUC').value = tr.children[3].textContent.trim();
+            document.getElementById('RAZON_SOCIAL').value = tr.children[4].textContent.trim();
+            document.getElementById('ULTIMO_CORTE').value = tr.children[5].textContent.trim();
+            document.getElementById('EST_REGISTRO').value = tr.children[6].textContent.trim();
+
+            // Aquí puedes cargar más campos si los agregas al formulario
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-        }
+        });
+    });
 
-        // Cargar datos del registro en el formulario para editar
-        document.querySelectorAll('.btn-editar').forEach(button => {
-            button.addEventListener('click', () => {
-                const tr = button.closest('tr');
-                const id = tr.getAttribute('data-id');
+    // Eliminar registro (soft delete)
+    document.querySelectorAll('.btn-eliminar').forEach(button => {
+        button.addEventListener('click', () => {
+            if (!confirm('¿Seguro que deseas eliminar este registro?')) return;
+            const tr = button.closest('tr');
+            const id = tr.getAttribute('data-id');
 
-                // Recorremos las celdas para llenar el formulario según los campos
-                document.getElementById('id').value = id;
-                document.getElementById('NUMERO').value = tr.children[1].textContent.trim();
-                document.getElementById('COD_UNICO').value = tr.children[2].textContent.trim();
-                document.getElementById('RUC').value = tr.children[3].textContent.trim();
-                document.getElementById('RAZON_SOCIAL').value = tr.children[4].textContent.trim();
-                document.getElementById('ULTIMO_CORTE').value = tr.children[5].textContent.trim();
-                document.getElementById('EST_REGISTRO').value = tr.children[6].textContent.trim();
-
-                // Aquí puedes cargar más campos si los agregas al formulario
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+            fetch('<?= $base_url ?>backend/psiActions.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        accion: 'eliminar',
+                        id: id
+                    })
+                }).then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Registro eliminado correctamente');
+                        tr.remove();
+                        document.getElementById('formPsi').reset();
+                    } else {
+                        alert('Error al eliminar');
+                    }
                 });
-            });
         });
+    });
 
-        // Eliminar registro (soft delete)
-        document.querySelectorAll('.btn-eliminar').forEach(button => {
-            button.addEventListener('click', () => {
-                if (!confirm('¿Seguro que deseas eliminar este registro?')) return;
-                const tr = button.closest('tr');
-                const id = tr.getAttribute('data-id');
-
-                fetch('<?= $base_url ?>backend/psiActions.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: new URLSearchParams({
-                            accion: 'eliminar',
-                            id: id
-                        })
-                    }).then(res => res.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert('Registro eliminado correctamente');
-                            tr.remove();
-                            document.getElementById('formPsi').reset();
-                        } else {
-                            alert('Error al eliminar');
-                        }
-                    });
-            });
-        });
-
-        // Limpiar formulario
-        document.getElementById('btnLimpiar').addEventListener('click', () => {
-            document.getElementById('formPsi').reset();
-            document.getElementById('id').value = 0;
-        });
+    // Limpiar formulario
+    document.getElementById('btnLimpiar').addEventListener('click', () => {
+        document.getElementById('formPsi').reset();
+        document.getElementById('id').value = 0;
+    });
     </script>
 
 </body>

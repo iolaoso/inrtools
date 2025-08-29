@@ -29,9 +29,10 @@ include BASE_PATH . 'backend/session.php';
                             <h4>Reportes Disponibles</h4>
                         </div>
                         <div class="card-body">
-                            <div class="table-container" style="max-height: 300px; overflow-y: auto;">
-                                <div class="table table-striped table-sm" id="tablaRepBrechas">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaRepBrechas">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>N. Mes</th>
@@ -63,8 +64,8 @@ include BASE_PATH . 'backend/session.php';
 
 
     <script>
-        // Define la carpeta que deseas usar
-        const carpetaReportes = 'assets/files/reportes/rambiental';
+    // Define la carpeta que deseas usar
+    const carpetaReportes = 'assets/files/reportes/rambiental';
     </script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/listarArchivos.js"></script>
 </body>

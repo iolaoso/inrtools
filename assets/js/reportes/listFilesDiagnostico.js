@@ -42,7 +42,7 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
             });
             return `
                 <tr>
-                    <td class="text-center">v${version.toFixed(1)}</td>
+                    <td class="text-center">${version.toFixed(1)}</td>
                     <td>${archivo.name}</td>
                     <td class="text-center">${(archivo.size / (1024 * 1024)).toFixed(2)} MB</td>
                     <td class="text-center">${fechaFormateada}</td>

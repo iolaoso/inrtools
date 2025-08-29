@@ -80,7 +80,7 @@ thead {
 .table-responsive {
         max-height: 1200px;
         overflow-y: auto;
-        font-size: 11px;
+        font-size: 12px;
     }
     table {
         width: 100%;
@@ -95,7 +95,7 @@ thead {
         white-space: normal; /* Permite el ajuste de línea */
     }
     th {
-        width: 15%; /* Ajusta según lo necesites */
+        width: 20%; /* Ajusta según lo necesites */
     }
 
 /* Tamaño personalizado para el modal */

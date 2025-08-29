@@ -97,6 +97,7 @@ include BASE_PATH . 'backend/session.php';
                                             <tr>
                                                 <th>Versión</th>
                                                 <th>Archivo</th>
+                                                <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
                                             </tr>
@@ -126,6 +127,7 @@ include BASE_PATH . 'backend/session.php';
                                             <tr>
                                                 <th>Versión</th>
                                                 <th>Archivo</th>
+                                                <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
                                             </tr>
@@ -155,6 +157,7 @@ include BASE_PATH . 'backend/session.php';
                                             <tr>
                                                 <th>Versión</th>
                                                 <th>Archivo</th>
+                                                <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
                                             </tr>
