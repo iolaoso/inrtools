@@ -83,7 +83,7 @@ $analistas = obtenerAnalistas($direccion);
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Estructura</span>
+                                        <span class="input-group-text">Estructura/Reporte</span>
                                     </div>
                                     <input type="text" class="form-control" id="nombreReporte" name="nombreReporte"
                                         style="text-transform: uppercase;" required>
@@ -92,14 +92,38 @@ $analistas = obtenerAnalistas($direccion);
                                             data-bs-target="#estucturasModal">Buscar</button>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="fechaCorte" class="form-label">Fecha de Corte</label>
-                                    <input type="date" class="form-control" id="fechaCorte" name="fechaCorte" required>
+                                <div class="form-container">
+                                    <div class="mb-3">
+                                        <label for="fechaCorte" class="form-label">Fecha de Corte</label>
+                                        <input type="date" class="form-control" id="fechaCorte" name="fechaCorte"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fechaSolicitud" class="form-label">Fecha de Solicitud</label>
+                                        <input type="date" class="form-control" id="fechaSolicitud"
+                                            name="fechaSolicitud" required>
+                                    </div>
+                                </div>
+                                <div class="form-container">
+                                    <div class="mb-3">
+                                        <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+                                        <input type="date" class="form-control" id="fechaInicio" name="fechaSolicitud">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fechaFin" class="form-label">Fecha Fin</label>
+                                        <input type="date" class="form-control" id="fechaFin" name="fechaSolicitud">
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="fechaSolicitud" class="form-label">Fecha de Solicitud</label>
-                                    <input type="date" class="form-control" id="fechaSolicitud" name="fechaSolicitud"
-                                        required>
+                                    <label for="fechaCreacion" class="form-label">Fecha Creación</label>
+                                    <input type="date" class="form-control" id="fechaCreacion" name="fechaSolicitud"
+                                        readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="detalleObs" class="form-label">Detalle / Observación</label>
+                                    <textarea class="form-control" id="detalleObs" name="detalleObs"
+                                        rows="3"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label id="lbAnalistaEjecutanteSelect" for="analistaEjecutanteSelect"
@@ -109,9 +133,9 @@ $analistas = obtenerAnalistas($direccion);
                                         onchange="actualizarInputAnalista()">
                                         <option value="">Seleccione un analista</option>
                                         <?php foreach ($analistas as $analista): ?>
-                                        <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                            <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                        </option>
+                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -160,7 +184,7 @@ $analistas = obtenerAnalistas($direccion);
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
                             <div class="d-flex justify-content-center">
                                 <div class="d-flex justify-content-center">
-                                    <div class="table-responsive" style="max-height: 500px;">
+                                    <div class="table-responsive" style="max-height: 900px;">
                                         <table class="table table-bordered table-striped table-hover table-sm"
                                             id="tablaReportes">
                                             <thead>
@@ -171,6 +195,10 @@ $analistas = obtenerAnalistas($direccion);
                                                     <th>Estructura</th>
                                                     <th>Fecha Corte</th>
                                                     <th>Fecha de Solicitud</th>
+                                                    <th>Fecha de Inicio</th>
+                                                    <th>Fecha de Fin</th>
+                                                    <th>Fecha de Creación</th>
+                                                    <th>Detalle</th>
                                                     <th>Estado</th>
                                                     <th>Ejecutante</th>
                                                     <th>Acciones</th>
@@ -178,35 +206,39 @@ $analistas = obtenerAnalistas($direccion);
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($result as $estructura): ?>
-                                                <tr>
-                                                    <td style="width: 30%">
-                                                        <?= htmlspecialchars($estructura['solicitante']) ?>
-                                                    </td>
-                                                    <td><?= htmlspecialchars($estructura['direccion_solicitante']) ?>
-                                                    </td>
-                                                    <td><?= htmlspecialchars($estructura['ruc']) ?></td>
-                                                    <td><?= htmlspecialchars($estructura['estructura']) ?></td>
-                                                    <td><?= htmlspecialchars($estructura['fechaCorte']) ?></td>
-                                                    <td><?= htmlspecialchars($estructura['fecha_solicitud']) ?></td>
-                                                    <td
-                                                        class="<?= htmlspecialchars($estructura['estado']) === 'PENDIENTE' ? 'pendiente' : '' ?>">
-                                                        <?= htmlspecialchars($estructura['estado']) ?></td>
-                                                    <td><?= htmlspecialchars($estructura['analista_ejecutante']) ?></td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button class="btn btn-info edit-btn btn-sm"
-                                                                data-id="<?= htmlspecialchars($estructura['id']) ?>"
-                                                                title="Editar" onclick="asignarEventosBotones();">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                            <button class="btn btn-danger delete-btn btn-sm"
-                                                                data-id="<?= htmlspecialchars($estructura['id']) ?>"
-                                                                title="Eliminar" onclick="asignarEventosBotones();">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td style="width: 30%">
+                                                            <?= htmlspecialchars($estructura['solicitante']) ?>
+                                                        </td>
+                                                        <td><?= htmlspecialchars($estructura['direccion_solicitante']) ?>
+                                                        </td>
+                                                        <td><?= htmlspecialchars($estructura['ruc']) ?></td>
+                                                        <td><?= htmlspecialchars($estructura['estructura']) ?></td>
+                                                        <td><?= htmlspecialchars($estructura['fechaCorte']) ?></td>
+                                                        <td><?= htmlspecialchars($estructura['fecha_solicitud']) ?></td>
+                                                        <td>Fecha de Inicio</td>
+                                                        <td>Fecha de Fin</td>
+                                                        <td>Fecha de Creación</td>
+                                                        <td>Detalle</td>
+                                                        <td
+                                                            class="<?= htmlspecialchars($estructura['estado']) === 'PENDIENTE' ? 'pendiente' : '' ?>">
+                                                            <?= htmlspecialchars($estructura['estado']) ?></td>
+                                                        <td><?= htmlspecialchars($estructura['analista_ejecutante']) ?></td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-info edit-btn btn-sm"
+                                                                    data-id="<?= htmlspecialchars($estructura['id']) ?>"
+                                                                    title="Editar" onclick="asignarEventosBotones();">
+                                                                    <i class="fas fa-edit"></i>
+                                                                </button>
+                                                                <button class="btn btn-danger delete-btn btn-sm"
+                                                                    data-id="<?= htmlspecialchars($estructura['id']) ?>"
+                                                                    title="Eliminar" onclick="asignarEventosBotones();">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>
@@ -237,10 +269,10 @@ $analistas = obtenerAnalistas($direccion);
                         <label for="categoria" class="form-label">Categoría</label>
                         <ul class="list-group scrollable-list" id="categoriaList">
                             <?php foreach ($catEstructuras as $catEst): ?>
-                            <li class="list-group-item list-group-item-action"
-                                onclick="seleccionarCategoria('<?= htmlspecialchars($catEst['estNombre']) ?>', '<?= htmlspecialchars($catEst['estNombre']) ?>')">
-                                <?= htmlspecialchars($catEst['estNombre']) ?>
-                            </li>
+                                <li class="list-group-item list-group-item-action"
+                                    onclick="seleccionarCategoria('<?= htmlspecialchars($catEst['estNombre']) ?>', '<?= htmlspecialchars($catEst['estNombre']) ?>')">
+                                    <?= htmlspecialchars($catEst['estNombre']) ?>
+                                </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>

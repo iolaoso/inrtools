@@ -110,6 +110,23 @@ thead {
     overflow-y: auto;  /* Habilita el scroll vertical */
 }
 
+
+.form-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Espacio entre los divs */
+        }
+        .mb-3 {
+            flex: 1; /* Para que ambos divs tengan el mismo ancho */
+        }
+
+.form-label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #2c3e50; /* Color del texto */
+}
+
+
 #tablaActividadesFull {
     width: 200px; /* Define el ancho de la tabla */
 }
