@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
             'ruc' => htmlspecialchars($row['ruc']),
             'estructura' => htmlspecialchars($row['estructura']),
             'fechaCorte' => htmlspecialchars($row['fechaCorte'] ?? ''),
-            'fecha_solicitud' => htmlspecialchars($estructura['fecha_solicitud'] ?? ''),
+            'fecha_solicitud' => htmlspecialchars($row['fecha_solicitud'] ?? ''),
             'estado' => htmlspecialchars($row['estado']),
             'fechaInicio' => htmlspecialchars($row['fechaInicio'] ?? ''),
             'fechaFin' => htmlspecialchars($row['fechaFin'] ?? ''),

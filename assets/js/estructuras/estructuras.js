@@ -61,7 +61,7 @@ function actualizarTabla() {
     .then(data => {
         const tbody = document.querySelector('#tablaReportes tbody');
         tbody.innerHTML = ''; // Limpiar la tabla existente
-
+        /* console.log("al actualizar al tabla:", data); */ // Verifica los datos recibidos
         // Llenar la tabla con los nuevos datos
         data.forEach(item => {
             const row = document.createElement('tr');
