@@ -115,8 +115,8 @@ $analistas = obtenerAnalistas($direccion);
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="fechaCreacion" class="form-label">Fecha Creación</label>
-                                    <input type="date" class="form-control" id="fechaCreacion" name="fechaCreacion"
+                                    <!-- <label for="fechaCreacion" class="form-label">Fecha Creación</label> -->
+                                    <input type="hidden" class="form-control" id="fechaCreacion" name="fechaCreacion"
                                         readonly>
                                 </div>
 
@@ -174,8 +174,9 @@ $analistas = obtenerAnalistas($direccion);
                             <h4 class="mb-0">Reportes del Analista</h4>
                             <ul class="list-unstyled d-flex mb-0">
                                 <li class="mx-2">
-                                    <button id="exportButton" class="btn btn-primary btn-sm"
-                                        onclick="exportTableToExcel('tablaReportes', 'ReporteEstructuras')">Exportar</button>
+                                    <button id="exportButton" class="btn btn-warning btn-sm"
+                                        onclick="exportTableToExcel('tablaReportes', 'ReporteEstructuras')">Reporte
+                                        General</button>
                                 </li>
                             </ul>
                         </div>
@@ -183,7 +184,7 @@ $analistas = obtenerAnalistas($direccion);
                             <input class="form-control mb-3" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
                             <div class="d-flex justify-content-center">
-                                <div class="table-responsive" style="max-height: 900px;">
+                                <div class="table-responsive" style="max-height: 800px;">
                                     <table class="table table-bordered table-striped table-hover table-sm"
                                         id="tablaReportes">
                                         <thead>
