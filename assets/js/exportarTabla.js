@@ -1,3 +1,9 @@
+/**
+    * Función para exportar una tabla HTML a Excel con todas las celdas como texto
+    * @param {string} tableID - ID de la tabla a exportar
+    * @param {string} filename - Nombre del archivo (sin extensión)
+    * @param {string} sheetname - Nombre de la hoja de cálculo
+    */
 function exportTableToExcel(tableID, filename = '', sheetname = 'Datos') {
     // Obtener la tabla
     const table = document.getElementById(tableID);
@@ -6,16 +12,67 @@ function exportTableToExcel(tableID, filename = '', sheetname = 'Datos') {
         return;
     }
     
-    // Crear un libro de trabajo y una hoja
+    // Crear un libro de trabajo
     const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.table_to_sheet(table);
     
-    // Añadir la hoja al libro
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
+    // Crear una hoja de cálculo vacía
+    const ws = XLSX.utils.aoa_to_sheet([]);
     
-    // Obtener el rango de datos
-    const range = XLSX.utils.decode_range(ws['!ref']);
-    const columnCount = range.e.c - range.s.c + 1;
+    // Obtener todas las filas de la tabla
+    const rows = table.querySelectorAll('tr');
+    
+    // Procesar cada fila y celda
+    rows.forEach((row, rowIndex) => {
+        const cells = row.querySelectorAll('th, td');
+        cells.forEach((cell, colIndex) => {
+            const cellRef = XLSX.utils.encode_cell({r: rowIndex, c: colIndex});
+            
+            // Crear objeto de celda con el valor como texto
+            ws[cellRef] = {
+                v: cell.textContent,
+                t: 's', // 's' para string (texto)
+                s: {
+                    // Aplicar formato de texto explícito
+                    numFmt: '@'
+                }
+            };
+            
+            /* // Aplicar formato especial a los encabezados
+            if (rowIndex === 0) {
+                ws[cellRef].s = {
+                    ...ws[cellRef].s,
+                    font: { bold: true, color: { rgb: "FFFFFF" } },
+                    fill: { fgColor: { rgb: "3498DB" } },
+                    border: {
+                        top: { style: "thin", color: { rgb: "000000" } },
+                        bottom: { style: "thin", color: { rgb: "000000" } },
+                        left: { style: "thin", color: { rgb: "000000" } },
+                        right: { style: "thin", color: { rgb: "000000" } }
+                    }
+                };
+            } else {
+                // Aplicar bordes a las celdas de datos
+                ws[cellRef].s = {
+                    ...ws[cellRef].s,
+                    border: {
+                        top: { style: "thin", color: { rgb: "D9D9D9" } },
+                        bottom: { style: "thin", color: { rgb: "D9D9D9" } },
+                        left: { style: "thin", color: { rgb: "D9D9D9" } },
+                        right: { style: "thin", color: { rgb: "D9D9D9" } }
+                    }
+                };
+                
+                // Filas alternas con color de fondo
+                if (rowIndex % 2 === 0) {
+                    ws[cellRef].s.fill = { fgColor: { rgb: "F2F2F2" } };
+                }
+            } */
+        });
+    });
+    
+    // Definir el rango de la hoja
+    const range = {s: {r: 0, c: 0}, e: {r: rows.length - 1, c: rows[0].cells.length - 1}};
+    ws['!ref'] = XLSX.utils.encode_range(range);
     
     // Ajustar automáticamente el ancho de las columnas
     const colWidths = [];
@@ -33,16 +90,14 @@ function exportTableToExcel(tableID, filename = '', sheetname = 'Datos') {
     }
     ws['!cols'] = colWidths;
     
-    // Agregar autofiltro (esto funciona en SheetJS)
-    ws['!autofilter'] = {
-        ref: XLSX.utils.encode_range(range)
-    };
+    // Añadir la hoja al libro
+    XLSX.utils.book_append_sheet(wb, ws, sheetname);
     
     // Guardar el archivo
     XLSX.writeFile(wb, filename ? `${filename}.xlsx` : 'reporte.xlsx');
     
     // Mostrar notificación
-    showNotification('¡Tabla exportada exitosamente con formato!');
+    showNotification('¡Tabla exportada exitosamente con formato de texto!');
 }
 
 // Función para mostrar notificación
