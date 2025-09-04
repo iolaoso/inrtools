@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('fechaRegistro').value = today;
     document.getElementById('fechaActualizacion').value = today;
 
-    if (usrRol == "ADMINISTRADOR" || usrRol == "SUPERUSUARIO" || usrRol == "DIRECTOR") {
+    usersAdmin = ['ADMININSTRADOR', 'SUPERUSER', 'DIRECTOR'];
+
+    if (usersAdmin.includes(usersAdmin)) {
         document.getElementById('analistaEjecutante').removeAttribute('readonly'); // Elimina el atributo readonly
         //console.log(usrRol)
     } else {
@@ -70,7 +72,11 @@ function actualizarTabla() {
                 <td>${item.estructura}</td>
                 <td>${item.fechaCorte}</td>
                 <td>${item.fecha_solicitud}</td>
-                <td class="${item.estado === 'PENDIENTE' ? 'pendiente' : ''}">
+                <td>${item.fechaInicio}</td>
+                <td>${item.fechaFin}</td>
+                <td>${item.createdAt}</td>
+                <td>${item.detalle}</td>
+                <td class="${item.estado === 'PENDIENTE' ? 'PENDIENTE' : ''}">
                     ${item.estado}
                 </td>
                 <td>${item.analista_ejecutante}</td>
@@ -112,7 +118,7 @@ function asignarEventosBotones() {
                     return response.json();
                 })
                 .then(estructura => {
-                    //console.log(estructura);
+                    console.log(estructura);
                     // Rellenar los campos según sea necesario
                     document.getElementById('idEstructura').value = estructura.id;
                     document.getElementById('analistaSolicitante').value = estructura.solicitante;
@@ -123,9 +129,13 @@ function asignarEventosBotones() {
                     document.getElementById('fechaSolicitud').value = estructura.fecha_solicitud;
                     document.getElementById('analistaEjecutante').value = estructura.analista_ejecutante;
                     document.getElementById('estadoSolicitud').value = estructura.estado;
+                    document.getElementById('fechaInicio').value = estructura.fechaInicio != null ? estructura.fechaInicio : '';
+                    document.getElementById('fechaFin').value = estructura.fechaFin != null ? estructura.fechaFin : '';
+                    document.getElementById('fechaCreacion').value = estructura.createdAt;
+                    document.getElementById('detalleObs').value = estructura.detalle;
+                    // Las fechas de registro y actualización son solo para mostrar, no se editan
                     document.getElementById('fechaRegistro').value = estructura.createdAt;
                     document.getElementById('fechaActualizacion').value = estructura.updatedAt;
-                    
                 })
                 .catch(error => {
                     alert("Error al cargar los datos: " + error.message);
@@ -161,13 +171,6 @@ function seleccionarCategoria(nombre) {
     document.getElementById('nombreReporte').value = nombre; // Llena el input con el nombre de la categoría
     //alert("Categoría seleccionada: " + nombre); // Mensaje opcional
 }
-
-// function seleccionarEntidad(ruc) {
-//     // Actualiza el campo oculto o el input que necesitas
-//     //document.getElementById('categoriaSeleccionada').value = id; // Si tienes un input oculto
-//     document.getElementById('ruc').value = ruc; // Llena el input con el nombre de la categoría
-//     //alert("Categoría seleccionada: " + nombre); // Mensaje opcional
-// }
 
 function filtrarEntidades() {
     const input = document.getElementById('busquedaEntidad');

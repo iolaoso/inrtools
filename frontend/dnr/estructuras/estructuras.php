@@ -107,16 +107,16 @@ $analistas = obtenerAnalistas($direccion);
                                 <div class="form-container">
                                     <div class="mb-3">
                                         <label for="fechaInicio" class="form-label">Fecha Inicio</label>
-                                        <input type="date" class="form-control" id="fechaInicio" name="fechaSolicitud">
+                                        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio">
                                     </div>
                                     <div class="mb-3">
                                         <label for="fechaFin" class="form-label">Fecha Fin</label>
-                                        <input type="date" class="form-control" id="fechaFin" name="fechaSolicitud">
+                                        <input type="date" class="form-control" id="fechaFin" name="fechaFin">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="fechaCreacion" class="form-label">Fecha Creación</label>
-                                    <input type="date" class="form-control" id="fechaCreacion" name="fechaSolicitud"
+                                    <input type="date" class="form-control" id="fechaCreacion" name="fechaCreacion"
                                         readonly>
                                 </div>
 
@@ -180,69 +180,75 @@ $analistas = obtenerAnalistas($direccion);
                             </ul>
                         </div>
                         <div class="card-body">
-                            <input class="form-control" type="text" id="searchInput"
+                            <input class="form-control mb-3" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
                             <div class="d-flex justify-content-center">
-                                <div class="d-flex justify-content-center">
-                                    <div class="table-responsive" style="max-height: 900px;">
-                                        <table class="table table-bordered table-striped table-hover table-sm"
-                                            id="tablaReportes">
-                                            <thead>
+                                <div class="table-responsive" style="max-height: 900px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaReportes">
+                                        <thead>
+                                            <tr>
+                                                <th>Solicitante</th>
+                                                <th>Dirección</the=>
+                                                <th>Ruc</th>
+                                                <th>Estructura</th>
+                                                <th>Fecha Corte</th>
+                                                <th>Fecha de Solicitud</th>
+                                                <th>Fecha de Inicio</th>
+                                                <th>Fecha de Fin</th>
+                                                <th>Fecha de Creación</th>
+                                                <th>Detalle</th>
+                                                <th>Estado</th>
+                                                <th>Ejecutante</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($result as $estructura): ?>
                                                 <tr>
-                                                    <th>Solicitante</th>
-                                                    <th>Dirección</the=>
-                                                    <th>Ruc</th>
-                                                    <th>Estructura</th>
-                                                    <th>Fecha Corte</th>
-                                                    <th>Fecha de Solicitud</th>
-                                                    <th>Fecha de Inicio</th>
-                                                    <th>Fecha de Fin</th>
-                                                    <th>Fecha de Creación</th>
-                                                    <th>Detalle</th>
-                                                    <th>Estado</th>
-                                                    <th>Ejecutante</th>
-                                                    <th>Acciones</th>
+                                                    <td style="width: 30%">
+                                                        <?= htmlspecialchars($estructura['solicitante']) ?>
+                                                    </td>
+                                                    <td><?= htmlspecialchars($estructura['direccion_solicitante']) ?>
+                                                    </td>
+                                                    <td><?= htmlspecialchars($estructura['ruc']) ?></td>
+                                                    <td><?= htmlspecialchars($estructura['estructura']) ?></td>
+                                                    <td><?= htmlspecialchars($estructura['fechaCorte']) ?></td>
+                                                    <td><?= htmlspecialchars($estructura['fecha_solicitud']) ?></td>
+                                                    <td>
+                                                        <?= htmlspecialchars(isset($estructura['fechaInicio']) ? $estructura['fechaInicio'] : '1900-01-01') ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= htmlspecialchars(isset($estructura['fechaFin']) ? $estructura['fechaFin'] : '1900-01-01') ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= htmlspecialchars(isset($estructura['createdAt']) ? $estructura['createdAt'] : '1900-01-01') ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= htmlspecialchars(isset($estructura['detalle']) ? $estructura['detalle'] : '') ?>
+                                                    </td>
+                                                    <td
+                                                        class="<?= htmlspecialchars($estructura['estado']) === 'PENDIENTE' ? 'pendiente' : '' ?>">
+                                                        <?= htmlspecialchars($estructura['estado']) ?></td>
+                                                    <td><?= htmlspecialchars($estructura['analista_ejecutante']) ?></td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-info edit-btn btn-sm"
+                                                                data-id="<?= htmlspecialchars($estructura['id']) ?>"
+                                                                title="Editar" onclick="asignarEventosBotones();">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-danger delete-btn btn-sm"
+                                                                data-id="<?= htmlspecialchars($estructura['id']) ?>"
+                                                                title="Eliminar" onclick="asignarEventosBotones();">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($result as $estructura): ?>
-                                                    <tr>
-                                                        <td style="width: 30%">
-                                                            <?= htmlspecialchars($estructura['solicitante']) ?>
-                                                        </td>
-                                                        <td><?= htmlspecialchars($estructura['direccion_solicitante']) ?>
-                                                        </td>
-                                                        <td><?= htmlspecialchars($estructura['ruc']) ?></td>
-                                                        <td><?= htmlspecialchars($estructura['estructura']) ?></td>
-                                                        <td><?= htmlspecialchars($estructura['fechaCorte']) ?></td>
-                                                        <td><?= htmlspecialchars($estructura['fecha_solicitud']) ?></td>
-                                                        <td>Fecha de Inicio</td>
-                                                        <td>Fecha de Fin</td>
-                                                        <td>Fecha de Creación</td>
-                                                        <td>Detalle</td>
-                                                        <td
-                                                            class="<?= htmlspecialchars($estructura['estado']) === 'PENDIENTE' ? 'pendiente' : '' ?>">
-                                                            <?= htmlspecialchars($estructura['estado']) ?></td>
-                                                        <td><?= htmlspecialchars($estructura['analista_ejecutante']) ?></td>
-                                                        <td>
-                                                            <div class="btn-group">
-                                                                <button class="btn btn-info edit-btn btn-sm"
-                                                                    data-id="<?= htmlspecialchars($estructura['id']) ?>"
-                                                                    title="Editar" onclick="asignarEventosBotones();">
-                                                                    <i class="fas fa-edit"></i>
-                                                                </button>
-                                                                <button class="btn btn-danger delete-btn btn-sm"
-                                                                    data-id="<?= htmlspecialchars($estructura['id']) ?>"
-                                                                    title="Eliminar" onclick="asignarEventosBotones();">
-                                                                    <i class="fas fa-trash"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

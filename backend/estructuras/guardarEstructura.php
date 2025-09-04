@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fechaCorte = $_POST['fechaCorte'];
     $fecha_solicitud = $_POST['fechaSolicitud'];
     $estado = $_POST['estadoSolicitud'];
+    $fechaInicio = $_POST['fechaInicio'];
+    $fechaFin = $_POST['fechaFin'];
+    $detalle = mb_strtoupper($_POST['detalleObs'], 'UTF-8');
     $analista_ejecutante = mb_strtoupper($_POST['analistaEjecutante'], 'UTF-8');
     $UsrCreacion = $_POST['analistaEjecutante'];
 
@@ -31,17 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     fechaCorte = ?,
                     fecha_solicitud = ?, 
                     estado = ?, 
+                    fechaInicio = ?,
+                    fechaFin = ?,
+                    detalle = ?,
                     analista_ejecutante = ?, 
                     updatedAt = ? 
                 WHERE id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssssssi", $solicitante, $direccion_solicitante, $ruc, $estructura, $fechaCorte, $fecha_solicitud, $estado, $analista_ejecutante, $fecha_actual, $id);
+        $stmt->bind_param("ssssssssssssi", $solicitante, $direccion_solicitante, $ruc, $estructura, $fechaCorte, $fecha_solicitud, $estado, $fechaInicio, $fechaFin, $detalle, $analista_ejecutante, $fecha_actual, $id);
     } else {
         // Es un insert
-        $sql = "INSERT INTO estructuras (solicitante, direccion_solicitante, ruc, estructura, fechaCorte, fecha_solicitud, estado, analista_ejecutante, UsrCreacion, createdAt, updatedAt) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO estructuras (solicitante, direccion_solicitante, ruc, estructura, fechaCorte, fecha_solicitud, estado, fechaInicio, fechaFin, detalle, analista_ejecutante, UsrCreacion, createdAt, updatedAt) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssssssss", $solicitante, $direccion_solicitante, $ruc, $estructura, $fechaCorte, $fecha_solicitud, $estado, $analista_ejecutante, $UsrCreacion, $fecha_actual, $fecha_actual);
+        $stmt->bind_param("sssssssssss", $solicitante, $direccion_solicitante, $ruc, $estructura, $fechaCorte, $fecha_solicitud, $estado, $fechaInicio, $fechaFin, $detalle, $analista_ejecutante, $UsrCreacion, $fecha_actual, $fecha_actual);
     }
 
     // Ejecutar la consulta

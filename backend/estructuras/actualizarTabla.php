@@ -6,8 +6,11 @@ include_once 'estructurasList.php'; // Incluye el archivo donde está definida l
 
 header('Content-Type: application/json'); // Establecer el tipo de contenido a JSON
 
+//ROLES ADMITIDOS PARA VER TODAS LAS ESTRUCTURAS
+$rolesAdmin = ['ADMININSTRADOR', 'SUPERUSER', 'DIRECTOR', 'DIRADMINDNS', 'DIRADMINDNR', 'DIRADMINDNSES', 'DIRADMINDNPLA', 'DIRADMIN'];
+
 // Consulta para obtener datos
-if ($rol_nombre == "ADMININSTRADOR") {
+if (in_array($rol_nombre, $rolesAdmin)) {
     $result = obtenerEstructurasFull();
 } else {
     $result = obtenerEstructurasPorUsuario($nickname);
@@ -23,9 +26,14 @@ if ($result->num_rows > 0) {
             'direccion_solicitante' => htmlspecialchars($row['direccion_solicitante']),
             'ruc' => htmlspecialchars($row['ruc']),
             'estructura' => htmlspecialchars($row['estructura']),
-            'fechaCorte' => htmlspecialchars($row['fechaCorte']),
-            'fecha_solicitud' => htmlspecialchars($row['fecha_solicitud']),
+            'fechaCorte' => htmlspecialchars($row['fechaCorte'] ?? ''),
+            'fecha_solicitud' => htmlspecialchars($estructura['fecha_solicitud'] ?? ''),
             'estado' => htmlspecialchars($row['estado']),
+            'fechaInicio' => htmlspecialchars($row['fechaInicio'] ?? ''),
+            'fechaFin' => htmlspecialchars($row['fechaFin'] ?? ''),
+            'detalle' => htmlspecialchars($row['detalle'] ?? ''),
+            'createdAt' => htmlspecialchars($row['createdAt']),
+            'updatedAt' => htmlspecialchars($row['updatedAt']),
             'analista_ejecutante' => htmlspecialchars($row['analista_ejecutante']),
             'id' => htmlspecialchars($row['id']),
         ];

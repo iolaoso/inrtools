@@ -9,9 +9,12 @@ function obtenerEstructurasPorUsuario($nickname)
                 ,direccion_solicitante
                 ,ruc
                 ,estructura
-                ,fechaCorte
-                ,fecha_solicitud
+                ,DATE(fechaCorte) as fechaCorte
+                ,DATE(fecha_solicitud) as fecha_solicitud
                 ,estado
+                ,DATE(fechaInicio) as fechaInicio
+                ,DATE(fechaFin) as fechaFin
+                ,detalle
                 ,analista_ejecutante
                 ,estRegistro
                 ,UsrCreacion
@@ -37,9 +40,12 @@ function obtenerEstructurasFull()
                 ,direccion_solicitante
                 ,ruc
                 ,estructura
-                ,fechaCorte
-                ,fecha_solicitud
+                ,DATE(fechaCorte) as fechaCorte
+                ,DATE(fecha_solicitud) as fecha_solicitud
                 ,estado
+                ,DATE(fechaInicio) as fechaInicio
+                ,DATE(fechaFin) as fechaFin
+                ,detalle
                 ,analista_ejecutante
                 ,estRegistro
                 ,UsrCreacion
@@ -64,9 +70,12 @@ function obtenerEstructuraPorId($id)
                                 ,direccion_solicitante
                                 ,ruc
                                 ,estructura
-                                ,fechaCorte
-                                ,fecha_solicitud
+                                ,DATE(fechaCorte) as fechaCorte
+                                ,DATE(fecha_solicitud) as fecha_solicitud
                                 ,estado
+                                ,DATE(fechaInicio) as fechaInicio
+                                ,DATE(fechaFin) as fechaFin
+                                ,detalle
                                 ,analista_ejecutante
                                 ,estRegistro
                                 ,UsrCreacion
