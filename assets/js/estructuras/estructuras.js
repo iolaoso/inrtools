@@ -88,7 +88,7 @@ function actualizarTabla() {
                         <button class="btn btn-danger delete-btn btn-sm" data-id="${item.id}" title="Eliminar">
                             <i class="fas fa-trash"></i>
                         </button>
-                    </div>">
+                    </div>
                 </td>
             `;
             tbody.appendChild(row);

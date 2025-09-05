@@ -55,15 +55,14 @@ if ($rol_nombre == 'SUPERUSER') {
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
-                                <div class="table-responsive"
-                                    style="max-height: 500px; max-width: 1000px; overflow-y: auto;">
-                                    <table class="table table-striped table-sm display"
-                                        id="tablaActividadesFull">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaActividadesFull" style="font-size: 8px;">
                                         <thead>
                                             <tr>
                                                 <th>COD</th>
                                                 <th>SEGMENTO</th>
-                                                <th>RUC</th>
+                                                <th>RUC / GESTION</th>
                                                 <th>RAZON SOCIAL</th>
                                                 <th>DIRECCION</th>
                                                 <th>COD_CAT</th>
@@ -73,7 +72,7 @@ if ($rol_nombre == 'SUPERUSER') {
                                                 <th>COMPLEJIDAD</th>
                                                 <th>FEC. REGISTRO</th>
                                                 <th>FEC. OFICIO</th>
-                                                <th>OFICIO</th>
+                                                <th>OFICIO / ACCION</th>
                                                 <th>COMENTARIO</th>
                                                 <th>ANALISTA</th>
                                             </tr>

@@ -63,7 +63,7 @@ body {
     max-height: 400px; /* Ajusta la altura según sea necesario */
     overflow-y: auto;  /* Activa el desplazamiento vertical */
     border: 1px solid #dee2e6; /* Opcional: agrega un borde */
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .table {
@@ -77,14 +77,19 @@ thead {
     z-index: 10; /* Asegura que el encabezado esté por encima del contenido */
 }
 
+.table-general {
+        width: 50%;
+        border-collapse: collapse; /* Colapsar bordes */
+    }
+
 .table-responsive {
         max-height: 1200px;
         overflow-y: auto;
-        font-size: 12px;
+        font-size: 11px;
     }
     table {
-        width: 100%;
         table-layout: fixed; /* Anchos fijos */
+        width: 100%;
         border-collapse: collapse; /* Colapsar bordes */
     }
     th, td {
@@ -125,12 +130,6 @@ thead {
     font-size: 14px;
     color: #2c3e50; /* Color del texto */
 }
-
-
-#tablaActividadesFull {
-    width: 200px; /* Define el ancho de la tabla */
-}
-
 .modal-header {
     background-color: #17a2b8; /* Cambia el color aquí */
     color: white; /* Cambia el color del texto si es necesario */

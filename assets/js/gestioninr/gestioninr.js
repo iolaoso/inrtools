@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
    document.getElementById('cbCategoria').addEventListener('change', subCategoryChange);
 
    document.getElementById('verTablaCompleta').addEventListener('click', function() {
-    window.location.href = 'tablaCompleta.php'; // Cambia 'paginaCompleta.html' al nombre de tu nueva página
-});
+        window.location.href = 'tablaCompleta.php'; // Cambia 'paginaCompleta.html' al nombre de tu nueva página
+    });
 });
 
 $(document).ready(function() {
@@ -18,11 +18,31 @@ $(document).ready(function() {
         "autoWidth": true, // Habilita el ajuste automático de ancho
         "dom": '<"botones"B><"filtro"f><"ctabla"rt><"pie"ip>',
         "buttons": [{
+                        extend: 'excelHtml5',
+                        title: 'Reporte_Gestiones_Simp_INR',
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                    },
+                    {
                         extend: 'pdfHtml5',
-                        messageTop: 'Información de las Gestiones realizadas por la Intendencia Nacional de Riesgos',
+                        messageTop: 'Reporte_Gestiones_Simp_INR',
                         orientation: 'landscape',
                         pageSize: 'LEGAL',
                         download: 'open'
+                    },
+                    {
+                        extend: 'print',
+                        messageTop: 'Reporte_Gestiones_Simp_INR',
+                        orientation: 'landscape',
+                        exportOptions: {columns: ':visible'},
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' );
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
                     },
                     'colvis',
         ],
@@ -287,6 +307,8 @@ function guardarForm(formId,event) {
             alert(data.status + ' - Transacción: ' + data.transaccion + ' - Mensaje: ' + data.message);
             limpiarForm('frmGestionesInr');
             // Actualizar el DataTable
+            console.log("se actualiza");
+            location.reload();
 
           })
           .catch(error => {

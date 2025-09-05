@@ -20,7 +20,7 @@ include BASE_PATH . 'backend/session.php';  // Incluye la sesión
 
         <!-- Contenido principal -->
         <main class="content p-4" id="main-content">
-            <div class="row align-items-center mb-3">
+            <section class="row align-items-center mb-3">
                 <div class="col-2">
                     <img src="<?php echo $base_url; ?>/assets/images/seps_large.jpg" alt="Reporte SEPS" class="rounded"
                         style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);" height="200px">
@@ -30,11 +30,13 @@ include BASE_PATH . 'backend/session.php';  // Incluye la sesión
                         y Solidaria</h1>
                     <p>Conoce los informes y datos relevantes de la economía popular y solidaria.</p>
                 </div>
-            </div>
+            </section>
 
             <section class="row align-items-center">
                 <h2 class="display-5 mb-3" style="text-shadow: 0px 0px 9px #7d8b9b;">Direcciones INR</h2>
+            </section>
 
+            <section class="row align-items-center">
                 <div class="col-md-3">
                     <div class="card h-100 d-flex flex-column">
                         <div class="card-header">

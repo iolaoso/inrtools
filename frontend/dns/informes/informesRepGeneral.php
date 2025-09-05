@@ -59,8 +59,9 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
-                                <div class="table-container" style="max-height: 500px; max-width: 1200px;">
-                                    <table class="table table-striped table-sm" id="tablaInfRepGen">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-sm" style="font-size: 6px;"
+                                        id="tablaInfRepGen">
                                         <thead>
                                             <tr>
                                                 <th>COD_INFORME</th>
