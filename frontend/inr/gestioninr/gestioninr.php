@@ -107,7 +107,9 @@ if ($rol_nombre == 'SUPERUSER') {
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="estado" class="form-label">Estado de la Gestión</label>
+                                    <label for="estado" class="form-label">Estado de la Gestión
+                                        <span style="color: red; font-size: smaller">*</span>
+                                    </label>
                                     <select class="form-control" id="estado" name="estado" required>
                                         <option value="">-- Selecciona --</option>
                                         <option value="PENDIENTE">PENDIENTE</option>
