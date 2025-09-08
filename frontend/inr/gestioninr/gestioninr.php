@@ -196,10 +196,10 @@ if ($rol_nombre == 'SUPERUSER') {
                                         <thead>
                                             <tr>
                                                 <th>COD</th>
+                                                <th>DIRECCION</th>
                                                 <th>GESTION</th>
                                                 <th>ESTADO</th>
                                                 <th>RUC</th>
-                                                <th>DIRECCION</th>
                                                 <th>CATEGORIA</th>
                                                 <th>OFICIO</th>
                                                 <th>DETALLE</th>
@@ -211,14 +211,14 @@ if ($rol_nombre == 'SUPERUSER') {
                                             <?php foreach ($result as $gestioninr): ?>
                                                 <tr>
                                                     <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
+                                                    <td class="text-center">
+                                                        <?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?>
+                                                    </td>
                                                     <td><?= htmlspecialchars($gestioninr['GESTION'] ?? '') ?></td>
                                                     <td
                                                         class="<?= htmlspecialchars($gestioninr['ESTADO']) === 'PENDIENTE' ? 'pendiente' : '' ?>">
                                                         <?= htmlspecialchars($gestioninr['ESTADO'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
-                                                    <td class="text-center">
-                                                        <?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?>
-                                                    </td>
                                                     <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['OFICIO_TRAMITE'] ?? '') ?></td>
                                                     <td class="text-center">

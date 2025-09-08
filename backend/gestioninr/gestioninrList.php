@@ -8,7 +8,10 @@ function obtenerGestionInrPorUsuario($nickname)
 {
     global $conn; // Usar la conexión global
     $sql = "SELECT G.COD_GESTION
-                ,D.DIRECCION
+                ,CASE 
+                    WHEN G.DIRECCION IS NULL OR G.DIRECCION = '' THEN D.DIRECCION
+                    ELSE G.DIRECCION 
+                END AS DIRECCION
                 ,G.COD_CATEGORIA
                 ,C.CATEGORIA
                 ,G.COD_SUBCATEGORIA
@@ -46,7 +49,10 @@ function obtenerGestionInrFull()
 {
     global $conn; // Usar la conexión global
     $sql = "SELECT G.COD_GESTION
-                ,D.DIRECCION
+                ,CASE 
+                    WHEN G.DIRECCION IS NULL OR G.DIRECCION = '' THEN D.DIRECCION
+                    ELSE G.DIRECCION 
+                END AS DIRECCION
                 ,G.COD_CATEGORIA
                 ,C.CATEGORIA
                 ,G.COD_SUBCATEGORIA
@@ -82,7 +88,10 @@ function obtenerGestionInrDireccion($dirInrId)
 {
     global $conn; // Usar la conexión global
     $sql = "SELECT G.COD_GESTION
-                ,D.DIRECCION
+                ,CASE 
+                    WHEN G.DIRECCION IS NULL OR G.DIRECCION = '' THEN D.DIRECCION
+                    ELSE G.DIRECCION 
+                END AS DIRECCION
                 ,G.COD_CATEGORIA
                 ,C.CATEGORIA
                 ,G.COD_SUBCATEGORIA
@@ -118,7 +127,10 @@ function obtenerGestionInrPorId($id)
 {
     global $conn; // Asegúrate de tener acceso a la conexión de la base de datos
     $stmt = $conn->prepare("SELECT G.COD_GESTION
-                ,D.DIRECCION
+                ,CASE 
+                    WHEN G.DIRECCION IS NULL OR G.DIRECCION = '' THEN D.DIRECCION
+                    ELSE G.DIRECCION 
+                END AS DIRECCION
                 ,G.COD_CATEGORIA
                 ,C.CATEGORIA
                 ,G.COD_SUBCATEGORIA

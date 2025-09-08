@@ -61,6 +61,7 @@ if ($rol_nombre == 'SUPERUSER') {
                                         <thead>
                                             <tr>
                                                 <th>COD</th>
+                                                <th>DIRECCION</th>
                                                 <th>GESTION</th>
                                                 <th>F. INICIO</th>
                                                 <th>F. FIN</th>
@@ -68,7 +69,6 @@ if ($rol_nombre == 'SUPERUSER') {
                                                 <th>SEGMENTO</th>
                                                 <th>RUC</th>
                                                 <th>RAZON SOCIAL</th>
-                                                <th>DIRECCION</th>
                                                 <th>COD_CAT</th>
                                                 <th>CATEGORIA</th>
                                                 <th>COD_SUBCAT</th>
@@ -85,6 +85,7 @@ if ($rol_nombre == 'SUPERUSER') {
                                             <?php foreach ($result as $gestioninr): ?>
                                                 <tr>
                                                     <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['GESTION'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['FECHA_INICIO'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['FECHA_FIN'] ?? '') ?></td>
@@ -92,7 +93,6 @@ if ($rol_nombre == 'SUPERUSER') {
                                                     <td><?= htmlspecialchars($gestioninr['SEGMENTO'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['RAZON_SOCIAL'] ?? '') ?></td>
-                                                    <td><?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['COD_CATEGORIA'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['COD_SUBCATEGORIA'] ?? '') ?></td>
