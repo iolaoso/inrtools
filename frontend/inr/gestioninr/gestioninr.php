@@ -216,7 +216,7 @@ if ($rol_nombre == 'SUPERUSER') {
                                                     </td>
                                                     <td><?= htmlspecialchars($gestioninr['GESTION'] ?? '') ?></td>
                                                     <td
-                                                        class="<?= htmlspecialchars($gestioninr['ESTADO']) === 'PENDIENTE' ? 'pendiente' : '' ?>">
+                                                        class="<?= htmlspecialchars($gestioninr['ESTADO']) === 'PENDIENTE' ? 'pendiente' : (htmlspecialchars($gestioninr['ESTADO']) === 'COMPLETADA' ? 'completada' : '') ?>">
                                                         <?= htmlspecialchars($gestioninr['ESTADO'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>

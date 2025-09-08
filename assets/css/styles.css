@@ -58,6 +58,10 @@ body {
     color: red !important;
     font-weight: bold; /* Opcional: Añade negrita */
 }
+.completada {
+    color: green !important;
+    font-weight: bold; /* Opcional: Añade negrita */
+}
 
 .table-container {
     max-height: 400px; /* Ajusta la altura según sea necesario */

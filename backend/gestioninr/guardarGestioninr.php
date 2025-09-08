@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idGestion = isset($_POST['codGestion']) ? $_POST['codGestion'] : null;
     $direccionId = isset($_POST['direccionid']) ? $_POST['direccionid'] : null;
     $ruc = isset($_POST['ruc']) ? $_POST['ruc'] : null;
-    $razonSocial = isset($_POST['tbrazonSocial']) ? $_POST['tbrazonSocial'] : null;
+    $razonSocial = isset($_POST['tbrazonSocial']) ? mb_strtoupper($_POST['tbrazonSocial']) : null;
     $categoria = isset($_POST['cbCategoria']) ? $_POST['cbCategoria'] : null;
     $subCategoria = isset($_POST['cbSubCategoria']) ? $_POST['cbSubCategoria'] : null;
     $fechaOficio = isset($_POST['fechaOficio']) ? $_POST['fechaOficio'] : null;
@@ -66,9 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Es un insert
         $estRegistro = 1;
         $sql = "INSERT INTO gestioninr (COD_CATEGORIA, COD_SUBCATEGORIA, FECHA_REGISTRO, ANALISTA,
-        GESTION, FECHA_INICIO, FECHA_FIN, ESTADO, RUC_ENTIDAD, RAZON_SOCIAL, FECHA_OFIC_TRAM, OFICIO_TRAMITE, COMENTARIO, EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?)";
+        GESTION, FECHA_INICIO, FECHA_FIN, ESTADO, RUC_ENTIDAD, RAZON_SOCIAL, FECHA_OFIC_TRAM, OFICIO_TRAMITE, COMENTARIO, EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssssssssssssss", $categoria, $subCategoria, $fecha_actual, $analista, $gestion, $fechaInicio, $fechaFin, $estado, $ruc, $razonSocial, $fechaOficio, $oficio,  $comentario, $estRegistro, $analista, $fecha_actual, $fecha_actual);
+        $stmt->bind_param("sssssssssssssssss", $categoria, $subCategoria, $fecha_actual, $analista, $gestion, $fechaInicio, $fechaFin, $estado, $ruc, $razonSocial, $fechaOficio, $oficio,  $comentario, $estRegistro, $analista, $fecha_actual, $fecha_actual);
         $transaccion = 'Insert';
     }
 
