@@ -15,9 +15,13 @@ function obtenerGestionInrPorUsuario($nickname)
                 ,SC.SUBCATEGORIA
                 ,SC.COMPLEJIDAD
                 ,DATE(G.FECHA_REGISTRO) AS FECHA_REGISTRO
+                ,G.GESTION
+                ,G.FECHA_INICIO
+                ,G.FECHA_FIN
+                ,G.ESTADO
                 ,G.ANALISTA
                 ,G.RUC_ENTIDAD
-                ,CA.RAZON_SOCIAL
+                ,COALESCE(G.RAZON_SOCIAL,CA.NOMBRE_CORTO) AS RAZON_SOCIAL
                 ,CA.SEGMENTO
                 ,DATE(G.FECHA_OFIC_TRAM) AS FECHA_OFIC_TRAM
                 ,G.OFICIO_TRAMITE
@@ -50,8 +54,12 @@ function obtenerGestionInrFull()
                 ,SC.COMPLEJIDAD
                 ,DATE(G.FECHA_REGISTRO) AS FECHA_REGISTRO
                 ,G.ANALISTA
+                ,G.GESTION
+                ,G.FECHA_INICIO
+                ,G.FECHA_FIN
+                ,G.ESTADO
                 ,G.RUC_ENTIDAD
-                ,CA.RAZON_SOCIAL
+                ,COALESCE(G.RAZON_SOCIAL,CA.NOMBRE_CORTO) AS RAZON_SOCIAL
                 ,CA.SEGMENTO
                 ,DATE(G.FECHA_OFIC_TRAM) AS FECHA_OFIC_TRAM
                 ,G.OFICIO_TRAMITE
@@ -82,8 +90,12 @@ function obtenerGestionInrDireccion($dirInrId)
                 ,SC.COMPLEJIDAD
                 ,DATE(G.FECHA_REGISTRO) AS FECHA_REGISTRO
                 ,G.ANALISTA
+                ,G.GESTION
+                ,G.FECHA_INICIO
+                ,G.FECHA_FIN
+                ,G.ESTADO
                 ,G.RUC_ENTIDAD
-                ,CA.RAZON_SOCIAL
+                ,COALESCE(G.RAZON_SOCIAL,CA.NOMBRE_CORTO) AS RAZON_SOCIAL
                 ,CA.SEGMENTO
                 ,DATE(G.FECHA_OFIC_TRAM) AS FECHA_OFIC_TRAM
                 ,G.OFICIO_TRAMITE
@@ -114,8 +126,12 @@ function obtenerGestionInrPorId($id)
                 ,SC.COMPLEJIDAD
                 ,DATE(G.FECHA_REGISTRO) AS FECHA_REGISTRO
                 ,G.ANALISTA
+                ,G.GESTION
+                ,G.FECHA_INICIO
+                ,G.FECHA_FIN
+                ,G.ESTADO
                 ,G.RUC_ENTIDAD
-                ,CA.RAZON_SOCIAL
+                ,COALESCE(G.RAZON_SOCIAL,CA.NOMBRE_CORTO) AS RAZON_SOCIAL
                 ,CA.SEGMENTO
                 ,DATE(G.FECHA_OFIC_TRAM) AS FECHA_OFIC_TRAM
                 ,G.OFICIO_TRAMITE

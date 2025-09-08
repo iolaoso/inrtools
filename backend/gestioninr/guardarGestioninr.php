@@ -10,10 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idGestion = isset($_POST['codGestion']) ? $_POST['codGestion'] : null;
     $direccionId = isset($_POST['direccionid']) ? $_POST['direccionid'] : null;
     $ruc = isset($_POST['ruc']) ? $_POST['ruc'] : null;
+    $razonSocial = isset($_POST['tbrazonSocial']) ? $_POST['tbrazonSocial'] : null;
     $categoria = isset($_POST['cbCategoria']) ? $_POST['cbCategoria'] : null;
     $subCategoria = isset($_POST['cbSubCategoria']) ? $_POST['cbSubCategoria'] : null;
     $fechaOficio = isset($_POST['fechaOficio']) ? $_POST['fechaOficio'] : null;
-    $oficio = isset($_POST['oficio']) ? $_POST['oficio'] : null;
+    $oficio = isset($_POST['oficio']) ? mb_strtoupper($_POST['oficio']) : null;
+    $gestion = isset($_POST['tbGestion']) ? mb_strtoupper($_POST['tbGestion']) : null;
+    $fechaInicio = isset($_POST['fechaInicio']) ? $_POST['fechaInicio'] : null;
+    $fechaFin = isset($_POST['fechaFin']) ? $_POST['fechaFin'] : null;
+    $estado = isset($_POST['estado']) ? mb_strtoupper($_POST['estado']) : null;
     $analista = isset($_POST['analista']) ? $_POST['analista'] : null;
     $comentario = isset($_POST['tbcomentario']) ? $_POST['tbcomentario'] : null;
     // Obtener la fecha y hora actual
@@ -23,14 +28,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     global $conn; // Usar la conexión global
     if ($idGestion) {
         // Es un update
-        $sql = "UPDATE gestioninr SET COD_CATEGORIA = ?, COD_SUBCATEGORIA = ?, FECHA_OFIC_TRAM = ?, OFICIO_TRAMITE = ?, ANALISTA = ?, COMENTARIO = ?, FECHA_ACTUALIZACION = ? WHERE COD_GESTION = ?";
+        $sql = "UPDATE gestioninr 
+                SET COD_CATEGORIA = ?
+                    ,COD_SUBCATEGORIA = ?
+                    ,FECHA_OFIC_TRAM = ?
+                    ,OFICIO_TRAMITE = ?
+                    ,GESTION = ?
+                    ,FECHA_INICIO = ?
+                    ,FECHA_FIN = ?
+                    ,ESTADO = ?
+                    ,RUC_ENTIDAD = ?
+                    ,RAZON_SOCIAL = ?
+                    ,ANALISTA = ?
+                    ,COMENTARIO = ?
+                    ,FECHA_ACTUALIZACION = ? 
+                WHERE COD_GESTION = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(
-            "sssssssi",
+            "sssssssssssssi",
             $categoria,
             $subCategoria,
             $fechaOficio,
             $oficio,
+            $gestion,
+            $fechaInicio,
+            $fechaFin,
+            $estado,
+            $ruc,
+            $razonSocial,
             $analista,
             $comentario,
             $fecha_actual,
@@ -40,9 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Es un insert
         $estRegistro = 1;
-        $sql = "INSERT INTO gestioninr (COD_CATEGORIA, COD_SUBCATEGORIA, FECHA_REGISTRO, ANALISTA, RUC_ENTIDAD, FECHA_OFIC_TRAM, OFICIO_TRAMITE, COMENTARIO, EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO gestioninr (COD_CATEGORIA, COD_SUBCATEGORIA, FECHA_REGISTRO, ANALISTA,
+        GESTION, FECHA_INICIO, FECHA_FIN, ESTADO, RUC_ENTIDAD, RAZON_SOCIAL, FECHA_OFIC_TRAM, OFICIO_TRAMITE, COMENTARIO, EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssssssssss", $categoria, $subCategoria, $fecha_actual, $analista, $ruc, $fechaOficio, $oficio,  $comentario, $estRegistro, $analista, $fecha_actual, $fecha_actual);
+        $stmt->bind_param("ssssssssssssssss", $categoria, $subCategoria, $fecha_actual, $analista, $gestion, $fechaInicio, $fechaFin, $estado, $ruc, $razonSocial, $fechaOficio, $oficio,  $comentario, $estRegistro, $analista, $fecha_actual, $fecha_actual);
         $transaccion = 'Insert';
     }
 

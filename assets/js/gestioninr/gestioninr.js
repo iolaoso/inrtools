@@ -175,17 +175,21 @@ function cargarDatos(button) {
         })
         .then(selectedData => {
             if (selectedData) {
-                //console.log(selectedData.COD_GESTION);
-                document.getElementById("detalleId").value = selectedData.COD_GESTION;
-                document.getElementById("mCategoria").value = selectedData.CATEGORIA;
-                document.getElementById("mSubCategoria").value = selectedData.SUBCATEGORIA;
-                document.getElementById("mFechaRegistro").value = selectedData.FECHA_REGISTRO;
-                document.getElementById("mAnalista").value = selectedData.ANALISTA;
-                document.getElementById("mRucEntidad").value = selectedData.RUC_ENTIDAD;
-                document.getElementById("mRazonSocial").value = selectedData.RAZON_SOCIAL;
-                document.getElementById("mFechaOficTram").value = selectedData.FECHA_OFIC_TRAM;
-                document.getElementById("mOficioTramite").value = selectedData.OFICIO_TRAMITE;
-                document.getElementById("mComentario").value = selectedData.COMENTARIO;
+                //console.log({selectedData});
+                document.getElementById("detalleId").value = selectedData.COD_GESTION ? selectedData.COD_GESTION : '';
+                document.getElementById("mCategoria").value = selectedData.CATEGORIA ? selectedData.CATEGORIA : '';
+                document.getElementById("mSubCategoria").value = selectedData.SUBCATEGORIA ? selectedData.SUBCATEGORIA : '';
+                document.getElementById("mFechaRegistro").value = selectedData.FECHA_REGISTRO ? selectedData.FECHA_REGISTRO : '';
+                document.getElementById("mAnalista").value = selectedData.ANALISTA ? selectedData.ANALISTA : '';
+                document.getElementById("mGestion").value = selectedData.GESTION ? selectedData.GESTION : '';
+                document.getElementById("mfecIncio").value = selectedData.FECHA_INICIO ? selectedData.FECHA_INICIO : '';
+                document.getElementById("mfecFin").value = selectedData.FECHA_FIN ? selectedData.FECHA_FIN : '';
+                document.getElementById("mEstado").value = selectedData.ESTADO ? selectedData.ESTADO : '';
+                document.getElementById("mRucEntidad").value = selectedData.RUC_ENTIDAD ? selectedData.RUC_ENTIDAD : '';
+                document.getElementById("mRazonSocial").value = selectedData.RAZON_SOCIAL ? selectedData.RAZON_SOCIAL : '';
+                document.getElementById("mFechaOficTram").value = selectedData.FECHA_OFIC_TRAM ? selectedData.FECHA_OFIC_TRAM : '';
+                document.getElementById("mOficioTramite").value = selectedData.OFICIO_TRAMITE ? selectedData.OFICIO_TRAMITE : '';
+                document.getElementById("mComentario").value = selectedData.COMENTARIO ? selectedData.COMENTARIO : ''; 
             }
         })
         .catch(error => {
@@ -223,7 +227,12 @@ function cargarDatosForm(boton){
                     subCategoriaElement.value = gestionData.COD_SUBCATEGORIA;
                 }
             }, 200); // Ajusta el tiempo según sea necesario
+            document.getElementById('tbGestion').value = gestionData.GESTION;
+            document.getElementById('fechaInicio').value = gestionData.FECHA_INICIO;
+            document.getElementById('fechaFin').value = gestionData.FECHA_FIN;
+            document.getElementById('estado').value = gestionData.ESTADO;
             document.getElementById('ruc').value = gestionData.RUC_ENTIDAD;
+            document.getElementById('tbrazonSocial').value = gestionData.RAZON_SOCIAL;
             document.getElementById('fechaOficio').value = gestionData.FECHA_OFIC_TRAM;
             document.getElementById('oficio').value = gestionData.OFICIO_TRAMITE;
             document.getElementById('analista').value = gestionData.ANALISTA;

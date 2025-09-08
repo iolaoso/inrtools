@@ -69,7 +69,9 @@ if ($rol_nombre == 'SUPERUSER') {
                                         value="<?= htmlspecialchars($direccion)   ?>" readonly>
                                 </div>
                                 <div class="mb-3">
-                                    <label id="lbcbCategoria" for="cbCategoria" class="form-label">Categoría</label><br>
+                                    <label id="lbcbCategoria" for="cbCategoria" class="form-label">Categoría
+                                        <span style="color: red; font-size: smaller">*</span>
+                                    </label><br>
                                     <button id="btCrearCat" type="button" class="btn btn-outline-success btn-sm mb-3"
                                         data-bs-toggle="modal" data-bs-target="#newCatModal">Crear
                                         Categoria</button>
@@ -80,19 +82,46 @@ if ($rol_nombre == 'SUPERUSER') {
                                                 <?= htmlspecialchars($categoria['CATEGORIA']) ?>
                                             </option>
                                         <?php endforeach; ?>
-                                    </select>
+                                    </select required>
                                 </div>
                                 <div class="mb-3">
-                                    <label id="lbcbSubCategoria" for="cbSubCategoria"
-                                        class="form-label">SubCategoría</label>
-                                    <select class="form-control" id="cbSubCategoria" name="cbSubCategoria"></select>
+                                    <label id="lbcbSubCategoria" for="cbSubCategoria" class="form-label">SubCategoría
+                                        <span style="color: red; font-size: smaller">*</span>
+                                    </label>
+                                    <select class="form-control" id="cbSubCategoria" name="cbSubCategoria"></select
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tbGestion" class="form-label">Gestión</label>
+                                    <input type="text" class="form-control" id="tbGestion" name="tbGestion"
+                                        style="text-transform: uppercase;">
+                                </div>
+                                <div class="form-container">
+                                    <div class="mb-3">
+                                        <label for="fechaInicio" class="form-label">F. Inicio Gestión</label>
+                                        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fechaFin" class="form-label">F. Fin Gestión</label>
+                                        <input type="date" class="form-control" id="fechaFin" name="fechaFin">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="estado" class="form-label">Estado de la Gestión</label>
+                                    <select class="form-control" id="estado" name="estado" required>
+                                        <option value="">-- Selecciona --</option>
+                                        <option value="PENDIENTE">PENDIENTE</option>
+                                        <option value="COMPLETADA">COMPLETADA</option>
+                                        <option value="ELIMINADA">ELIMINADA</option>
+                                        <option value="SUSPENDIDA">SUSPENDIDA</option>
+                                    </select required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">RUC/Gestión</span>
+                                        <span class="input-group-text">RUC</span>
                                     </div>
                                     <input type="text" class="form-control" id="ruc" name="ruc"
-                                        oninput="buscarEntidad()" data-page="gestioninr.php" required>
+                                        oninput="buscarEntidad()" data-page="gestioninr.php">
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
                                             data-bs-target="#catastroModal">Buscar</button>
@@ -106,17 +135,21 @@ if ($rol_nombre == 'SUPERUSER') {
                                 <div class="mb-3">
                                     <label for="fechaOficio" class="form-label">Fecha
                                         <span style="font-size: 11px; color: blue;">
-                                            Oficio/Trámite/Memorando/Correo/Acción
+                                            Oficio/Trámite/Memorando/Correo
                                         </span>
                                     </label>
                                     <input type="date" class="form-control" id="fechaOficio" name="fechaOficio"
                                         required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="oficio"
-                                        class="form-label">Oficio/Trámite/Memorando/Correo/Acción</label>
+                                    <label for="oficio" class="form-label">Oficio/Trámite/Memorando/Correo</label>
                                     <input type="text" class="form-control" id="oficio" name="oficio"
                                         style="text-transform: uppercase;" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tbcomentario" class="form-label">Comentario</label>
+                                    <textarea id="tbcomentario" name="tbcomentario" class="form-control textarea small"
+                                        required></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label id="lbanalistaSelect" style="display: none;" for="analistaSelect"
@@ -136,11 +169,6 @@ if ($rol_nombre == 'SUPERUSER') {
                                     <label for="analista" class="form-label">Analista</label>
                                     <input class="form-control" id="analista" name="analista"
                                         value="<?= htmlspecialchars($nickname)   ?>" readonly>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tbcomentario" class="form-label">Comentario</label>
-                                    <textarea id="tbcomentario" name="tbcomentario" class="form-control textarea small"
-                                        required></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary btn-sm btn-block">
@@ -168,11 +196,12 @@ if ($rol_nombre == 'SUPERUSER') {
                                         <thead>
                                             <tr>
                                                 <th>COD</th>
-                                                <th>RUC / GESTION</th>
+                                                <th>GESTION</th>
+                                                <th>ESTADO</th>
+                                                <th>RUC</th>
                                                 <th>DIRECCION</th>
                                                 <th>CATEGORIA</th>
-                                                <th>FEC. OFICIO</th>
-                                                <th>OFICIO / ACCION</th>
+                                                <th>OFICIO</th>
                                                 <th>DETALLE</th>
                                                 <th>ANALISTA</th>
                                                 <th>ACCIÓN</th>
@@ -182,12 +211,15 @@ if ($rol_nombre == 'SUPERUSER') {
                                             <?php foreach ($result as $gestioninr): ?>
                                                 <tr>
                                                     <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($gestioninr['GESTION'] ?? '') ?></td>
+                                                    <td
+                                                        class="<?= htmlspecialchars($gestioninr['ESTADO']) === 'PENDIENTE' ? 'pendiente' : '' ?>">
+                                                        <?= htmlspecialchars($gestioninr['ESTADO'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
                                                     <td class="text-center">
                                                         <?= htmlspecialchars($gestioninr['DIRECCION'] ?? '') ?>
                                                     </td>
                                                     <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
-                                                    <td><?= htmlspecialchars($gestioninr['FECHA_OFIC_TRAM'] ?? '') ?></td>
                                                     <td><?= htmlspecialchars($gestioninr['OFICIO_TRAMITE'] ?? '') ?></td>
                                                     <td class="text-center">
                                                         <button class="btn btn-primary detalle-btn btn-sm"
@@ -247,52 +279,71 @@ if ($rol_nombre == 'SUPERUSER') {
                     <form id="detalleForm">
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label for="mRucEntidad">RUC/GESTION</label>
-                                <input type="text" class="form-control" id="mRucEntidad" readonly>
+                                <label for="mCategoria" class="form-label">Categoría</label>
+                                <input type="text" class="form-control" id="mCategoria" readonly>
                             </div>
-                            <div class="col-12">
-                                <label for="mRazonSocial">Razón Social</label>
-                                <input type="text" class="form-control" id="mRazonSocial" readonly>
+                            <div class="col-6">
+                                <label for="mSubCategoria" class="form-label">SubCategoría</label>
+                                <input type="text" class="form-control" id="mSubCategoria" readonly>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label for="mCategoria">Categoría</label>
-                                <input type="text" class="form-control" id="mCategoria" readonly>
+                                <label for="mGestion" class="form-label">GESTION</label>
+                                <input type="text" class="form-control" id="mGestion" readonly>
                             </div>
                             <div class="col-6">
-                                <label for="mSubCategoria">SubCategoría</label>
-                                <input type="text" class="form-control" id="mSubCategoria" readonly>
+                                <label for="mEstado" class="form-label">Estado</label>
+                                <input type="text" class="form-control" id="mEstado" readonly>
                             </div>
                         </div>
-
                         <div class="row mb3">
                             <div class="col-6">
-                                <label for="fechaOficio" class="form-label">Fecha
+                                <label for="mfecIncio" class="form-label">F. Inicio Gestión</label>
+                                <input type="date" class="form-control" id="mfecIncio" readonly>
+                            </div>
+                            <div class="col-6">
+                                <label for="mfecFin" class="form-label">F. Fin Gestión</label>
+                                <input type="date" class="form-control" id="mfecFin" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <label for="mRucEntidad" class="form-label">RUC</label>
+                                <input type="text" class="form-control" id="mRucEntidad" readonly>
+                            </div>
+                            <div class="col-8">
+                                <label for="mRazonSocial" class="form-label">Razón Social</label>
+                                <input type="text" class="form-control" id="mRazonSocial" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb3">
+                            <div class="col-6">
+                                <label for="mFechaOficTram" class="form-label">Fecha
                                     <span style="font-size: 11px; color: blue;">
-                                        Oficio/Trámite/Memorando/Correo/Acción
+                                        Oficio/Trámite/Memorando/Correo
                                     </span>
                                 </label>
                                 <input type="date" class="form-control" id="mFechaOficTram" readonly>
                             </div>
                             <div class="col-6">
-                                <label for="mOficioTramite">Oficio/Trámite/Memorando/Correo/Acción</label>
+                                <label for="mOficioTramite" class="form-label">Oficio/Trámite/Memorando/Correo</label>
                                 <input type="text" class="form-control" id="mOficioTramite" readonly>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-12">
-                                <label for="mComentario">Comentario</label>
+                                <label for="mComentario" class="form-label">Comentario</label>
                                 <textarea class="form-control" id="mComentario" rows="3" readonly></textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label for="mFechaRegistro">Fecha Registro</label>
+                                <label for="mFechaRegistro" class="form-label">Fecha Registro</label>
                                 <input type="date" class="form-control" id="mFechaRegistro" readonly>
                             </div>
                             <div class="col-6">
-                                <label for="mAnalista">Analista</label>
+                                <label for="mAnalista" class="form-label">Analista</label>
                                 <input type="text" class="form-control" id="mAnalista" readonly>
                             </div>
                         </div>

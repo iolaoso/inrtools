@@ -9,7 +9,7 @@ if (isset($_GET['id']) && isset($_GET['delUser'])) {
     // Recibir el ID de la estructura a eliminar
     if ($id) {
         // Preparar la consulta de eliminación (marcando como eliminado)
-        $sql = "UPDATE GESTIONINR SET EST_REGISTRO = 0, deletedAt = NOW(), deletedUsr = ? WHERE COD_GESTION = ?";
+        $sql = "UPDATE GESTIONINR SET EST_REGISTRO = 0, ESTADO = 'ELIMINADA', deletedAt = NOW(), deletedUsr = ? WHERE COD_GESTION = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("si", $delUser, $id);
 
