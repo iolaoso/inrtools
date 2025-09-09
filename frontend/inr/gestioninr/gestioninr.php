@@ -92,7 +92,7 @@ if ($rol_nombre == 'SUPERUSER') {
                                         required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tbGestion" class="form-label">Gestión</label>
+                                    <label for="tbGestion" class="form-label">Gestión/Produto</label>
                                     <input type="text" class="form-control" id="tbGestion" name="tbGestion"
                                         style="text-transform: uppercase;">
                                 </div>
@@ -140,13 +140,12 @@ if ($rol_nombre == 'SUPERUSER') {
                                             Oficio/Trámite/Memorando/Correo
                                         </span>
                                     </label>
-                                    <input type="date" class="form-control" id="fechaOficio" name="fechaOficio"
-                                        required>
+                                    <input type="date" class="form-control" id="fechaOficio" name="fechaOficio">
                                 </div>
                                 <div class="mb-3">
                                     <label for="oficio" class="form-label">Oficio/Trámite/Memorando/Correo</label>
                                     <input type="text" class="form-control" id="oficio" name="oficio"
-                                        style="text-transform: uppercase;" required>
+                                        style="text-transform: uppercase;">
                                 </div>
                                 <div class="mb-3">
                                     <label for="tbcomentario" class="form-label">Comentario</label>
@@ -199,7 +198,7 @@ if ($rol_nombre == 'SUPERUSER') {
                                             <tr>
                                                 <th>COD</th>
                                                 <th>DIRECCION</th>
-                                                <th>GESTION</th>
+                                                <th>GESTION/PRODUCTO</th>
                                                 <th>ESTADO</th>
                                                 <th>RUC</th>
                                                 <th>CATEGORIA</th>
@@ -291,7 +290,7 @@ if ($rol_nombre == 'SUPERUSER') {
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <label for="mGestion" class="form-label">GESTION</label>
+                                <label for="mGestion" class="form-label">Gestión/Produto</label>
                                 <input type="text" class="form-control" id="mGestion" readonly>
                             </div>
                             <div class="col-6">
