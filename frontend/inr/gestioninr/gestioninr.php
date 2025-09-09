@@ -376,7 +376,7 @@ if ($rol_nombre == 'SUPERUSER') {
                                 value="<?= htmlspecialchars($inrdireccion_id) ?>" readonly>
                         </div>
                         <div class="row mb-3">
-                            <label for="cbCat" class="form-control">Categoria</label>
+                            <label for="cbCat" class="form-label">Categoria Existente</label>
                             <select class="form-control" id="cbCat" name="cbCat" onchange="selecCatExistente()">
                                 <option value="0">Seleccione la Categoria</option>
                                 <?php foreach ($categorias as $categoria): ?>
@@ -389,12 +389,12 @@ if ($rol_nombre == 'SUPERUSER') {
                         </div>
                         <div class="row mb-3">
                             <input type="hidden" class="form-control" id="tbnCatid" name="tbnCatid" value="0" readonly>
-                            <label class="form-control" id="lbnewCat" for="tbnewCat">Nueva Catagoría</label>
+                            <label class="form-label" id="lbnewCat" for="tbnewCat">Nueva Catagoría</label>
                             <input type="text" class="form-control" id="tbnewCat" name="tbnewCat"
                                 style="text-transform: uppercase;" required>
                         </div>
                         <div class="row mb-3">
-                            <label for="tbnewSubCat">Nueva SubCategoría</label>
+                            <label for="tbnewSubCat" class="form-label">Nueva SubCategoría</label>
                             <input type="text" class="form-control" id="tbnewSubCat" name="tbnewSubCat"
                                 style="text-transform: uppercase;" required>
                         </div>
@@ -407,7 +407,7 @@ if ($rol_nombre == 'SUPERUSER') {
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="form-control" for="cbComplejidad">Complejidad</label>
+                            <label class="form-label" for="cbComplejidad">Complejidad</label>
                             <select class="form-control" id="cbComplejidad" name="cbComplejidad">
                                 <option value="">Seleccione</option>
                                 <option value="ALTA">ALTA</option>
