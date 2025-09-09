@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "INSERT INTO estructuras (solicitante, direccion_solicitante, ruc, estructura, fechaCorte, fecha_solicitud, estado, fechaInicio, fechaFin, detalle, analista_ejecutante, UsrCreacion, createdAt, updatedAt) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssssssss", $solicitante, $direccion_solicitante, $ruc, $estructura, $fechaCorte, $fecha_solicitud, $estado, $fechaInicio, $fechaFin, $detalle, $analista_ejecutante, $UsrCreacion, $fecha_actual, $fecha_actual);
+        $stmt->bind_param("ssssssssssssss", $solicitante, $direccion_solicitante, $ruc, $estructura, $fechaCorte, $fecha_solicitud, $estado, $fechaInicio, $fechaFin, $detalle, $analista_ejecutante, $UsrCreacion, $fecha_actual, $fecha_actual);
     }
 
     // Ejecutar la consulta
