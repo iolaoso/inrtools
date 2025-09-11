@@ -166,6 +166,7 @@ function cargarDatos(button) {
     const url = baseurl + "/backend/gestioninr/gestioninrList.php"; // URL de tu script PHP
 
     // Realizar la solicitud AJAX usando fetch
+    // /backend/gestioninr/gestioninrList.php?codGestion
     fetch(`${url}?id=${codGestion}`)
         .then(response => {
             if (!response.ok) {
@@ -175,8 +176,9 @@ function cargarDatos(button) {
         })
         .then(selectedData => {
             if (selectedData) {
-                //console.log({selectedData});
+                console.log({selectedData});
                 document.getElementById("detalleId").value = selectedData.COD_GESTION ? selectedData.COD_GESTION : '';
+                document.getElementById("mDireccion").value = selectedData.DIRECCION ? selectedData.DIRECCION : '';
                 document.getElementById("mCategoria").value = selectedData.CATEGORIA ? selectedData.CATEGORIA : '';
                 document.getElementById("mSubCategoria").value = selectedData.SUBCATEGORIA ? selectedData.SUBCATEGORIA : '';
                 document.getElementById("mFechaRegistro").value = selectedData.FECHA_REGISTRO ? selectedData.FECHA_REGISTRO : '';

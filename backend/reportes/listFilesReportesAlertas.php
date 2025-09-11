@@ -34,7 +34,7 @@ function obtenerReportesAlertas($carpetaReportes)
 
         // Ordenar por fecha de modificación (más reciente primero)
         usort($archivos, function ($a, $b) {
-            return $b['timestamp'] - $a['timestamp'];  // Usamos el timestamp precalculado
+            return $b['timestamp'] <=> $a['timestamp'];  // Usamos el timestamp precalculado
         });
     } else {
         http_response_code(404);
