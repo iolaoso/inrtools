@@ -180,45 +180,51 @@ const menuItems = [
             { title: 'Informes', 
                 url: '/INRtools/frontend/dns/informes/informes.php',
                 direccion: (usrRol === 'SUPERUSER') ? ['ALL'] : ['DNS'], 
-                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNS'],
+                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                 usuarios: [] 
             },
             {
                 title: 'Reportes',
                 subMenu: [
+                    {   title: 'Detalles PA', 
+                        url: '/INRtools/frontend/dns/reportes/detallesPA/detallesPA.php',
+                        direccion: ['ALL'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS'],
+                        usuarios: [] 
+                    },
                     {   title: 'Hallazgos EPS', 
                         url: '/INRtools/frontend/dns/reportes/hallazgoseps/hallazgoseps.php',
                         direccion: ['DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNS'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                         usuarios: [] 
                     },
                     {   title: 'Diag. Situacionales', 
                         url: '/INRtools/frontend/dns/reportes/diagsituacional/diagsituacional.php',
                         direccion: ['DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNS'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                         usuarios: [] 
                     },
                     {   title: 'Hal General', 
                         url: '/INRtools/frontend/dns/reportes/halgeneraleps/halgeneraleps.php',
                         direccion: ['DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNS'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                         usuarios: [] 
                     },
                     {   title: 'As AGSEPS', 
                         url: '/INRtools/frontend/dns/reportes/asagseps/asagseps.php',
                         direccion: ['DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNS'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                         usuarios: [] 
                     },
                     {   title: 'A. Externos', 
                         url: '/INRtools/frontend/dns/reportes/aexternos/aexternos.php',
                         direccion: ['DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNS'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                         usuarios: [] 
                     }
                 ],
                 direccion: ['ALL'],
-                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNS'],
+                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                 usuarios: [] 
             },
         ],

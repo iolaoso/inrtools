@@ -47,7 +47,6 @@ document.getElementById('formEstructuras').addEventListener('submit', function(e
                     <td>${item.NOM_ESTRUCTURA || ''}</td>
                     <td>${item.CUMPLE || ''}</td>
                     <td>${item.MAX_FECHA_CORTE || ''}</td>
-                    <td>${item.FECHA_ENTREGA_ACTUAL || ''}</td>
                     <td>${item.MAX_FECHA_VALIDACION || ''}</td> `
                 tableBody.appendChild(row);
                 }); 

@@ -97,7 +97,6 @@ $analistas = obtenerAnalistas($direccion);
                                             <th>NOM_ESTRUCTURA</th>
                                             <th>CUMPLE</th>
                                             <th>MAX_FECHA_CORTE</th>
-                                            <th>FECHA_ENTREGA_ACTUAL</th>
                                             <th>MAX_FECHA_VALIDACION</th>
 
                                         </tr>

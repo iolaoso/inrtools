@@ -268,9 +268,10 @@ if ($rol_nombre == 'SUPERUSER') {
                 <div class="modal-header">
                     <h5 class="modal-title" id="ModalLabel">Detalle de la Gestión Realizada</h5>
                     <div class="input-group">
-                        <span class="input-group-text">ID </span>
-                        <input type="text" class="form-control" id="detalleId" disabled>
-                        <span class="input-group-text" id="mDireccion"></span>
+                        <span class="input-group-text">ID</span>
+                        <input type="text" class="form-control text-center" id="detalleId" disabled>
+                        <span class="input-group-text">Dirección</span>
+                        <input type="text" class="form-control text-center" id="mDireccion" disabled>
                     </div>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -407,7 +408,7 @@ if ($rol_nombre == 'SUPERUSER') {
                         </div>
                         <div class="row mb-3">
                             <label class="form-label" for="cbComplejidad">Complejidad</label>
-                            <select class="form-control" id="cbComplejidad" name="cbComplejidad">
+                            <select class="form-control" id="cbComplejidad" name="cbComplejidad" required>
                                 <option value="">Seleccione</option>
                                 <option value="ALTA">ALTA</option>
                                 <option value="MEDIA">MEDIA</option>
