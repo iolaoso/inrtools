@@ -1,6 +1,9 @@
 <?php
 // config.php
 
+// configuración de zona horaria
+date_default_timezone_set('America/Bogota');
+
 // En config.php
 define('BASE_PATH', dirname(__DIR__) . '/'); // Esto apunta a C:/laragon/www/INRtools/
 
