@@ -37,6 +37,109 @@ function valEstructuras()
     }
 }
 
+//////////////////////////////////////////
+// Nueva función para leer desde JSON //
+//////////////////////////////////////////
+
+function valEstructurasRuc($ruc)
+{
+    try {
+        // Validar formato de RUC
+        if (!preg_match('/^[0-9]{13}$/', $ruc)) {
+            throw new InvalidArgumentException("RUC debe tener 13 dígitos");
+        }
+
+        // Ruta del archivo JSON (ajusta según ubicación real)
+        $rutaJson = BASE_PATH . 'assets/files/reportes/valestructuras/ENT_FECHAS_MAX_EST.json';
+
+        if (!file_exists($rutaJson)) {
+            throw new RuntimeException("Archivo JSON no encontrado en: {$rutaJson}");
+        }
+
+        // Leer y decodificar JSON
+        $jsonContenido = file_get_contents($rutaJson);
+        $datos = json_decode($jsonContenido, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new RuntimeException("Error decodificando JSON: " . json_last_error_msg());
+        }
+
+        if (!is_array($datos) || empty($datos)) {
+            return [
+                'success' => false,
+                'message' => "No hay datos en el archivo JSON",
+                'datos' => []
+            ];
+        }
+
+        // Filtrar por RUC (clave 'RUC_ENTIDAD', ajusta si es distinto)
+        $resultados = array_filter($datos, function ($fila) use ($ruc) {
+            return isset($fila['RUC_ENTIDAD']) && trim($fila['RUC_ENTIDAD']) === $ruc;
+        });
+
+        if (empty($resultados)) {
+            return [
+                'success' => false,
+                'message' => "RUC {$ruc} no encontrado",
+                'datos' => []
+            ];
+        }
+
+        // Procesar resultados (mapear columnas)
+        $estructuras = array_map(function ($fila) {
+            return [
+                'RUC_ENTIDAD' => $fila['RUC_ENTIDAD'] ?? null,
+                'RAZON_SOCIAL' => $fila['RAZON_SOCIAL'] ?? null,
+                'SEGMENTO' => $fila['SEGMENTO'] ?? null,
+                'NVL_RIESGO' => $fila['NVL_RIESGO'] ?? null,
+                'ESTRUCTURA' => $fila['ESTRUCTURA'] ?? null,
+                'NOM_ESTRUCTURA' => $fila['NOM_ESTRUCTURA'] ?? null,
+                'CUMPLE' => $fila['CUMPLE'] ?? null,
+                'MAX_FECHA_CORTE' => isset($fila['MAX_FECHA_CORTE']) ? formatearFecha($fila['MAX_FECHA_CORTE']) : null,
+                'FECHA_ENTREGA_ACTUAL' => isset($fila['FECHA_ENTREGA_ACTUAL']) ? formatearFecha($fila['FECHA_ENTREGA_ACTUAL']) : null,
+                'MAX_FECHA_VALIDACION' => isset($fila['MAX_FECHA_VALIDACION']) ? formatearFecha($fila['MAX_FECHA_VALIDACION']) : null,
+                // Añade más campos si es necesario
+            ];
+        }, $resultados);
+
+        return [
+            'success' => true,
+            'message' => count($estructuras) . " estructuras encontradas",
+            'datos' => $estructuras,
+            'count' => count($estructuras)
+        ];
+    } catch (Exception $e) {
+        error_log("Error en valEstructurasRuc - RUC: {$ruc} - " . $e->getMessage());
+        return [
+            'success' => false,
+            'message' => "Error al buscar RUC: " . $e->getMessage(),
+            'datos' => []
+        ];
+    }
+}
+
+/**
+ * Función para formatear fechas en formato deseado.
+ * Si tus fechas vienen en formato texto ISO, puedes ajustar aquí.
+ */
+function formatearFecha($fecha)
+{
+    if (!$fecha) {
+        return null;
+    }
+    // Ejemplo: convertir formato YYYY-MM-DD o similar a dd/mm/yyyy
+    $timestamp = strtotime($fecha);
+    if ($timestamp === false) {
+        return $fecha; // Devolver original si no reconoce formato
+    }
+    return date('d/m/Y', $timestamp);
+}
+
+//////////////////////////////////////////////
+// Función auxiliar para formatear fechas de Excel si es necesario //
+//////////////////////////////////////////////
+
+/* 
 // Función auxiliar para formatear la fecha si es necesario
 function formatearFechaExcel($valorFecha)
 {
@@ -47,12 +150,12 @@ function formatearFechaExcel($valorFecha)
     return $valorFecha;
 }
 
-/**
- * Obtiene datos de estructuras filtrados por RUC (comenzando desde fila 3)
- * @param string $ruc Número de RUC a buscar (13 dígitos)
- * @return array Resultado con estructura consistente
- */
-function valEstructurasRuc($ruc)
+/*
+ //* Obtiene datos de estructuras filtrados por RUC (comenzando desde fila 3)
+ //* @param string $ruc Número de RUC a buscar (13 dígitos)
+ //* @return array Resultado con estructura consistente
+
+function valEstructurasRucExcel($ruc)
 {
     try {
         // Validar formato de RUC
@@ -123,6 +226,8 @@ function valEstructurasRuc($ruc)
         ];
     }
 }
+*/
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

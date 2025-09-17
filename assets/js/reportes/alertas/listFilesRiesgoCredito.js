@@ -1,14 +1,24 @@
 console.log("listFilesRiesgoCredito.js funcionando");
 
-// Función para ordenar archivos (por versión y fecha)
+// Función para ordenar archivos (por fecha y luego por versión)
 function ordenarArchivos(archivos) {
-    return archivos.sort((b, a) => {
+    return archivos.sort((a, b) => {
+        // Primero compara por fecha de modificación (de más reciente a más antiguo)
+        const fechaA = new Date(a.lastModified);
+        const fechaB = new Date(b.lastModified);
+        
+        if (fechaB - fechaA !== 0) {
+            return fechaB - fechaA;
+        }
+        
+        // Si las fechas son iguales, compara por versión (de mayor a menor)
         const versionA = extraerVersionNumerica(a.name);
         const versionB = extraerVersionNumerica(b.name);
         
-        return versionB - versionA || new Date(b.lastModified) - new Date(a.lastModified);
+        return versionB - versionA;
     });
 }
+
 
 // Función mejorada para extraer versión numérica
 function extraerVersionNumerica(nombreArchivo) {

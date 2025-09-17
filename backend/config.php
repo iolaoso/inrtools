@@ -1,5 +1,6 @@
 <?php
 // config.php
+// archivo de configuración global
 
 // configuración de zona horaria
 date_default_timezone_set('America/Bogota');
