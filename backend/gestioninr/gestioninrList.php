@@ -38,7 +38,7 @@ function obtenerGestionInrPorUsuario($nickname)
             LEFT JOIN INRDIRECCION D ON C.COD_DIRECCION = D.ID 
             WHERE G.EST_REGISTRO=1
             AND G.ANALISTA = ?
-            ORDER BY 1 DESC";
+            ORDER BY ESTADO DESC , COD_GESTION DESC ";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $nickname);
     $stmt->execute();
@@ -78,7 +78,7 @@ function obtenerGestionInrFull()
             LEFT JOIN GESTIONINRSUBCATEGORIA SC ON G.COD_SUBCATEGORIA = SC.COD_SUBCATEGORIA
             LEFT JOIN INRDIRECCION D ON C.COD_DIRECCION = D.ID 
             WHERE G.EST_REGISTRO=1
-            ORDER BY 1 DESC";
+            ORDER BY ESTADO DESC ,  COD_GESTION DESC ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     return $stmt->get_result();
@@ -116,7 +116,7 @@ function obtenerGestionInrDireccion($dirInrId)
             LEFT JOIN INRDIRECCION D ON C.COD_DIRECCION = D.ID 
             WHERE G.EST_REGISTRO=1
             AND C.COD_DIRECCION = ?
-            ORDER BY 1 DESC";
+            ORDER BY ESTADO DESC ,  COD_GESTION DESC ";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $dirInrId);
     $stmt->execute();

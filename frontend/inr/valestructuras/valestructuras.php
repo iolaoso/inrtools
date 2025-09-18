@@ -74,7 +74,7 @@ $analistas = obtenerAnalistas($direccion);
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 mb-3">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div
                             class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
@@ -120,13 +120,7 @@ $analistas = obtenerAnalistas($direccion);
     </div>
 
     <!-- ventana de carga de datos -->
-    <div id="loading" style="display: none;">
-        <img src="../../../assets/images/Loading.gif" alt="Cargando...">
-        <div class="loading-text">
-            <span class="loading-title">Buscando Datos</span>
-            <span class="loading-subtitle">Espere por favor...</span>
-        </div>
-    </div>
+    <?php include BASE_PATH . 'frontend/partials/loadingDiv.php'; ?>
 
     <!-- Modal Buscar Catastro-->
     <?php include BASE_PATH . 'frontend/partials/modalCatastro.php'; ?>

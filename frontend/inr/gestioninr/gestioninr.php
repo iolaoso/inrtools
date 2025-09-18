@@ -182,7 +182,7 @@ if ($rol_nombre == 'SUPERUSER') {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 mb-3">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div
                             class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">

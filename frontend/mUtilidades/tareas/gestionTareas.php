@@ -141,7 +141,7 @@ $tareasCompletas = getTareasCompletas($nickname);
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 mb-3">
                     <!-- tabla pendientes -->
                     <div class="card d-flex flex-column border-secondary mb-3" style="height: 700px; overflow-y: auto;">
                         <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
