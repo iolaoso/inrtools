@@ -17,7 +17,8 @@ function valEstructurasRuc($ruc)
             throw new InvalidArgumentException("RUC debe tener 13 dígitos");
         }
 
-        $rutaJson = BASE_PATH . 'assets/files/reportes/valestructuras/ENT_FECHAS_MAX_EST.json';
+        //$rutaJson = BASE_PATH . 'assets/files/reportes/valestructuras/ENT_FECHAS_MAX_EST.json';
+        $rutaJson = BASE_PATH . 'assets/files/reportes/valestructuras/ENT_FECHAS_MAX_EST_NO_BOM.json';
 
         if (!file_exists($rutaJson)) {
             throw new RuntimeException("Archivo JSON no encontrado en: {$rutaJson}");
@@ -25,29 +26,35 @@ function valEstructurasRuc($ruc)
 
         $jsonContenido = file_get_contents($rutaJson);
 
-        // Re-encode to UTF-8 to fix malformed bytes
-        $jsonContenido = mb_convert_encoding($jsonContenido, 'UTF-8', 'UTF-8');
+        if ($jsonContenido === false) {
+            throw new RuntimeException("No se pudo leer el archivo JSON");
+        }
 
-        // O también probar con:
-        // $jsonContenido = utf8_encode($jsonContenido);
+        // Remover BOM (Byte Order Mark) si está presente
+        if (substr($jsonContenido, 0, 3) === "\xEF\xBB\xBF") {
+            $jsonContenido = substr($jsonContenido, 3);
+        }
 
         $datos = json_decode($jsonContenido, true);
-
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new RuntimeException("Error decodificando JSON: " . json_last_error_msg());
         }
 
+        // Verificar que los datos sean un array y no estén vacíos
         if (!is_array($datos) || empty($datos)) {
             return ['success' => false, 'message' => "No hay datos en el archivo JSON", 'datos' => []];
         }
 
+        // Filtrar resultados por RUC
         $resultados = array_filter($datos, fn($fila) => isset($fila['RUC_ENTIDAD']) && trim($fila['RUC_ENTIDAD']) === $ruc);
 
+        // Verificar si se encontraron resultados
         if (empty($resultados)) {
             return ['success' => false, 'message' => "RUC {$ruc} no encontrado", 'datos' => []];
         }
 
+        // Mapear resultados para formatear fechas
         $estructuras = array_map(function ($fila) {
             return [
                 'RUC_ENTIDAD' => $fila['RUC_ENTIDAD'] ?? null,
@@ -63,10 +70,11 @@ function valEstructurasRuc($ruc)
             ];
         }, $resultados);
 
+        // Retornar resultados
         return [
             'success' => true,
             'message' => count($estructuras) . " estructuras encontradas",
-            'datos' => $estructuras,
+            'datos' => $estructuras, //json_encode($estructuras, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT),
             'count' => count($estructuras)
         ];
     } catch (Exception $e) {
