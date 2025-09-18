@@ -31,7 +31,7 @@ $analistas = obtenerAnalistas($direccion);
             </div>
             <section class="row align-items-stretch">
                 <!-- Cambiar align-items-center a align-items-stretch -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
                             <h4>Datos de la Solicitud</h4>
@@ -39,13 +39,13 @@ $analistas = obtenerAnalistas($direccion);
                         <div class="card-body">
                             <div class="container border mb-3 p-3">
                                 <div class="mb-3 row ">
-                                    <h2>Reporte en Excel </h2>
+                                    <h2>Reporte ValEst</h2>
                                 </div>
                                 <div class="mb-3 row">
                                     <a type="button" id="btValEstExcel" class="btn btn-warning"
                                         href="<?php echo $base_url; ?>/assets/files/reportes/valestructuras/VALEST_v2_2.xlsm">
                                         <i class="fas fa-download"></i>
-                                        Download
+                                        Descargar Archivo de Excel
                                     </a>
                                 </div>
                             </div>
@@ -62,8 +62,12 @@ $analistas = obtenerAnalistas($direccion);
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit"
-                                            class="btn btn-primary btn-sm btn-block">Consultar</button>
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary btn-lg">
+                                                <i class="fas fa-search"></i>
+                                                Consultar Datos de la Entidad
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

@@ -50,7 +50,7 @@ $analistas = obtenerAnalistas($direccion);
             </div>
             <section class="row align-items-stretch">
                 <!-- Cambiar align-items-center a align-items-stretch -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
                             <h4>Datos de la Solicitud</h4>

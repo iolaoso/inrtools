@@ -31,7 +31,7 @@ $tareasCompletas = getTareasCompletas($nickname);
                 <p>Actividades recurrentes definidas por los Analistas</p>
             </section>
             <section class="row align-items-stretch">
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
                             <h4>Crear Tarea</h4>
@@ -110,9 +110,9 @@ $tareasCompletas = getTareasCompletas($nickname);
                                         onchange="actualizarInputAnalista()">
                                         <option value="">Seleccione un analista</option>
                                         <?php foreach ($analistas as $analista): ?>
-                                        <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                            <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                        </option>
+                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -171,65 +171,65 @@ $tareasCompletas = getTareasCompletas($nickname);
                                         </thead>
                                         <tbody id="bodyActividades">
                                             <?php foreach ($tareas as $tarea): ?>
-                                            <tr>
-                                                <td>
-                                                    <?= isset($tarea['TAREA']) ? htmlspecialchars($tarea['TAREA']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['TIPO_PROCESO']) ? htmlspecialchars($tarea['TIPO_PROCESO']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['FRECUENCIA']) ? htmlspecialchars($tarea['FRECUENCIA']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['RUC']) ? htmlspecialchars($tarea['RUC']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['DESCRIPCION']) ? htmlspecialchars($tarea['DESCRIPCION']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['PROXIMA_FECHA']) ? htmlspecialchars($tarea['PROXIMA_FECHA']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['PROXIMA_HORA']) ? htmlspecialchars($tarea['PROXIMA_HORA']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['ULTIMA_EJECUCION']) ? htmlspecialchars($tarea['ULTIMA_EJECUCION']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['ANALISTA_ASIGNADO']) ? htmlspecialchars($tarea['ANALISTA_ASIGNADO']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?= isset($tarea['ESTADO_TAREA']) ? htmlspecialchars($tarea['ESTADO_TAREA']) : '' ?>
-                                                </td>
-                                                <td>
-                                                    <?php if (($tarea['ESTADO_TAREA'] ?? '') === "COMPLETADA"): ?>
-                                                    <button class="btn btn-success complete-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($tarea['id'] ?? '', ENT_QUOTES) ?>"
-                                                        title="Marcar como completada" disabled>
-                                                        <i class="fa-solid fa-check-double"></i>
-                                                    </button>
-                                                    <?php else: ?>
-                                                    <button class="btn btn-sm btn-warning complete-btn "
-                                                        data-id="<?= htmlspecialchars($tarea['id'] ?? '', ENT_QUOTES) ?>"
-                                                        title="Marcar como completada">
-                                                        <i class="fa-solid fa-marker"></i>
-                                                    </button>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-sm btn-info edit-btn"
-                                                            data-id="<?= $tarea['id'] ?>" title="Editar">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger delete-btn"
-                                                            data-id="<?= $tarea['id'] ?>" title="Eliminar">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td>
+                                                        <?= isset($tarea['TAREA']) ? htmlspecialchars($tarea['TAREA']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['TIPO_PROCESO']) ? htmlspecialchars($tarea['TIPO_PROCESO']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['FRECUENCIA']) ? htmlspecialchars($tarea['FRECUENCIA']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['RUC']) ? htmlspecialchars($tarea['RUC']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['DESCRIPCION']) ? htmlspecialchars($tarea['DESCRIPCION']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['PROXIMA_FECHA']) ? htmlspecialchars($tarea['PROXIMA_FECHA']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['PROXIMA_HORA']) ? htmlspecialchars($tarea['PROXIMA_HORA']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['ULTIMA_EJECUCION']) ? htmlspecialchars($tarea['ULTIMA_EJECUCION']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['ANALISTA_ASIGNADO']) ? htmlspecialchars($tarea['ANALISTA_ASIGNADO']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= isset($tarea['ESTADO_TAREA']) ? htmlspecialchars($tarea['ESTADO_TAREA']) : '' ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if (($tarea['ESTADO_TAREA'] ?? '') === "COMPLETADA"): ?>
+                                                            <button class="btn btn-success complete-btn btn-sm"
+                                                                data-id="<?= htmlspecialchars($tarea['id'] ?? '', ENT_QUOTES) ?>"
+                                                                title="Marcar como completada" disabled>
+                                                                <i class="fa-solid fa-check-double"></i>
+                                                            </button>
+                                                        <?php else: ?>
+                                                            <button class="btn btn-sm btn-warning complete-btn "
+                                                                data-id="<?= htmlspecialchars($tarea['id'] ?? '', ENT_QUOTES) ?>"
+                                                                title="Marcar como completada">
+                                                                <i class="fa-solid fa-marker"></i>
+                                                            </button>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-sm btn-info edit-btn"
+                                                                data-id="<?= $tarea['id'] ?>" title="Editar">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-danger delete-btn"
+                                                                data-id="<?= $tarea['id'] ?>" title="Eliminar">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -265,65 +265,65 @@ $tareasCompletas = getTareasCompletas($nickname);
                                     </thead>
                                     <tbody id="bodycompletadas">
                                         <?php foreach ($tareasCompletas as $tareaC): ?>
-                                        <tr>
-                                            <td>
-                                                <?= isset($tareaC['TAREA']) ? htmlspecialchars($tareaC['TAREA']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['TIPO_PROCESO']) ? htmlspecialchars($tareaC['TIPO_PROCESO']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['FRECUENCIA']) ? htmlspecialchars($tareaC['FRECUENCIA']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['RUC']) ? htmlspecialchars($tareaC['RUC']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['DESCRIPCION']) ? htmlspecialchars($tareaC['DESCRIPCION']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['PROXIMA_FECHA']) ? htmlspecialchars($tareaC['PROXIMA_FECHA']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['PROXIMA_HORA']) ? htmlspecialchars($tareaC['PROXIMA_HORA']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['ULTIMA_EJECUCION']) ? htmlspecialchars($tareaC['ULTIMA_EJECUCION']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['ANALISTA_ASIGNADO']) ? htmlspecialchars($tareaC['ANALISTA_ASIGNADO']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?= isset($tareaC['ESTADO_TAREA']) ? htmlspecialchars($tareaC['ESTADO_TAREA']) : '' ?>
-                                            </td>
-                                            <td>
-                                                <?php if (($tareaC['ESTADO_TAREA'] ?? '') === "COMPLETADA"): ?>
-                                                <button class="btn btn-success complete-btn btn-sm"
-                                                    data-id="<?= htmlspecialchars($tareaC['id'] ?? '', ENT_QUOTES) ?>"
-                                                    title="Marcar como completada" disabled>
-                                                    <i class="fa-solid fa-check-double"></i>
-                                                </button>
-                                                <?php else: ?>
-                                                <button class="btn btn-warning complete-btn btn-sm"
-                                                    data-id="<?= htmlspecialchars($tareaC['id'] ?? '', ENT_QUOTES) ?>"
-                                                    title="Marcar como completada">
-                                                    <i class="fa-solid fa-marker"></i>
-                                                </button>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-sm btn-info edit-btn"
-                                                        data-id="<?= $tareaC['id'] ?>" title="Editar">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-danger delete-btn"
-                                                        data-id="<?= $tareaC['id'] ?>" title="Eliminar">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>
+                                                    <?= isset($tareaC['TAREA']) ? htmlspecialchars($tareaC['TAREA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['TIPO_PROCESO']) ? htmlspecialchars($tareaC['TIPO_PROCESO']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['FRECUENCIA']) ? htmlspecialchars($tareaC['FRECUENCIA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['RUC']) ? htmlspecialchars($tareaC['RUC']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['DESCRIPCION']) ? htmlspecialchars($tareaC['DESCRIPCION']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['PROXIMA_FECHA']) ? htmlspecialchars($tareaC['PROXIMA_FECHA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['PROXIMA_HORA']) ? htmlspecialchars($tareaC['PROXIMA_HORA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['ULTIMA_EJECUCION']) ? htmlspecialchars($tareaC['ULTIMA_EJECUCION']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['ANALISTA_ASIGNADO']) ? htmlspecialchars($tareaC['ANALISTA_ASIGNADO']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($tareaC['ESTADO_TAREA']) ? htmlspecialchars($tareaC['ESTADO_TAREA']) : '' ?>
+                                                </td>
+                                                <td>
+                                                    <?php if (($tareaC['ESTADO_TAREA'] ?? '') === "COMPLETADA"): ?>
+                                                        <button class="btn btn-success complete-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($tareaC['id'] ?? '', ENT_QUOTES) ?>"
+                                                            title="Marcar como completada" disabled>
+                                                            <i class="fa-solid fa-check-double"></i>
+                                                        </button>
+                                                    <?php else: ?>
+                                                        <button class="btn btn-warning complete-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($tareaC['id'] ?? '', ENT_QUOTES) ?>"
+                                                            title="Marcar como completada">
+                                                            <i class="fa-solid fa-marker"></i>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-sm btn-info edit-btn"
+                                                            data-id="<?= $tareaC['id'] ?>" title="Editar">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-danger delete-btn"
+                                                            data-id="<?= $tareaC['id'] ?>" title="Eliminar">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>

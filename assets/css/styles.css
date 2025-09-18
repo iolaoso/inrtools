@@ -185,4 +185,34 @@ thead {
   color: #666;
 }
 
+/* clases para CUMPLE o no-cumple */
+.cumple {
+    color: #28a745 !important; /* Verde */
+    font-weight: bold;
+    background-color: rgba(40, 167, 69, 0.1);
+    border-radius: 4px;
+}
+
+.incumplido {
+    color: #dc3545 !important; /* Rojo */
+    font-weight: bold;
+    background-color: rgba(220, 53, 69, 0.1);
+    border-radius: 4px;
+}
+
+.a-tiempo {
+    color: #ffc107 !important; /* Amarillo/naranja */
+    font-weight: bold;
+    background-color: rgba(255, 193, 7, 0.1);
+    border-radius: 4px;
+}
+
+.no-aplica {
+    color: #6c757d !important; /* Gris */
+    font-weight: bold;
+    background-color: rgba(108, 117, 125, 0.1);
+    border-radius: 4px;
+}
+/* ---------------------------------------- */
+
 

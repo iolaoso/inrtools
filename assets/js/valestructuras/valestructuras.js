@@ -44,7 +44,12 @@ form.addEventListener('submit', async (event) => {
                 <td>${item.NVL_RIESGO || ''}</td>
                 <td>${item.ESTRUCTURA || ''}</td>
                 <td>${item.NOM_ESTRUCTURA || ''}</td>
-                <td>${item.CUMPLE || ''}</td>
+                <td class='text-center ${item.CUMPLE === 'CUMPLE' ? 'cumple' : 
+                 item.CUMPLE === 'INCUMPLIDO' ? 'incumplido' : 
+                 item.CUMPLE === 'A TIEMPO' ? 'a-tiempo' : 
+                 item.CUMPLE === 'NO APLICA' ? 'no-aplica' : ''}'>
+                    ${item.CUMPLE || ''}
+                </td>
                 <td>${item.MAX_FECHA_CORTE || ''}</td>
                 <td>${item.MAX_FECHA_VALIDACION || ''}</td>
             `;
