@@ -1,0 +1,8 @@
+# Ignorar todos los archivos en assets/files/reportes
+/assets/files/reportes/*
+# Ignorar el archivo sync.ffs_db
+sync.ffs_db
+# Ignorar todos los archivos en assets/adodb5
+/assets/adodb5/*
+# Ignorar todos los archivos en vendor
+/vendor/*

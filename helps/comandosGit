@@ -1,0 +1,53 @@
+## Comandos para sincronizar Visual Studio Code con GitHub
+
+### 1. Inicializar Git en el proyecto
+
+```
+git init
+```
+
+### 2. Configurar el usuario de Git (si es la primera vez)
+
+```
+git config --global user.name "TuNombre"
+git config --global user.email "tuemail@ejemplo.com"
+```
+
+### 3. Agregar archivos al seguimiento de Git
+
+```
+git add .
+```
+
+### 4. Crear un commit con los cambios
+
+```
+git commit -m "Mensaje del commit"
+```
+
+### 5. Conectar con el repositorio de GitHub (si aún no está vinculado)
+
+```
+git remote add origin https://github.com/TuUsuario/TuRepositorio.git
+git branch -M main
+```
+
+### 6. Subir archivos al repositorio de GitHub
+
+```
+git push -u origin main
+```
+
+### 7. Si hay cambios en GitHub que necesitas traer antes de hacer push
+
+```
+git pull origin main --rebase
+```
+
+### 8. Forzar el push si hay conflictos (¡Úsalo con precaución!)
+
+```
+git push --force origin main
+```
+
+💡 **Nota:** Si GitHub pide autenticación, usa un **Personal Access Token (PAT)** en lugar de tu contraseña.

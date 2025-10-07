@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Estilos para el main-content */
+#main-content {
+    flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+    padding: 50px; /* Espaciado interno */
+    background-color: #f8f9fa; /* Color de fondo */
+    transition: margin-left 0.3s; /* Transición suave al colapsar/expandir el sidebar */
+}
+
+/* Cuando el sidebar está colapsado, ajustar el margen */
+.sidebar.collapsed + #main-content {
+    margin-left: 0; /* Sin margen cuando el sidebar está colapsado */
+}
+
+
+.div.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    /* text-transform: uppercase; */
+    letter-spacing: 2px;
+    /* background: linear-gradient(90deg, #0066ff, #00ccff); Gradiente moderno */
+    padding: 5px 30px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto de hover */
+.div.title:hover {
+    transform: translateY(-5px); /* Levanta el texto ligeramente */
+    box-shadow: 0 8px 20px rgba(0, 102, 255, 0.4); /* Aumenta la sombra en hover */
+}
+
+.tituloPagina {
+    font-size: 24px ;
+    text-shadow: 0px 0px 9px #7d8b9b;
+}
+
+
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .div.title {
+        font-size: 24px;
+        padding: 12px 25px;
+    }
+}
+
+.pendiente {
+    color: red !important;
+    font-weight: bold; /* Opcional: Añade negrita */
+}
+.completada {
+    color: green !important;
+    font-weight: bold; /* Opcional: Añade negrita */
+}
+
+.table-container {
+    max-height: 400px; /* Ajusta la altura según sea necesario */
+    overflow-y: auto;  /* Activa el desplazamiento vertical */
+    border: 1px solid #dee2e6; /* Opcional: agrega un borde */
+    font-size: 11px;
+}
+
+.table {
+    border-collapse: collapse; /* Colapsa los bordes */
+}
+
+thead {
+    position: sticky; /* Fija la posición */
+    top: 0; /* Fija en la parte superior del contenedor */
+    background-color: white; /* Fondo blanco para el encabezado */
+    z-index: 10; /* Asegura que el encabezado esté por encima del contenido */
+}
+
+.table-general {
+        width: 50%;
+        border-collapse: collapse; /* Colapsar bordes */
+    }
+
+.table-responsive {
+        max-height: 1200px;
+        overflow-y: auto;
+        font-size: 11px;
+    }
+    table {
+        table-layout: fixed; /* Anchos fijos */
+        width: 100%;
+        border-collapse: collapse; /* Colapsar bordes */
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #dee2e6;
+        overflow-wrap: break-word; /* Permite que el texto largo se divida en varias líneas */
+        white-space: normal; /* Permite el ajuste de línea */
+    }
+    th {
+        width: 20%; /* Ajusta según lo necesites */
+    }
+
+/* Tamaño personalizado para el modal */
+.modal-custom {
+    max-width: 400px; /* Ancho máximo */
+    width: 100%; /* Ancho completo */
+    max-height: 300px; /* Altura máxima del modal (80% de la altura de la ventana) */
+}
+
+.scrollable-list {
+    max-height: 200px; /* Ajusta la altura máxima según tus necesidades */
+    overflow-y: auto;  /* Habilita el scroll vertical */
+}
+
+
+.form-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Espacio entre los divs */
+        }
+        .mb-3 {
+            flex: 1; /* Para que ambos divs tengan el mismo ancho */
+        }
+
+.form-label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #2c3e50; /* Color del texto */
+}
+.modal-header {
+    background-color: #17a2b8; /* Cambia el color aquí */
+    color: white; /* Cambia el color del texto si es necesario */
+}
+
+/* estilo para los botones de la tabla */
+.button-container {
+    display: flex;
+    gap: 5px; /* Espacio entre los botones */
+}
+
+/* Estilos para el indicador de carga */
+#loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#loading img {
+  width: 60%;
+  height: auto;
+  max-height: 60%;
+  object-fit: contain;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.loading-text {
+  text-align: center;
+}
+
+.loading-title {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.loading-subtitle {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+}
+/* ----------------------------- */
+
+/* clases para CUMPLE o no-cumple */
+.cumple {
+    color: #28a745 !important; /* Verde */
+    font-weight: bold;
+    background-color: rgba(40, 167, 69, 0.1);
+    border-radius: 4px;
+}
+
+.incumplido {
+    color: #dc3545 !important; /* Rojo */
+    font-weight: bold;
+    background-color: rgba(220, 53, 69, 0.1);
+    border-radius: 4px;
+}
+
+.a-tiempo {
+    color: #ffc107 !important; /* Amarillo/naranja */
+    font-weight: bold;
+    background-color: rgba(255, 193, 7, 0.1);
+    border-radius: 4px;
+}
+
+.no-aplica {
+    color: #6c757d !important; /* Gris */
+    font-weight: bold;
+    background-color: rgba(108, 117, 125, 0.1);
+    border-radius: 4px;
+}
+/* ---------------------------------------- */
+
+
