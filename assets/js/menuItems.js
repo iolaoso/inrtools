@@ -160,9 +160,10 @@ const menuItems = [
     {
         title: 'DNSES',
         subMenu: [
-             { title: 'Informes', 
-                url: '/INRtools/frontend/inr/informes/informes.php',
-                direccion: ['ALL'], 
+             { title: 'Avances de Supervisión', 
+                //url: '/INRtools/frontend/dnses/supervision/asupervision.php',
+                url: '/INRtools/frontend/enConstruccion.php',
+                direccion: ['DNSES','DNR'], 
                 rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                 usuarios: [] 
             },
@@ -196,7 +197,7 @@ const menuItems = [
         title: 'DNS',
         subMenu: [
             { title: 'Informes', 
-                url: '/INRtools/frontend/inr/informes/informes.php',
+                url: '/INRtools/frontend/dns/informes/informes.php',
                 direccion: ['ALL'], 
                 rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
                 usuarios: [] 
@@ -305,6 +306,13 @@ const menuItems = [
               title: 'Tareas', 
               url: '/INRtools/frontend/mUtilidades/tareas/gestionTareas.php',
               direccion: ['DNR'],
+              rol: ['SUPERUSER'],
+              usuarios: [] 
+            },
+            { 
+              title: 'Avance de Supervision DNSES', 
+              url: '/INRtools/frontend/dnses/supervision/asupervision.php',
+              direccion: ['DNSES','DNR'],
               rol: ['SUPERUSER'],
               usuarios: [] 
             },
