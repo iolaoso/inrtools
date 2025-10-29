@@ -15,8 +15,15 @@
                     <ul class="list-group scrollable-list" id="entidadesList">
                         <?php foreach ($entidadesActSf as $entidadSF): ?>
                         <li class="list-group-item list-group-item-action"
-                            onclick="seleccionarEntidad('<?= htmlspecialchars($entidadSF['RUC_ENTIDAD']) ?>','<?= htmlspecialchars($entidadSF['RAZON_SOCIAL']) ?>')">
-                            <?= htmlspecialchars($entidadSF['RAZON_SOCIAL']) ?>
+                            onclick="seleccionarEntidad('<?= htmlspecialchars($entidadSF['RUC_ENTIDAD']) ?>',
+                                                        '<?= htmlspecialchars($entidadSF['RAZON_SOCIAL']) ?>',
+                                                        '<?= htmlspecialchars($entidadSF['SEGMENTO']) ?>',
+                                                        '<?= htmlspecialchars($entidadSF['ESTADO_JURIDICO']) ?>',
+                                                        '<?= htmlspecialchars($entidadSF['TIPO_ORGANIZACION']) ?>',
+                                                        '<?= htmlspecialchars($entidadSF['ZONAL']) ?>',
+                                                        '<?= htmlspecialchars($entidadSF['FEC_ULT_BALANCE']) ?>',
+                                                        '<?= htmlspecialchars($entidadSF['NVL_RIESGO']) ?>')">
+                            <?= htmlspecialchars($entidadSF['RAZON_SOCIAL']) ?> <!-- AQUI LO QUE SE MUESTRA EN CADA LINEA -->
                         </li>
                         <?php endforeach; ?>
                     </ul>

@@ -4,6 +4,15 @@ body {
     background-color: #f4f4f4;
 }
 
+.hidden {
+    background-color: #ffc107 !important;
+    display: none !important; /* Oculta el elemento */
+}
+
+.visible {
+    display: block !important; /* Muestra el elemento */
+}
+
 /* Estilos para el main-content */
 #main-content {
     flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
@@ -224,3 +233,22 @@ thead {
 /* ---------------------------------------- */
 
 
+/* Estilos para la animación de expandir/contraer */
+.card-body.collapsed {
+    display: none;
+}
+
+.toggle-formulario .fa-chevron-up {
+    transition: transform 0.3s ease;
+}
+
+.toggle-formulario.collapsed .fa-chevron-up {
+    transform: rotate(180deg);
+}
+
+/* Asegurar que los formularios tengan un ID único y sean reconocibles */
+.formulario-seccion {
+    transition: all 0.3s ease;
+}
+
+/* ---------------------------------------- */

@@ -174,7 +174,7 @@ const menuItems = [
                         url: '/INRtools/frontend/dnses/reportes/coacsdnses/coacsdnses.php',
                         direccion: ['DNSES','DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
-                        usuarios: ['MFLORES','CLUNA','EVACA','RSOTO','ILOPEZA'] 
+                        usuarios: ['MFLORES','CLUNA','EVACA','RSOTO','ILOPEZA','ILOPEZ'] 
                     },
                     {   title: 'Variaciones B11', 
                         url: '/INRtools/frontend/dnses/reportes/variacionesb11/variacionesb11.php',
