@@ -8,6 +8,8 @@ include BASE_PATH . 'backend/supervision/supervisionList.php'; // Incluir el arc
 
 $entidadesActSf = entidadesActivasSf();
 $analistas = obtenerAnalistas($direccion);
+$estrategias = obtenerEstrategias($inrdireccion_id, $rol_id);
+
 
 
 // Definir roles con acceso a nivel de dirección

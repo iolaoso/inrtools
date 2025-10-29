@@ -1,8 +1,34 @@
 // assets/js/entidades.js
 
+function cerrarModal(modalId) {
+    console.log('Cerrando modal con ID:', modalId);
+    const modalElement = document.getElementById(modalId);
+    if (!modalElement) return;
+    
+    try {
+        // Intentar obtener la instancia existente
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        if (modal) {
+            modal.hide();
+        } else {
+            // Si no existe instancia, crear una nueva y ocultarla
+            const newModal = new bootstrap.Modal(modalElement);
+            newModal.hide();
+        }
+    } catch (error) {
+        console.error('Error al cerrar el modal:', error);
+        // Fallback: ocultar directamente el elemento
+        modalElement.style.display = 'none';
+        document.body.classList.remove('modal-open');
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) backdrop.remove();
+    }
+}
+
 
 // función para seleccionar una entidad y llenar los campos correspondientes
 function seleccionarEntidad(ruc, razonSocial, segmento, estadoJuridico, tipoOrganizacion, zonal, fecUltBalance, nvlRiesgo) {
+    //console.log('Entidad seleccionada:', ruc, razonSocial);   
     // Llenar el input con el RUC
     document.getElementById('ruc').value = ruc;
 
@@ -48,9 +74,8 @@ function seleccionarEntidad(ruc, razonSocial, segmento, estadoJuridico, tipoOrga
         // Si existe, llenar el input con el nivel de riesgo
         nvlRiesgoInput.value = nvlRiesgo;
     }
-    // Cerrar el modal
-    const catastroModal = new bootstrap.Modal(document.getElementById('catastroModal'));
-    catastroModal.hide();
+    //cerrar el modal si está abierto
+    cerrarModal('catastroModal');
 }
 
 // función para buscar una entidad por RUC y llenar los campos correspondientes
@@ -111,7 +136,6 @@ function buscarEntidad() {
         );
     }
     //cerrar el modal si está abierto
-    const catastroModal = new bootstrap.Modal(document.getElementById('catastroModal'));
-    catastroModal.hide();
+    cerrarModal('catastroModal');
 }
 
