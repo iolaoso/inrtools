@@ -144,16 +144,12 @@ $rolesDireccion = [
                                         <div class="col-md-6 mb-3">
                                             <label for="estrategia" class="form-label">Estrategia</label>
                                             <select class="form-control" id="estrategia" name="estrategia" required>
-                                                <option value="0">Seleccione...</option>
-                                                <option value="1">Supervisión Preventiva</option>
-                                                <option value="2">Supervisión Correctiva</option>
-                                                <option value="3">PSI</option>
-                                                <option value="4">Levantamiento PSI</option>
-                                                <option value="5">Seguimiento PSI</option>
-                                                <option value="6">Mecanismo de Resolución con PSI Ext</option>
-                                                <option value="7">Terminación PSI Extra Situ</option>
-                                                <option value="8">Alerta Preventiva</option>
-                                                <option value="9">Alerta Correctiva</option>
+                                                <option value="">Seleccione una Estrategia</option>
+                                                <?php foreach ($estrategias as $estrategia): ?>
+                                                <option value="<?= htmlspecialchars($estrategia['ID']) ?>">
+                                                <?= htmlspecialchars($estrategia['ESTRATEGIA']) ?>
+                                                </option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div><div class="col-md-6 mb-3">
                                             <label for="fase" class="form-label">Fase</label>
@@ -175,7 +171,7 @@ $rolesDireccion = [
                                                 </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <input type="hidden" class="form-control" id="analista" name="analista" required style="text-transform: uppercase;">
+                                            <input type="text" class="form-control" id="analista" name="analista" required style="text-transform: uppercase;">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="estado_supervision" class="form-label">Estado Supervisión</label>

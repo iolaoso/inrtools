@@ -5,14 +5,14 @@ console.log("gestionFormularios.js Funcionando")
 // Mapeo de estrategias a formularios
 const estrategiaFormularios = {
     '1': ['sSupervisiones'], // Supervisión Preventiva
-    '2': ['sSupervisiones','sCorrectivas'], // Supervisión Correctiva (usa el mismo formulario con diferentes campos)
-    '3': ['sSupervisiones','sCorrectivas','sSupervisionPsi'], // PSI
-    '4': ['sSupervisionPsi','sLevantamientoPsi'], // Levantamiento PSI
-    '5': ['sSupervisionPsi','sSeguimientoPsi'], // Seguimiento PSI
-    '6': ['sLiquidacion'], // Mecanismo de Resolución con PSI Ext
-    '7': ['sSupervisionPsi','sLevantamientoPsi'], // Terminación PSI Extra Situ (usa Levantamiento PSI)
-    '8': ['sAlertas'], // Alerta Preventiva
-    '9': ['sAlertas'] // Alerta Correctiva
+    '11': ['sSupervisiones','sCorrectivas'], // Supervisión Correctiva (usa el mismo formulario con diferentes campos)
+    '22': ['sSupervisiones','sCorrectivas','sSupervisionPsi'], // PSI
+    '35': ['sSupervisionPsi','sLevantamientoPsi'], // Levantamiento PSI
+    '42': ['sSupervisionPsi','sSeguimientoPsi'], // Seguimiento PSI
+    '48': ['sLiquidacion'], // Mecanismo de Resolución con PSI Ext
+    '53': ['sSupervisionPsi','sLevantamientoPsi'], // Terminación PSI Extra Situ (usa Levantamiento PSI)
+    '56': ['sAlertas'], // Alerta Preventiva
+    '62': ['sAlertas'] // Alerta Correctiva
 };
 
 // Estados disponibles por fase/estrategia
@@ -57,6 +57,7 @@ function inicializarGestionFormularios() {
 
 function manejarCambioEstrategia() {
     const estrategia = document.getElementById('estrategia').value;
+    const estrategiaText = document.getElementById('estrategia').options[document.getElementById('estrategia').selectedIndex].text; 
     const selectFase = document.getElementById('fase');
     const selectEstado = document.getElementById('estado_supervision');
     
@@ -71,9 +72,11 @@ function manejarCambioEstrategia() {
         }
     }
     
+    //console.log(`Estrategia seleccionada: ${estrategia} - ${estrategiaText}`);
+
     if (estrategia !== '0') {
-        // Actualizar opciones de fase (simuladas - en producción vendrían del backend)
-        actualizarOpcionesFase(estrategia);
+        // Actualizar opciones de fase (backend)
+        actualizarOpcionesFase(estrategiaText);
         
         // Actualizar opciones de estado
         actualizarEstadosSupervision(estrategia);
@@ -105,23 +108,58 @@ function manejarCambioFase() {
     }
 }
 
-function actualizarOpcionesFase(estrategia) {
+async function actualizarOpcionesFase(estrategiaText) {
     const selectFase = document.getElementById('fase');
     if (!selectFase) return;
     
-    // Limpiar opciones actuales
-    selectFase.innerHTML = '<option value="0">Seleccione...</option>';
+    // Mostrar loading
+    selectFase.innerHTML = '<option value="0">Cargando...</option>';
+    selectFase.disabled = true;
+
+    try {
+        const fases = await obtenerFasesPorEstrategia(estrategiaText);
+        console.log('Fases obtenidas:', fases);
+        
+        selectFase.innerHTML = '<option value="0">Seleccione...</option>';
+        
+        // Agregar fases al select
+        fases.fases.forEach(fase => {
+            selectFase.innerHTML += `<option value="${fase.ID}">${fase.FASE}</option>`;
+        }); 
+        
+    } catch (error) {
+        console.error('Error:', error);
+        selectFase.innerHTML = '<option value="0">Error cargando fases</option>';
+    } finally {
+        selectFase.disabled = false;
+    }
     
-    // Agregar opciones basadas en la estrategia (simuladas)
-    const fases = obtenerFasesPorEstrategia(estrategia);
     
-    fases.forEach(fase => {
-        const option = document.createElement('option');
-        option.value = fase.id;
-        option.textContent = fase.nombre;
-        selectFase.appendChild(option);
-    });
 }
+
+async function obtenerFasesPorEstrategia(estrategiaText) {
+    try {
+        const url = baseurl + `/backend/supervision/supervisionList.php?action=getFases&estrategiaText=${estrategiaText}`;
+        
+        //console.log('Obteniendo fases desde:', url);
+        const response = await fetch(url);
+        const data = await response.json();
+        return {
+            success: true,
+            fases: data.fases || [],
+            estrategia: estrategiaText
+        };
+    } catch (error) {
+        console.error('Error al obtener fases:', error);
+        return {
+            success: false,
+            fases: [],
+            error: error.message,
+            estrategia: estrategiaText
+        };
+    }
+}
+
 
 function actualizarEstadosSupervision(estrategia) {
     const selectEstado = document.getElementById('estado_supervision');
@@ -131,7 +169,7 @@ function actualizarEstadosSupervision(estrategia) {
     selectEstado.innerHTML = '<option value="">Seleccione...</option>';
     
     // Agregar estados correspondientes a la estrategia
-    const estados = estadosPorEstrategia[estrategia] || ['EN PROCESO', 'CERRADO'];
+    const estados = estadosPorEstrategia[estrategia] || ['No iniciada','En proceso','Cerrado'];
     
     estados.forEach(estado => {
         const option = document.createElement('option');
@@ -141,58 +179,10 @@ function actualizarEstadosSupervision(estrategia) {
     });
 }
 
-function obtenerFasesPorEstrategia(estrategia) {
-    // Datos simulados - en producción vendrían del backend
-    const fasesPorEstrategia = {
-        '1': [ // Preventiva
-            { id: '1', nombre: 'Planificación' },
-            { id: '2', nombre: 'Ejecución' },
-            { id: '3', nombre: 'Informe Final' }
-        ],
-        '2': [ // Correctiva
-            { id: '1', nombre: 'Investigación' },
-            { id: '2', nombre: 'Análisis' },
-            { id: '3', nombre: 'Resolución' }
-        ],
-        '3': [ // PSI
-            { id: '1', nombre: 'Imposición' },
-            { id: '2', nombre: 'Seguimiento' },
-            { id: '3', nombre: 'Levantamiento' }
-        ],
-        '4': [ // Levantamiento PSI
-            { id: '1', nombre: 'Solicitud' },
-            { id: '2', nombre: 'Evaluación' },
-            { id: '3', nombre: 'Aprobación' }
-        ],
-        '5': [ // Seguimiento PSI
-            { id: '1', nombre: 'Monitoreo' },
-            { id: '2', nombre: 'Verificación' },
-            { id: '3', nombre: 'Informe' }
-        ],
-        '6': [ // Mecanismo Resolución
-            { id: '1', nombre: 'Negociación' },
-            { id: '2', nombre: 'Acuerdo' },
-            { id: '3', nombre: 'Implementación' }
-        ],
-        '7': [ // Terminación PSI
-            { id: '1', nombre: 'Solicitud' },
-            { id: '2', nombre: 'Revisión' },
-            { id: '3', nombre: 'Aprobación' }
-        ],
-        '8': [ // Alerta Preventiva
-            { id: '1', nombre: 'Detección' },
-            { id: '2', nombre: 'Notificación' },
-            { id: '3', nombre: 'Seguimiento' }
-        ],
-        '9': [ // Alerta Correctiva
-            { id: '1', nombre: 'Identificación' },
-            { id: '2', nombre: 'Corrección' },
-            { id: '3', nombre: 'Verificación' }
-        ]
-    };
-    
-    return fasesPorEstrategia[estrategia] || [{ id: '1', nombre: 'Fase General' }];
-}
+
+/* ************************************************************* */
+/* ************************************************************* */
+/* logica para mostrar u ocultar los formularios  */
 
 function ocultarTodosLosFormularios() {
     const formularios = [
@@ -249,6 +239,8 @@ function mostrarFormulario(formularioId) {
         }, 300);
     }
 }
+
+
 
 // Función auxiliar para mostrar un formulario individual
 function mostrarFormularioIndividual(formularioId) {
