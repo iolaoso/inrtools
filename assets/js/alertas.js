@@ -1,4 +1,10 @@
+/* FORMA DE USO DE LA FUNCION 
+'success' | 'danger' | 'info' | 'primary' | 'warning'
 
+// Mostrar mensaje de confirmación
+mostrarAlerta(`Supervisión ${idSupervision} seleccionada correctamente`, 'success');  
+
+*/
 
 // Función para mostrar alertas
 /* 
