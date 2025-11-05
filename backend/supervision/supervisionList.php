@@ -1,4 +1,5 @@
 <?php
+
 include_once __DIR__ . '/../../backend/config.php';
 include_once BASE_PATH . 'backend/session.php';
 include_once BASE_PATH . 'backend/conexiones/db_connection.php'; // Asegúrate de incluir la conexión a la base de datos
@@ -48,6 +49,23 @@ function obtenerFases($estrategiaText) {
     return $stmt->get_result();
 }
 
+//FUNCIÓN PARA OBTENER ESTADOS DE SUPERVISIÓN
+function obtenerEstadosSupervision($faseId) {
+    global $conn; // Usar la conexión global
+    // Consulta para obtener el esado de supervisión y el porcentaje de avance
+    $query = "SELECT DISTINCT ESTADO_PROCESO
+                ,PORC_AVANCE * 100 AS PORC_AVANCE
+             FROM as_catalogo_supervision
+             WHERE EST_REGISTRO = 'ACT'
+             AND ID = ? 
+             ORDER BY ESTADO_PROCESO;";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $faseId);
+    $stmt->execute();
+
+    return $stmt->get_result();
+}
+
 
 if (isset($_GET['action']) && $_GET['action'] === 'getEstrategias') {
 
@@ -78,6 +96,23 @@ if (isset($_GET['action']) && $_GET['action'] === 'getFases') {
     header('Content-Type: application/json');
     // Cambiar esta línea - retornar objeto con propiedad fases
     echo json_encode(['fases' => $fases]);
+    exit;
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'getEstados') {
+    
+    $faseId = isset($_GET['faseId']) ? $_GET['faseId'] : 0;
+
+    $estadosResult = obtenerEstadosSupervision($faseId);
+    $estados = array();
+    while ($row = $estadosResult->fetch_assoc()) {
+        $estados[] = $row;
+    }
+
+    header('Content-Type: application/json');
+    // retorna objeto con propiedad estados
+    echo json_encode(['success' => true,
+                      'estados' => $estados]);
     exit;
 }
 

@@ -177,8 +177,8 @@ $rolesDireccion = [
                                             <input type="text" class="form-control" id="analista" name="analista" value="<?= htmlspecialchars($nickname)   ?>" style="text-transform: uppercase;" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="estado_supervision" class="form-label">Estado Supervisión</label>
-                                            <input type="text" class="form-control" id="estado_supervision" name="estado_supervision" required style="text-transform: uppercase;">
+                                            <label for="estadoSupervision" class="form-label">Estado Supervisión</label>
+                                            <input type="text" class="form-control" id="estadoSupervision" name="estadoSupervision" required style="text-transform: uppercase;">
                                         </div>
                                     </div>
                                 </div>

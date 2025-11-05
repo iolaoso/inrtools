@@ -15,18 +15,6 @@ const estrategiaFormularios = {
     '62': ['sAlertas'] // Alerta Correctiva
 };
 
-// Estados disponibles por fase/estrategia
-const estadosPorEstrategia = {
-    '1': ['EN PROCESO', 'CERRADO', 'PENDIENTE'], // Preventiva
-    '2': ['EN PROCESO', 'CERRADO', 'PENDIENTE', 'CON OBSERVACIONES'], // Correctiva
-    '3': ['EN EJECUCIÓN', 'SUSPENDIDO', 'LEVANTADO'], // PSI
-    '4': ['SOLICITADO', 'EN PROCESO', 'APROBADO'], // Levantamiento PSI
-    '5': ['EN SEGUIMIENTO', 'COMPLETADO'], // Seguimiento PSI
-    '6': ['EN NEGOCIACIÓN', 'RESUELTO'], // Mecanismo Resolución
-    '7': ['SOLICITADO', 'APROBADO'], // Terminación PSI
-    '8': ['ACTIVA', 'ATENDIDA'], // Alerta Preventiva
-    '9': ['ACTIVA', 'ATENDIDA'] // Alerta Correctiva
-};
 
 // Inicialización cuando el documento esté listo
 document.addEventListener('DOMContentLoaded', function() {
@@ -59,52 +47,88 @@ function manejarCambioEstrategia() {
     const estrategia = document.getElementById('estrategia').value;
     const estrategiaText = document.getElementById('estrategia').options[document.getElementById('estrategia').selectedIndex].text; 
     const selectFase = document.getElementById('fase');
-    const selectEstado = document.getElementById('estado_supervision');
     
     // Ocultar todos los formularios 
     ocultarTodosLosFormularios();
-    
-    // Mostrar sección de estado si existe
-    if (selectEstado) {
-        const seccionEstado = selectEstado.closest('.seccion-formulario');
-        if (seccionEstado) {
-            seccionEstado.style.display = 'block';
-        }
-    }
-    
+       
     //console.log(`Estrategia seleccionada: ${estrategia} - ${estrategiaText}`);
 
     if (estrategia !== '0') {
         // Actualizar opciones de fase (backend)
         actualizarOpcionesFase(estrategiaText);
-        
-        // Actualizar opciones de estado
-        actualizarEstadosSupervision(estrategia);
-        
+                
         // Mostrar formulario correspondiente
         const formularioId = estrategiaFormularios[estrategia];
         if (formularioId) {
             mostrarFormulario(formularioId);
         }
         
-        // Mostrar sección de estado
-        mostrarSeccionEstado();
     } else {
         // Si no hay estrategia seleccionada, ocultar todo
         if (selectFase) selectFase.innerHTML = '<option value="0">Seleccione...</option>';
         if (selectEstado) selectEstado.innerHTML = '<option value="">Seleccione...</option>';
-        ocultarSeccionEstado();
     }
 }
 
-function manejarCambioFase() {
-    const fase = document.getElementById('fase').value;
-    const estrategia = document.getElementById('estrategia').value;
+async function manejarCambioFase() {
+    const faseId = document.getElementById('fase').value;
+    const inputEstado = document.getElementById('estado_supervision');
     
-    // Aquí puedes agregar lógica adicional basada en la fase seleccionada
-    if (fase !== '0' && estrategia !== '0') {
-        console.log(`Estrategia: ${estrategia}, Fase: ${fase}`);
-        // Puedes agregar más lógica específica por fase aquí
+    console.log(`Fase seleccionada: ${faseId}`);
+    // Actualizar estados según la fase seleccionada (backend)
+    const resultado = await actualizarEstadosPorFase(faseId);
+    //console.log('Estados obtenidos:', resultado.estados); 
+}
+
+async function actualizarEstadosPorFase(faseId) {
+    const inputEstado = document.getElementById('estadoSupervision');
+    if (!inputEstado) return;
+    // Mostrar loading
+    inputEstado.value = '';
+    inputEstado.placeholder = '🔄 Cargando estado...';
+    inputEstado.disabled = true;
+     try {
+        
+        const url = baseurl + `/backend/supervision/supervisionList.php?action=getEstados&faseId=${encodeURIComponent(faseId)}`;
+        console.log('📡 URL de consulta:', url);
+        
+        const response = await fetch(url);
+        const responseText = await response.text();
+        
+        // Verificar si la respuesta está vacía
+        if (!responseText.trim()) {
+            throw new Error('El servidor devolvió una respuesta vacía');
+        }
+        
+        // Intentar parsear JSON
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        } catch (parseError) {
+            console.error('❌ Error parseando JSON:', parseError);
+            throw new Error('Error parseando la respuesta del servidor');
+        }
+        
+        console.log('✅ Datos de estado recibidos:', data);
+        
+        // Procesar la respuesta para input text
+        if (data.success && data.estados && Array.isArray(data.estados) && data.estados.length > 0) {
+            // Tomar el primer estado (o puedes implementar otra lógica)
+            const primerEstado = data.estados[0];
+            inputEstado.value = primerEstado.ESTADO_PROCESO || primerEstado.estado || '';
+            // Si hay porcentaje de avance, actualizarlo también
+            const inputPorcAvance = document.getElementById('porc_avance');
+            if (inputPorcAvance && primerEstado.PORC_AVANCE) {
+                inputPorcAvance.value = primerEstado.PORC_AVANCE;
+            }            
+        }
+    } catch (error) {
+        console.error('❌ Error al obtener estado:', error);
+    } finally {
+        inputEstado.disabled = false;
+        if (inputEstado.value === '') {
+            inputEstado.placeholder = 'Seleccione estado...';
+        }
     }
 }
 
@@ -160,24 +184,6 @@ async function obtenerFasesPorEstrategia(estrategiaText) {
     }
 }
 
-
-function actualizarEstadosSupervision(estrategia) {
-    const selectEstado = document.getElementById('estado_supervision');
-    if (!selectEstado) return;
-    
-    // Limpiar opciones actuales
-    selectEstado.innerHTML = '<option value="">Seleccione...</option>';
-    
-    // Agregar estados correspondientes a la estrategia
-    const estados = estadosPorEstrategia[estrategia] || ['No iniciada','En proceso','Cerrado'];
-    
-    estados.forEach(estado => {
-        const option = document.createElement('option');
-        option.value = estado;
-        option.textContent = estado;
-        selectEstado.appendChild(option);
-    });
-}
 
 
 /* ************************************************************* */
