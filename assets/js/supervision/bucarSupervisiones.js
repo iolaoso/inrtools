@@ -172,23 +172,6 @@ function cargarDatosSupervision(idSupervision) {
     // ... otros campos
 }
 
-// Función para mostrar alertas
-function mostrarAlerta(mensaje, tipo) {
-    // Usar Toast de Bootstrap o alerta simple
-    const alerta = document.createElement('div');
-    alerta.className = `alert alert-${tipo} alert-dismissible fade show`;
-    alerta.innerHTML = `
-        ${mensaje}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    `;
-    
-    document.body.appendChild(alerta);
-    
-    setTimeout(() => {
-        alerta.remove();
-    }, 5000);
-}
-
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
     // Configurar el botón de búsqueda en el formulario principal

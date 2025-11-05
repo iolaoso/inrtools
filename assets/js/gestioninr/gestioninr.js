@@ -150,15 +150,6 @@ function mostrarAnalista(isDirector) {
     }
 }
 
-// Función para actualizar el valor del input basado en la selección del select
-function actualizarAnalista() {
-    const select = document.getElementById('analistaSelect');
-    const input = document.getElementById('analista');
-    //console.log(select.value);
-    input.value = select.value; // Actualiza el input con el valor seleccionado
-}
-
-
 // Función para cargar datos en el modal
 function cargarDatos(button) {
     const codGestion = button.getAttribute('data-id');

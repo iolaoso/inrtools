@@ -252,3 +252,14 @@ thead {
 }
 
 /* ---------------------------------------- */
+
+
+/* alert container */
+#alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999; /* Asegura que esté por encima de otros elementos */
+    width: auto;
+    max-width: 600px;
+}

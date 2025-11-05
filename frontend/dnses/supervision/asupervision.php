@@ -160,7 +160,7 @@ $rolesDireccion = [
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label for="analistaSelect" class="form-label">Responsable</label>
                                             <select class="form-control" id="analistaSelect" name="analistaSelect" 
                                             onchange="actualizarAnalista()">
@@ -171,7 +171,10 @@ $rolesDireccion = [
                                                 </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <input type="text" class="form-control" id="analista" name="analista" required style="text-transform: uppercase;">
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="analista" class="form-label">Analista</label>
+                                            <input type="text" class="form-control" id="analista" name="analista" value="<?= htmlspecialchars($nickname)   ?>" style="text-transform: uppercase;" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="estado_supervision" class="form-label">Estado Supervisión</label>
@@ -184,15 +187,15 @@ $rolesDireccion = [
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Planificación y Avance</h5>
                                     <div class="row">
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label for="fec_asig" class="form-label">Fecha Asignación</label>
                                             <input type="date" class="form-control" id="fec_asig" name="fec_asig" required>
                                         </div>
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label for="anio_plan" class="form-label">Año Planificado</label>
                                             <input type="number" class="form-control" id="anio_plan" name="anio_plan" min="2020" max="2030" required>
                                         </div>
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label for="trim_plan" class="form-label">Trimestre Planificado</label>
                                             <select class="form-control" id="trim_plan" name="trim_plan" required>
                                                 <option value="">Seleccione...</option>
@@ -202,15 +205,12 @@ $rolesDireccion = [
                                                 <option value="4">IV Trimestre</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <label for="porc_avance" class="form-label">Porcentaje de Avance</label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" id="porc_avance" name="porc_avance" min="0" max="100" required>
                                                 <span class="input-group-text">%</span>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -1088,5 +1088,4 @@ $rolesDireccion = [
     <script src="<?php echo $base_url; ?>/assets/js/supervision/toggleFormularios.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/supervision/asupervision.js"></script>
 </body>
-s
 </html>

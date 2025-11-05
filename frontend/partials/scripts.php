@@ -13,6 +13,7 @@ const usrName = '<?php echo $nickname; ?>';
 <script src="<?php echo $base_url; ?>/assets/js/filtrarTablas.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/entidades.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/analistas.js?v=<?= time(); ?>"></script>
+<script src="<?php echo $base_url; ?>/assets/js/alertas.js?v=<?= time(); ?>"></script>
 <!-- Enlazar JavaScript para la caducidad de sesión -->
 <script src="<?php echo $base_url; ?>/assets/js/session_timeout.js?v=<?= time(); ?>"></script>
 <!-- Icons -->

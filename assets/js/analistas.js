@@ -24,3 +24,11 @@ function actualizarInputAnalista() {
 
     input.value = select.value; // Actualiza el input con el valor seleccionado
 }
+
+// Función para actualizar el valor del input basado en la selección del select
+function actualizarAnalista() {
+    const select = document.getElementById('analistaSelect');
+    const input = document.getElementById('analista');
+    //console.log(select.value);
+    input.value = select.value; // Actualiza el input con el valor seleccionado
+}

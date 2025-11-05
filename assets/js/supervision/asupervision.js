@@ -61,7 +61,7 @@ function manejarCambioEstrategia() {
     const selectFase = document.getElementById('fase');
     const selectEstado = document.getElementById('estado_supervision');
     
-    // Ocultar todos los formularios primero
+    // Ocultar todos los formularios 
     ocultarTodosLosFormularios();
     
     // Mostrar sección de estado si existe
@@ -239,8 +239,6 @@ function mostrarFormulario(formularioId) {
         }, 300);
     }
 }
-
-
 
 // Función auxiliar para mostrar un formulario individual
 function mostrarFormularioIndividual(formularioId) {
