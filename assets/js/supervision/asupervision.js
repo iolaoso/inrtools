@@ -251,7 +251,7 @@ function mostrarFormularioIndividual(formularioId) {
     const formulario = document.getElementById(formularioId);
     if (formulario) {
         formulario.style.display = 'block';
-        console.log(`Formulario mostrado: ${formularioId}`);
+        //console.log(`Formulario mostrado: ${formularioId}`);
     }
 }
 
