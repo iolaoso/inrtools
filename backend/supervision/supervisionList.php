@@ -116,3 +116,29 @@ if (isset($_GET['action']) && $_GET['action'] === 'getEstados') {
     exit;
 }
 
+if (isset($_GET['action']) && $_GET['action'] === 'getSupervisionData') {
+    
+    $supervisionId = isset($_GET['supervisionId']) ? $_GET['supervisionId'] : 0;
+
+    global $conn; // Usar la conexión global
+    // Consulta para obtener los datos de la supervisión
+    $query = "SELECT *
+              FROM as_catalogo_supervision
+              WHERE ID = ?;";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $supervisionId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $supervisionData = array();
+    while ($row = $result->fetch_assoc()) {
+        $supervisionData[] = $row;
+    }
+
+    header('Content-Type: application/json');
+    // retorna objeto con propiedad supervision
+    echo json_encode(['success' => true,
+                      'supervision' => $supervisionData]);
+    exit;
+}
+

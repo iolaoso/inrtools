@@ -63,14 +63,15 @@ $rolesDireccion = [
                             <form id="frmAvancesSupervision" method="post" autocomplete="off" onsubmit="guardarForm('frmAvancesSupervision', event)">
                                 <!-- Datos Entidad -->
                                 <div class="seccion-formulario mb-4">
-                                    <div class="row hidden">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="cod_unico_avances" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_avances" name="cod_unico_avances" required>
-                                        </div>
+                                    <!-- datos ocultos -->
+                                    <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="id_avances" class="form-label">ID</label>
                                             <input type="text" class="form-control" id="id_avances" name="id_avances" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="cod_unico_avances" class="form-label">Código Único</label>
+                                            <input type="text" class="form-control" id="cod_unico_avances" name="cod_unico_avances" required>
                                         </div>
                                     </div>
                                     <div class="row">

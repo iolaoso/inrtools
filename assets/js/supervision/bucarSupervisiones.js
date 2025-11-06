@@ -163,13 +163,51 @@ function confirmarSeleccionSupervision(idSupervision) {
 }
 
 // Función para cargar datos de la supervisión seleccionada
-function cargarDatosSupervision(idSupervision) {
+async function cargarDatosSupervision(idSupervision) {
     // En producción, harías una llamada AJAX para obtener los datos completos
     console.log('Cargando datos de la supervisión:', idSupervision);
-    
     // Ejemplo de cómo podrías actualizar el formulario principal
-    // document.getElementById('id_avances').value = idSupervision;
+    document.getElementById('id_avances').value = idSupervision;
+    try {
+        const url = baseurl + `/backend/supervision/supervisionList.php?action=getSupervisionData&supervisionId=${encodeURIComponent(supervisionId)}`;       
+        const response = await fetch(url);
+        const responseText = await response.text();
+        
+        // Verificar si la respuesta está vacía
+        if (!responseText.trim()) {
+            throw new Error('El servidor devolvió una respuesta vacía');
+        }
+        
+        // Intentar parsear JSON
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        } catch (parseError) {
+            console.error('❌ Error parseando JSON:', parseError);
+            throw new Error('Error parseando la respuesta del servidor');
+        }
+        
+        console.log('✅ Datos de estado recibidos:', data);
+        
+        // Procesar la respuesta para input text
+        if (data.success && data.supervision && Array.isArray(data.supervision) && data.supervision.length > 0) {
+            // Tomar el primer estado (o puedes implementar otra lógica)
+            const supevisonData = data.supervision[0];
+            document.getElementById('cod_unico_avances').value = supevisonData.COD_UNICO;
+            document.getElementById('estrategia').value = supevisonData.ESTRATEGIA;
+            document.getElementById('fase').value = supevisonData.FASE;
+            document.getElementById('estado').value = supevisonData.ESTADO;
+            document.getElementById('analista').value = supevisonData.RESPONSABLE;
+            document.getElementById('fec_asig_avances').value = supevisonData.FEC_ASIGNACION;
+            document.getElementById('anio_plan_avances').value = supevisonData.ANIO_PLAN;
+            document.getElementById('trim_plan_avances').value = supevisonData.TRIM_PLAN;
+        }
+    } catch (error) {
+        console.error('❌ Error al obtener estado:', error);
+    } finally {    
     // ... otros campos
+        mostrarAlerta('Datos de la supervisión cargados correctamente', 'success');
+    }
 }
 
 // Inicialización
