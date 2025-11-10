@@ -88,7 +88,7 @@ function fetchCalidadActivos(carpetaReportes) {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
+            //console.log("Datos recibidos:", data);
             const categorias = {
                 repInvFD: {
                     archivos: data.filter(item => item.name.includes('1.- Reporte Inversiones y fondos disponibles')),

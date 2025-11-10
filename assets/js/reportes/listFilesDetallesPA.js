@@ -88,7 +88,7 @@ function fetchRiesgoLiquidez(carpetaReportes) {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
+            //console.log("Datos recibidos:", data);
             const categorias = {
                 detallesPA: {
                     archivos: data.filter(item => item.name.includes('2.14. PLAN DE ACCION POR PORTAFOLIO_DETALLE')),

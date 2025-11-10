@@ -87,7 +87,7 @@ function fetchRiesgoMercado(carpetaReportes) {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
+            //console.log("Datos recibidos:", data);
             const categorias = {
                 tasasPondAct: {
                     archivos: data.filter(item => item.name.includes('Reporte_COACS_DNSES')),

@@ -88,7 +88,7 @@ function fetchCalidadResultados(carpetaReportes) {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
+            //console.log("Datos recibidos:", data);
             const categorias = {
                 rentabilidad: {
                     archivos: data.filter(item => item.name.includes('1. Alertas Rentabilidad')),

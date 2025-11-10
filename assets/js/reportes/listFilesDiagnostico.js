@@ -88,7 +88,7 @@ function fetchReportsDiag(carpetaReportes) {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
+            //console.log("Datos recibidos:", data);
             const categorias = {
                 diagnostico: {
                     archivos: data.filter(item => item.name.includes('Reporte Diagnostico') && 

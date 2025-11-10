@@ -172,20 +172,6 @@ function seleccionarCategoria(nombre) {
     //alert("Categoría seleccionada: " + nombre); // Mensaje opcional
 }
 
-function filtrarEntidades() {
-    const input = document.getElementById('busquedaEntidad');
-    const filter = input.value.toUpperCase();
-    const ul = document.getElementById('entidadesList');
-    const li = ul.getElementsByTagName('li');
-    for (let i = 0; i < li.length; i++) {
-        const txtValue = li[i].textContent || li[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = ""; // Muestra el elemento
-        } else {
-            li[i].style.display = "none"; // Oculta el elemento
-        }
-    }
-}
 
 
 

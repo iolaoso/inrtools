@@ -21,7 +21,7 @@ function abrirBuscarSupervisionModal() {
 }
 
 // Función para buscar supervisiones por RUC
-function buscarSupervisionesPorRuc() {
+async function buscarSupervisionesPorRuc() {
     const ruc = document.getElementById('ruc').value;
     
     if (!ruc) {
@@ -42,44 +42,50 @@ function buscarSupervisionesPorRuc() {
         </tr>
     `;
     
-    // Simular búsqueda (en producción sería una llamada AJAX)
-    setTimeout(() => {
-        // Datos de ejemplo - en producción vendrían del servidor
-        const supervisionesEjemplo = [
-            {
-                id: 'AV-2024-001',
-                estrategia: 'Supervisión Preventiva',
-                fase: '2. Oficio solicitud de información',
-                estado: 'En proceso'
-            },
-            {
-                id: 'AV-2024-002', 
-                estrategia: 'Supervisión Correctiva',
-                fase: '1. Evaluación preliminar',
-                estado: 'No iniciada'
-            },
-            {
-                id: 'AV-2023-045',
-                estrategia: 'PSI',
-                fase: '7. Resolución PSI',
-                estado: 'En proceso'
-            }
-        ];
+    try {
+        // Llamada real al servidor
+        const url = baseurl + `/backend/supervision/supervisionList.php?action=buscarPorRuc&ruc=${encodeURIComponent(ruc)}`;
+        //console.log('🔍 Buscando supervisiones en:', url);
         
-        mostrarResultadosSupervisiones(supervisionesEjemplo);
-    }, 1500);
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        //console.log('📊 Datos recibidos:', data);
+        
+        if (data.success) {
+            if (data.supervisiones && data.supervisiones.length > 0) {
+                mostrarResultadosSupervisiones(data.supervisiones);
+                mostrarAlerta(`Se encontraron ${data.supervisiones.length} supervisiones`, 'success');
+            } else {
+                mostrarResultadosSupervisiones([]);
+                mostrarAlerta('No se encontraron supervisiones para este RUC', 'info');
+            }
+        } else {
+            throw new Error(data.error || 'Error en la búsqueda');
+        }
+        
+    } catch (error) {
+        console.error('❌ Error en búsqueda:', error);
+        mostrarResultadosSupervisiones([]);
+        mostrarAlerta('Error al buscar supervisiones: ' + error.message, 'error');
+    }
 }
+
 
 // Función para mostrar resultados en la tabla
 function mostrarResultadosSupervisiones(supervisiones) {
     const tbody = document.getElementById('tbodySupervisiones');
     
-    if (supervisiones.length === 0) {
+    if (!supervisiones || supervisiones.length === 0) {
         tbody.innerHTML = `
             <tr>
                 <td colspan="6" class="text-center text-muted">
                     <i class="fas fa-inbox fa-2x mb-2"></i><br>
-                    No se encontraron supervisiones para este RUC
+                    No se encontraron supervisiones
                 </td>
             </tr>
         `;
@@ -91,23 +97,13 @@ function mostrarResultadosSupervisiones(supervisiones) {
         html += `
             <tr>
                 <td>
-                    <div class="form-check">
-                        <input class="form-check-input supervision-checkbox" 
-                               type="radio" 
-                               name="supervisionSeleccionada" 
-                               value="${supervision.id}"
-                               id="supervision_${index}">
-                        <label class="form-check-label" for="supervision_${index}"></label>
-                    </div>
+                    <strong>${supervision.id || 'N/A'}</strong>
                 </td>
+                <td>${supervision.estrategia || 'No especificado'}</td>
+                <td>${supervision.fase || 'No especificado'}</td>
                 <td>
-                    <strong>${supervision.id}</strong>
-                </td>
-                <td>${supervision.estrategia}</td>
-                <td>${supervision.fase}</td>
-                <td>
-                    <span class="badge ${obtenerClaseEstado(supervision.estado)}">
-                        ${supervision.estado}
+                    <span class="btn btn-sm ${obtenerClaseEstado(supervision.estado)} text-center w-100">
+                        ${supervision.estado || 'Desconocido'}
                     </span>
                 </td>
                 <td>
@@ -125,41 +121,32 @@ function mostrarResultadosSupervisiones(supervisiones) {
 }
 
 // Función para obtener clase CSS según el estado
+
 function obtenerClaseEstado(estado) {
     const clases = {
-        'En proceso': 'bg-warning text-dark',
-        'No iniciada': 'bg-secondary',
+        'No Iniciada': 'bg-secondary',
+        'En Proceso': 'bg-warning text-dark',
         'Cerrado': 'bg-success',
+        
+        'Completado': 'bg-success',
         'Suspendido': 'bg-danger',
-        'Pendiente': 'bg-info'
+        'Pendiente': 'bg-info',
+        'En revisión': 'bg-primary',
+        'Aprobado': 'bg-success'
     };
     return clases[estado] || 'bg-secondary';
 }
 
 // Función para seleccionar una supervisión
 function seleccionarSupervision(idSupervision) {
-    // Buscar la supervisión seleccionada
-    const supervisionCheckbox = document.querySelector(`input[value="${idSupervision}"]`);
-    if (supervisionCheckbox) {
-        supervisionCheckbox.checked = true;
-        confirmarSeleccionSupervision(idSupervision);
-    }
-}
-
-// Función para confirmar la selección
-function confirmarSeleccionSupervision(idSupervision) {
-    // Aquí cargarías los datos de la supervisión seleccionada
-    console.log('Supervisión seleccionada:', idSupervision);
-    
-    // Cerrar el modal
-    const modal = bootstrap.Modal.getInstance(document.getElementById('buscarSupervisionModal'));
-    modal.hide();
-    
+    //console.log('Supervisión seleccionada:', idSupervision);
     // Mostrar mensaje de confirmación
     mostrarAlerta(`Supervisión ${idSupervision} seleccionada correctamente`, 'success');
-    
     // Aquí podrías cargar los datos de la supervisión en el formulario principal
     cargarDatosSupervision(idSupervision);
+    // cerrar modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('buscarSupervisionModal'));
+    modal.hide();
 }
 
 // Función para cargar datos de la supervisión seleccionada

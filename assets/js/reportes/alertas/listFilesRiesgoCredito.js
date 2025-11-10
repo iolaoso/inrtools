@@ -88,7 +88,7 @@ function fetchRiesgoCredito(carpetaReportes) {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
+            //console.log("Datos recibidos:", data);
             const categorias = {
                 perdidasEsperadas: {
                     archivos: data.filter(item => item.name.includes('perdidas_esperadas')),

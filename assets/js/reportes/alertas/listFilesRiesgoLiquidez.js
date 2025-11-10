@@ -88,7 +88,7 @@ function fetchRiesgoLiquidez(carpetaReportes) {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos:", data);
+            //console.log("Datos recibidos:", data);
             const categorias = {
                 cumpLiquidezEst: {
                     archivos: data.filter(item => item.name.includes('1.- Cumplimiento liquidez estructural')),

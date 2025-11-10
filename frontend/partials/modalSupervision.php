@@ -35,7 +35,6 @@
                             <table class="table table-striped table-hover" id="tablaSupervisiones">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th>Seleccionar</th>
                                         <th>ID</th>
                                         <th>Estrategia</th>
                                         <th>Fase</th>

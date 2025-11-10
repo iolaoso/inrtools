@@ -32,6 +32,60 @@ function obtenerEstrategias($dirInrId, $rolId) {
     return $stmt->get_result();
 }
 
+// Función para buscar supervisiones por RUC en la base de datos
+function buscarSupervisionesPorRuc($ruc) {
+    global $conn;
+    
+    if (!$conn || $conn->connect_error) {
+        throw new Exception("Error de conexión a la base de datos");
+    }
+    
+    // Consulta para obtener supervisiones por RUC
+    $query = "SELECT 
+                av.ID,
+                av.RUC,
+                av.CATALOGO_ID,
+                av.FEC_ASIG,
+                cat.ESTRATEGIA,
+                cat.FASE,
+                cat.ESTADO_PROCESO as ESTADO_PROCESO,	
+                cat.PORC_AVANCE
+              FROM as_avances_supervision av
+              LEFT JOIN as_catalogo_supervision cat ON av.CATALOGO_ID = cat.ID
+              WHERE av.RUC = ? 
+              AND av.EST_REGISTRO = 'ACT'
+              ORDER BY av.FECHA_CREACION DESC, av.ID DESC";
+    
+    $stmt = $conn->prepare($query);
+    if (!$stmt) {
+        throw new Exception("Error preparando la consulta: " . $conn->error);
+    }
+    
+    $stmt->bind_param("s", $ruc);
+    
+    if (!$stmt->execute()) {
+        throw new Exception("Error ejecutando la consulta: " . $stmt->error);
+    }
+    
+    $result = $stmt->get_result();
+    $supervisiones = [];
+    
+    while ($row = $result->fetch_assoc()) {
+        $supervisiones[] = [
+            'id' => $row['ID'],
+            'ruc' => $row['RUC'],
+            'estrategia' => $row['ESTRATEGIA'],
+            'fase' => $row['FASE'],
+            'estado' => $row['ESTADO_PROCESO'],
+            'fecha_asignacion' => $row['FEC_ASIG'],
+            'porcentaje_avance' => $row['PORC_AVANCE']
+        ];
+    }
+    
+    $stmt->close();
+    return $supervisiones;
+}
+
 //FUNCIÓN PARA OBTENER FASES
 function obtenerFases($estrategiaText) {
     global $conn; // Usar la conexión global
@@ -123,7 +177,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'getSupervisionData') {
     global $conn; // Usar la conexión global
     // Consulta para obtener los datos de la supervisión
     $query = "SELECT *
-              FROM as_catalogo_supervision
+              FROM as_
               WHERE ID = ?;";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $supervisionId);
@@ -141,4 +195,37 @@ if (isset($_GET['action']) && $_GET['action'] === 'getSupervisionData') {
                       'supervision' => $supervisionData]);
     exit;
 }
+
+if (isset($_GET['action']) && $_GET['action'] === 'buscarPorRuc') {
+    
+    $ruc = isset($_GET['ruc']) ? trim($_GET['ruc']) : '';
+    
+    if (empty($ruc)) {
+        echo json_encode([
+            'success' => false,
+            'error' => 'RUC es requerido',
+            'supervisiones' => []
+        ]);
+        exit;
+    }
+    
+    try {
+        $supervisiones = buscarSupervisionesPorRuc($ruc);
+        
+        echo json_encode([
+            'success' => true,
+            'supervisiones' => $supervisiones,
+            'total' => count($supervisiones)
+        ]);
+        
+    } catch (Exception $e) {
+        echo json_encode([
+            'success' => false,
+            'error' => $e->getMessage(),
+            'supervisiones' => []
+        ]);
+    }
+    exit;
+}
+
 

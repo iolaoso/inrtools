@@ -142,7 +142,7 @@ async function actualizarOpcionesFase(estrategiaText) {
 
     try {
         const fases = await obtenerFasesPorEstrategia(estrategiaText);
-        console.log('Fases obtenidas:', fases);
+        //console.log('Fases obtenidas:', fases);
         
         selectFase.innerHTML = '<option value="0">Seleccione...</option>';
         
