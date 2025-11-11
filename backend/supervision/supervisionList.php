@@ -177,7 +177,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'getSupervisionData') {
     global $conn; // Usar la conexión global
     // Consulta para obtener los datos de la supervisión
     $query = "SELECT *
-              FROM as_
+              FROM VI_FULL_SUPERVISION
               WHERE ID = ?;";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $supervisionId);

@@ -150,11 +150,11 @@ function seleccionarSupervision(idSupervision) {
 }
 
 // Función para cargar datos de la supervisión seleccionada
-async function cargarDatosSupervision(idSupervision) {
+async function cargarDatosSupervision(supervisionId) {
     // En producción, harías una llamada AJAX para obtener los datos completos
-    console.log('Cargando datos de la supervisión:', idSupervision);
+    console.log('Cargando datos de la supervisión:', supervisionId);
     // Ejemplo de cómo podrías actualizar el formulario principal
-    document.getElementById('id_avances').value = idSupervision;
+    document.getElementById('id_avances').value = supervisionId;
     try {
         const url = baseurl + `/backend/supervision/supervisionList.php?action=getSupervisionData&supervisionId=${encodeURIComponent(supervisionId)}`;       
         const response = await fetch(url);
@@ -181,13 +181,21 @@ async function cargarDatosSupervision(idSupervision) {
             // Tomar el primer estado (o puedes implementar otra lógica)
             const supevisonData = data.supervision[0];
             document.getElementById('cod_unico_avances').value = supevisonData.COD_UNICO;
-            document.getElementById('estrategia').value = supevisonData.ESTRATEGIA;
-            document.getElementById('fase').value = supevisonData.FASE;
-            document.getElementById('estado').value = supevisonData.ESTADO;
-            document.getElementById('analista').value = supevisonData.RESPONSABLE;
-            document.getElementById('fec_asig_avances').value = supevisonData.FEC_ASIGNACION;
-            document.getElementById('anio_plan_avances').value = supevisonData.ANIO_PLAN;
-            document.getElementById('trim_plan_avances').value = supevisonData.TRIM_PLAN;
+            document.getElementById('IDcentral').value = supevisonData.ID;
+            await establecerValorSelectPorTexto('estrategia', supevisonData.ESTRATEGIA); 
+            await establecerValorSelect('trim_plan', supevisonData.TRIM_PLAN);
+            await establecerValorSelectPorTexto('analistaSelect', supevisonData.USR_NOMBRE);
+            await establecerValorSelect('fase', supevisonData.CATALOGO_ID);
+            document.getElementById('estadoSupervision').value = supevisonData.ESTADO_PROCESO;
+            document.getElementById('analista').value = supevisonData.NICKNAME;
+            document.getElementById('fec_asig').value = supevisonData.FEC_ASIG;
+            document.getElementById('anio_plan').value = supevisonData.ANIO_PLAN;
+           //RELLENAR LOS CAMPOS QUE FALTAN AQUÍ
+            document.getElementById('observaciones').value = supevisonData.OBSERVACIONES || '';
+            
+
+
+            
         }
     } catch (error) {
         console.error('❌ Error al obtener estado:', error);

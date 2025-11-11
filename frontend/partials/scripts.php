@@ -9,6 +9,7 @@ const usrName = '<?php echo $nickname; ?>';
 </script>
 <script src="<?php echo $base_url; ?>/assets/js/menuItems.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/sidebarFunctions.js?v=<?= time(); ?>"></script>
+<script src="<?php echo $base_url; ?>/assets/js/selectOptions.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/exportarTabla.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/filtrarTablas.js?v=<?= time(); ?>"></script>
 <script src="<?php echo $base_url; ?>/assets/js/entidades.js?v=<?= time(); ?>"></script>

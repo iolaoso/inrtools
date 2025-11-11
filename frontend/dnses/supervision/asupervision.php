@@ -131,7 +131,7 @@ $rolesDireccion = [
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                             <h4>Avances de Supervisión</h4>
-                            <input type="text" class="form-control form-control-sm w-auto text-center" id="ID" placeholder="ID" name="ID" disabled>
+                            <input type="text" class="form-control form-control-sm w-auto text-center" id="IDcentral" name="IDcentral" placeholder="ID"  disabled>
                             <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sAvancesSupervision">
                                 <i class="fas fa-chevron-up"></i>
                             </button>
@@ -200,10 +200,10 @@ $rolesDireccion = [
                                             <label for="trim_plan" class="form-label">Trimestre Planificado</label>
                                             <select class="form-control" id="trim_plan" name="trim_plan" required>
                                                 <option value="">Seleccione...</option>
-                                                <option value="1">I Trimestre</option>
-                                                <option value="2">II Trimestre</option>
-                                                <option value="3">III Trimestre</option>
-                                                <option value="4">IV Trimestre</option>
+                                                <option value="I">I</option>
+                                                <option value="II">II</option>
+                                                <option value="III">III</option>
+                                                <option value="IV">IV</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-3">
