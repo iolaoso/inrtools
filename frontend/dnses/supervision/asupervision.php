@@ -440,33 +440,17 @@ $rolesDireccion = [
                         <div class="card-body">
                             <form id="frmSupervisionPsi" method="post" autocomplete="off" onsubmit="guardarForm('frmSupervisionPsi', event)">
                                 <!-- Campos técnicos -->
-                                <div class="campos-tecnicos mb-3 px-3 border rounded bg-light hidden">
-                                    <h5 class="text-secondary mb-3">Campos Técnicos</h5>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_supervision_psi" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id_supervision_psi" name="id_supervision_psi" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_correctiva_psi" class="form-label">ID Correctiva</label>
-                                            <input type="text" class="form-control" id="id_correctiva_psi" name="id_correctiva_psi" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="ruc_supervision_psi" class="form-label">RUC</label>
-                                            <input type="text" class="form-control" id="ruc_supervision_psi" name="ruc_supervision_psi" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="cod_unico_supervision_psi" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_supervision_psi" name="cod_unico_supervision_psi" required>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 
                                 <!-- Resolución PSI -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Resolución PSI</h5>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="id_supervision_psi" class="form-label">ID PSI</label>
+                                            <input type="text" class="form-control" id="id_supervision_psi" name="id_supervision_psi" required>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
                                             <label for="fec_resolucion_psi" class="form-label">Fecha Resolución PSI</label>
                                             <input type="date" class="form-control" id="fec_resolucion_psi" name="fec_resolucion_psi">
                                         </div>
@@ -570,34 +554,15 @@ $rolesDireccion = [
                         </div>
                         <div class="card-body">
                             <form id="frmSeguimientoPsi" method="post" autocomplete="off" onsubmit="guardarForm('frmSeguimientoPsi', event)">
-                                <!-- Campos técnicos -->
-                                <div class="campos-tecnicos mb-3 px-3 border rounded bg-light hidden">
-                                    <h5 class="text-secondary mb-3">Campos Técnicos</h5>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_seguimiento_psi" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id_seguimiento_psi" name="id_seguimiento_psi" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_supervision_psi_seg" class="form-label">ID Supervisión PSI</label>
-                                            <input type="text" class="form-control" id="id_supervision_psi_seg" name="id_supervision_psi_seg" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="ruc_seguimiento_psi" class="form-label">RUC</label>
-                                            <input type="text" class="form-control" id="ruc_seguimiento_psi" name="ruc_seguimiento_psi" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="cod_unico_seguimiento_psi" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_seguimiento_psi" name="cod_unico_seguimiento_psi" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 <!-- Informe de Seguimiento -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Informe de Seguimiento</h5>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="id_seguimiento_psi" class="form-label">ID Seguimiento PSI</label>
+                                            <input type="text" class="form-control" id="id_seguimiento_psi" name="id_seguimiento_psi" required>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
                                             <label for="num_informe_seguimiento" class="form-label">Número Informe Seguimiento</label>
                                             <input type="text" class="form-control" id="num_informe_seguimiento" name="num_informe_seguimiento" style="text-transform: uppercase;">
                                         </div>
@@ -669,34 +634,15 @@ $rolesDireccion = [
                         </div>
                         <div class="card-body">
                             <form id="frmLevantamientoPsi" method="post" autocomplete="off" onsubmit="guardarForm('frmLevantamientoPsi', event)">
-                                <!-- Campos técnicos -->
-                                <div class="campos-tecnicos mb-3 px-3 border rounded bg-light hidden">
-                                    <h5 class="text-secondary mb-3">Campos Técnicos</h5>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_levantamiento_psi" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id_levantamiento_psi" name="id_levantamiento_psi" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_supervision_psi_lev" class="form-label">ID Supervisión PSI</label>
-                                            <input type="text" class="form-control" id="id_supervision_psi_lev" name="id_supervision_psi_lev" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="ruc_levantamiento_psi" class="form-label">RUC</label>
-                                            <input type="text" class="form-control" id="ruc_levantamiento_psi" name="ruc_levantamiento_psi" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="cod_unico_levantamiento_psi" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_levantamiento_psi" name="cod_unico_levantamiento_psi" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 <!-- Solicitud de Cierre PSI -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Solicitud de Cierre PSI</h5>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="id_levantamiento_psi" class="form-label">ID Levantamiente PSI</label>
+                                            <input type="text" class="form-control" id="id_levantamiento_psi" name="id_levantamiento_psi" required>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
                                             <label for="mem_solicitud_cierre_psi" class="form-label">Memorando Solicitud Cierre</label>
                                             <input type="text" class="form-control" id="mem_solicitud_cierre_psi" name="mem_solicitud_cierre_psi" style="text-transform: uppercase;">
                                         </div>
@@ -809,46 +755,21 @@ $rolesDireccion = [
                         </div>
                         <div class="card-body">
                             <form id="frmLiquidacion" method="post" autocomplete="off" onsubmit="guardarForm('frmLiquidacion', event)">
-                                <!-- Campos técnicos -->
-                                <div class="campos-tecnicos mb-3 px-3 border rounded bg-light hidden">
-                                    <h5 class="text-secondary mb-3">Campos Técnicos</h5>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_liquidacion" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id_liquidacion" name="id_liquidacion" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_avances_supervision_liq" class="form-label">ID Avances Supervisión</label>
-                                            <input type="text" class="form-control" id="id_avances_supervision_liq" name="id_avances_supervision_liq" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_supervision_liq" class="form-label">ID Supervisión</label>
-                                            <input type="text" class="form-control" id="id_supervision_liq" name="id_supervision_liq" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="ruc_liquidacion" class="form-label">RUC</label>
-                                            <input type="text" class="form-control" id="ruc_liquidacion" name="ruc_liquidacion" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="cod_unico_liquidacion" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_liquidacion" name="cod_unico_liquidacion" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 <!-- Informe Final -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Informe Final</h5>
                                     <div class="row">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="id_liquidacion" class="form-label">ID Liquidación</label>
+                                            <input type="text" class="form-control" id="id_liquidacion" name="id_liquidacion" required>
+                                        </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="num_informe_final" class="form-label">Número Informe Final</label>
                                             <input type="text" class="form-control" id="num_informe_final" name="num_informe_final" style="text-transform: uppercase;">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="fec_informe_final" class="form-label">Fecha Informe Final</label>
-                                            <input type="date" class="form-control" id="fec_informe_final" name="fec_informe_final">
+                                            <label for="fec_informe_final_liq" class="form-label">Fecha Informe Final</label>
+                                            <input type="date" class="form-control" id="fec_informe_final_liq" name="fec_informe_final_liq">
                                         </div>
                                     </div>
                                 </div>

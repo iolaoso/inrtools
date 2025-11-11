@@ -218,52 +218,49 @@ async function cargarDatosSupervision(supervisionId) {
             document.getElementById('num_aprobacion_pa_fisico').value = supevisonData.NUM_APROBACION_PA_FISICO;
             document.getElementById('fec_aprobacion_pa_sistema').value = supevisonData.FEC_APROBACION_PA_SISTEMA;
             // campos de PSI
-            document.getElementById('').value = supevisonData.PSI_ID;
-            document.getElementById('').value = supevisonData.FEC_RESOLUCION_PSI;
-            document.getElementById('').value = supevisonData.NUM_RESOLUCION_PSI;
-            document.getElementById('').value = supevisonData.FEC_IMPOSICION_PSI;
-            document.getElementById('').value = supevisonData.NUM_OFICIO_IMPOSICION_PSI;
-            document.getElementById('').value = supevisonData.FEC_FIN_PSI;
-            document.getElementById('').value = supevisonData.FEC_MEMORANDO_COMUNICACION_PSI;
-            document.getElementById('').value = supevisonData.NUM_MEMORANDO_COMUNICACION_PSI;
-            document.getElementById('').value = supevisonData.FEC_AMPLIACION_PSI;
-            document.getElementById('').value = supevisonData.NUM_AMPLIACION_PSI;
-            document.getElementById('').value = supevisonData.FEC_INFORME_AMPLIACION_PSI;
-            document.getElementById('').value = supevisonData.NUM_INFORME_AMPLIACION_PSI;
+            document.getElementById('id_supervision_psi').value = supevisonData.PSI_ID;
+            document.getElementById('fec_resolucion_psi').value = supevisonData.FEC_RESOLUCION_PSI;
+            document.getElementById('num_resolucion_psi').value = supevisonData.NUM_RESOLUCION_PSI;
+            document.getElementById('fec_imposicion_psi').value = supevisonData.FEC_IMPOSICION_PSI;
+            document.getElementById('num_oficio_imposicion_psi').value = supevisonData.NUM_OFICIO_IMPOSICION_PSI;
+            document.getElementById('fec_fin_psi').value = supevisonData.FEC_FIN_PSI;
+            document.getElementById('fec_memorando_comunicacion_psi').value = supevisonData.FEC_MEMORANDO_COMUNICACION_PSI;
+            document.getElementById('num_memorando_comunicacion_psi').value = supevisonData.NUM_MEMORANDO_COMUNICACION_PSI;
+            document.getElementById('fec_ampliacion_psi').value = supevisonData.FEC_AMPLIACION_PSI;
+            document.getElementById('num_ampliacion_psi').value = supevisonData.NUM_AMPLIACION_PSI;
+            document.getElementById('fec_informe_ampliacion_psi').value = supevisonData.FEC_INFORME_AMPLIACION_PSI;
+            document.getElementById('num_informe_ampliacion_psi').value = supevisonData.NUM_INFORME_AMPLIACION_PSI;
             // campos de seguimiento PSI
-            document.getElementById('').value = supevisonData.SEGP_ID;
-            document.getElementById('').value = supevisonData.NUM_INFORME_SEGUIMIENTO;
-            document.getElementById('').value = supevisonData.FEC_INFORME;
-            document.getElementById('').value = supevisonData.NUM_OFICIO_COMUNICACION_SEG_PSI;
-            document.getElementById('').value = supevisonData.FEC_OFICIO_COMUNICACION_SEG_PSI;
-            document.getElementById('').value = supevisonData.NUM_OF_APROBACION_PSI_FISICO;
-            document.getElementById('').value = supevisonData.FEC_APROBACION_PSI_FISICO;
-            document.getElementById('').value = supevisonData.FEC_APROBACION_PSI_SISTEMA;
+            document.getElementById('id_seguimiento_psi').value = supevisonData.SEGP_ID;
+            document.getElementById('num_informe_seguimiento').value = supevisonData.NUM_INFORME_SEGUIMIENTO;
+            document.getElementById('fec_informe').value = supevisonData.FEC_INFORME;
+            document.getElementById('num_oficio_comunicacion_seg_psi').value = supevisonData.NUM_OFICIO_COMUNICACION_SEG_PSI;
+            document.getElementById('fec_oficio_comunicacion_seg_psi').value = supevisonData.FEC_OFICIO_COMUNICACION_SEG_PSI;
+            document.getElementById('num_of_aprobacion_psi_fisico').value = supevisonData.NUM_OF_APROBACION_PSI_FISICO;
+            document.getElementById('fec_aprobacion_psi_fisico').value = supevisonData.FEC_APROBACION_PSI_FISICO;
+            document.getElementById('fec_aprobacion_psi_sistema').value = supevisonData.FEC_APROBACION_PSI_SISTEMA;
             // campos de cierre PSI
-            document.getElementById('').value = supevisonData.LEV_ID;
-            document.getElementById('').value = supevisonData.MEM_SOLICITUD_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.FEC_MEM_SOLICITUD_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.MEM_ENTREGA_INFORME_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.FEC_MEM_ENTREGA_INFORME_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.INFORME_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.FEC_INFORME_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.RESOLUCION_TERMINACION_PSI;
-            document.getElementById('').value = supevisonData.FEC_RESOLUCION_TERMINACION_PSI;
-            document.getElementById('').value = supevisonData.FEC_REUNION_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.FEC_OFICIO_ENVIO_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.OF_ENVIO_DOC_CIERRE_PSI;
-            document.getElementById('').value = supevisonData.FEC_ENTREGA_INFMR;
+            document.getElementById('id_levantamiento_psi').value = supevisonData.LEV_ID;
+            document.getElementById('mem_solicitud_cierre_psi').value = supevisonData.MEM_SOLICITUD_CIERRE_PSI;
+            document.getElementById('fec_mem_solicitud_cierre_psi').value = supevisonData.FEC_MEM_SOLICITUD_CIERRE_PSI;
+            document.getElementById('mem_entrega_informe_cierre_psi').value = supevisonData.MEM_ENTREGA_INFORME_CIERRE_PSI;
+            document.getElementById('fec_mem_entrega_informe_cierre_psi').value = supevisonData.FEC_MEM_ENTREGA_INFORME_CIERRE_PSI;
+            document.getElementById('informe_cierre_psi').value = supevisonData.INFORME_CIERRE_PSI;
+            document.getElementById('fec_informe_cierre_psi').value = supevisonData.FEC_INFORME_CIERRE_PSI;
+            document.getElementById('resolucion_terminacion_psi').value = supevisonData.RESOLUCION_TERMINACION_PSI;
+            document.getElementById('fec_resolucion_terminacion_psi').value = supevisonData.FEC_RESOLUCION_TERMINACION_PSI;
+            document.getElementById('fec_reunion_cierre_psi').value = supevisonData.FEC_REUNION_CIERRE_PSI;
+            document.getElementById('fec_oficio_envio_cierre_psi').value = supevisonData.FEC_OFICIO_ENVIO_CIERRE_PSI;
+            document.getElementById('of_envio_doc_cierre_psi').value = supevisonData.OF_ENVIO_DOC_CIERRE_PSI;
+            document.getElementById('fec_entrega_infmr').value = supevisonData.FEC_ENTREGA_INFMR;
             // campos de liquidación
-            document.getElementById('').value = supevisonData.LIQ_ID;
-            document.getElementById('').value = supevisonData.LIQ_NUM_INFORME_FINAL;
-            document.getElementById('').value = supevisonData.LIQ_FEC_INFORME_FINAL;
-            document.getElementById('').value = supevisonData.MEMO_COMUNICACION_IGT;
-            document.getElementById('').value = supevisonData.FEC_COMUNICACION_IGT;
-            document.getElementById('').value = supevisonData.MEMO_COMUNICACION_IGJ;
-            document.getElementById('').value = supevisonData.FEC_COMUNICACION_IGJ;
-
-
-            
+            document.getElementById('id_liquidacion').value = supevisonData.LIQ_ID;
+            document.getElementById('num_informe_final').value = supevisonData.LIQ_NUM_INFORME_FINAL;
+            document.getElementById('fec_informe_final_liq').value = supevisonData.LIQ_FEC_INFORME_FINAL;
+            document.getElementById('memo_comunicacion_igt').value = supevisonData.MEMO_COMUNICACION_IGT;
+            document.getElementById('fec_comunicacion_igt').value = supevisonData.FEC_COMUNICACION_IGT;
+            document.getElementById('memo_comunicacion_igj').value = supevisonData.MEMO_COMUNICACION_IGJ;
+            document.getElementById('fec_comunicacion_igj').value = supevisonData.FEC_COMUNICACION_IGJ;      
         }
     } catch (error) {
         console.error('❌ Error al obtener estado:', error);
