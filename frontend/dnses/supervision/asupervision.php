@@ -232,34 +232,15 @@ $rolesDireccion = [
                         </div>
                         <div class="card-body">
                             <form id="frmSupervisiones" method="post" autocomplete="off" onsubmit="guardarForm('frmSupervisiones', event)">
-                                <!-- Campos técnicos -->
-                                <div class="campos-tecnicos mb-3 px-3 border rounded bg-light hidden">
-                                    <h5 class="text-secondary mb-3">Campos Técnicos</h5>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_supervision" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id_supervision" name="id_supervision" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_avances_supervision_sup" class="form-label">ID Avances Supervisión</label>
-                                            <input type="text" class="form-control" id="id_avances_supervision_sup" name="id_avances_supervision_sup" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="ruc_supervision" class="form-label">RUC</label>
-                                            <input type="text" class="form-control" id="ruc_supervision" name="ruc_supervision" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="cod_unico_supervision" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_supervision" name="cod_unico_supervision" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 <!-- Proceso de Solicitud -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Proceso de Solicitud</h5>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="id_supervision" class="form-label">ID Supervisión</label>
+                                            <input type="text" class="form-control" id="id_supervision" name="id_supervision" required>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
                                             <label for="fec_solicitud" class="form-label">Fecha Solicitud</label>
                                             <input type="date" class="form-control" id="fec_solicitud" name="fec_solicitud">
                                         </div>
@@ -397,34 +378,15 @@ $rolesDireccion = [
                         </div>
                         <div class="card-body">
                             <form id="frmCorrectivas" method="post" autocomplete="off" onsubmit="guardarForm('frmCorrectivas', event)">
-                                <!-- Campos técnicos -->
-                                <div class="campos-tecnicos mb-3 px-3 border rounded bg-light hidden">
-                                    <h5 class="text-secondary mb-3">Campos Técnicos</h5>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_correctiva" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id_correctiva" name="id_correctiva" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="id_supervision_corr" class="form-label">ID Supervisión</label>
-                                            <input type="text" class="form-control" id="id_supervision_corr" name="id_supervision_corr" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="ruc_correctiva" class="form-label">RUC</label>
-                                            <input type="text" class="form-control" id="ruc_correctiva" name="ruc_correctiva" required>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="cod_unico_correctiva" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_correctiva" name="cod_unico_correctiva" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 <!-- Reunión y Comunicación -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Reunión y Comunicación</h5>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="id_correctiva" class="form-label">ID Correctivas</label>
+                                            <input type="text" class="form-control" id="id_correctiva" name="id_correctiva" required>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
                                             <label for="fec_reunion_comunicacion_resultados" class="form-label">Fecha Reunión Comunicación Resultados</label>
                                             <input type="date" class="form-control" id="fec_reunion_comunicacion_resultados" name="fec_reunion_comunicacion_resultados">
                                         </div>
