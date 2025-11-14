@@ -1,7 +1,3 @@
-// Expandir y contraer formularios de supervisión
-
-console.log("toggleFormularios.js Funcionando")
-
 // toggleFormularios.js - Funcionalidad para expandir y contraer formularios
 
 // Función para inicializar los botones de expandir/contraer
@@ -95,7 +91,9 @@ function expandirTodosFormularios() {
 // Función para contraer todos los formularios
 function contraerTodosFormularios() {
     document.querySelectorAll('[id^="s"]').forEach(formulario => {
-        contraerFormulario(formulario.id);
+        if(formulario.id !== 'sAvancesSupervision' && formulario.id !== 'sDatosEntidad') { // Mantener el formulario de Avances de Supervisión expandido
+            contraerFormulario(formulario.id);
+        }
     });
     console.log('Todos los formularios contraídos');
 }
@@ -166,6 +164,7 @@ function agregarControlesGlobales() {
     }
 }
  */
+
 // Función para actualizar el estado de los botones toggle después de mostrar formularios
 function actualizarToggleFormularios() {
     // Asegurarse de que los formularios visibles estén expandidos

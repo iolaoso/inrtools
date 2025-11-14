@@ -11,7 +11,7 @@
                         onkeyup="filtrarEntidades()" placeholder="Filtrar Entidad...">
                 </div>
                 <div class="mb-3">
-                    <label for="entidadesList" class="form-label">Entidades Activas</label>
+                    <label for="entidadesList" class="form-label">Entidades</label>
                     <ul class="list-group scrollable-list" id="entidadesList">
                         <?php foreach ($entidadesActSf as $entidadSF): ?>
                         <li class="list-group-item list-group-item-action"

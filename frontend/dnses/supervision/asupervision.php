@@ -46,24 +46,37 @@ $rolesDireccion = [
                 <h1 class="display-6 tituloPagina">Avances de Supervisión</h1>
                 <p>Estado de los procesos de supervisión implementados por la INR</p>
             </div>
-            
+
             <!-- CUERPO DE LA PAGINA -->
 
-            <!-- ENTIDAD -->
-            <section id="sDatosEntidad" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                            <h4>Información de la Entidad</h4>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sDatosEntidad">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmAvancesSupervision" method="post" autocomplete="off" onsubmit="guardarForm('frmAvancesSupervision', event)">
+            <form id="frmDatosFull" method="POST" autocomplete="off" onsubmit="guardarSupervision(this,event)">
+                <!-- div con botones flotantes para guardar, editar o eliminar supervisión -->
+                <div class="floating-buttons mb-3">
+                    <!-- Botones de acción -->
+                    <button type="button" class="btn btn-sm btn-primary me-2" onclick="abrirBuscarSupervisionModal()">
+                        <i class="fas fa-search me-1"></i> Buscar
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-success me-2">
+                        <i class="fas fa-save me-1"></i> Guardar
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning me-2" onclick="eliminarSupervision(idAvanceSupervision,codUnico)">
+                        <i class="fas fa-save me-1"></i> Eliminar
+                    </button>
+                </div>
+
+                <!-- ENTIDAD -->
+                <section id="sDatosEntidad" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                                <h4>Información de la Entidad</h4>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sDatosEntidad">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Datos Entidad -->
                                 <div class="seccion-formulario mb-4">
-                                    <!-- datos ocultos -->
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="id_avances" class="form-label">ID</label>
@@ -105,39 +118,24 @@ $rolesDireccion = [
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Botones de acción -->
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="d-flex justify-content-center mt-4">
-                                                <button type="button" class="btn btn-primary me-3" onclick="abrirBuscarSupervisionModal()">
-                                                    <i class="fas fa-search me-1"></i> Buscar Supervisiones
-                                                </button>
-                                                <button type="button" class="btn btn-outline-secondary" onclick="nuevaSupervision()">
-                                                    <i class="fas fa-plus me-1"></i> Nueva Supervisión
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- AVANCES SUPERVISION -->
-            <section id="sAvancesSupervision" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                            <h4>Avances de Supervisión</h4>
-                            <input type="text" class="form-control form-control-sm w-auto text-center" id="IDcentral" name="IDcentral" placeholder="ID"  disabled>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sAvancesSupervision">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmAvancesSupervision" method="post" autocomplete="off" onsubmit="guardarForm('frmAvancesSupervision', event)">                              
+                <!-- AVANCES SUPERVISION -->
+                <section id="sAvancesSupervision" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                                <h4>Avances de Supervisión</h4>
+                                <input type="text" class="form-control form-control-sm w-auto text-center" id="IDcentral" name="IDcentral" placeholder="ID" disabled>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sAvancesSupervision">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Información General -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Información General</h5>
@@ -147,12 +145,13 @@ $rolesDireccion = [
                                             <select class="form-control" id="estrategia" name="estrategia" required>
                                                 <option value="">Seleccione una Estrategia</option>
                                                 <?php foreach ($estrategias as $estrategia): ?>
-                                                <option value="<?= htmlspecialchars($estrategia['ID']) ?>">
-                                                <?= htmlspecialchars($estrategia['ESTRATEGIA']) ?>
-                                                </option>
+                                                    <option value="<?= htmlspecialchars($estrategia['ID']) ?>">
+                                                        <?= htmlspecialchars($estrategia['ESTRATEGIA']) ?>
+                                                    </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                        </div><div class="col-md-6 mb-3">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
                                             <label for="fase" class="form-label">Fase</label>
                                             <select class="form-control" id="fase" name="fase" required>
                                                 <option value="0">Seleccione...</option>
@@ -163,13 +162,13 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="analistaSelect" class="form-label">Responsable</label>
-                                            <select class="form-control" id="analistaSelect" name="analistaSelect" 
-                                            onchange="actualizarAnalista()">
+                                            <select class="form-control" id="analistaSelect" name="analistaSelect"
+                                                onchange="actualizarAnalista()">
                                                 <option value="">Seleccione un analista</option>
                                                 <?php foreach ($analistas as $analista): ?>
-                                                <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                                </option>
+                                                    <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
+                                                        <?= htmlspecialchars($analista['NOMBRE']) ?>
+                                                    </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -212,26 +211,24 @@ $rolesDireccion = [
                                                 <input type="number" class="form-control" id="porc_avance" name="porc_avance" min="0" max="100" required>
                                                 <span class="input-group-text">%</span>
                                             </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- SUPERVISIONES -->
-            <section id="sSupervisiones" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                            <h4 class="mb-0">Supervisiones</h4>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sSupervisiones">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmSupervisiones" method="post" autocomplete="off" onsubmit="guardarForm('frmSupervisiones', event)">
+                <!-- SUPERVISIONES -->
+                <section id="sSupervisiones" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                                <h4 class="mb-0">Supervisiones</h4>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sSupervisiones">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Proceso de Solicitud -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Proceso de Solicitud</h5>
@@ -299,8 +296,8 @@ $rolesDireccion = [
                                             <input type="date" class="form-control" id="fec_informe_final" name="fec_informe_final">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="num_informe_final" class="form-label">Número Informe Final</label>
-                                            <input type="text" class="form-control" id="num_informe_final" name="num_informe_final" style="text-transform: uppercase;">
+                                            <label for="informe_final" class="form-label">Número Informe Final</label>
+                                            <input type="text" class="form-control" id="informe_final" name="informe_final" style="text-transform: uppercase;">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -350,34 +347,22 @@ $rolesDireccion = [
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Botones de acción -->
-                                <div class="d-flex justify-content-between mt-4">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="limpiarForm('frmSupervisiones')">
-                                        <i class="fas fa-eraser me-1"></i> Limpiar Formulario
-                                    </button>
-                                    <button type="submit" class="btn btn-info btn-sm">
-                                        <i class="fas fa-save me-1"></i> Guardar Registro
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- CORRECTIVAS -->
-            <section id="sCorrectivas" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
-                            <h4>Correctivas</h4>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sCorrectivas">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmCorrectivas" method="post" autocomplete="off" onsubmit="guardarForm('frmCorrectivas', event)">
+                <!-- CORRECTIVAS -->
+                <section id="sCorrectivas" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                                <h4>Correctivas</h4>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sCorrectivas">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Reunión y Comunicación -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Reunión y Comunicación</h5>
@@ -411,37 +396,25 @@ $rolesDireccion = [
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Botones de acción -->
-                                <div class="d-flex justify-content-between mt-4">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="limpiarForm('frmCorrectivas')">
-                                        <i class="fas fa-eraser me-1"></i> Limpiar Formulario
-                                    </button>
-                                    <button type="submit" class="btn btn-warning btn-sm">
-                                        <i class="fas fa-save me-1"></i> Guardar Registro
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- SUPERVISION PSI -->
-            <section id="sSupervisionPsi" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-                            <h4>Supervisión PSI</h4>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sSupervisionPsi">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmSupervisionPsi" method="post" autocomplete="off" onsubmit="guardarForm('frmSupervisionPsi', event)">
+                <!-- SUPERVISION PSI -->
+                <section id="sSupervisionPsi" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                                <h4>Supervisión PSI</h4>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sSupervisionPsi">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Campos técnicos -->
-                                
-                                
+
+
                                 <!-- Resolución PSI -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Resolución PSI</h5>
@@ -526,34 +499,22 @@ $rolesDireccion = [
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Botones de acción -->
-                                <div class="d-flex justify-content-between mt-4">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="limpiarForm('frmSupervisionPsi')">
-                                        <i class="fas fa-eraser me-1"></i> Limpiar Formulario
-                                    </button>
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        <i class="fas fa-save me-1"></i> Guardar Registro
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- SEGUIMIENTO PSI -->
-            <section id="sSeguimientoPsi" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                            <h4>Seguimiento PSI</h4>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sSeguimientoPsi">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmSeguimientoPsi" method="post" autocomplete="off" onsubmit="guardarForm('frmSeguimientoPsi', event)">
+                <!-- SEGUIMIENTO PSI -->
+                <section id="sSeguimientoPsi" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                                <h4>Seguimiento PSI</h4>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sSeguimientoPsi">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Informe de Seguimiento -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Informe de Seguimiento</h5>
@@ -606,34 +567,22 @@ $rolesDireccion = [
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Botones de acción -->
-                                <div class="d-flex justify-content-between mt-4">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="limpiarForm('frmSeguimientoPsi')">
-                                        <i class="fas fa-eraser me-1"></i> Limpiar Formulario
-                                    </button>
-                                    <button type="submit" class="btn btn-dark btn-sm">
-                                        <i class="fas fa-save me-1"></i> Guardar Registro
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- LEVANTAMIENTO PSI -->
-            <section id="sLevantamientoPsi" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
-                            <h4>Levantamiento PSI</h4>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sLevantamientoPsi">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmLevantamientoPsi" method="post" autocomplete="off" onsubmit="guardarForm('frmLevantamientoPsi', event)">
+                <!-- LEVANTAMIENTO PSI -->
+                <section id="sLevantamientoPsi" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                                <h4>Levantamiento PSI</h4>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sLevantamientoPsi">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Solicitud de Cierre PSI -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Solicitud de Cierre PSI</h5>
@@ -722,39 +671,27 @@ $rolesDireccion = [
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Entrega Informe</h5>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="fec_entrega_infmr" class="form-label">Fecha Entrega Informe</label>
+                                            <label for="fec_entrega_infmr" class="form-label">Fecha Entrega Informe INFMR</label>
                                             <input type="date" class="form-control" id="fec_entrega_infmr" name="fec_entrega_infmr">
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Botones de acción -->
-                                <div class="d-flex justify-content-between mt-4">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="limpiarForm('frmLevantamientoPsi')">
-                                        <i class="fas fa-eraser me-1"></i> Limpiar Formulario
-                                    </button>
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-save me-1"></i> Guardar Registro
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- LIQUIDACIÓN -->
-            <section id="sLiquidacion" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                            <h4>Liquidación</h4>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sLiquidacion">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmLiquidacion" method="post" autocomplete="off" onsubmit="guardarForm('frmLiquidacion', event)">
+                <!-- LIQUIDACIÓN -->
+                <section id="sLiquidacion" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                                <h4>Liquidación</h4>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sLiquidacion">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Informe Final -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Informe Final</h5>
@@ -764,8 +701,8 @@ $rolesDireccion = [
                                             <input type="text" class="form-control" id="id_liquidacion" name="id_liquidacion" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="num_informe_final" class="form-label">Número Informe Final</label>
-                                            <input type="text" class="form-control" id="num_informe_final" name="num_informe_final" style="text-transform: uppercase;">
+                                            <label for="num_informe_final_liq" class="form-label">Número Informe Final</label>
+                                            <input type="text" class="form-control" id="num_informe_final_liq" name="num_informe_final_liq" style="text-transform: uppercase;">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="fec_informe_final_liq" class="form-label">Fecha Informe Final</label>
@@ -803,34 +740,22 @@ $rolesDireccion = [
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Botones de acción -->
-                                <div class="d-flex justify-content-between mt-4">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="limpiarForm('frmLiquidacion')">
-                                        <i class="fas fa-eraser me-1"></i> Limpiar Formulario
-                                    </button>
-                                    <button type="submit" class="btn btn-secondary btn-sm">
-                                        <i class="fas fa-save me-1"></i> Guardar Registro
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- ALERTAS -->
-            <section id="sAlertas" class="row align-items-stretch">
-                <div class="col-md-12 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
-                            <h4>Alertas</h4>
-                            <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sAlertas">
-                                <i class="fas fa-chevron-up"></i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmAlertas" method="post" autocomplete="off" onsubmit="guardarForm('frmAlertas', event)">
+                <!-- ALERTAS -->
+                <section id="sAlertas" class="row align-items-stretch">
+                    <div class="col-md-12 mb-3">
+                        <div class="card h-100 d-flex flex-column border-secondary">
+                            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                                <h4>Alertas</h4>
+                                <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sAlertas">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
                                 <!-- Campos técnicos -->
                                 <div class="campos-tecnicos mb-3 px-3 border rounded bg-light hidden">
                                     <h5 class="text-secondary mb-3">Campos Técnicos</h5>
@@ -853,7 +778,7 @@ $rolesDireccion = [
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Información de Alerta -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Información de Alerta</h5>
@@ -935,21 +860,11 @@ $rolesDireccion = [
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Botones de acción -->
-                                <div class="d-flex justify-content-between mt-4">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="limpiarForm('frmAlertas')">
-                                        <i class="fas fa-eraser me-1"></i> Limpiar Formulario
-                                    </button>
-                                    <button type="submit" class="btn btn-warning btn-sm">
-                                        <i class="fas fa-save me-1"></i> Guardar Registro
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </form>
         </main>
     </div>
     <!-- -->
@@ -968,8 +883,10 @@ $rolesDireccion = [
     <?php include_once BASE_PATH . 'frontend/partials/scripts.php'; ?>
 
     <!-- Incluir el archivo AJAX -->
+    <script src="<?php echo $base_url; ?>/assets/js/supervision/crudSupervision.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/supervision/bucarSupervisiones.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/supervision/toggleFormularios.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/supervision/asupervision.js"></script>
 </body>
+
 </html>

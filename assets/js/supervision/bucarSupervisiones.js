@@ -1,5 +1,5 @@
 // buscarSupervisiones.js
-console.log('buscarSupervisiones.js cargado');
+
 
 // Función para abrir el modal de búsqueda
 function abrirBuscarSupervisionModal() {
@@ -18,6 +18,8 @@ function abrirBuscarSupervisionModal() {
     // Mostrar el modal
     const modal = new bootstrap.Modal(document.getElementById('buscarSupervisionModal'));
     modal.show();
+    //limpiar resultados previos
+    mostrarResultadosSupervisiones([]);
 }
 
 // Función para buscar supervisiones por RUC
@@ -102,9 +104,9 @@ function mostrarResultadosSupervisiones(supervisiones) {
                 <td>${supervision.estrategia || 'No especificado'}</td>
                 <td>${supervision.fase || 'No especificado'}</td>
                 <td>
-                    <span class="btn btn-sm ${obtenerClaseEstado(supervision.estado)} text-center w-100">
+                    <button class="btn btn-sm ${obtenerClaseEstado(supervision.estado)} text-center text-white w-100" disabled>
                         ${supervision.estado || 'Desconocido'}
-                    </span>
+                    </button>
                 </td>
                 <td>
                     <button type="button" 
@@ -120,22 +122,21 @@ function mostrarResultadosSupervisiones(supervisiones) {
     tbody.innerHTML = html;
 }
 
-// Función para obtener clase CSS según el estado
-
+// Función para obtener la clase CSS según el estado
 function obtenerClaseEstado(estado) {
-    const clases = {
-        'No Iniciada': 'bg-secondary',
-        'En Proceso': 'bg-warning text-dark',
-        'Cerrado': 'bg-success',
-        
-        'Completado': 'bg-success',
-        'Suspendido': 'bg-danger',
-        'Pendiente': 'bg-info',
-        'En revisión': 'bg-primary',
-        'Aprobado': 'bg-success'
-    };
-    return clases[estado] || 'bg-secondary';
+	const clases = {
+		'No Iniciada': 'bg-secondary',
+		'En Proceso': 'bg-warning text-dark',
+		'Cerrado': 'bg-success',
+		'Completado': 'bg-success',
+		'Suspendido': 'bg-danger',
+		'Pendiente': 'bg-info',
+		'En revisión': 'bg-primary',
+		'Aprobado': 'bg-success'
+	};
+	return clases[estado] || 'bg-secondary';
 }
+
 
 // Función para seleccionar una supervisión
 function seleccionarSupervision(idSupervision) {
@@ -203,7 +204,7 @@ async function cargarDatosSupervision(supervisionId) {
             document.getElementById('fec_respuesta').value = supevisonData.FEC_RESPUESTA;
             document.getElementById('num_oficio_respuesta').value = supevisonData.NUM_OFICIO_RESPUESTA;
             document.getElementById('fec_informe_final').value = supevisonData.FEC_INFORME_FINAL;
-            document.getElementById('num_informe_final').value = supevisonData.NUM_INFORME_FINAL;
+            document.getElementById('informe_final').value = supevisonData.NUM_INFORME_FINAL;
             document.getElementById('fec_comunicacion_final').value = supevisonData.FEC_COMUNICACION_FINAL;
             document.getElementById('fec_limite_plan_accion').value = supevisonData.FEC_LIMITE_PLAN_ACCION;
             document.getElementById('fec_insistencia_plan_accion').value = supevisonData.FEC_INSISTENCIA_PLAN_ACCION;
@@ -255,7 +256,7 @@ async function cargarDatosSupervision(supervisionId) {
             document.getElementById('fec_entrega_infmr').value = supevisonData.FEC_ENTREGA_INFMR;
             // campos de liquidación
             document.getElementById('id_liquidacion').value = supevisonData.LIQ_ID;
-            document.getElementById('num_informe_final').value = supevisonData.LIQ_NUM_INFORME_FINAL;
+            document.getElementById('num_informe_final_liq').value = supevisonData.LIQ_NUM_INFORME_FINAL;
             document.getElementById('fec_informe_final_liq').value = supevisonData.LIQ_FEC_INFORME_FINAL;
             document.getElementById('memo_comunicacion_igt').value = supevisonData.MEMO_COMUNICACION_IGT;
             document.getElementById('fec_comunicacion_igt').value = supevisonData.FEC_COMUNICACION_IGT;

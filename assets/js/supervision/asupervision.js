@@ -2,20 +2,6 @@
 
 console.log("gestionFormularios.js Funcionando")
 
-// Mapeo de estrategias a formularios
-const estrategiaFormularios = {
-    '1': ['sSupervisiones'], // Supervisión Preventiva
-    '11': ['sSupervisiones','sCorrectivas'], // Supervisión Correctiva (usa el mismo formulario con diferentes campos)
-    '22': ['sSupervisiones','sCorrectivas','sSupervisionPsi'], // PSI
-    '35': ['sSupervisionPsi','sLevantamientoPsi'], // Levantamiento PSI
-    '42': ['sSupervisionPsi','sSeguimientoPsi'], // Seguimiento PSI
-    '48': ['sLiquidacion'], // Mecanismo de Resolución con PSI Ext
-    '53': ['sSupervisionPsi','sLevantamientoPsi'], // Terminación PSI Extra Situ (usa Levantamiento PSI)
-    '56': ['sAlertas'], // Alerta Preventiva
-    '62': ['sAlertas'] // Alerta Correctiva
-};
-
-
 // Inicialización cuando el documento esté listo
 document.addEventListener('DOMContentLoaded', function() {
     inicializarGestionFormularios();
@@ -43,30 +29,39 @@ function inicializarGestionFormularios() {
     }
 }
 
-function manejarCambioEstrategia() {
-    const estrategia = document.getElementById('estrategia').value;
-    const estrategiaText = document.getElementById('estrategia').options[document.getElementById('estrategia').selectedIndex].text; 
+
+async function manejarCambioEstrategia() {
+    const estrategiaSelect = document.getElementById('estrategia');
+    const estrategia = estrategiaSelect.value;
+    const estrategiaText = estrategiaSelect.options[estrategiaSelect.selectedIndex].text; 
     const selectFase = document.getElementById('fase');
     
-    // Ocultar todos los formularios 
+    // Ocultar todo inmediatamente
     ocultarTodosLosFormularios();
-       
-    //console.log(`Estrategia seleccionada: ${estrategia} - ${estrategiaText}`);
-
-    if (estrategia !== '0') {
-        // Actualizar opciones de fase (backend)
-        actualizarOpcionesFase(estrategiaText);
-                
-        // Mostrar formulario correspondiente
+    
+    if (estrategia === '0') {
+        selectFase.innerHTML = '<option value="0">Seleccione...</option>';
+        return;
+    }
+    
+    try {
+        // Loading state
+        selectFase.innerHTML = '<option value="0">Cargando...</option>';
+        selectFase.disabled = true;
+        
+        // Ejecutar en secuencia
+        await actualizarOpcionesFase(estrategiaText);
+        
         const formularioId = estrategiaFormularios[estrategia];
         if (formularioId) {
-            mostrarFormulario(formularioId);
+            await mostrarFormulario(formularioId);
         }
         
-    } else {
-        // Si no hay estrategia seleccionada, ocultar todo
-        if (selectFase) selectFase.innerHTML = '<option value="0">Seleccione...</option>';
-        if (selectEstado) selectEstado.innerHTML = '<option value="">Seleccione...</option>';
+    } catch (error) {
+        console.error('Error:', error);
+        selectFase.innerHTML = '<option value="0">Error</option>';
+    } finally {
+        selectFase.disabled = false;
     }
 }
 
@@ -190,8 +185,22 @@ async function obtenerFasesPorEstrategia(estrategiaText) {
 /* ************************************************************* */
 /* logica para mostrar u ocultar los formularios  */
 
+// Mapeo que seccion mostrar en cada caso
+const estrategiaFormularios = {
+    '1': ['sSupervisiones'], // Supervisión Preventiva
+    '11': ['sSupervisiones','sCorrectivas'], // Supervisión Correctiva (usa el mismo formulario con diferentes campos)
+    '22': ['sSupervisiones','sCorrectivas','sSupervisionPsi'], // PSI
+    '35': ['sSupervisiones','sCorrectivas','sSupervisionPsi','sSeguimientoPsi','sLevantamientoPsi'], // Levantamiento PSI
+    '42': ['sSupervisiones','sCorrectivas','sSupervisionPsi','sSeguimientoPsi'], // Seguimiento PSI
+    '48': ['sSupervisiones','sCorrectivas','sLiquidacion'], // Mecanismo de Resolución con PSI Ext
+    '53': ['sSupervisiones','sCorrectivas','sSupervisionPsi','sSeguimientoPsi','sLevantamientoPsi'], // Terminación PSI Extra Situ (usa Levantamiento PSI)
+    '56': ['sAlertas'], // Alerta Preventiva
+    '62': ['sAlertas'] // Alerta Correctiva
+};
+
 function ocultarTodosLosFormularios() {
     const formularios = [
+        'sAvancesSupervision',
         'sSupervisiones',
         'sCorrectivas', 
         'sSupervisionPsi',
@@ -210,6 +219,7 @@ function ocultarTodosLosFormularios() {
 }
 
 function mostrarFormulario(formularioId) {
+     mostrarFormularioIndividual('sAvancesSupervision'); // Mostrar siempre el formulario de avances    
     // Si recibe un array, procesa múltiples formularios
     if (Array.isArray(formularioId)) {
         formularioId.forEach(id => {
@@ -234,7 +244,7 @@ function mostrarFormulario(formularioId) {
         mostrarFormularioIndividual(formularioId);
         
         // Scroll suave al formulario mostrado
-        setTimeout(() => {
+        /* setTimeout(() => {
             const formulario = document.getElementById(formularioId);
             if (formulario) {
                 formulario.scrollIntoView({ 
@@ -242,8 +252,9 @@ function mostrarFormulario(formularioId) {
                     block: 'start' 
                 });
             }
-        }, 300);
+        }, 300); */
     }
+    contraerTodosFormularios()
 }
 
 // Función auxiliar para mostrar un formulario individual
@@ -272,13 +283,7 @@ function ocultarSeccionEstado() {
 // Función para limpiar todos los formularios
 function limpiarTodosLosFormularios() {
     const formularios = [
-        'frmSupervisiones',
-        'frmCorrectivas',
-        'frmSupervisionPsi', 
-        'frmSeguimientoPsi',
-        'frmLevantamientoPsi',
-        'frmLiquidacion',
-        'frmAlertas'
+        'frmDatosFull'
     ];
     
     formularios.forEach(formId => {

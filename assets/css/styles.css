@@ -263,3 +263,32 @@ thead {
     width: auto;
     max-width: 600px;
 }
+
+
+/* estilos para los botones flotantes*/
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #dee2e6;
+    backdrop-filter: blur(5px);
+}
+
+.floating-buttons .btn {
+    min-width: 180px;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+}
+
+.floating-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

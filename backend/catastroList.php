@@ -16,8 +16,8 @@ function entidadesActivasSf()
                 ,FEC_ULT_BALANCE
                 ,UPPER(NVL_RIESGO) AS NVL_RIESGO
             FROM catastrosf
-            WHERE FECHA_CORTE = (SELECT MAX(FECHA_CORTE) FROM catastrosf)
-            AND ESTADO_JURIDICO= 'ACTIVA'";
+            WHERE FECHA_CORTE = (SELECT MAX(FECHA_CORTE) FROM catastrosf)";
+            /* AND ESTADO_JURIDICO= 'ACTIVA'"; */
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     return $stmt->get_result();
