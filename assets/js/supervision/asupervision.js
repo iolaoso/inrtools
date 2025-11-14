@@ -54,7 +54,7 @@ async function manejarCambioEstrategia() {
         
         const formularioId = estrategiaFormularios[estrategia];
         if (formularioId) {
-            await mostrarFormulario(formularioId);
+            mostrarFormulario(formularioId);
         }
         
     } catch (error) {
@@ -227,7 +227,7 @@ function mostrarFormulario(formularioId) {
         });
         
         // Scroll suave al primer formulario del array
-        if (formularioId.length > 0) {
+        /* if (formularioId.length > 0) {
             setTimeout(() => {
                 const primerFormulario = document.getElementById(formularioId[0]);
                 if (primerFormulario) {
@@ -237,7 +237,7 @@ function mostrarFormulario(formularioId) {
                     });
                 }
             }, 300);
-        }
+        } */
     } 
     // Si recibe un string, procesa un solo formulario
     else if (typeof formularioId === 'string') {
@@ -254,7 +254,9 @@ function mostrarFormulario(formularioId) {
             }
         }, 300); */
     }
-    contraerTodosFormularios()
+    
+    // APLICAR REQUIRED DINÁMICOS después de mostrar los formularios
+    aplicarRequiredDinamicos();
 }
 
 // Función auxiliar para mostrar un formulario individual

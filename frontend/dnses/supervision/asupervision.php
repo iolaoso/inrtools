@@ -49,7 +49,7 @@ $rolesDireccion = [
 
             <!-- CUERPO DE LA PAGINA -->
 
-            <form id="frmDatosFull" method="POST" autocomplete="off" onsubmit="guardarSupervision(this,event)">
+            <form id="frmDatosFull" method="POST" autocomplete="off" onsubmit="return guardarSupervision(event);">
                 <!-- BOTONES FLOTANTES -->
                 <div class="floating-buttons mb-3">
                     <!-- Botones de acción -->
@@ -193,7 +193,7 @@ $rolesDireccion = [
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="estadoSupervision" class="form-label">Estado Supervisión</label>
-                                            <input type="text" class="form-control" id="estadoSupervision" name="estadoSupervision" required style="text-transform: uppercase;">
+                                            <input type="text" class="form-control" id="estadoSupervision" name="estadoSupervision"  style="text-transform: uppercase;" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -204,11 +204,11 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="fec_asig" class="form-label">Fecha Asignación</label>
-                                            <input type="date" class="form-control" id="fec_asig" name="fec_asig" required>
+                                            <input type="date" class="form-control" id="fec_asig" name="fec_asig" redquired>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="anio_plan" class="form-label">Año Planificado</label>
-                                            <input type="number" class="form-control" id="anio_plan" name="anio_plan" min="2020" max="2030" required>
+                                            <input type="number" class="form-control" id="anio_plan" name="anio_plan" min="2020" max="2050" required>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="trim_plan" class="form-label">Trimestre Planificado</label>
@@ -223,7 +223,7 @@ $rolesDireccion = [
                                         <div class="col-md-3 mb-3">
                                             <label for="porc_avance" class="form-label">Porcentaje de Avance</label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control" id="porc_avance" name="porc_avance" min="0" max="100" required>
+                                                <input type="number" class="form-control" id="porc_avance" name="porc_avance" min="0" max="100" readonly>
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
@@ -250,7 +250,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_supervision" class="form-label">ID Supervisión</label>
-                                            <input type="text" class="form-control" id="id_supervision" name="id_supervision" required>
+                                            <input type="text" class="form-control" id="id_supervision" name="id_supervision" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fec_solicitud" class="form-label">Fecha Solicitud</label>
@@ -384,7 +384,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_correctiva" class="form-label">ID Correctivas</label>
-                                            <input type="text" class="form-control" id="id_correctiva" name="id_correctiva" required>
+                                            <input type="text" class="form-control" id="id_correctiva" name="id_correctiva" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fec_reunion_comunicacion_resultados" class="form-label">Fecha Reunión Comunicación Resultados</label>
@@ -436,7 +436,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_supervision_psi" class="form-label">ID PSI</label>
-                                            <input type="text" class="form-control" id="id_supervision_psi" name="id_supervision_psi" required>
+                                            <input type="text" class="form-control" id="id_supervision_psi" name="id_supervision_psi" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fec_resolucion_psi" class="form-label">Fecha Resolución PSI</label>
@@ -536,7 +536,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_seguimiento_psi" class="form-label">ID Seguimiento PSI</label>
-                                            <input type="text" class="form-control" id="id_seguimiento_psi" name="id_seguimiento_psi" required>
+                                            <input type="text" class="form-control" id="id_seguimiento_psi" name="id_seguimiento_psi" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="num_informe_seguimiento" class="form-label">Número Informe Seguimiento</label>
@@ -604,7 +604,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_levantamiento_psi" class="form-label">ID Levantamiente PSI</label>
-                                            <input type="text" class="form-control" id="id_levantamiento_psi" name="id_levantamiento_psi" required>
+                                            <input type="text" class="form-control" id="id_levantamiento_psi" name="id_levantamiento_psi" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="mem_solicitud_cierre_psi" class="form-label">Memorando Solicitud Cierre</label>
@@ -713,7 +713,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_liquidacion" class="form-label">ID Liquidación</label>
-                                            <input type="text" class="form-control" id="id_liquidacion" name="id_liquidacion" required>
+                                            <input type="text" class="form-control" id="id_liquidacion" name="id_liquidacion" readonly>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="num_informe_final_liq" class="form-label">Número Informe Final</label>
@@ -777,19 +777,19 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_alerta" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id_alerta" name="id_alerta" required>
+                                            <input type="text" class="form-control" id="id_alerta" name="id_alerta" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="id_avances_supervision_alert" class="form-label">ID Avances Supervisión</label>
-                                            <input type="text" class="form-control" id="id_avances_supervision_alert" name="id_avances_supervision_alert" required>
+                                            <input type="text" class="form-control" id="id_avances_supervision_alert" name="id_avances_supervision_alert" >
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="ruc_alerta" class="form-label">RUC</label>
-                                            <input type="text" class="form-control" id="ruc_alerta" name="ruc_alerta" required>
+                                            <input type="text" class="form-control" id="ruc_alerta" name="ruc_alerta" >
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="cod_unico_alerta" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_alerta" name="cod_unico_alerta" required>
+                                            <input type="text" class="form-control" id="cod_unico_alerta" name="cod_unico_alerta" >
                                         </div>
                                     </div>
                                 </div>
@@ -898,6 +898,7 @@ $rolesDireccion = [
     <?php include_once BASE_PATH . 'frontend/partials/scripts.php'; ?>
 
     <!-- Incluir el archivo AJAX -->
+    <script src="<?php echo $base_url; ?>/assets/js/supervision/requiredSupervision.js"></script> 
     <script src="<?php echo $base_url; ?>/assets/js/supervision/crudSupervision.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/supervision/bucarSupervisiones.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/supervision/toggleFormularios.js"></script>
