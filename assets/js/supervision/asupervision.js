@@ -292,6 +292,7 @@ function limpiarTodosLosFormularios() {
             form.reset();
         }
     });
+    ocultarTodosLosFormularios();
 }
 
 // Función para obtener la estrategia actual seleccionada

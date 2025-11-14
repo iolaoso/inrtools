@@ -268,7 +268,7 @@ thead {
 /* estilos para los botones flotantes*/
 .floating-buttons {
     position: fixed;
-    bottom: 20px;
+    bottom: 40%;
     right: 20px;
     z-index: 1000;
     display: flex;

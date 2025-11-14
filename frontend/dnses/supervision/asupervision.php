@@ -50,17 +50,23 @@ $rolesDireccion = [
             <!-- CUERPO DE LA PAGINA -->
 
             <form id="frmDatosFull" method="POST" autocomplete="off" onsubmit="guardarSupervision(this,event)">
-                <!-- div con botones flotantes para guardar, editar o eliminar supervisión -->
+                <!-- BOTONES FLOTANTES -->
                 <div class="floating-buttons mb-3">
                     <!-- Botones de acción -->
                     <button type="button" class="btn btn-sm btn-primary me-2" onclick="abrirBuscarSupervisionModal()">
                         <i class="fas fa-search me-1"></i> Buscar
                     </button>
+                    <button type="button" class="btn btn-sm btn-danger me-2" onclick="nuevoRegistroSupervision()">
+                        <i class="fas fa-plus me-1"></i> Nuevo
+                    </button>
                     <button type="submit" class="btn btn-sm btn-success me-2">
                         <i class="fas fa-save me-1"></i> Guardar
                     </button>
                     <button type="button" class="btn btn-sm btn-warning me-2" onclick="eliminarSupervision(idAvanceSupervision,codUnico)">
-                        <i class="fas fa-save me-1"></i> Eliminar
+                        <i class="fas fa-trash me-1"></i> Eliminar
+                    </button>
+                    <button type="button" class="btn btn-sm btn-info me-2" onclick="limpiarTodosLosFormularios()">
+                        <i class="fas fa-eraser me-1"></i> Limpiar
                     </button>
                 </div>
 
@@ -79,29 +85,19 @@ $rolesDireccion = [
                                 <div class="seccion-formulario mb-4">
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="id_avances" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="id_avances" name="id_avances" required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="cod_unico_avances" class="form-label">Código Único</label>
-                                            <input type="text" class="form-control" id="cod_unico_avances" name="cod_unico_avances" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3 mb-3">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">RUC</span>
                                                 </div>
                                                 <input type="text" class="form-control" id="ruc" name="ruc"
-                                                    oninput="buscarEntidad()" data-page="asupervision.php">
+                                                    oninput="buscarEntidad()" data-page="asupervision.php" required>
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                         data-bs-target="#catastroModal">Buscar</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Segmento</span>
@@ -109,12 +105,26 @@ $rolesDireccion = [
                                                 <input type="text" class="form-control" id="tbsegmento" name="tbsegmento" required>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Razón Social</span>
+                                                <input type="text" class="form-control" id="tbrazonSocial" name="tbrazonSocial" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Razón Social</span>
-                                                </div>
-                                                <input type="text" class="form-control" id="tbrazonSocial" name="tbrazonSocial" required>
+                                                <span class="input-group-text">ID</span>
+                                                <input type="text" class="form-control" id="id_avances" name="id_avances" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Código Único</span>
+                                                <input type="text" class="form-control" id="cod_unico_avances" name="cod_unico_avances" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +140,12 @@ $rolesDireccion = [
                         <div class="card h-100 d-flex flex-column border-secondary">
                             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                                 <h4>Avances de Supervisión</h4>
-                                <input type="text" class="form-control form-control-sm w-auto text-center" id="IDcentral" name="IDcentral" placeholder="ID" disabled>
+                                <div class="div" style="margin-left: auto; margin-top:1%; width: 200px; text-align: center; padding-right: 50px;">
+                                    <div class="input-group mb-3 flex-nowrap">
+                                        <span class="input-group-text" id="basic-addon1">ID</span>
+                                        <input type="text" class="form-control form-control-sm w-auto text-center" id="IDcentral" name="IDcentral" placeholder="ID" disabled>
+                                    </div>
+                                </div>
                                 <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sAvancesSupervision">
                                     <i class="fas fa-chevron-up"></i>
                                 </button>
