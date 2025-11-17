@@ -21,32 +21,32 @@ function aplicarRequiredDinamicos() {
                     //'id_supervision',
                     'fec_solicitud', 
                     'num_oficio_solicitud',
-                    'fec_insistencia', 
-                    'num_oficio_insistencia',
-                    'fec_comunicacion', 
-                    'num_oficio_resultados', 
-                    'fec_limite_entrega',
-                    'fec_respuesta', 
-                    'num_oficio_respuesta',
-                    'fec_informe_final', 
-                    'informe_final',
-                    'fec_comunicacion_final', 
-                    'num_comunicacion_final',
-                    'fec_limite_plan_accion', 
-                    'fec_insistencia_plan_accion', 
-                    'num_insistencia_plan_accion', 
-                    'fec_aprobacion_plan_accion',
-                    'sancion'
+                    //'fec_insistencia', 
+                    //'num_oficio_insistencia',
+                    //'fec_comunicacion', 
+                    //'num_oficio_resultados', 
+                    //'fec_limite_entrega',
+                    //'fec_respuesta', 
+                    //'num_oficio_respuesta',
+                    //'fec_informe_final', 
+                    //'informe_final',
+                    //'fec_comunicacion_final', 
+                    //'num_comunicacion_final',
+                    //'fec_limite_plan_accion', 
+                    //'fec_insistencia_plan_accion', 
+                    //'num_insistencia_plan_accion', 
+                    //'fec_aprobacion_plan_accion',
+                    //'sancion'
                 ]);
                 break;
                 
             case 'sCorrectivas':
                 aplicarRequiredACampos([
                     //'id_correctiva',
-                    'fec_reunion_comunicacion_resultados',
+                    //'fec_reunion_comunicacion_resultados',
                     'fec_aprobacion_pa_fisico', 
                     'num_aprobacion_pa_fisico', 
-                    'fec_aprobacion_pa_sistema'
+                    //'fec_aprobacion_pa_sistema'
                 ]);
                 break;
                 
@@ -55,15 +55,15 @@ function aplicarRequiredDinamicos() {
                     //'id_supervision_psi',
                     'fec_resolucion_psi', 
                     'num_resolucion_psi',
-                    'fec_imposicion_psi', 
-                    'num_oficio_imposicion_psi',
-                    'fec_fin_psi',
-                    'fec_memorando_comunicacion_psi', 
-                    'num_memorando_comunicacion_psi',
-                    'fec_ampliacion_psi', 
-                    'num_ampliacion_psi', 
-                    'fec_informe_ampliacion_psi',
-                     'num_informe_ampliacion_psi'
+                    //'fec_imposicion_psi', 
+                    //'num_oficio_imposicion_psi',
+                    //'fec_fin_psi',
+                    //'fec_memorando_comunicacion_psi', 
+                    //'num_memorando_comunicacion_psi',
+                    //'fec_ampliacion_psi', 
+                    //'num_ampliacion_psi', 
+                    //'fec_informe_ampliacion_psi',
+                    // 'num_informe_ampliacion_psi'
                 ]);
                 break;
                 
@@ -71,12 +71,12 @@ function aplicarRequiredDinamicos() {
                 aplicarRequiredACampos([
                     //'id_seguimiento_psi',
                     'num_informe_seguimiento',
-                     'fec_informe',
-                    'num_oficio_comunicacion_seg_psi', 
-                    'fec_oficio_comunicacion_seg_psi',
-                    'num_of_aprobacion_psi_fisico', 
-                    'fec_aprobacion_psi_fisico', 
-                    'fec_aprobacion_psi_sistema'
+                    'fec_informe',
+                    //'num_oficio_comunicacion_seg_psi', 
+                    //'fec_oficio_comunicacion_seg_psi',
+                    //'num_of_aprobacion_psi_fisico', 
+                    //'fec_aprobacion_psi_fisico', 
+                    //'fec_aprobacion_psi_sistema'
                 ]);
                 break;
                 
@@ -84,17 +84,17 @@ function aplicarRequiredDinamicos() {
                 aplicarRequiredACampos([
                     //'id_levantamiento_psi',
                     'mem_solicitud_cierre_psi',
-                     'fec_mem_solicitud_cierre_psi',
-                    'mem_entrega_informe_cierre_psi', 
-                    'fec_mem_entrega_informe_cierre_psi',
-                    'informe_cierre_psi', 
-                    'fec_informe_cierre_psi',
-                    'resolucion_terminacion_psi', 
-                    'fec_resolucion_terminacion_psi',
-                    'fec_reunion_cierre_psi', 
-                    'fec_oficio_envio_cierre_psi', 
-                    'of_envio_doc_cierre_psi',
-                    'fec_entrega_infmr'
+                    'fec_mem_solicitud_cierre_psi',
+                    //'mem_entrega_informe_cierre_psi', 
+                    //'fec_mem_entrega_informe_cierre_psi',
+                    //'informe_cierre_psi', 
+                    //'fec_informe_cierre_psi',
+                    //'resolucion_terminacion_psi', 
+                    //'fec_resolucion_terminacion_psi',
+                    //'fec_reunion_cierre_psi', 
+                    //'fec_oficio_envio_cierre_psi', 
+                    //'of_envio_doc_cierre_psi',
+                    //'fec_entrega_infmr'
                 ]);
                 break;
                 
@@ -103,28 +103,22 @@ function aplicarRequiredDinamicos() {
                     //'id_liquidacion',
                     'num_informe_final_liq', 
                     'fec_informe_final_liq',
-                    'memo_comunicacion_igt', 
-                    'fec_comunicacion_igt',
-                    'memo_comunicacion_igj', 
-                    'fec_comunicacion_igj'
+                    //'memo_comunicacion_igt', 
+                    //'fec_comunicacion_igt',
+                    //'memo_comunicacion_igj', 
+                    //'fec_comunicacion_igj'
                 ]);
                 break;
                 
             case 'sAlertas':
                 aplicarRequiredACampos([
-                    //'id_alerta', 
-                    'id_avances_supervision_alert', 
-                    'ruc_alerta',
-                     'cod_unico_alerta',
-                    'tipo_alerta', 
-                    'tipo_supervision', 
-                    'estado_proceso', 
-                    'observacion_estado',
-                    'fec_informe_alerta',
-                     'num_informe_alerta',
-                    'fec_of_comunicacion_alerta', 
-                    'num_of_comunicacion_alerta',
-                    'fec_aprobacion_ssi'
+                   //'id_alerta', 
+                   'fec_inicio_sup_a',
+                   'fec_informe_a',
+                   'num_informe_a',
+                   //'fec_of_comunicacion_a',
+                   //'num_of_comunicacion_a',
+                   //'fec_aprobacion_ssi_a'
                 ]);
                 break;
         }
