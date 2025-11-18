@@ -16,7 +16,7 @@ function aplicarRequiredDinamicos() {
         'estadoSupervision', 
         //'fec_asig',
         'anio_plan', 
-        //'trim_plan', 
+        'trim_plan', 
         'porc_avance'
     ];
 

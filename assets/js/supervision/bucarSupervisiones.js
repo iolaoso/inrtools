@@ -306,7 +306,7 @@ async function cargarDatosAlerta(alertaId) {
         // Procesar la respuesta para input text
         if (data.success && data.alerta && Array.isArray(data.alerta) && data.alerta.length > 0) {
             const alertaData = data.alerta[0];
-            document.getElementById('alertaId').value = alertaData.ID;
+            document.getElementById('id_alerta').value = alertaData.ID;
             document.getElementById('tipo_alerta').value = alertaData.TIPO_ALERTA;
             document.getElementById('fec_inicio_supervision_alerta').value = alertaData.FEC_INICIO_SUPERVISION_ALERTA;
             document.getElementById('fec_informe_alerta').value = alertaData.FEC_INFORME_ALERTA;

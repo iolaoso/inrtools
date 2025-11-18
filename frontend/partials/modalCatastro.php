@@ -1,4 +1,4 @@
-<div class="modal fade" id="catastroModal" tabindex="-1" aria-labelledby="catastroModal" aria-hidden="true">
+<div class="modal fade" id="catastroModal" tabindex="-1" aria-labelledby="catastroModal" aria-hidden="true" >
     <div class="modal-dialog modal-custom">
         <div class="modal-content">
             <div class="modal-header">

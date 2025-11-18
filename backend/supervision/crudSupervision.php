@@ -1,5 +1,7 @@
 <?php
 
+use SebastianBergmann\Environment\Console;
+
 include_once __DIR__ . '/../../backend/config.php';
 include_once BASE_PATH . 'backend/session.php';
 include_once BASE_PATH . 'backend/conexiones/db_connection.php'; // Asegúrate de incluir la conexión a la base de datos
@@ -21,68 +23,87 @@ function guardarSupervision($data)
 
     try {
         // 1. GUARDAR EN as_avances_supervision (tabla principal)
-        $queryAvances = "INSERT INTO as_avances_supervision (
-            COD_UNICO, RUC, RAZON_SOCIAL, SEGMENTO, RESPONSABLE, CATALOGO_ID,
-            FEC_ASIG, ANIO_PLAN, TRIM_PLAN, 
-            EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+        if (isset($data['ruc']) && !empty($data['ruc'])) {
+            $queryAvances = "INSERT INTO as_avances_supervision (
+                COD_UNICO, RUC, RAZON_SOCIAL, SEGMENTO, RESPONSABLE, CATALOGO_ID,
+                FEC_ASIG, ANIO_PLAN, TRIM_PLAN, 
+                EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
 
-        $stmtAvances = $conn->prepare($queryAvances);
-        if (!$stmtAvances) {
-            throw new Exception("Error preparando as_avances_supervision: " . $conn->error);
+            $stmtAvances = $conn->prepare($queryAvances);
+            if (!$stmtAvances) {
+                throw new Exception("Error preparando as_avances_supervision: " . $conn->error);
+            }
+
+            $codUnico = uniqid('AS_'); // Generar un código único para COD_UNICO
+
+            // Crear variables para cada parámetro y asegurar que no sean null
+            $ruc = $data['ruc'] ?? '';
+            $razonSocial = $data['tbrazonSocial'] ?? '';
+            $segmento = $data['tbsegmento'] ?? '';
+            $responsable = $data['analista'] ?? '';
+            $catalogoId = $data['fase'] ?? '';
+            $fecAsig = $data['fec_asig'] ?? null;
+            $anioPlan = $data['anio_plan'] ?? null;
+            $trimPlan = $data['trim_plan'] ?? null;
+            $usrCreacion = $data['analista'] ?? 'SISTEMA';
+
+            // Convertir null a valores vacíos o por defecto
+            if ($fecAsig === null) $fecAsig = '';
+            if ($anioPlan === null) $anioPlan = 0;
+            if ($trimPlan === null) $trimPlan = '';
+
+            $stmtAvances->bind_param(
+                "ssssssssss",
+                $codUnico,
+                $ruc,
+                $razonSocial,
+                $segmento,
+                $responsable,
+                $catalogoId,
+                $fecAsig,
+                $anioPlan,
+                $trimPlan,
+                $usrCreacion
+            );
+
+            if (!$stmtAvances->execute()) {
+                throw new Exception("Error ejecutando as_avances_supervision: " . $stmtAvances->error);
+            }
+
+            $idAvancesSupervision = $stmtAvances->insert_id;
+            $stmtAvances->close();
         }
-
-        $codUnico = uniqid('AS_'); // Generar un código único para COD_UNICO
-
-        // Crear variables para cada parámetro y asegurar que no sean null
-        $ruc = $data['ruc'] ?? '';
-        $razonSocial = $data['tbrazonSocial'] ?? '';
-        $segmento = $data['tbsegmento'] ?? '';
-        $responsable = $data['analista'] ?? '';
-        $catalogoId = $data['fase'] ?? '';
-        $fecAsig = $data['fec_asig'] ?? null;
-        $anioPlan = $data['anio_plan'] ?? null;
-        $trimPlan = $data['trim_plan'] ?? null;
-        $usrCreacion = $data['analista'] ?? 'SISTEMA';
-
-        // Convertir null a valores vacíos o por defecto
-        if ($fecAsig === null) $fecAsig = '';
-        if ($anioPlan === null) $anioPlan = 0;
-        if ($trimPlan === null) $trimPlan = '';
-
-        $stmtAvances->bind_param(
-            "ssssssssss",
-            $codUnico,
-            $ruc,
-            $razonSocial,
-            $segmento,
-            $responsable,
-            $catalogoId,
-            $fecAsig,
-            $anioPlan,
-            $trimPlan,
-            $usrCreacion
-        );
-
-        if (!$stmtAvances->execute()) {
-            throw new Exception("Error ejecutando as_avances_supervision: " . $stmtAvances->error);
-        }
-
-        $idAvancesSupervision = $stmtAvances->insert_id;
-        $stmtAvances->close();
-
-
+       
         // 2. GUARDAR EN as_supervisiones (si hay datos)
         if (isset($data['fec_solicitud']) && !empty($data['fec_solicitud'])) {
             $querySupervisiones = "INSERT INTO as_supervisiones (
-                ID_AVANCES_SUPERVISION,
-                RUC, COD_UNICO, FEC_SOLICITUD, NUM_OFICIO_SOLICITUD, 
-                FEC_INSISTENCIA, NUM_OFICIO_INSISTENCIA, FEC_COMUNICACION, NUM_OFICIO_RESULTADOS, 
-                FEC_LIMITE_ENTREGA, FEC_RESPUESTA, NUM_OFICIO_RESPUESTA, FEC_INFORME_FINAL, 
-                NUM_INFORME_FINAL, FEC_COMUNICACION_FINAL, NUM_COMUNICACION_FINAL,
-                FEC_LIMITE_PLAN_ACCION, FEC_INSISTENCIA_PLAN_ACCION, NUM_INSISTENCIA_PLAN_ACCION, 
-                FEC_APROBACION_PLAN_ACCION, SANCION, EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+                ID_AVANCES_SUPERVISION
+                ,RUC
+                ,COD_UNICO
+                ,FEC_SOLICITUD
+                ,NUM_OFICIO_SOLICITUD
+                ,FEC_INSISTENCIA
+                ,NUM_OFICIO_INSISTENCIA
+                ,FEC_COMUNICACION
+                ,NUM_OFICIO_RESULTADOS
+                ,FEC_LIMITE_ENTREGA
+                ,NUM_OFICIO_RESPUESTA
+                ,FEC_RESPUESTA
+                ,FEC_INFORME_FINAL
+                ,NUM_INFORME_FINAL
+                ,FEC_COMUNICACION_FINAL
+                ,NUM_COMUNICACION_FINAL
+                ,FEC_LIMITE_PLAN_ACCION
+                ,FEC_INSISTENCIA_PLAN_ACCION
+                ,NUM_INSISTENCIA_PLAN_ACCION
+                ,FEC_APROBACION_PLAN_ACCION
+                ,SANCION
+                ,EST_REGISTRO
+                ,USR_CREACION
+                ,FECHA_CREACION
+                ,FECHA_ACTUALIZACION
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'ACT',?, NOW(), NOW())";
 
 
             $stmtSupervisiones = $conn->prepare($querySupervisiones);
@@ -98,7 +119,7 @@ function guardarSupervision($data)
                 $fecRespuesta = $data['fec_respuesta'] ?? '';
                 $numOficioRespuesta = $data['num_oficio_respuesta'] ?? '';
                 $fecInformeFinal = $data['fec_informe_final'] ?? '';
-                $numInformeFinal = $data['informe_final'] ?? ''; // Nota: 'informe_final' en lugar de 'num_informe_final'
+                $numInformeFinal = $data['informe_final'] ?? ''; 
                 $fecComunicacionFinal = $data['fec_comunicacion_final'] ?? '';
                 $numComunicacionFinal = $data['num_comunicacion_final'] ?? '';
                 $fecLimitePlanAccion = $data['fec_limite_plan_accion'] ?? '';
@@ -106,8 +127,7 @@ function guardarSupervision($data)
                 $numInsistenciaPlanAccion = $data['num_insistencia_plan_accion'] ?? '';
                 $fecAprobacionPlanAccion = $data['fec_aprobacion_plan_accion'] ?? '';
                 $sancion = $data['sancion'] ?? '';
-                $usrCreacion = $data['analista'] ?? 'SISTEMA';
-
+             
                 // Manejar valores null convirtiéndolos a cadenas vacías
                 if ($fecSolicitud === null) $fecSolicitud = '';
                 if ($numOficioSolicitud === null) $numOficioSolicitud = '';
@@ -129,7 +149,7 @@ function guardarSupervision($data)
                 if ($sancion === null) $sancion = '';
 
                 $stmtSupervisiones->bind_param(
-                    "sssssssssssssssssssss",
+                    "isssssssssssssssssssss",
                     $idAvancesSupervision,            // ID_AVANCES_SUPERVISION
                     $ruc,                             // RUC
                     $codUnico,                        // COD_UNICO
@@ -166,7 +186,7 @@ function guardarSupervision($data)
                 throw new Exception("Error preparando as_supervisiones: " . $conn->error);
             }
         }
-
+ 
         // 3. GUARDAR EN as_correctivas (si hay datos)
         if (isset($data['fec_aprobacion_pa_fisico']) && !empty($data['fec_aprobacion_pa_fisico'])) {
             $queryCorrectivas = "INSERT INTO as_correctivas (
@@ -209,19 +229,34 @@ function guardarSupervision($data)
 
                 $idCorrectiva = $stmtCorrectivas->insert_id;
                 $stmtCorrectivas->close();
-                
+
                 error_log("Insertado en as_correctivas. ID: $idCorrectiva");
             }
         }
 
         // 4. GUARDAR EN as_supervision_psi (si hay datos)
-        if (isset($data['id_supervision_psi']) && !empty($data['id_supervision_psi'])) {
+        if (isset($data['num_resolucion_psi']) && !empty($data['num_resolucion_psi'])) {
             $querySupervisionPsi = "INSERT INTO as_supervision_psi (
-                ID_AVANCES_SUPERVISION, ID_SUPERVISION, RUC, COD_UNICO, FEC_RESOLUCION_PSI, NUM_RESOLUCION_PSI, 
-                FEC_IMPOSICION_PSI, NUM_OFICIO_IMPOSICION_PSI, FEC_FIN_PSI, FEC_MEMORANDO_COMUNICACION_PSI, 
-                NUM_MEMORANDO_COMUNICACION_PSI, FEC_AMPLIACION_PSI, NUM_AMPLIACION_PSI, FEC_INFORME_AMPLIACION_PSI, 
-                NUM_INFORME_AMPLIACION_PSI, EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+                ID_AVANCES_SUPERVISION
+                ,ID_SUPERVISION
+                ,RUC
+                ,COD_UNICO
+                ,FEC_RESOLUCION_PSI
+                ,NUM_RESOLUCION_PSI
+                ,FEC_IMPOSICION_PSI
+                ,NUM_OFICIO_IMPOSICION_PSI
+                ,FEC_FIN_PSI
+                ,FEC_MEMORANDO_COMUNICACION_PSI
+                ,NUM_MEMORANDO_COMUNICACION_PSI
+                ,FEC_AMPLIACION_PSI
+                ,NUM_AMPLIACION_PSI
+                ,FEC_INFORME_AMPLIACION_PSI
+                ,NUM_INFORME_AMPLIACION_PSI
+                ,EST_REGISTRO
+                ,USR_CREACION
+                ,FECHA_CREACION
+                ,FECHA_ACTUALIZACION
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
 
             $stmtSupervisionPsi = $conn->prepare($querySupervisionPsi);
             if ($stmtSupervisionPsi) {
@@ -237,7 +272,6 @@ function guardarSupervision($data)
                 $numAmpliacionPsi = $data['num_ampliacion_psi'] ?? '';
                 $fecInformeAmpliacionPsi = $data['fec_informe_ampliacion_psi'] ?? '';
                 $numInformeAmpliacionPsi = $data['num_informe_ampliacion_psi'] ?? '';
-                $usrCreacion = $data['analista'] ?? 'SISTEMA';
 
                 // Manejar valores null convirtiéndolos a cadenas vacías
                 if ($fecResolucionPsi === null) $fecResolucionPsi = '';
@@ -278,7 +312,7 @@ function guardarSupervision($data)
 
                 $idSupervisionPsi = $stmtSupervisionPsi->insert_id;
                 $stmtSupervisionPsi->close();
-                
+
                 error_log("Insertado en as_supervision_psi. ID: $idSupervisionPsi");
             }
         }
@@ -286,22 +320,23 @@ function guardarSupervision($data)
         // 5. GUARDAR EN as_seguimiento_psi (si hay datos)
         if (isset($data['num_informe_seguimiento']) && !empty($data['num_informe_seguimiento'])) {
             $querySeguimientoPsi = "INSERT INTO as_seguimiento_psi (
-                ID_AVANCES_SUPERVISION
-                ,ID_SUPERVISION_PSI
-                ,RUC
-                ,COD_UNICO
-                ,NUM_INFORME_SEGUIMIENTO
-                ,FEC_INFORME
-                ,NUM_OFICIO_COMUNICACION_SEG_PSI
-                ,FEC_OFICIO_COMUNICACION_SEG_PSI
-                ,NUM_OF_APROBACION_PSI_FISICO
-                ,FEC_APROBACION_PSI_FISICO
-                ,FEC_APROBACION_PSI_SISTEMA
-                ,EST_REGISTRO
-                ,USR_CREACION
-                ,FECHA_CREACION
-                ,FECHA_ACTUALIZACION
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+                    ID_AVANCES_SUPERVISION,
+                    ID_SUPERVISION_PSI,
+                    RUC,
+                    COD_UNICO,
+                    NUM_INFORME_SEGUIMIENTO,
+                    FEC_INFORME_SEG,
+                    NUM_OFICIO_COMUNICACION_SEG_PSI,
+                    FEC_OFICIO_COMUNICACION_SEG_PSI,
+                    NUM_OF_APROBACION_PSI_FISICO,
+                    FEC_APROBACION_PSI_FISICO,
+                    FEC_APROBACION_PSI_SISTEMA,
+                    EST_REGISTRO,
+                    USR_CREACION,
+                    FECHA_CREACION,
+                    FECHA_ACTUALIZACION
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+
 
             $stmtSeguimientoPsi = $conn->prepare($querySeguimientoPsi);
             if ($stmtSeguimientoPsi) {
@@ -313,9 +348,9 @@ function guardarSupervision($data)
                 $numOfAprobacionPsiFisico = $data['num_of_aprobacion_psi_fisico'] ?? '';
                 $fecAprobacionPsiFisico = $data['fec_aprobacion_psi_fisico'] ?? '';
                 $fecAprobacionPsiSistema = $data['fec_aprobacion_psi_sistema'] ?? '';
-                
+
                 // Manejar valores null convirtiéndolos a cadenas vacías
-                if ($numInformeSeg === null) $numInformeSeguimiento = '';
+                if ($numInformeSeg === null) $numInformeSeg = '';
                 if ($fecInformeSeg === null) $fecInformeSeg = '';
                 if ($numOficioComunicacionSegPsi === null) $numOficioComunicacionSegPsi = '';
                 if ($fecOficioComunicacionSegPsi === null) $fecOficioComunicacionSegPsi = '';
@@ -324,19 +359,19 @@ function guardarSupervision($data)
                 if ($fecAprobacionPsiSistema === null) $fecAprobacionPsiSistema = '';
 
                 $stmtSeguimientoPsi->bind_param(
-                    "iissssssssss",
+                    "iissssssssss", // 12 parámetros
                     $idAvancesSupervision,           // ID_AVANCES_SUPERVISION (integer)
                     $idSupervisionPsi,               // ID_SUPERVISION_PSI (integer)
                     $ruc,                            // RUC (string)
                     $codUnico,                       // COD_UNICO (string)
-                    $numInformeSeg,                 // NUM_INFORME_SEGUIMIENTO (string)
-                    $fecInformeSeg,                 // FEC_INFORME (string)
-                    $numOficioComunicacionSegPsi,   // NUM_OFICIO_COMUNICACION_SEG_PSI (string)
-                    $fecOficioComunicacionSegPsi,   // FEC_OFICIO_COMUNICACION_SEG_PSI (string)
-                    $numOfAprobacionPsiFisico,      // NUM_OF_APROBACION_PSI_FISICO (string)
-                    $fecAprobacionPsiFisico,        // FEC_APROBACION_PSI_FISICO (string)
-                    $fecAprobacionPsiSistema,       // FEC_APROBACION_PSI_SISTEMA (string)
-                    $usrCreacion                     // USR_CREACION (string)
+                    $numInformeSeg,                  // NUM_INFORME_SEGUIMIENTO (string)
+                    $fecInformeSeg,                  // FEC_INFORME_SEG (string)
+                    $numOficioComunicacionSegPsi,    // NUM_OFICIO_COMUNICACION_SEG_PSI (string)
+                    $fecOficioComunicacionSegPsi,    // FEC_OFICIO_COMUNICACION_SEG_PSI (string)
+                    $numOfAprobacionPsiFisico,       // NUM_OF_APROBACION_PSI_FISICO (string)
+                    $fecAprobacionPsiFisico,         // FEC_APROBACION_PSI_FISICO (string)
+                    $fecAprobacionPsiSistema,        // FEC_APROBACION_PSI_SISTEMA (string)
+                    $usrCreacion
                 );
 
                 if (!$stmtSeguimientoPsi->execute()) {
@@ -345,14 +380,14 @@ function guardarSupervision($data)
 
                 $idSeguimientoPsi = $stmtSeguimientoPsi->insert_id;
                 $stmtSeguimientoPsi->close();
-                
-                error_log("Insertado en as_supervision_psi. ID: $stmtSeguimientoPsi");
+
+                error_log("Insertado en as_supervision_psi. ID: $idSeguimientoPsi");
             }
-        } 
+        }
 
         //6. GUARDAR EN as_levantamiento_psi (si hay datos) 
-        if (isset($data['mem_solicitud_cierre_psi']) && is_array($data['mem_solicitud_cierre_psi'])) {
-            
+        if (isset($data['mem_solicitud_cierre_psi']) && !empty($data['mem_solicitud_cierre_psi'])) {
+
             $queryLevantamientoPsi = "INSERT INTO as_levantamiento_psi (
                 ID_AVANCES_SUPERVISION
                 ,ID_SUPERVISION_PSI
@@ -405,7 +440,7 @@ function guardarSupervision($data)
                 if ($fecOficioEnvioCierrePsi === null) $fecOficioEnvioCierrePsi = '';
                 if ($ofEnvioDocCierrePsi === null) $ofEnvioDocCierrePsi = '';
                 if ($fecEntregaInfmr === null) $fecEntregaInfmr = '';
-                
+
                 $stmtLevantamientoPsi->bind_param(
                     "iisssssssssssssss",
                     $idAvancesSupervision,           // ID_AVANCES_SUPERVISION (integer)
@@ -438,7 +473,7 @@ function guardarSupervision($data)
         }
 
         //7. GUARDAR EN as_liquidacion_psi (si hay datos) 
-        if (isset($data['num_informe_final_liq']) && is_array($data['num_informe_final_liq'])) {        
+        if (isset($data['num_informe_final_liq']) && !empty($data['num_informe_final_liq'])) {
             $queryLiquidacion = "INSERT INTO as_liquidacion (
                 ID_AVANCES_SUPERVISION
                 ,ID_SUPERVISION
@@ -485,7 +520,7 @@ function guardarSupervision($data)
                     $memoComunicacionIgt,
                     $fecComunicacionIgt,
                     $memoComunicacionIgj,
-                    $fecComunicacionIgj,                   
+                    $fecComunicacionIgj,
                     $usrCreacion
                 );
 
@@ -495,52 +530,67 @@ function guardarSupervision($data)
 
                 $idLiquidacion = $stmtLiquidacion->insert_id;
                 error_log("Insertado en as_liquidacion. ID: $idLiquidacion");
-        
+
                 $stmtLiquidacion->close();
             }
         }
 
         //8. GUARDAR EN as_alertas (si hay datos)
-        if (isset($data['tipo_alerta']) && is_array($data['tipo_alerta'])) {
+        if (isset($data['tipo_alerta']) && !empty($data['tipo_alerta'])) {
             $queryAlertas = "INSERT INTO as_alertas (
                 ID_AVANCES_SUPERVISION
                 ,RUC
                 ,COD_UNICO
                 ,TIPO_ALERTA
+                ,DESCRIPCION_ALERTA
+                ,FEC_INICIO_SUPERVISION_ALERTA
                 ,FEC_INFORME_ALERTA
                 ,NUM_INFORME_ALERTA
                 ,FEC_OF_COMUNICACION_ALERTA
                 ,NUM_OF_COMUNICACION_ALERTA
                 ,FEC_APROBACION_SSI
-                ,TIPO_SUPERVISION
-                ,ESTADO_PROCESO
-                ,OBSERVACION_ESTADO
                 ,EST_REGISTRO
                 ,USR_CREACION
                 ,FECHA_CREACION
                 ,FECHA_ACTUALIZACION
-            ) VALUES (?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
 
             $stmtAlertas = $conn->prepare($queryAlertas);
             if ($stmtAlertas) {
                 // Crear variables para cada campo
                 $tipoAlerta = $data['tipo_alerta'] ?? '';
                 $descripcionAlerta = $data['descripcion_alerta'] ?? '';
-                $fecAlerta = $data['fec_alerta'] ?? '';
+                $fecInicioSupervisionAlerta = $data['fec_inicio_supervision_alerta'] ?? '';
+                $fecInformeAlerta = $data['fec_informe_alerta'] ?? '';
+                $numInformeAlerta = $data['num_informe_alerta'] ?? '';
+                $fecOfComunicacionAlerta = $data['fec_of_comunicacion_alerta'] ?? '';
+                $numOfComunicacionAlerta = $data['num_of_comunicacion_alerta'] ?? '';
+                $fecAprobacionSsi = $data['fec_aprobacion_ssi'] ?? '';
 
-                // Manejar valores null convirtiéndolos a cadenas vacías
+                //manejar valores null convirtiéndolos a cadenas vacías
                 if ($tipoAlerta === null) $tipoAlerta = '';
                 if ($descripcionAlerta === null) $descripcionAlerta = '';
-                if ($fecAlerta === null) $fecAlerta = '';
+                if ($fecInicioSupervisionAlerta === null) $fecInicioSupervisionAlerta = '';
+                if ($fecInformeAlerta === null) $fecInformeAlerta = '';
+                if ($numInformeAlerta === null) $numInformeAlerta = '';
+                if ($fecOfComunicacionAlerta === null) $fecOfComunicacionAlerta = '';
+                if ($numOfComunicacionAlerta === null) $numOfComunicacionAlerta = '';
+                if ($fecAprobacionSsi === null) $fecAprobacionSsi = '';
+
 
                 $stmtAlertas->bind_param(
-                    "issssss",
+                    "isssssssssss",
                     $idAvancesSupervision,
                     $ruc,
                     $codUnico,
                     $tipoAlerta,
                     $descripcionAlerta,
-                    $fecAlerta,                   
+                    $fecInicioSupervisionAlerta,
+                    $fecInformeAlerta,
+                    $numInformeAlerta,
+                    $fecOfComunicacionAlerta,
+                    $numOfComunicacionAlerta,
+                    $fecAprobacionSsi,
                     $usrCreacion
                 );
 
@@ -550,7 +600,7 @@ function guardarSupervision($data)
 
                 $idAlerta = $stmtAlertas->insert_id;
                 error_log("Insertado en as_alertas. ID: $idAlerta");
-        
+
                 $stmtAlertas->close();
             }
         }
@@ -572,11 +622,10 @@ function guardarSupervision($data)
         // Asegurarse de que el script termine después de enviar la respuesta
         exit;
     } catch (Exception $e) {
-    // Revertir transacción en caso de error
-    $conn->rollback();
-    throw new Exception("Error en guardado en cascada: " . $e->getMessage());
+        $conn->rollback();
+        error_log("Error en guardado en cascada - Mensaje: " . $e->getMessage());
+        throw new Exception("Error en guardado en cascada: " . $e->getMessage());
     }
-
 } // Cierre de la función guardarSupervision
 
 
