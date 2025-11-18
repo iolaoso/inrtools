@@ -2,7 +2,14 @@
 
 // Función para crear un nuevo registro de supervisión
 function nuevoRegistroSupervision(){
-    limpiarTodosLosFormularios();
+
+    const ruc = document.getElementById('ruc').value;
+
+    if (!ruc || ruc.trim() === '') {
+        mostrarAlerta('No hay RUC especificado', 'warning');
+        limpiarTodosLosFormularios();
+        return;
+    } 
     mostrarFormularioIndividual('sAvancesSupervision'); // Mostrar siempre el formulario de avances    
 }
     
@@ -54,14 +61,11 @@ async function guardarDatosSupervision() {
             data[key] = value;
         });
         
-        console.log("Datos a guardar:", data);
+        //console.log("Datos a guardar:", data);
+                
+        // API para guardar datos
         
-        // Simular guardado (reemplazar con tu API real)
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Descomentar cuando tengas tu API real
-        /*
-        const url = baseurl + 'backend/supervision/crudSupervision.php?action=guardarSupervision';
+        const url = baseurl + '/backend/supervision/crudSupervision.php?action=guardar_supervision';
         const response = await fetch(url, {  
             method: 'POST',  
             headers: {
@@ -69,19 +73,34 @@ async function guardarDatosSupervision() {
             },  
             body: JSON.stringify(data) 
         });
+
+        //console.log("Respuesta del servidor - Status:", response.status);
         
         if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
+             throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
         }
         
-        const result = await response.json();
+       // Obtener el texto de la respuesta para debugging
+        const responseText = await response.text();
+        //console.log("Respuesta completa:", responseText);
         
-        if (!result.success) {
-            throw new Error(result.message || 'Error al guardar');
+        if (!responseText.trim()) {
+            throw new Error('El servidor respondió con una respuesta vacía');
         }
-        */
         
-        return { success: true };
+        // Intentar parsear como JSON
+        let result;
+        try {
+            result = JSON.parse(responseText);
+        } catch (parseError) {
+            console.error('Error parseando JSON:', parseError);
+            console.error('Respuesta recibida:', responseText);
+            throw new Error('Respuesta del servidor no es JSON válido');
+        }
+        
+        //console.log("Resultado parseado:", result);
+        
+        return { success: true, data: result };
         
     } catch (error) {
         console.error('Error al guardar:', error);

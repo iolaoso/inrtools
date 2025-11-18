@@ -69,7 +69,7 @@ async function manejarCambioFase() {
     const faseId = document.getElementById('fase').value;
     const inputEstado = document.getElementById('estado_supervision');
     
-    console.log(`Fase seleccionada: ${faseId}`);
+    //console.log(`Fase seleccionada: ${faseId}`);
     // Actualizar estados según la fase seleccionada (backend)
     const resultado = await actualizarEstadosPorFase(faseId);
     //console.log('Estados obtenidos:', resultado.estados); 
@@ -85,7 +85,7 @@ async function actualizarEstadosPorFase(faseId) {
      try {
         
         const url = baseurl + `/backend/supervision/supervisionList.php?action=getEstados&faseId=${encodeURIComponent(faseId)}`;
-        console.log('📡 URL de consulta:', url);
+        //console.log('📡 URL de consulta:', url);
         
         const response = await fetch(url);
         const responseText = await response.text();
@@ -104,7 +104,7 @@ async function actualizarEstadosPorFase(faseId) {
             throw new Error('Error parseando la respuesta del servidor');
         }
         
-        console.log('✅ Datos de estado recibidos:', data);
+        //console.log('✅ Datos de estado recibidos:', data);
         
         // Procesar la respuesta para input text
         if (data.success && data.estados && Array.isArray(data.estados) && data.estados.length > 0) {
@@ -225,36 +225,12 @@ function mostrarFormulario(formularioId) {
         formularioId.forEach(id => {
             mostrarFormularioIndividual(id);
         });
-        
-        // Scroll suave al primer formulario del array
-        /* if (formularioId.length > 0) {
-            setTimeout(() => {
-                const primerFormulario = document.getElementById(formularioId[0]);
-                if (primerFormulario) {
-                    primerFormulario.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                }
-            }, 300);
-        } */
     } 
     // Si recibe un string, procesa un solo formulario
     else if (typeof formularioId === 'string') {
         mostrarFormularioIndividual(formularioId);
-        
-        // Scroll suave al formulario mostrado
-        /* setTimeout(() => {
-            const formulario = document.getElementById(formularioId);
-            if (formulario) {
-                formulario.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-            }
-        }, 300); */
     }
-    
+
     // APLICAR REQUIRED DINÁMICOS después de mostrar los formularios
     aplicarRequiredDinamicos();
 }
@@ -265,6 +241,15 @@ function mostrarFormularioIndividual(formularioId) {
     if (formulario) {
         formulario.style.display = 'block';
         //console.log(`Formulario mostrado: ${formularioId}`);
+
+        if (formularioId == 'sAlertas') {
+        const idEstrategia = document.getElementById('estrategia').value
+        if (idEstrategia == '56' || idEstrategia == '62') { // tipo de alerta
+            document.getElementById('tipo_alerta').value = 'ALERTA ' + (idEstrategia === '56' ? 'PREVENTIVA' : 'CORRECTIVA');
+        }
+
+    }
+
     }
 }
 

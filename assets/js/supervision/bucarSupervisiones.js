@@ -80,6 +80,7 @@ async function buscarSupervisionesPorRuc() {
 
 // Función para mostrar resultados en la tabla
 function mostrarResultadosSupervisiones(supervisiones) {
+    //console.log('Mostrando supervisiones:', supervisiones);
     const tbody = document.getElementById('tbodySupervisiones');
     
     if (!supervisiones || supervisiones.length === 0) {
@@ -101,6 +102,7 @@ function mostrarResultadosSupervisiones(supervisiones) {
                 <td>
                     <strong>${supervision.id || 'N/A'}</strong>
                 </td>
+                <td>${supervision.catalogo_id || 'N/A'}</td>
                 <td>${supervision.estrategia || 'No especificado'}</td>
                 <td>${supervision.fase || 'No especificado'}</td>
                 <td>
@@ -111,7 +113,7 @@ function mostrarResultadosSupervisiones(supervisiones) {
                 <td>
                     <button type="button" 
                             class="btn btn-sm btn-outline-primary"
-                            onclick="seleccionarSupervision('${supervision.id}')">
+                            onclick="seleccionarSupervision('${supervision.id}', '${supervision.catalogo_id}')">
                         <i class="fas fa-check me-1"></i> Seleccionar
                     </button>
                 </td>
@@ -139,12 +141,21 @@ function obtenerClaseEstado(estado) {
 
 
 // Función para seleccionar una supervisión
-function seleccionarSupervision(idSupervision) {
-    //console.log('Supervisión seleccionada:', idSupervision);
-    // Mostrar mensaje de confirmación
-    mostrarAlerta(`Supervisión ${idSupervision} seleccionada correctamente`, 'success');
-    // Aquí podrías cargar los datos de la supervisión en el formulario principal
-    cargarDatosSupervision(idSupervision);
+function seleccionarSupervision(idSupervision, catalogoId) {
+    //console.log('Supervisión seleccionada:', idSupervision , "\nFase:", catalogoId);
+    const idFase = parseInt(catalogoId);
+    if (idFase>=56 && idFase>=67){
+        //console.log('Alerta:', idSupervision, 'en fase:', idFase);
+        // Mostrar mensaje de confirmación
+        mostrarAlerta(`Alerta ${idSupervision} seleccionada en Fase: ${idFase}`, 'success');    
+        cargarDatosAlerta(idSupervision);
+    } else {
+        // Mostrar mensaje de confirmación
+        //console.log('Supervisión:', idSupervision, 'en fase:', idFase);
+        mostrarAlerta(`Supervisión ${idSupervision} seleccionada en Fase: ${idFase}`, 'success');
+        // Aquí podrías cargar los datos de la supervisión en el formulario principal
+        cargarDatosSupervision(idSupervision);
+    }
     // cerrar modal
     const modal = bootstrap.Modal.getInstance(document.getElementById('buscarSupervisionModal'));
     modal.hide();
@@ -175,7 +186,7 @@ async function cargarDatosSupervision(supervisionId) {
             throw new Error('Error parseando la respuesta del servidor');
         }
         
-        console.log('✅ Datos de estado recibidos:', data);
+        //console.log('✅ Datos de estado recibidos:', data);
         
         // Procesar la respuesta para input text
         if (data.success && data.supervision && Array.isArray(data.supervision) && data.supervision.length > 0) {
@@ -234,7 +245,7 @@ async function cargarDatosSupervision(supervisionId) {
             // campos de seguimiento PSI
             document.getElementById('id_seguimiento_psi').value = supevisonData.SEGP_ID;
             document.getElementById('num_informe_seguimiento').value = supevisonData.NUM_INFORME_SEGUIMIENTO;
-            document.getElementById('fec_informe').value = supevisonData.FEC_INFORME;
+            document.getElementById('fec_informe_seg').value = supevisonData.FEC_INFORME_SEG;
             document.getElementById('num_oficio_comunicacion_seg_psi').value = supevisonData.NUM_OFICIO_COMUNICACION_SEG_PSI;
             document.getElementById('fec_oficio_comunicacion_seg_psi').value = supevisonData.FEC_OFICIO_COMUNICACION_SEG_PSI;
             document.getElementById('num_of_aprobacion_psi_fisico').value = supevisonData.NUM_OF_APROBACION_PSI_FISICO;
@@ -261,13 +272,53 @@ async function cargarDatosSupervision(supervisionId) {
             document.getElementById('memo_comunicacion_igt').value = supevisonData.MEMO_COMUNICACION_IGT;
             document.getElementById('fec_comunicacion_igt').value = supevisonData.FEC_COMUNICACION_IGT;
             document.getElementById('memo_comunicacion_igj').value = supevisonData.MEMO_COMUNICACION_IGJ;
-            document.getElementById('fec_comunicacion_igj').value = supevisonData.FEC_COMUNICACION_IGJ;      
+            document.getElementById('fec_comunicacion_igj').value = supevisonData.FEC_COMUNICACION_IGJ
         }
     } catch (error) {
         console.error('❌ Error al obtener estado:', error);
     } finally {    
     // ... otros campos
         mostrarAlerta('Datos de la supervisión cargados correctamente', 'success');
+    }
+}
+
+// Función para cargar datos de la Alerta seleccionada
+async function cargarDatosAlerta(alertaId) {
+    console.log('Cargando datos de la Alerta:', alertaId);
+    try {
+        const url = baseurl + `/backend/supervision/alertaList.php?action=getAlertaData&alertaId=${encodeURIComponent(alertaId)}&catalogoId=${encodeURIComponent(catalogoId)}`;       
+        const response = await fetch(url);
+        const responseText = await response.text();
+        // Verificar si la respuesta está vacía
+        if (!responseText.trim()) {
+            throw new Error('El servidor devolvió una respuesta vacía');
+        }
+        // Intentar parsear JSON
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        }
+        catch (parseError) {
+            console.error('❌ Error parseando JSON:', parseError);
+            throw new Error('Error parseando la respuesta del servidor');
+        }
+        console.log('✅ Datos de alerta recibidos:', data);
+        // Procesar la respuesta para input text
+        if (data.success && data.alerta && Array.isArray(data.alerta) && data.alerta.length > 0) {
+            const alertaData = data.alerta[0];
+            document.getElementById('alertaId').value = alertaData.ID;
+            document.getElementById('tipo_alerta').value = alertaData.TIPO_ALERTA;
+            document.getElementById('fec_inicio_supervision_alerta').value = alertaData.FEC_INICIO_SUPERVISION_ALERTA;
+            document.getElementById('fec_informe_alerta').value = alertaData.FEC_INFORME_ALERTA;
+            document.getElementById('num_informe_alerta').value = alertaData.NUM_INFORME_ALERTA;
+            document.getElementById('fec_of_comunicacion_alerta').value = alertaData.FEC_OF_COMUNICACION_ALERTA;
+            document.getElementById('num_of_comunicacion_alerta').value = alertaData.NUM_OF_COMUNICACION_ALERTA;
+            document.getElementById('fec_aprobacion_ssi').value = alertaData.FEC_APROBACION_SSI;
+        }   
+    } catch (error) {
+        console.error('❌ Error al obtener alerta:', error);
+    } finally {    
+        mostrarAlerta('Datos de la alerta cargados correctamente', 'success');
     }
 }
 

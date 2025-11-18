@@ -116,13 +116,13 @@ $rolesDireccion = [
                                         <div class="col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text">ID</span>
-                                                <input type="text" class="form-control form-control-sm" id="id_avances" name="id_avances" readonly>
+                                                <input type="text" class="form-control form-control-sm" id="id_avances" name="id_avances" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text">Código Único</span>
-                                                <input type="text" class="form-control form-control-sm" id="cod_unico_avances" name="cod_unico_avances" readonly>
+                                                <input type="text" class="form-control form-control-sm" id="cod_unico_avances" name="cod_unico_avances" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -529,8 +529,8 @@ $rolesDireccion = [
                                             <input type="text" class="form-control form-control-sm" id="num_informe_seguimiento" name="num_informe_seguimiento" style="text-transform: uppercase;">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="fec_informe" class="form-label">Fecha Informe</label>
-                                            <input type="date" class="form-control form-control-sm" id="fec_informe" name="fec_informe">
+                                            <label for="fec_informe_seg" class="form-label">Fecha Informe</label>
+                                            <input type="date" class="form-control form-control-sm" id="fec_informe_seg" name="fec_informe_seg">
                                         </div>
                                     </div>
                                 </div>
@@ -740,40 +740,52 @@ $rolesDireccion = [
                                 </button>
                             </div>
                             <div class="card-body">
-                                <!-- Informe de Alerta -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Alerta</h5>
                                     <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="fec_inicio_sup_a" class="form-label">Fec. Inicio Supervisón</label>
-                                            <input type="date" class="form-control form-control-sm" id="fec_inicio_sup_a" name="fec_inicio_sup_a">
+                                        <div class="col-md-1 mb-3">
+                                            <label for="alertaId" class="form-label">ID Alerta</label>
+                                            <input type="text" class="form-control form-control-sm" id="alertaId" name="alertaId">
+                                        </div>
+                                        <div class="col-md-2 mb-3">
+                                            <label for="tipo_alerta" class="form-label">Tipo de Alerta</label>
+                                            <input type="text" class="form-control form-control-sm" id="tipo_alerta" name="tipo_alerta" placeholder="Ingrese tipo de alerta" style="text-transform: uppercase;" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
-                                            <label for="fec_informe_a" class="form-label">Fec. Informe</label>
-                                            <input type="date" class="form-control form-control-sm" id="fec_informe_a" name="fec_informe_a">
+                                            <label for="fec_inicio_supervision_alerta" class="form-label">Fec. Inicio Supervisión</label>
+                                            <input type="datetime-local" class="form-control form-control-sm" id="fec_inicio_supervision_alerta" name="fec_inicio_supervision_alerta">
                                         </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="num_informe_a" class="form-label">Número Informe Alerta</label>
-                                            <input type="text" class="form-control form-control-sm" id="num_informe_a" name="num_informe_a" style="text-transform: uppercase;">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="fec_informe_alerta" class="form-label">Fec. Informe Alerta</label>
+                                            <input type="datetime-local" class="form-control form-control-sm" id="fec_informe_alerta" name="fec_informe_alerta">
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="num_informe_alerta" class="form-label">Número Informe Alerta</label>
+                                            <input type="text" class="form-control form-control-sm" id="num_informe_alerta" name="num_informe_alerta" style="text-transform: uppercase;">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label for="descripcion_alerta" class="form-label">Descripción de la Alerta</label>
+                                            <textarea class="form-control form-control-sm" id="descripcion_alerta" name="descripcion_alerta" rows="3" placeholder="Ingrese la descripción de la alerta" style="text-transform: uppercase;"></textarea>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Comunicación de Alerta -->
+                                 <!-- Comunicación de Alerta -->
                                 <div class="seccion-formulario mb-4">
                                     <h5 class="border-bottom pb-2 mb-3 text-primary">Comunicación de Alerta</h5>
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
-                                            <label for="fec_of_comunicacion_a" class="form-label">Fecha Oficio Comunicación</label>
-                                            <input type="date" class="form-control form-control-sm" id="fec_of_comunicacion_a" name="fec_of_comunicacion_a">
+                                            <label for="num_of_comunicacion_alerta" class="form-label">Número Oficio Comunicación</label>
+                                            <input type="text" class="form-control form-control-sm" id="num_of_comunicacion_alerta" name="num_of_comunicacion_alerta" style="text-transform: uppercase;">
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <label for="num_of_comunicacion_a" class="form-label">Número Oficio Comunicación</label>
-                                            <input type="text" class="form-control form-control-sm" id="num_of_comunicacion_a" name="num_of_comunicacion_a" style="text-transform: uppercase;">
+                                            <label for="fec_of_comunicacion_alerta" class="form-label">Fec. Oficio Comunicación</label>
+                                            <input type="datetime-local" class="form-control form-control-sm" id="fec_of_comunicacion_alerta" name="fec_of_comunicacion_alerta">
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <label for="fec_aprobacion_ssi_a" class="form-label">Fecha Aprobación SSI</label>
-                                            <input type="date" class="form-control form-control-sm" id="fec_aprobacion_ssi_a" name="fec_aprobacion_ssi_a">
+                                            <label for="fec_aprobacion_ssi" class="form-label">Fec. Aprobación SSI</label>
+                                            <input type="datetime-local" class="form-control form-control-sm" id="fec_aprobacion_ssi" name="fec_aprobacion_ssi">
                                         </div>
                                     </div>
                                 </div>

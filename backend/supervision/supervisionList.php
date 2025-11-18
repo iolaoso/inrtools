@@ -74,6 +74,7 @@ function buscarSupervisionesPorRuc($ruc) {
         $supervisiones[] = [
             'id' => $row['ID'],
             'ruc' => $row['RUC'],
+            'catalogo_id' => $row['CATALOGO_ID'],
             'estrategia' => $row['ESTRATEGIA'],
             'fase' => $row['FASE'],
             'estado' => $row['ESTADO_PROCESO'],
@@ -85,7 +86,8 @@ function buscarSupervisionesPorRuc($ruc) {
     $stmt->close();
     return $supervisiones;
 }
-
+    
+    
 //FUNCIÓN PARA OBTENER FASES
 function obtenerFases($estrategiaText) {
     global $conn; // Usar la conexión global

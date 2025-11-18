@@ -35,11 +35,12 @@
                             <table class="table table-striped table-hover" id="tablaSupervisiones">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Estrategia</th>
-                                        <th>Fase</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
+                                        <th width="5%">ID</th>
+                                        <th width="5%">CatId</th>
+                                        <th width="25%">Estrategia</th>
+                                        <th width="25%">Fase</th>
+                                        <th width="20%">Estado</th>
+                                        <th width="20%">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodySupervisiones">

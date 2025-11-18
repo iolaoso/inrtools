@@ -5,10 +5,21 @@ function aplicarRequiredDinamicos() {
     
     // 1. CAMPOS BASE SIEMPRE REQUERIDOS (sección sAvancesSupervision siempre visible)
     const camposBaseRequeridos = [
-        'id_avances', 'cod_unico_avances', 'ruc', 'tbsegmento', 'tbrazonSocial',
-        'estrategia', 'fase', 'analista', 'estadoSupervision', 'fec_asig',
-        'anio_plan', 'trim_plan', 'porc_avance'
+        //'id_avances', 
+        //'cod_unico_avances', 
+        'ruc', 
+        'tbsegmento', 
+        'tbrazonSocial',
+        'estrategia', 
+        'fase', 
+        'analista', 
+        'estadoSupervision', 
+        //'fec_asig',
+        'anio_plan', 
+        //'trim_plan', 
+        'porc_avance'
     ];
+
     aplicarRequiredACampos(camposBaseRequeridos);
     
     // 2. REQUIRED POR SECCIONES VISIBLES
@@ -71,7 +82,7 @@ function aplicarRequiredDinamicos() {
                 aplicarRequiredACampos([
                     //'id_seguimiento_psi',
                     'num_informe_seguimiento',
-                    'fec_informe',
+                    'fec_informe_seg',
                     //'num_oficio_comunicacion_seg_psi', 
                     //'fec_oficio_comunicacion_seg_psi',
                     //'num_of_aprobacion_psi_fisico', 
@@ -113,7 +124,9 @@ function aplicarRequiredDinamicos() {
             case 'sAlertas':
                 aplicarRequiredACampos([
                    //'id_alerta', 
-                   'fec_inicio_sup_a',
+                   'tipo_alerta',
+                   'descripcion_alerta',
+                   //'fec_inicio_sup_a',
                    'fec_informe_a',
                    'num_informe_a',
                    //'fec_of_comunicacion_a',
@@ -159,7 +172,7 @@ function limpiarTodosLosRequired() {
         'num_informe_ampliacion_psi',
         
         // Seguimiento PSI
-        'num_informe_seguimiento', 'fec_informe',
+        'num_informe_seguimiento', 'fec_informe_seg',
         'num_oficio_comunicacion_seg_psi', 'fec_oficio_comunicacion_seg_psi',
         'num_of_aprobacion_psi_fisico', 'fec_aprobacion_psi_fisico', 'fec_aprobacion_psi_sistema',
         
