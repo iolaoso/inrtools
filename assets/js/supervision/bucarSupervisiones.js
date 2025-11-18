@@ -32,8 +32,8 @@ async function buscarSupervisionesPorRuc() {
     }
     
     // Mostrar loading
-    const tbody = document.getElementById('tbodySupervisiones');
-    tbody.innerHTML = `
+    const tbodySup = document.getElementById('tbodySupervisiones');
+    tbodySup.innerHTML = `
         <tr>
             <td colspan="6" class="text-center">
                 <div class="spinner-border text-primary" role="status">
@@ -75,6 +75,7 @@ async function buscarSupervisionesPorRuc() {
         mostrarResultadosSupervisiones([]);
         mostrarAlerta('Error al buscar supervisiones: ' + error.message, 'error');
     }
+
 }
 
 

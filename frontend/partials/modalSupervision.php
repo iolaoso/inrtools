@@ -30,6 +30,7 @@
 
                 <!-- Resultados de búsqueda -->
                 <div class="row">
+                    <h6>Supervisiones Alertas</h6>
                     <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="tablaSupervisiones">

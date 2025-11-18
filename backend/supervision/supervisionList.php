@@ -86,7 +86,7 @@ function buscarSupervisionesPorRuc($ruc) {
     $stmt->close();
     return $supervisiones;
 }
-    
+   
     
 //FUNCIÓN PARA OBTENER FASES
 function obtenerFases($estrategiaText) {
