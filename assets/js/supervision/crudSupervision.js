@@ -56,12 +56,13 @@ async function guardarDatosSupervision() {
         const form = document.getElementById('frmDatosFull');
         const formData = new FormData(form);
         
+        // Recoje los datos del formulario y los guarda em data
         const data = {};
         formData.forEach((value, key) => {
             data[key] = value;
         });
         
-        //console.log("Datos a guardar:", data);
+        console.log("Datos a guardar:", data);
                 
         // API para guardar datos
         

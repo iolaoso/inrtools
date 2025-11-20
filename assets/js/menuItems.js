@@ -77,7 +77,7 @@ const menuItems = [
                         url: '/INRtools/frontend/dnr/reportes/calfRiesgo/calfRiesgo.php',
                         direccion: ['INR', 'DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
-                        usuarios: ['MFLORES','CLUNA','EACOSTA','FLARCO','ILOPEZA']
+                        usuarios: ['MFLORES','CLUNA','ESIMBAÑA','EACOSTA','FLARCO','ILOPEZA']
                     },
                     {   title: 'Riesgo de Crédito', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/riesgoCredito.php',

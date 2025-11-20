@@ -1,4 +1,5 @@
 <?php
+
 include_once __DIR__ . '/../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';  // Incluye la sesión
 include BASE_PATH . 'backend/catastroList.php'; // consulta catastro activas

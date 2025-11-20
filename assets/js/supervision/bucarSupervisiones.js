@@ -61,7 +61,7 @@ async function buscarSupervisionesPorRuc() {
         if (data.success) {
             if (data.supervisiones && data.supervisiones.length > 0) {
                 mostrarResultadosSupervisiones(data.supervisiones);
-                mostrarAlerta(`Se encontraron ${data.supervisiones.length} supervisiones`, 'success');
+                //mostrarAlerta(`Se encontraron ${data.supervisiones.length} supervisiones`, 'success');
             } else {
                 mostrarResultadosSupervisiones([]);
                 mostrarAlerta('No se encontraron supervisiones para este RUC', 'info');
@@ -153,7 +153,7 @@ function seleccionarSupervision(idSupervision, catalogoId) {
     } else {
         // Mostrar mensaje de confirmación
         //console.log('Supervisión:', idSupervision, 'en fase:', idFase);
-        mostrarAlerta(`Supervisión ${idSupervision} seleccionada en Fase: ${idFase}`, 'success');
+        //mostrarAlerta(`Supervisión ${idSupervision} seleccionada en Fase: ${idFase}`, 'success');
         // Aquí podrías cargar los datos de la supervisión en el formulario principal
         cargarDatosSupervision(idSupervision);
     }
@@ -162,12 +162,11 @@ function seleccionarSupervision(idSupervision, catalogoId) {
     modal.hide();
 }
 
-// Función para cargar datos de la supervisión seleccionada
+// Función para cargar llenar los datos de la supervisión seleccionada
 async function cargarDatosSupervision(supervisionId) {
     // En producción, harías una llamada AJAX para obtener los datos completos
     console.log('Cargando datos de la supervisión:', supervisionId);
-    // Ejemplo de cómo podrías actualizar el formulario principal
-    document.getElementById('id_avances').value = supervisionId;
+    
     try {
         const url = baseurl + `/backend/supervision/supervisionList.php?action=getSupervisionData&supervisionId=${encodeURIComponent(supervisionId)}`;       
         const response = await fetch(url);
@@ -187,12 +186,14 @@ async function cargarDatosSupervision(supervisionId) {
             throw new Error('Error parseando la respuesta del servidor');
         }
         
-        //console.log('✅ Datos de estado recibidos:', data);
+        console.log('✅ Datos de recibidos:', data);
         
         // Procesar la respuesta para input text
         if (data.success && data.supervision && Array.isArray(data.supervision) && data.supervision.length > 0) {
             // Tomar el primer estado (o puedes implementar otra lógica)
+
             const supevisonData = data.supervision[0];
+            document.getElementById('id_avances').value = supervisionId;
             document.getElementById('cod_unico_avances').value = supevisonData.COD_UNICO;
             document.getElementById('IDcentral').value = supevisonData.ID;
             await establecerValorSelectPorTexto('estrategia', supevisonData.ESTRATEGIA); 
@@ -200,7 +201,7 @@ async function cargarDatosSupervision(supervisionId) {
             await establecerValorSelectPorTexto('analistaSelect', supevisonData.USR_NOMBRE);
             await establecerValorSelect('fase', supevisonData.CATALOGO_ID);
             document.getElementById('estadoSupervision').value = supevisonData.ESTADO_PROCESO;
-            document.getElementById('analista').value = supevisonData.NICKNAME;
+            document.getElementById('analista').value = supevisonData.RESPONSABLE;
             document.getElementById('fec_asig').value = supevisonData.FEC_ASIG;
             document.getElementById('anio_plan').value = supevisonData.ANIO_PLAN;
             document.getElementById('porc_avance').value = supevisonData.PORC_AVANCE;

@@ -116,13 +116,13 @@ $rolesDireccion = [
                                         <div class="col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text">ID</span>
-                                                <input type="text" class="form-control form-control-sm" id="id_avances" name="id_avances" disabled>
+                                                <input type="text" class="form-control form-control-sm" id="id_avances" name="id_avances" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <div class="input-group">
                                                 <span class="input-group-text">Código Único</span>
-                                                <input type="text" class="form-control form-control-sm" id="cod_unico_avances" name="cod_unico_avances" disabled>
+                                                <input type="text" class="form-control form-control-sm" id="cod_unico_avances" name="cod_unico_avances" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@ $rolesDireccion = [
                                 <div class="div" style="margin-left: auto; margin-top:1%; width: 200px; text-align: center; padding-right: 50px;">
                                     <div class="input-group mb-3 flex-nowrap">
                                         <span class="input-group-text" id="basic-addon1">ID</span>
-                                        <input type="text" class="form-control form-control-sm w-auto text-center" id="IDcentral" name="IDcentral" placeholder="ID" disabled>
+                                        <input type="text" class="form-control form-control-sm w-auto text-center" id="IDcentral" name="IDcentral" placeholder="ID" readonly>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-sm btn-light toggle-formulario" data-target="sAvancesSupervision">
@@ -221,7 +221,7 @@ $rolesDireccion = [
                                         <div class="col-md-3 mb-3">
                                             <label for="porc_avance" class="form-label">Porcentaje de Avance</label>
                                             <div class="input-group">
-                                                <input type="number" class="form-control form-control-sm" id="porc_avance" name="porc_avance" min="0" max="100" disabled>
+                                                <input type="number" class="form-control form-control-sm" id="porc_avance" name="porc_avance" min="0" max="100" readonly>
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
@@ -248,7 +248,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_supervision" class="form-label">ID Supervisión</label>
-                                            <input type="text" class="form-control form-control-sm" id="id_supervision" name="id_supervision" disabled>
+                                            <input type="text" class="form-control form-control-sm" id="id_supervision" name="id_supervision" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fec_solicitud" class="form-label">Fecha Solicitud</label>
@@ -381,7 +381,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_correctiva" class="form-label">ID Correctivas</label>
-                                            <input type="text" class="form-control form-control-sm" id="id_correctiva" name="id_correctiva" disabled>
+                                            <input type="text" class="form-control form-control-sm" id="id_correctiva" name="id_correctiva" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fec_reunion_comunicacion_resultados" class="form-label">Fecha Reunión Comunicación Resultados</label>
@@ -430,7 +430,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_supervision_psi" class="form-label">ID PSI</label>
-                                            <input type="text" class="form-control form-control-sm" id="id_supervision_psi" name="id_supervision_psi" disabled>
+                                            <input type="text" class="form-control form-control-sm" id="id_supervision_psi" name="id_supervision_psi" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fec_resolucion_psi" class="form-label">Fecha Resolución PSI</label>
@@ -523,7 +523,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_seguimiento_psi" class="form-label">ID Seguimiento PSI</label>
-                                            <input type="text" class="form-control form-control-sm" id="id_seguimiento_psi" name="id_seguimiento_psi" disabled>
+                                            <input type="text" class="form-control form-control-sm" id="id_seguimiento_psi" name="id_seguimiento_psi" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="num_informe_seguimiento" class="form-label">Número Informe Seguimiento</label>
@@ -591,7 +591,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-3 mb-3">
                                             <label for="id_levantamiento_psi" class="form-label">ID Levantamiente PSI</label>
-                                            <input type="text" class="form-control form-control-sm" id="id_levantamiento_psi" name="id_levantamiento_psi" disabled>
+                                            <input type="text" class="form-control form-control-sm" id="id_levantamiento_psi" name="id_levantamiento_psi" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="mem_solicitud_cierre_psi" class="form-label">Memorando Solicitud Cierre</label>
@@ -688,7 +688,7 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
                                             <label for="id_liquidacion" class="form-label">ID Liquidación</label>
-                                            <input type="text" class="form-control form-control-sm" id="id_liquidacion" name="id_liquidacion" disabled>
+                                            <input type="text" class="form-control form-control-sm" id="id_liquidacion" name="id_liquidacion" readonly>
                                         </div>
                                         <div class="col-md-4 mb-3">
                                             <label for="num_informe_final_liq" class="form-label">Número Informe Final</label>
@@ -746,11 +746,11 @@ $rolesDireccion = [
                                     <div class="row">
                                         <div class="col-md-1 mb-3">
                                             <label for="id_alerta" class="form-label">ID Alerta</label>
-                                            <input type="text" class="form-control form-control-sm" id="id_alerta" name="id_alerta" disabled>
+                                            <input type="text" class="form-control form-control-sm" id="id_alerta" name="id_alerta" readonly>
                                         </div>
                                         <div class="col-md-2 mb-3">
                                             <label for="tipo_alerta" class="form-label">Tipo de Alerta</label>
-                                            <input type="text" class="form-control form-control-sm" id="tipo_alerta" name="tipo_alerta" placeholder="Ingrese tipo de alerta" style="text-transform: uppercase;" disabled>
+                                            <input type="text" class="form-control form-control-sm" id="tipo_alerta" name="tipo_alerta" placeholder="Ingrese tipo de alerta" style="text-transform: uppercase;" readonly>
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="fec_inicio_supervision_alerta" class="form-label">Fec. Inicio Supervisión</label>
