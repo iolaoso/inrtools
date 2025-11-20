@@ -343,6 +343,7 @@ function guardarSupervision($data)
                     FECHA_CREACION,
                     FECHA_ACTUALIZACION
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+                //18 - 3 = 15
 
                 $stmt = $conn->prepare($query);
                 if (!$stmt) {
@@ -351,7 +352,7 @@ function guardarSupervision($data)
 
                 // INSERT - 15 parámetros
                 $stmt->bind_param(
-                    "isssssssssssss",
+                    "issssssssssssss",
                     $idAvancesSupervision,
                     $ruc,
                     $codUnico,
@@ -372,11 +373,19 @@ function guardarSupervision($data)
                 $accionRealizada['as_supervison_psi'] = 'INSERTAR';
             } else {
                 $query = "UPDATE as_supervision_psi SET 
-                    FEC_RESOLUCION_PSI = ?, NUM_RESOLUCION_PSI = ?, FEC_IMPOSICION_PSI = ?,
-                    NUM_OFICIO_IMPOSICION_PSI = ?, FEC_FIN_PSI = ?, FEC_MEMORANDO_COMUNICACION_PSI = ?,
-                    NUM_MEMORANDO_COMUNICACION_PSI = ?, FEC_AMPLIACION_PSI = ?, NUM_AMPLIACION_PSI = ?,
-                    FEC_INFORME_AMPLIACION_PSI = ?, NUM_INFORME_AMPLIACION_PSI = ?,
-                    USR_CREACION = ?, FECHA_ACTUALIZACION = NOW()
+                    FEC_RESOLUCION_PSI = ?, 
+                    NUM_RESOLUCION_PSI = ?,
+                    FEC_IMPOSICION_PSI = ?,
+                    NUM_OFICIO_IMPOSICION_PSI = ?, 
+                    FEC_FIN_PSI = ?, 
+                    FEC_MEMORANDO_COMUNICACION_PSI = ?,
+                    NUM_MEMORANDO_COMUNICACION_PSI = ?,
+                    FEC_AMPLIACION_PSI = ?,
+                    NUM_AMPLIACION_PSI = ?,
+                    FEC_INFORME_AMPLIACION_PSI = ?,
+                    NUM_INFORME_AMPLIACION_PSI = ?,
+                    USR_CREACION = ?,
+                    FECHA_ACTUALIZACION = NOW()
                     WHERE ID = ?";
 
                 $stmt = $conn->prepare($query);
@@ -509,13 +518,27 @@ function guardarSupervision($data)
 
             if (empty($idLevantamientoPsi)) {
                 $query = "INSERT INTO as_levantamiento_psi (
-                    ID_AVANCES_SUPERVISION, RUC, COD_UNICO, MEM_SOLICITUD_CIERRE_PSI, FEC_MEM_SOLICITUD_CIERRE_PSI,
-                    MEM_ENTREGA_INFORME_CIERRE_PSI, FEC_MEM_ENTREGA_INFORME_CIERRE_PSI, INFORME_CIERRE_PSI,
-                    FEC_INFORME_CIERRE_PSI, RESOLUCION_TERMINACION_PSI, FEC_RESOLUCION_TERMINACION_PSI,
-                    FEC_REUNION_CIERRE_PSI, FEC_OFICIO_ENVIO_CIERRE_PSI, OF_ENVIO_DOC_CIERRE_PSI,
-                    FEC_ENTREGA_INFMR, EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
+                    ID_AVANCES_SUPERVISION, 
+                    RUC,
+                    COD_UNICO,
+                    MEM_SOLICITUD_CIERRE_PSI,
+                    FEC_MEM_SOLICITUD_CIERRE_PSI,
+                    MEM_ENTREGA_INFORME_CIERRE_PSI,
+                    FEC_MEM_ENTREGA_INFORME_CIERRE_PSI, 
+                    INFORME_CIERRE_PSI,
+                    FEC_INFORME_CIERRE_PSI, 
+                    RESOLUCION_TERMINACION_PSI, 
+                    FEC_RESOLUCION_TERMINACION_PSI,
+                    FEC_REUNION_CIERRE_PSI, 
+                    FEC_OFICIO_ENVIO_CIERRE_PSI, 
+                    OF_ENVIO_DOC_CIERRE_PSI,
+                    FEC_ENTREGA_INFMR, 
+                    EST_REGISTRO, 
+                    USR_CREACION,
+                    FECHA_CREACION, 
+                    FECHA_ACTUALIZACION
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
-                // 20 -3 = 17
+                // 19 -3 = 16
 
                 $stmt = $conn->prepare($query);
                 if (!$stmt) {
@@ -524,7 +547,7 @@ function guardarSupervision($data)
 
                 // INSERT - 17 parámetros
                 $stmt->bind_param(
-                    "issssssssssssssss",
+                    "isssssssssssssss",
                     $idAvancesSupervision,
                     $ruc,
                     $codUnico,
@@ -714,6 +737,7 @@ function guardarSupervision($data)
                     FECHA_CREACION,
                     FECHA_ACTUALIZACION
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+                //15-3 = 12
 
                 $stmt = $conn->prepare($query);
                 if (!$stmt) {
@@ -740,18 +764,18 @@ function guardarSupervision($data)
                 $accionRealizada['as_alertas'] = 'INSERTAR';
             } else {
                 $query = "UPDATE as_alertas SET 
-                    TIPO_ALERTA = ?,
-                     DESCRIPCION_ALERTA = ?,
-                      FEC_INICIO_SUPERVISION_ALERTA = ?,
-
-                    FEC_INFORME_ALERTA = ?,
-                     NUM_INFORME_ALERTA = ?,
-                      FEC_OF_COMUNICACION_ALERTA = ?,
-                    NUM_OF_COMUNICACION_ALERTA = ?, 
-                    FEC_APROBACION_SSI = ?,
-                    USR_CREACION = ?,
-                     FECHA_ACTUALIZACION = NOW()
-                    WHERE ID = ?";
+                                TIPO_ALERTA = ?,
+                                DESCRIPCION_ALERTA = ?,
+                                FEC_INICIO_SUPERVISION_ALERTA = ?,
+                                FEC_INFORME_ALERTA = ?,
+                                NUM_INFORME_ALERTA = ?,
+                                FEC_OF_COMUNICACION_ALERTA = ?,
+                                NUM_OF_COMUNICACION_ALERTA = ?, 
+                                FEC_APROBACION_SSI = ?,
+                                USR_CREACION = ?,
+                                FECHA_ACTUALIZACION = NOW()
+                            WHERE ID = ?";
+                // 11 - 3 = 8
 
                 $stmt = $conn->prepare($query);
                 if (!$stmt) {
