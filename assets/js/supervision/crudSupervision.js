@@ -62,7 +62,7 @@ async function guardarDatosSupervision() {
             data[key] = value;
         });
         
-        console.log("Datos a guardar:", data);
+        //console.log("Datos a guardar:", data);
                 
         // API para guardar datos
         

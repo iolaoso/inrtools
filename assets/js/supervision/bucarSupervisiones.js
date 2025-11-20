@@ -165,7 +165,7 @@ function seleccionarSupervision(idSupervision, catalogoId) {
 // Función para cargar llenar los datos de la supervisión seleccionada
 async function cargarDatosSupervision(supervisionId) {
     // En producción, harías una llamada AJAX para obtener los datos completos
-    console.log('Cargando datos de la supervisión:', supervisionId);
+    //console.log('Cargando datos de la supervisión:', supervisionId);
     
     try {
         const url = baseurl + `/backend/supervision/supervisionList.php?action=getSupervisionData&supervisionId=${encodeURIComponent(supervisionId)}`;       
@@ -186,7 +186,7 @@ async function cargarDatosSupervision(supervisionId) {
             throw new Error('Error parseando la respuesta del servidor');
         }
         
-        console.log('✅ Datos de recibidos:', data);
+        //console.log('✅ Datos de recibidos:', data);
         
         // Procesar la respuesta para input text
         if (data.success && data.supervision && Array.isArray(data.supervision) && data.supervision.length > 0) {
