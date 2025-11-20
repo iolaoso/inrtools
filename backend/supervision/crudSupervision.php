@@ -324,11 +324,24 @@ function guardarSupervision($data)
 
             if (empty($idSupervisionPsi)) {
                 $query = "INSERT INTO as_supervision_psi (
-                    ID_AVANCES_SUPERVISION, RUC, COD_UNICO, FEC_RESOLUCION_PSI, NUM_RESOLUCION_PSI,
-                    FEC_IMPOSICION_PSI, NUM_OFICIO_IMPOSICION_PSI, FEC_FIN_PSI, FEC_MEMORANDO_COMUNICACION_PSI,
-                    NUM_MEMORANDO_COMUNICACION_PSI, FEC_AMPLIACION_PSI, NUM_AMPLIACION_PSI,
-                    FEC_INFORME_AMPLIACION_PSI, NUM_INFORME_AMPLIACION_PSI, EST_REGISTRO,
-                    USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
+                    ID_AVANCES_SUPERVISION,
+                    RUC,
+                    COD_UNICO,
+                    FEC_RESOLUCION_PSI,
+                    NUM_RESOLUCION_PSI,
+                    FEC_IMPOSICION_PSI,
+                    NUM_OFICIO_IMPOSICION_PSI,
+                    FEC_FIN_PSI,
+                    FEC_MEMORANDO_COMUNICACION_PSI,
+                    NUM_MEMORANDO_COMUNICACION_PSI,
+                    FEC_AMPLIACION_PSI,
+                    NUM_AMPLIACION_PSI,
+                    FEC_INFORME_AMPLIACION_PSI,
+                    NUM_INFORME_AMPLIACION_PSI,
+                    EST_REGISTRO,
+                    USR_CREACION,
+                    FECHA_CREACION,
+                    FECHA_ACTUALIZACION
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
 
                 $stmt = $conn->prepare($query);
@@ -336,9 +349,9 @@ function guardarSupervision($data)
                     throw new Exception("Error preparando as_supervision_psi: " . $conn->error);
                 }
 
-                // INSERT - 16 parámetros
+                // INSERT - 15 parámetros
                 $stmt->bind_param(
-                    "issssssssssssss",
+                    "isssssssssssss",
                     $idAvancesSupervision,
                     $ruc,
                     $codUnico,
@@ -417,6 +430,7 @@ function guardarSupervision($data)
                     NUM_OF_APROBACION_PSI_FISICO, FEC_APROBACION_PSI_FISICO, FEC_APROBACION_PSI_SISTEMA,
                     EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+                // 14 - 3 = 11
 
                 $stmt = $conn->prepare($query);
                 if (!$stmt) {
@@ -501,6 +515,7 @@ function guardarSupervision($data)
                     FEC_REUNION_CIERRE_PSI, FEC_OFICIO_ENVIO_CIERRE_PSI, OF_ENVIO_DOC_CIERRE_PSI,
                     FEC_ENTREGA_INFMR, EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
+                // 20 -3 = 17
 
                 $stmt = $conn->prepare($query);
                 if (!$stmt) {
@@ -531,12 +546,20 @@ function guardarSupervision($data)
                 $accionRealizada['as_levantamiento_psi'] = 'INSERTAR';
             } else {
                 $query = "UPDATE as_levantamiento_psi SET 
-                    MEM_SOLICITUD_CIERRE_PSI = ?, FEC_MEM_SOLICITUD_CIERRE_PSI = ?,
-                    MEM_ENTREGA_INFORME_CIERRE_PSI = ?, FEC_MEM_ENTREGA_INFORME_CIERRE_PSI = ?,
-                    INFORME_CIERRE_PSI = ?, FEC_INFORME_CIERRE_PSI = ?, RESOLUCION_TERMINACION_PSI = ?,
-                    FEC_RESOLUCION_TERMINACION_PSI = ?, FEC_REUNION_CIERRE_PSI = ?,
-                    FEC_OFICIO_ENVIO_CIERRE_PSI = ?, OF_ENVIO_DOC_CIERRE_PSI = ?, FEC_ENTREGA_INFMR = ?,
-                    USR_CREACION = ?, FECHA_ACTUALIZACION = NOW()
+                    MEM_SOLICITUD_CIERRE_PSI = ?,
+                    FEC_MEM_SOLICITUD_CIERRE_PSI = ?,
+                    MEM_ENTREGA_INFORME_CIERRE_PSI = ?,
+                    FEC_MEM_ENTREGA_INFORME_CIERRE_PSI = ?,
+                    INFORME_CIERRE_PSI = ?,
+                    FEC_INFORME_CIERRE_PSI = ?,
+                    RESOLUCION_TERMINACION_PSI = ?,
+                    FEC_RESOLUCION_TERMINACION_PSI = ?,
+                    FEC_REUNION_CIERRE_PSI = ?,
+                    FEC_OFICIO_ENVIO_CIERRE_PSI = ?,
+                    OF_ENVIO_DOC_CIERRE_PSI = ?,
+                    FEC_ENTREGA_INFMR = ?,
+                    USR_CREACION = ?,
+                    FECHA_ACTUALIZACION = NOW()
                     WHERE ID = ?";
 
                 $stmt = $conn->prepare($query);
@@ -585,9 +608,19 @@ function guardarSupervision($data)
 
             if (empty($idLiquidacion)) {
                 $query = "INSERT INTO as_liquidacion (
-                    ID_AVANCES_SUPERVISION, RUC, COD_UNICO, NUM_INFORME_FINAL_LIQ, FEC_INFORME_FINAL_LIQ,
-                    MEMO_COMUNICACION_IGT, FEC_COMUNICACION_IGT, MEMO_COMUNICACION_IGJ, FEC_COMUNICACION_IGJ,
-                    EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
+                    ID_AVANCES_SUPERVISION, 
+                    RUC,
+                    COD_UNICO,
+                    NUM_INFORME_FINAL_LIQ,
+                    FEC_INFORME_FINAL_LIQ,
+                    MEMO_COMUNICACION_IGT,
+                    FEC_COMUNICACION_IGT,
+                    MEMO_COMUNICACION_IGJ,
+                    FEC_COMUNICACION_IGJ,
+                    EST_REGISTRO,
+                    USR_CREACION,
+                    FECHA_CREACION,
+                    FECHA_ACTUALIZACION
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
 
                 $stmt = $conn->prepare($query);
@@ -613,9 +646,14 @@ function guardarSupervision($data)
                 $accionRealizada['as_liquidacion'] = 'INSERTAR';
             } else {
                 $query = "UPDATE as_liquidacion SET 
-                    NUM_INFORME_FINAL_LIQ = ?, FEC_INFORME_FINAL_LIQ = ?, MEMO_COMUNICACION_IGT = ?,
-                    FEC_COMUNICACION_IGT = ?, MEMO_COMUNICACION_IGJ = ?, FEC_COMUNICACION_IGJ = ?,
-                    USR_CREACION = ?, FECHA_ACTUALIZACION = NOW()
+                    NUM_INFORME_FINAL_LIQ = ?,
+                    FEC_INFORME_FINAL_LIQ = ?,
+                    MEMO_COMUNICACION_IGT = ?,
+                    FEC_COMUNICACION_IGT = ?, 
+                    MEMO_COMUNICACION_IGJ = ?,
+                    FEC_COMUNICACION_IGJ = ?,
+                    USR_CREACION = ?,
+                    FECHA_ACTUALIZACION = NOW()
                     WHERE ID = ?";
 
                 $stmt = $conn->prepare($query);
@@ -660,10 +698,21 @@ function guardarSupervision($data)
 
             if (empty($idAlerta)) {
                 $query = "INSERT INTO as_alertas (
-                    ID_AVANCES_SUPERVISION, RUC, COD_UNICO, TIPO_ALERTA, DESCRIPCION_ALERTA,
-                    FEC_INICIO_SUPERVISION_ALERTA, FEC_INFORME_ALERTA, NUM_INFORME_ALERTA,
-                    FEC_OF_COMUNICACION_ALERTA, NUM_OF_COMUNICACION_ALERTA, FEC_APROBACION_SSI,
-                    EST_REGISTRO, USR_CREACION, FECHA_CREACION, FECHA_ACTUALIZACION
+                    ID_AVANCES_SUPERVISION,
+                    RUC,
+                    COD_UNICO,
+                    TIPO_ALERTA,
+                    DESCRIPCION_ALERTA,
+                    FEC_INICIO_SUPERVISION_ALERTA,
+                    FEC_INFORME_ALERTA,
+                    NUM_INFORME_ALERTA,
+                    FEC_OF_COMUNICACION_ALERTA,
+                    NUM_OF_COMUNICACION_ALERTA,
+                    FEC_APROBACION_SSI,
+                    EST_REGISTRO,
+                    USR_CREACION, 
+                    FECHA_CREACION,
+                    FECHA_ACTUALIZACION
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACT', ?, NOW(), NOW())";
 
                 $stmt = $conn->prepare($query);
@@ -691,10 +740,17 @@ function guardarSupervision($data)
                 $accionRealizada['as_alertas'] = 'INSERTAR';
             } else {
                 $query = "UPDATE as_alertas SET 
-                    TIPO_ALERTA = ?, DESCRIPCION_ALERTA = ?, FEC_INICIO_SUPERVISION_ALERTA = ?,
-                    FEC_INFORME_ALERTA = ?, NUM_INFORME_ALERTA = ?, FEC_OF_COMUNICACION_ALERTA = ?,
-                    NUM_OF_COMUNICACION_ALERTA = ?, FEC_APROBACION_SSI = ?,
-                    USR_CREACION = ?, FECHA_ACTUALIZACION = NOW()
+                    TIPO_ALERTA = ?,
+                     DESCRIPCION_ALERTA = ?,
+                      FEC_INICIO_SUPERVISION_ALERTA = ?,
+
+                    FEC_INFORME_ALERTA = ?,
+                     NUM_INFORME_ALERTA = ?,
+                      FEC_OF_COMUNICACION_ALERTA = ?,
+                    NUM_OF_COMUNICACION_ALERTA = ?, 
+                    FEC_APROBACION_SSI = ?,
+                    USR_CREACION = ?,
+                     FECHA_ACTUALIZACION = NOW()
                     WHERE ID = ?";
 
                 $stmt = $conn->prepare($query);
