@@ -33,7 +33,7 @@ function guardarSupervision($data)
     try {
         // Variables generales
         $ruc = $data['ruc'] ?? '';
-        $razonSocial = strtoupper($data['tbrazonSocial'] ?? '');
+        $razonSocial = strtoupper(trim($data['razon_social'] ?? $data['tbrazonSocial'] ?? ''));
         $segmento = strtoupper($data['tbsegmento'] ?? '');
         $usrCreacion = strtoupper($data['analista'] ?? 'SISTEMA');
         $idAvancesSupervision = $data['id_avances'] ?? '';
@@ -833,6 +833,185 @@ function guardarSupervision($data)
     }
 }
 
+
+///////////////////////////////////////////////////////////////////////
+// Función para ELIMINAR una supervisión en la base de datos
+///////////////////////////////////////////////////////////////////////
+
+function eliminarSupervision($data)
+{
+    global $conn;
+
+    if (!$conn || $conn->connect_error) {
+        throw new Exception("Error de conexión a la base de datos");
+    }
+
+    // Iniciar transacción
+    $conn->begin_transaction();
+
+    try {
+        // Variables generales
+        $idAvancesSupervision = $data['idavances'] ?? '';
+        $usrCreacion = $data['usuario'] ?? 'UsuarioSistema'; // Asegurar valor por defecto
+
+        // Validar datos requeridos
+        if (empty($idAvancesSupervision)) {
+            throw new Exception("El ID de avance de supervisión es requerido");
+        }
+
+        if (empty($usrCreacion)) {
+            throw new Exception("El usuario es requerido para la operación");
+        }
+
+        // 1. BUSCAR CÓDIGO ÚNICO en as_avances_supervision
+        $queryBuscar = "SELECT COD_UNICO FROM as_avances_supervision 
+                    WHERE ID = ? AND EST_REGISTRO = 'ACT'";
+
+        $stmtBuscar = $conn->prepare($queryBuscar);
+        if (!$stmtBuscar) {
+            throw new Exception("Error preparando consulta de búsqueda: " . $conn->error);
+        }
+
+        $stmtBuscar->bind_param("i", $idAvancesSupervision);
+
+        if (!$stmtBuscar->execute()) {
+            throw new Exception("Error ejecutando búsqueda: " . $stmtBuscar->error);
+        }
+        
+        $resultado = $stmtBuscar->get_result();
+
+        if ($resultado->num_rows === 0) {
+            $stmtBuscar->close();
+            throw new Exception("No se encontró el registro con ID: " . $idAvancesSupervision);
+        }
+
+        $fila = $resultado->fetch_assoc();
+        
+        if ($fila['COD_UNICO'] != $data['codUnico']){
+            $stmtBuscar->close();
+            throw new Exception("Codigo Único coincidente con la base de datos: " . $idAvancesSupervision);
+        }
+
+        $codUnico = $fila['COD_UNICO'] ?? $data['codUnico'];
+
+        // Validar que se obtuvo el código único
+        if (empty($codUnico)) {
+            throw new Exception("No se pudo obtener el código único del registro");
+        }
+
+        // 2. Inactivar Registro principal
+        $queryActualizar = "UPDATE as_avances_supervision SET 
+                        EST_REGISTRO = 'INA', 
+                        deletedAt = NOW(),
+                        deletedUser = ?
+                        WHERE ID = ? AND COD_UNICO = ?";
+
+        $stmt = $conn->prepare($queryActualizar);
+        if (!$stmt) {
+            throw new Exception("Error preparando actualización: " . $conn->error);
+        }
+
+        $stmt->bind_param("sis", $usrCreacion, $idAvancesSupervision, $codUnico);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Error ejecutando actualización: " . $stmt->error);
+        }
+
+        // Verificar si se afectó alguna fila
+        if ($stmt->affected_rows === 0) {
+            throw new Exception("No se pudo inactivar el registro. Verifique los datos.");
+        }
+
+        $stmt->close();
+
+        // 3. Inactivar registros relacionados con el mismo COD_UNICO
+        $tablasRelacionadas = [
+            'as_supervisiones',
+            'as_correctivas',
+            'as_supervision_psi',
+            'as_seguimiento_psi',
+            'as_levantamiento_psi',
+            'as_liquidacion',
+            'as_alertas'
+        ];
+
+        $accionRealizada = ['as_avances_supervision' => 'DELETED'];
+        $totalRegistrosAfectados = 0;
+
+        foreach ($tablasRelacionadas as $tabla) {
+            $queryRelacionados = "UPDATE $tabla SET 
+                                EST_REGISTRO = 'INA',
+                                deletedAt = NOW(),
+                                deletedUser = ?
+                                WHERE COD_UNICO = ? AND EST_REGISTRO = 'ACT'";
+
+            $stmtRel = $conn->prepare($queryRelacionados);
+            if (!$stmtRel) {
+                throw new Exception("Error preparando consulta para $tabla: " . $conn->error);
+            }
+
+            $stmtRel->bind_param("ss", $usrCreacion, $codUnico);
+
+            if (!$stmtRel->execute()) {
+                throw new Exception("Error ejecutando actualización en $tabla: " . $stmtRel->error);
+            }
+
+            $registrosAfectados = $stmtRel->affected_rows;
+            $totalRegistrosAfectados += $registrosAfectados;
+
+            if ($registrosAfectados > 0) {
+                $accionRealizada[$tabla] = "DELETED ($registrosAfectados registros)";
+            } else {
+                $accionRealizada[$tabla] = "NO_ACTION (0 registros)";
+            }
+
+            $stmtRel->close();
+        }
+
+        // Confirmar transacción
+        $conn->commit();
+
+        // Respuesta exitosa
+        header('Content-Type: application/json');
+        echo json_encode([
+            'success' => true,
+            'id_avances_supervision' => $idAvancesSupervision,
+            'cod_unico' => $codUnico,
+            'message' => 'Supervisión y registros relacionados eliminados exitosamente',
+            'registros_afectados' => [
+                'principal' => 1, // Siempre 1 para el registro principal
+                'relacionados' => $totalRegistrosAfectados,
+                'total' => 1 + $totalRegistrosAfectados
+            ],
+            'acciones' => $accionRealizada,
+            'tablas_procesadas' => count($tablasRelacionadas)
+        ]);
+ 
+        exit;
+    } catch (Exception $e) {
+    // Revertir transacción en caso de error
+    if ($conn) {
+        $conn->rollback();
+    }
+    
+    error_log("Error en eliminación de supervisión: " . $e->getMessage());
+
+    // Respuesta de error
+    header('Content-Type: application/json');
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error al eliminar la supervisión: ' . $e->getMessage(),
+        'id_avances_supervision' => $idAvancesSupervision ?? null,
+        'cod_unico' => $codUnico ?? null,
+        'tablas_procesadas_hasta_error' => $accionRealizada ?? []
+    ]);
+    exit;
+}
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////
 // Evaluar POST para determinar la acción a seguir
 /////////////////////////////////////////////////////////////////////////
@@ -861,7 +1040,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'eliminar_supervision':
-            echo json_encode(['success' => false, 'message' => 'Función no implementada']);
+            try {
+                $datos_recibidos = file_get_contents('php://input');
+                $datos_decode_json = json_decode($datos_recibidos, true);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    throw new Exception('JSON inválido: ' . json_last_error_msg());
+                }
+
+                // Validar que se recibió el ID requerido
+                if (!isset($datos_decode_json['idavances']) || empty($datos_decode_json['idavances'])) {
+                    throw new Exception('El campo idavances es requerido para eliminar');
+                }
+
+                // Validar que se recibió el usuario
+                if (!isset($datos_decode_json['usuario']) || empty($datos_decode_json['usuario'])) {
+                    throw new Exception('El campo usuario es requerido para la eliminación');
+                }
+
+                eliminarSupervision($datos_decode_json);
+                
+            } catch (Exception $e) {
+                http_response_code(400);
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Error procesando eliminación: ' . $e->getMessage()
+                ]);
+            }
             break;
 
         default:
@@ -873,3 +1078,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'Método no permitido']);
 }
+
+

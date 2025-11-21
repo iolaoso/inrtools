@@ -60,7 +60,7 @@ $rolesDireccion = [
                     <button type="submit" class="btn btn-sm btn-success mx-0">
                         <i class="fas fa-save me-1"></i> Guardar
                     </button>
-                    <button type="button" class="btn btn-sm btn-warning mx-0" onclick="eliminarSupervision(idAvanceSupervision,codUnico)">
+                    <button type="button" class="btn btn-sm btn-warning mx-0" onclick="eliminarSupervision()">
                         <i class="fas fa-trash me-1"></i> Eliminar
                     </button>
                     <button type="button" class="btn btn-sm btn-info mx-0" onclick="limpiarTodosLosFormularios()">
