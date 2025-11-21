@@ -172,32 +172,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'getEstados') {
     exit;
 }
 
-if (isset($_GET['action']) && $_GET['action'] === 'getSupervisionData') {
-    
-    $supervisionId = isset($_GET['supervisionId']) ? $_GET['supervisionId'] : 0;
-
-    global $conn; // Usar la conexión global
-    // Consulta para obtener los datos de la supervisión
-    $query = "SELECT *
-              FROM VI_FULL_SUPERVISION
-              WHERE ID = ?;";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $supervisionId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    $supervisionData = array();
-    while ($row = $result->fetch_assoc()) {
-        $supervisionData[] = $row;
-    }
-
-    header('Content-Type: application/json');
-    // retorna objeto con propiedad supervision
-    echo json_encode(['success' => true,
-                      'supervision' => $supervisionData]);
-    exit;
-}
-
 if (isset($_GET['action']) && $_GET['action'] === 'buscarPorRuc') {
     
     $ruc = isset($_GET['ruc']) ? trim($_GET['ruc']) : '';
@@ -229,5 +203,58 @@ if (isset($_GET['action']) && $_GET['action'] === 'buscarPorRuc') {
     }
     exit;
 }
+
+if (isset($_GET['action']) && $_GET['action'] === 'getSupervisionData') {
+    
+    $supervisionId = isset($_GET['supervisionId']) ? $_GET['supervisionId'] : 0;
+
+    global $conn; // Usar la conexión global
+    // Consulta para obtener los datos de la supervisión
+    $query = "SELECT *
+              FROM VI_FULL_SUPERVISION
+              WHERE ID = ?;";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $supervisionId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $supervisionData = array();
+    while ($row = $result->fetch_assoc()) {
+        $supervisionData[] = $row;
+    }
+
+    header('Content-Type: application/json');
+    // retorna objeto con propiedad supervision
+    echo json_encode(['success' => true,
+                      'supervision' => $supervisionData]);
+    exit;
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'getAlertaData') {
+  $supervisionId = isset($_GET['alertaId']) ? $_GET['alertaId'] : 0;
+
+    global $conn; // Usar la conexión global
+    // Consulta para obtener los datos de la ALERTA
+    $query = "SELECT *
+              FROM VI_FULL_ALERTAS
+              WHERE ID = ?;";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $supervisionId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $supervisionData = array();
+    while ($row = $result->fetch_assoc()) {
+        $alertaData[] = $row;
+    }
+
+    header('Content-Type: application/json');
+    // retorna objeto con propiedad supervision
+    echo json_encode(['success' => true,
+                      'alerta' => $alertaData]);
+    exit;  
+}
+
+
 
 

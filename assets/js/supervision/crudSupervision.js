@@ -143,11 +143,8 @@ async function eliminarSupervision(){
         cancelButtonText: 'Cancelar',
         showLoaderOnConfirm: true,
         preConfirm: () => {
-            
-            const idavances = document.getElementById('id_avances');
-            const codUnico = document.getElementById('cod_unico_avances');
             const usuario = nickname;
-            return eliminarDatosSupervision(idavances, codUnico, usuario);
+            return eliminarDatosSupervision(idAvances, codUnico, usuario);
         }
     });
     

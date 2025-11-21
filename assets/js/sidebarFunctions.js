@@ -25,9 +25,9 @@ function generateMenu(usrDir, usrRol, usrName) {
     const menu = document.getElementById('menu');
     const fragment = document.createDocumentFragment();
 
-    console.log('usrDir:', usrDir);
+    /* console.log('usrDir:', usrDir);
     console.log('usrRol:', usrRol);
-    console.log('usrName:', usrName);
+    console.log('usrName:', usrName); */
 
     menuItems.forEach(item => {
         // Validar acceso al menú principal

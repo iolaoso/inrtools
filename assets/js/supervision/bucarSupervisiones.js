@@ -145,7 +145,7 @@ function obtenerClaseEstado(estado) {
 function seleccionarSupervision(idSupervision, catalogoId) {
     //console.log('Supervisión seleccionada:', idSupervision , "\nFase:", catalogoId);
     const idFase = parseInt(catalogoId);
-    if (idFase>=56 && idFase>=67){
+    if (idFase>=56 && idFase<=67){
         //console.log('Alerta:', idSupervision, 'en fase:', idFase);
         // Mostrar mensaje de confirmación
         mostrarAlerta(`Alerta ${idSupervision} seleccionada en Fase: ${idFase}`, 'success');    
@@ -153,7 +153,7 @@ function seleccionarSupervision(idSupervision, catalogoId) {
     } else {
         // Mostrar mensaje de confirmación
         //console.log('Supervisión:', idSupervision, 'en fase:', idFase);
-        //mostrarAlerta(`Supervisión ${idSupervision} seleccionada en Fase: ${idFase}`, 'success');
+        mostrarAlerta(`Supervisión ${idSupervision} seleccionada en Fase: ${idFase}`, 'success');
         // Aquí podrías cargar los datos de la supervisión en el formulario principal
         cargarDatosSupervision(idSupervision);
     }
@@ -164,7 +164,6 @@ function seleccionarSupervision(idSupervision, catalogoId) {
 
 // Función para cargar llenar los datos de la supervisión seleccionada
 async function cargarDatosSupervision(supervisionId) {
-    // En producción, harías una llamada AJAX para obtener los datos completos
     //console.log('Cargando datos de la supervisión:', supervisionId);
     
     try {
@@ -285,10 +284,11 @@ async function cargarDatosSupervision(supervisionId) {
 }
 
 // Función para cargar datos de la Alerta seleccionada
-async function cargarDatosAlerta(alertaId) {
-    console.log('Cargando datos de la Alerta:', alertaId);
+async function cargarDatosAlerta(idSupervision) {
+    //console.log('Cargando datos de la Alerta:', idSupervision);
+     
     try {
-        const url = baseurl + `/backend/supervision/alertaList.php?action=getAlertaData&alertaId=${encodeURIComponent(alertaId)}&catalogoId=${encodeURIComponent(catalogoId)}`;       
+        const url = baseurl + `/backend/supervision/supervisionList.php?action=getAlertaData&alertaId=${encodeURIComponent(idSupervision)}`;       
         const response = await fetch(url);
         const responseText = await response.text();
         // Verificar si la respuesta está vacía
@@ -305,23 +305,41 @@ async function cargarDatosAlerta(alertaId) {
             throw new Error('Error parseando la respuesta del servidor');
         }
         console.log('✅ Datos de alerta recibidos:', data);
+        
         // Procesar la respuesta para input text
         if (data.success && data.alerta && Array.isArray(data.alerta) && data.alerta.length > 0) {
             const alertaData = data.alerta[0];
-            document.getElementById('id_alerta').value = alertaData.ID;
+            document.getElementById('id_avances').value = alertaData.ID;
+            document.getElementById('cod_unico_avances').value = alertaData.COD_UNICO;
+            document.getElementById('IDcentral').value = alertaData.ID;
+            await establecerValorSelectPorTexto('estrategia', alertaData.ESTRATEGIA); 
+            await establecerValorSelect('trim_plan', alertaData.TRIM_PLAN);
+            await establecerValorSelectPorTexto('analistaSelect', alertaData.USR_NOMBRE);
+            await establecerValorSelect('fase', alertaData.CATALOGO_ID);
+            document.getElementById('estadoSupervision').value = alertaData.ESTADO_PROCESO;
+            document.getElementById('analista').value = alertaData.RESPONSABLE;
+            document.getElementById('fec_asig').value = alertaData.FEC_ASIG;
+            document.getElementById('anio_plan').value = alertaData.ANIO_PLAN;
+            document.getElementById('porc_avance').value = alertaData.PORC_AVANCE;
+            // campos de ALERTA
+            document.getElementById('id_alerta').value = alertaData.ALERTA_ID;
             document.getElementById('tipo_alerta').value = alertaData.TIPO_ALERTA;
             document.getElementById('fec_inicio_supervision_alerta').value = alertaData.FEC_INICIO_SUPERVISION_ALERTA;
             document.getElementById('fec_informe_alerta').value = alertaData.FEC_INFORME_ALERTA;
             document.getElementById('num_informe_alerta').value = alertaData.NUM_INFORME_ALERTA;
-            document.getElementById('fec_of_comunicacion_alerta').value = alertaData.FEC_OF_COMUNICACION_ALERTA;
+            document.getElementById('descripcion_alerta').value = alertaData.DESCRIPCION_ALERTA;
             document.getElementById('num_of_comunicacion_alerta').value = alertaData.NUM_OF_COMUNICACION_ALERTA;
+            document.getElementById('fec_of_comunicacion_alerta').value = alertaData.FEC_OF_COMUNICACION_ALERTA;
             document.getElementById('fec_aprobacion_ssi').value = alertaData.FEC_APROBACION_SSI;
+
         }   
+        
     } catch (error) {
         console.error('❌ Error al obtener alerta:', error);
     } finally {    
         mostrarAlerta('Datos de la alerta cargados correctamente', 'success');
     }
+    
 }
 
 // Inicialización
