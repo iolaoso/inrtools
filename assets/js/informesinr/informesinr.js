@@ -195,8 +195,9 @@ function consultarAreasRequirientes() {
     });
 }
 
-function selectedArea(areaSeleccionada){
-   document.getElementById('newAreaRequiriente').value = areaSeleccionada
+function selectAreaExistente() {
+    const selectArea = document.getElementById('selectAreaRequiriente').value;
+    document.getElementById('newAreaRequiriente').value = selectArea;
 }
 
 async function guardarForm(formId, event) {
@@ -253,19 +254,12 @@ async function guardarNewTipoInf(formId, event) {
             text: message.code + ' - ' + message.error,
         });
         form.reset();
+        location.reload();
     } catch (error) {
         console.error("Error al guardar la estructura:", error);
         alert(`Error al guardar la estructura: ${error.message}`);
     }
 }
-
-document.addEventListener('DOMContentLoaded', function(e) {
-    // Evento para llenar subcategorías
-   document.getElementById('cbCategoria').addEventListener('change', subCategoryChange);
-
-   
-});
-
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -376,6 +370,8 @@ $(document).ready(function() {
         "stateSave": true
     });
 }); 
+
+
 
 
 

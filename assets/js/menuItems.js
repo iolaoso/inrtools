@@ -313,14 +313,14 @@ const menuItems = [
               title: 'Avance de Supervision DNSES', 
               url: '/INRtools/frontend/dnses/supervision/asupervision.php',
               direccion: ['DNSES','INR', 'DNR'],
-              rol: ['SUPERUSER'],
-              usuarios: [] 
+              rol: ['SUPERUSER','ANALISTA'],
+              usuarios: ['ILOPEZA','EVACA'] 
             },
         ],
         url: '/INRtools/frontend/porUsuario.php',
         icon: 'fa fa-file-text',
         direccion: ['ALL'],
-        rol: ['SUPERUSER'],
-        usuarios: ['ILOPEZA'] // Opcional: lista de usuarios específicos permitidos
+        rol: ['SUPERUSER','ANALISTA'],
+        usuarios: ['ILOPEZA','EVACA'] // Opcional: lista de usuarios específicos permitidos
     },
 ];

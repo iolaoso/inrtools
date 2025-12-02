@@ -64,6 +64,17 @@ function obtenerTiposInforme()
     return $stmt->get_result();
 }
 
+function obtenerAreasRequirientes()
+{
+    global $connInf; // Usar la conexión global global $connInf; // Usar la conexión global
+    $sql = "SELECT DISTINCT(AREA_REQUIRIENTE) AS AREA_REQUIRIENTE
+            FROM T_TIPO_INFORME 
+            WHERE EST_REGISTRO = 'ACT';";
+    $stmt = $connInf->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
 
 
 if (isset($_GET['id'])) {

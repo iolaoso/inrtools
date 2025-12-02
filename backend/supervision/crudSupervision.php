@@ -877,7 +877,7 @@ function eliminarSupervision($data)
         if (!$stmtBuscar->execute()) {
             throw new Exception("Error ejecutando búsqueda: " . $stmtBuscar->error);
         }
-        
+
         $resultado = $stmtBuscar->get_result();
 
         if ($resultado->num_rows === 0) {
@@ -886,8 +886,8 @@ function eliminarSupervision($data)
         }
 
         $fila = $resultado->fetch_assoc();
-        
-        if ($fila['COD_UNICO'] != $data['codUnico']){
+
+        if ($fila['COD_UNICO'] != $data['codUnico']) {
             $stmtBuscar->close();
             throw new Exception("Codigo Único coincidente con la base de datos: " . $idAvancesSupervision);
         }
@@ -986,28 +986,28 @@ function eliminarSupervision($data)
             'acciones' => $accionRealizada,
             'tablas_procesadas' => count($tablasRelacionadas)
         ]);
- 
+
         exit;
     } catch (Exception $e) {
-    // Revertir transacción en caso de error
-    if ($conn) {
-        $conn->rollback();
-    }
-    
-    error_log("Error en eliminación de supervisión: " . $e->getMessage());
+        // Revertir transacción en caso de error
+        if ($conn) {
+            $conn->rollback();
+        }
 
-    // Respuesta de error
-    header('Content-Type: application/json');
-    http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'message' => 'Error al eliminar la supervisión: ' . $e->getMessage(),
-        'id_avances_supervision' => $idAvancesSupervision ?? null,
-        'cod_unico' => $codUnico ?? null,
-        'tablas_procesadas_hasta_error' => $accionRealizada ?? []
-    ]);
-    exit;
-}
+        error_log("Error en eliminación de supervisión: " . $e->getMessage());
+
+        // Respuesta de error
+        header('Content-Type: application/json');
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Error al eliminar la supervisión: ' . $e->getMessage(),
+            'id_avances_supervision' => $idAvancesSupervision ?? null,
+            'cod_unico' => $codUnico ?? null,
+            'tablas_procesadas_hasta_error' => $accionRealizada ?? []
+        ]);
+        exit;
+    }
 }
 
 
@@ -1059,7 +1059,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
 
                 eliminarSupervision($datos_decode_json);
-                
             } catch (Exception $e) {
                 http_response_code(400);
                 echo json_encode([
@@ -1078,5 +1077,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'Método no permitido']);
 }
-
-

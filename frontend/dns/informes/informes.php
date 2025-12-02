@@ -9,6 +9,7 @@ include BASE_PATH . 'backend/informesinr/informesinrList.php'; // Incluir el arc
 $entidadesActSf = entidadesActivasSf();
 $analistas = obtenerAnalistas($direccion);
 $tiposInf = obtenerTiposInforme();
+$areasReq = obtenerAreasRequirientes();
 
 $rolesDireccion = [
     'SUPERUSER',
@@ -399,8 +400,15 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                     <div class="mb-3">
                         <label for="selectAreaRequiriente" class="form-label">Área Requiriente Existente</label>
                         <select class="form-control" id="selectAreaRequiriente" name="selectAreaRequiriente"
-                            onclick="selectedArea(this.value)">
+                            onclick="selectAreaExistente()">
                             <!-- AREAS VIENEN DESDE LA BASE -->
+                            <option value="0">--- Seleccione ---</option>
+                            <?php foreach ($areasReq as $areaR): ?>
+                                    <option value="<?= htmlspecialchars($areaR['AREA_REQUIRIENTE']) ?>"
+                                        data-text="<?= htmlspecialchars($areaR['AREA_REQUIRIENTE']) ?>">
+                                        <?= htmlspecialchars($areaR['AREA_REQUIRIENTE']) ?>
+                                    </option>
+                                <?php endforeach; ?>
                         </select>
                     </div>
                     <form id="frmNewTipoInf" method="POST" autocomplete="off"
