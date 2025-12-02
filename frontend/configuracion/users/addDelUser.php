@@ -125,7 +125,7 @@ require_once BASE_PATH . 'frontend/partials/head.php';
                                                     <td>
                                                         <button class="btn btn-danger delete-btn btn-sm"
                                                             data-id="<?= htmlspecialchars($usuario['id']) ?>"
-                                                            title="Eliminar" onclick="deleteUser($usuario['id']);">
+                                                            title="Eliminar" onclick="deleteUser(<?= $usuario['id'] ?>);">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </td>
@@ -142,7 +142,7 @@ require_once BASE_PATH . 'frontend/partials/head.php';
             <script>
                 function deleteUser(userId) {
                     if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
-                        window.location.href = "delete_user.php?id=" + userId; // Cambia 'delete_user.php' según tu lógica
+                        window.location.href = `${baseurl}/backend/users/deleteUser.php?id=${userId}`; 
                     }
                 }
             </script>
