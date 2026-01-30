@@ -52,6 +52,36 @@ include BASE_PATH . 'backend/session.php';
                 </div>
             </section>
             <section class="row align-items-stretch mb-4">
+                <!-- Perdidas Esperadas Matriz de trasnsicion Historico-->
+                <div class="col-md-12">
+                    <div class="card h-100 d-flex flex-column border-secondary">
+                        <div class="card-header text-white" style="background-color: #059b87ff;">
+                            <h4>Historicos Perdidas Esperadas - Matriz de transición</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 300px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaPerdidasEsperadas">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>Versión</th>
+                                                <th>Archivo</th>
+                                                <th>Tamaño</th>
+                                                <th>Fecha Modificación</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rTBodyHistPEMT">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="row align-items-stretch mb-4">
                 <!-- Perdidas Esperadas Matriz de trasnsicion -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
