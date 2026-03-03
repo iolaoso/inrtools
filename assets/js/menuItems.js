@@ -75,7 +75,7 @@ const menuItems = [
                 subMenu: [
                     {   title: 'Calificación Riesgo', 
                         url: '/INRtools/frontend/dnr/reportes/calfRiesgo/calfRiesgo.php',
-                        direccion: ['INR', 'DNR'],
+                        direccion: ['INR', 'DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: ['MFLORES','CLUNA','ESIMBAÑA','EACOSTA','FLARCO','ILOPEZA']
                     },
@@ -100,7 +100,7 @@ const menuItems = [
                     },
                     {   title: 'Riesgo de Interconexion', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/riesgoInterconexion.php',
-                        direccion: ['INR', 'DNR'],
+                        direccion: ['INR', 'DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: []
                     },
@@ -112,6 +112,12 @@ const menuItems = [
                     },
                     {   title: 'Calidad de Resultados', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/calidadResultados.php',
+                        direccion: ['INR', 'DNR','DNS'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        usuarios: []
+                    },
+                    {   title: 'Provisiones', 
+                        url: '/INRtools/frontend/dnr/reportes/provisiones/provisiones.php',
                         direccion: ['INR', 'DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: []
@@ -136,7 +142,7 @@ const menuItems = [
                     },
                     {   title: 'Conafips', 
                         url: '/INRtools/frontend/dnr/reportes/conafips/conafips.php',
-                        direccion: ['INR', 'DNR'],
+                        direccion: ['INR', 'DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     },
