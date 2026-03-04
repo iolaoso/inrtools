@@ -32,6 +32,33 @@ const menuItems = [
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     },
+                    {   title: 'Ind Ranking',
+                        subMenu: [
+                            {   title: 'Ind ranking Preliminar',
+                                url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRankingPreliminar.php',
+                                direccion: ['INR', 'DNR','DNSES'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                            {   title: 'Ind ranking Definitivo',
+                                url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRankingDefinitivo.php',
+                                direccion: ['INR', 'DNR','DNSES'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                            {   title: 'Ind ranking Imputados',
+                                url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRankingImputados.php',
+                                direccion: ['INR', 'DNR'],
+                                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                                usuarios: [] 
+                            },
+                            
+                        ],
+                        /* url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRanking.php', */
+                        direccion: ['ALL'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        usuarios: [] 
+                    },
                     {   title: 'Comite', 
                         url: '/INRtools/frontend/inr/reportes/comite/comiteTecnico.php',
                         direccion: ['ALL'],

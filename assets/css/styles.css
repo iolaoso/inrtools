@@ -293,3 +293,54 @@ thead {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+/* Estilo mejorado para la nota de confidencialidad */
+.confidentiality-note {
+    display: flex;
+    align-items: center;        /* Icono centrado verticalmente respecto al texto */
+    gap: 15px;                  /* Espacio entre icono y texto */
+    width: 100%;                  /* Ocupa el 90% del ancho disponible */
+    /* max-width: 1200px; */     /* Límite opcional en pantallas grandes */
+    margin: 20px auto;           /* Centrado horizontal */
+    font-size: 1.1rem;           /* Texto más grande */
+    font-weight: 500;
+    color: #1e2b37;
+    background-color: #fff9e6;
+    border-left: 6px solid #e67e22;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 22px;
+    line-height: 1.7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.confidentiality-note:hover {
+    border-left-color: #d35400;
+    background-color: #fff3d6;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateX(2px);
+}
+
+/* Estilo del icono (usando Font Awesome) */
+.confidentiality-note i {
+    font-size: 2.5rem;           /* Icono grande */
+    color: #e67e22;
+    flex-shrink: 0;              /* Evita que se encoja */
+    line-height: 1;              /* Elimina espacio extra por línea */
+}
+
+/* Contenedor del texto */
+.confidentiality-note .note-text {
+    flex: 1;                     /* Ocupa el resto del ancho */
+    text-align: justify;         /* Texto justificado */
+    text-justify: inter-word;    /* Mejora la justificación en navegadores modernos */
+}
+
+.confidentiality-note small {
+    display: block;
+}
+
+.confidentiality-note em {
+    font-style: italic;
+    color: #2c3e50;
+    font-weight: 400;
+}
