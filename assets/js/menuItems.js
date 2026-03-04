@@ -27,7 +27,7 @@ const menuItems = [
                     },
                     {   title: 'Ind ranking Definitivo',
                         url: '/INRtools/frontend/inr/IndRanking/rIndRankingDefinitivo.php',
-                        direccion: ['INR', 'DNR','DNSES'],
+                        direccion: ['INR', 'DNR','DNSES','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     },
@@ -308,6 +308,24 @@ const menuItems = [
                 rol: ['SUPERUSER','ADMINISTRADOR'],
                 usuarios: [] 
             },
+            { title: 'Intendencias y Direcciones',
+                url: '/INRtools/frontend/configuracion/direcciones/newdireccion.php',
+                direccion: ['ALL'],
+                rol: ['SUPERUSER','ADMINISTRADOR'],
+                usuarios: []
+            },
+            /* { title: 'Roles y Permisos',
+                url: '/INRtools/frontend/configuracion/roles/roles.php',
+                direccion: ['ALL'],
+                rol: ['SUPERUSER','ADMINISTRADOR'],
+                usuarios: []
+            },
+                { title: 'Asignar Roles',
+                url: '/INRtools/frontend/configuracion/roles/asignarRoles.php',
+                direccion: ['ALL'],
+                rol: ['SUPERUSER','ADMINISTRADOR'],
+                usuarios: []
+            }, */
         ],
         icon: 'fa-solid fa-cog',
         direccion: ['ALL'],
