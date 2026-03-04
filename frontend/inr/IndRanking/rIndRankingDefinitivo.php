@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../../../backend/config.php';
+include_once __DIR__ . '/../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';
 ?>
 
@@ -18,20 +18,20 @@ include BASE_PATH . 'backend/session.php';
         <!-- Contenido principal -->
         <main class="content p-3" id="main-content">
             <div class="row align-items-center mb-1">
-                <h1 class="display-6 tituloPagina">Ind Ranking Preliminar  <span style="color: #9c1e1e; font-size: 0.8em">(sin calificación de riesgo)</span></h1>
+                <h1 class="display-6 tituloPagina">Ind Ranking Definitivo  <span style="color: #16c224; font-size: 0.8em">(incluye calificación de riesgo)</span></h1>
                 <p>Bases de datos de cuentas, indicadores financieros y promedios que se generan en la INR</p>
             </div>
             
             <!-- Nota de confidencialidad de la información -->
             <?php include BASE_PATH . 'frontend/partials/confidentiality.php'; ?>            
             
-            <!-- 1. Ind Ranking COACS ACTIVAS Preliminar XLSX -->
+            <!-- 1. Ind Ranking COACS ACTIVAS Definitivo XLSX -->
             <section class="row align-items-stretch mb-4">
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>1. Ind Ranking COACS ACTIVAS Preliminar (EXCEL)</h4>
-                            <em>Base de datos del ind ranking histórico de coacs preliminar.</em>
+                            <h4>1. Ind Ranking COACS ACTIVAS Definitivo (EXCEL)</h4>
+                            <em>Base de datos del ind ranking histórico de coacs definitivo.</em>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -58,13 +58,13 @@ include BASE_PATH . 'backend/session.php';
                 </div>
             </section>
 
-            <!-- 2. Ind Ranking MUTUALISTAS Preliminar XLSX -->
+            <!-- 2. Ind Ranking MUTUALISTAS Definitivo XLSX -->
             <section class="row align-items-stretch mb-4">
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>2. Ind Ranking MUTUALISTAS Preliminar (EXCEL)</h4>
-                            <em>Base de datos del ind ranking histórico de mutualistas preliminar.</em>
+                            <h4>2. Ind Ranking MUTUALISTAS Definitivo (EXCEL)</h4>
+                            <em>Base de datos del ind ranking histórico de mutualistas definitivo.</em>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -91,13 +91,13 @@ include BASE_PATH . 'backend/session.php';
                 </div>
             </section>
            
-            <!-- 3. Ind Ranking ULTIMO BALANCE COACS Y MUTUALISTAS Preliminar XLSX-->
+            <!-- 3. Ind Ranking ULTIMO BALANCE COACS Y MUTUALISTAS Definitivo XLSX-->
             <section class="row align-items-stretch mb-4">
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>3. Ind Ranking ULTIMO BALANCE COACS Y MUTUALISTAS Preliminar (EXCEL)</h4>
-                            <em>Base de datos del ind ranking histórico del último balance de coacs y mutualistas preliminar.</em>
+                            <h4>3. Ind Ranking ULTIMO BALANCE COACS Y MUTUALISTAS Definitivo (EXCEL)</h4>
+                            <em>Base de datos del ind ranking histórico del último balance de coacs y mutualistas definitivo.</em>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -124,14 +124,14 @@ include BASE_PATH . 'backend/session.php';
                 </div>
             </section>
 
-            <!-- 4. Reportes de Ind Ranking COACS Preliminar DTA -->
+            <!-- 4. Reportes de Ind Ranking COACS Definitivo DTA -->
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
-                            <h4>4. Ind Ranking COACS Preliminar (STATA)</h4>
-                            <em>Base de datos del ind ranking histórico de coacs preliminar.</em>
+                            <h4>4. Ind Ranking COACS Definitivo (STATA)</h4>
+                            <em>Base de datos del ind ranking histórico de coacs definitivo.</em>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -158,13 +158,13 @@ include BASE_PATH . 'backend/session.php';
                 </div>
             </section>
             
-            <!-- 5. Ind Ranking MUTUALISTAS Preliminar DTA -->
+            <!-- 5. Ind Ranking MUTUALISTAS Definitivo DTA -->
             <section class="row align-items-stretch mb-4">
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
-                            <h4>5. Ind Ranking MUTUALISTAS Preliminar (STATA)</h4>
-                            <em>Base de datos del ind ranking histórico de mutualistas preliminar.</em>
+                            <h4>5. Ind Ranking MUTUALISTAS Definitivo (STATA)</h4>
+                            <em>Base de datos del ind ranking histórico de mutualistas definitivo.</em>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -207,9 +207,9 @@ include BASE_PATH . 'backend/session.php';
     <script>
     // Define la carpeta que deseas usar
     //const carpetaReportes = '//Seps-mv-fileser/inr/Gestión de IR/DIR-NAC-RPLA/5. Productos/Reporte de Diagnostico';
-    const carpetaReportes = 'assets/files/reportes/indRanking/01 Ind ranking preliminar';
+    const carpetaReportes = 'assets/files/reportes/indRanking/02 Ind ranking definitivo';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/reportes/indRanking/listFilesIndRankingPreliminar.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/indRanking/listFilesIndRanking.js"></script>
 </body>
 
 </html>

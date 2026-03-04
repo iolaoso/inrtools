@@ -1,4 +1,4 @@
-console.log("listFilesIndRankingPreliminar.js funcionando");
+console.log("listFilesIndRanking.js funcionando");
 
 // Función para ordenar archivos (por fecha y luego por versión)
 function ordenarArchivos(archivos) {
@@ -152,7 +152,7 @@ function mostrarErrorEnTodasTablas(mensaje) {
 }
 
 // Función principal para obtener y mostrar reportes
-function fetchIndRankingPre(carpetaReportes) {
+function fetchIndRanking(carpetaReportes) {
     const url = `${baseurl}/backend/reportes/listFilesRepVersion.php?carpeta=${encodeURIComponent(carpetaReportes)}`;
     console.log("Fetching URL:", url);
 
@@ -164,27 +164,28 @@ function fetchIndRankingPre(carpetaReportes) {
         .then(data => {
             //console.log("Datos recibidos:", data);
             const categorias = {
-                coacsDta: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_coacs_preliminar')),
-                    tablaId: 'rTBodyIndRankingCoacsPreDTA'
-                },
                 coacsXlsx: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_coacs_activas_preliminar')),
+                    archivos: data.filter(item => item.name.includes('ind_ranking_coacs_activas')),
                     tablaId: 'rTBodyIndRankingCoacsPreXLSX'
                 },
-                mutualistasDta: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas_preliminar') && 
-                    item.name.endsWith('.dta')),
-                    tablaId: 'rTBodyIndRankingMutualistasPreDTA'
-                },
-                mutualistasXlsx: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas_preliminar') && 
+                 mutualistasXlsx: {
+                    archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas') && 
                     item.name.endsWith('.xlsx')),
                     tablaId: 'rTBodyIndRankingMutualistasPreXLSX'
                 },
                 coacsMutualistasXlsx: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_ult_bal')),
+                    archivos: data.filter(item => item.name.includes('ind_ranking_ult_bal_coacs_y_mutualistas')),
                     tablaId: 'rTBodyIndRankingUltBalCoacsMutPreXLSX'
+                },
+                coacsDta: {
+                    archivos: data.filter(item => item.name.includes('ind_ranking_coacs') && 
+                    (item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
+                    tablaId: 'rTBodyIndRankingCoacsPreDTA'
+                },
+                mutualistasDta: {
+                    archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas') && 
+                    (item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
+                    tablaId: 'rTBodyIndRankingMutualistasPreDTA'
                 }
             };
             Object.values(categorias).forEach(({ archivos, tablaId }) => {
@@ -200,7 +201,7 @@ function fetchIndRankingPre(carpetaReportes) {
 // Inicialización cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof carpetaReportes !== 'undefined') {
-        fetchIndRankingPre(carpetaReportes);
+        fetchIndRanking(carpetaReportes);
     } else {
         console.error("La variable 'carpetaReportes' no está definida");
         mostrarErrorEnTodasTablas("Error de configuración: ruta no definida");
