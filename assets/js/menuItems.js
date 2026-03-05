@@ -13,7 +13,7 @@ const menuItems = [
         subMenu: [
             {   title: 'Gestión INR', 
                 url: '/INRtools/frontend/inr/gestioninr/gestioninr.php', 
-                direccion: ['ALL'],
+                direccion: ['INR', 'DNR','DNSES', 'DNPLA'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                 usuarios: [] 
             },
@@ -31,6 +31,18 @@ const menuItems = [
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     },
+                    {   title: 'Ind ranking (INFMR)',
+                        url: '/INRtools/frontend/inr/IndRanking/rIndRankingINFMR.php',
+                        direccion: ['INR', 'DNR', 'DNFIF'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNFIF'],
+                        usuarios: [] 
+                    },
+                    {   title: 'Ind ranking (INSESF)',
+                        url: '/INRtools/frontend/inr/IndRanking/rIndRankingINSESF.php',
+                         direccion: ['INR', 'DNR', 'INSESF'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNSESF'],
+                        usuarios: [] 
+                    },
                     /* {   title: 'Ind ranking Imputados',
                         url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRankingImputados.php',
                         direccion: ['INR', 'DNR'],
@@ -39,7 +51,6 @@ const menuItems = [
                     }, */
                     
                 ],
-                /* url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRanking.php', */
                 direccion: ['ALL'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                 usuarios: [] 
@@ -55,19 +66,19 @@ const menuItems = [
                 subMenu: [
                     {   title: 'Reporte de Diagnóstico', 
                         url: '/INRtools/frontend/inr/reportes/rdiagnostico/rdiagnostico.php',
-                        direccion: ['ALL'],
+                        direccion: ['INR', 'DNR','DNSES', 'DNPLA'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     },
                     {   title: 'Comite', 
                         url: '/INRtools/frontend/inr/reportes/comite/comiteTecnico.php',
-                        direccion: ['ALL'],
+                        direccion: ['INR', 'DNR','DNSES', 'DNPLA'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     },
                     {   title: 'Boletin INR', 
                         url: '/INRtools/frontend/inr/reportes/boletin/boletininr.php',
-                        direccion: ['ALL'],
+                        direccion: ['INR', 'DNR','DNSES', 'DNPLA'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     }

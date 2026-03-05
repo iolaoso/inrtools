@@ -19,7 +19,7 @@ include BASE_PATH . 'backend/session.php';
         <main class="content p-3" id="main-content">
             <div class="row align-items-center mb-1">
                 <h1 class="display-6 tituloPagina">Ind Ranking Definitivo  <span style="color: #16c224; font-size: 0.8em">(incluye calificación de riesgo)</span></h1>
-                <p>Bases de datos de cuentas, indicadores financieros y promedios que se generan en la INR</p>
+                <p>Bases de datos de cuentas, indicadores financieros, promedios y calificación de riesgo que se generan en la INR.</p>
             </div>
             
             <!-- Nota de confidencialidad de la información -->

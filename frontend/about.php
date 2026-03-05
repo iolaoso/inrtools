@@ -37,7 +37,17 @@ include BASE_PATH . 'backend/session.php';  // Incluye la sesión
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column">
                         <div class="card-body">
-                            <p class="card-text">Este sistema ha sido creado con el propósito de ofrecer herramientas efectivas que faciliten la gestión de la información procesada por la INR, mejorando así la toma de decisiones y la eficiencia operativa.</p>
+                            <p class="card-text text-justify">
+                                INR Tools, desarrollado por la Dirección Nacional de Riesgos (DNR) en 2025, es una plataforma tecnológica 
+                                de uso interno concebida para optimizar la administración y el análisis de la información gestionada por 
+                                la Intendencia Nacional de Riesgos (INR). Su implementación busca fortalecer los procesos operativos, 
+                                técnicos y estratégicos de la Institución, promoviendo una toma de decisiones fundamentada en datos 
+                                precisos, oportunos y confiables.
+                            </p>
+                            <p class="card-text text-justify">
+                                Mediante este sistema de acceso restringido, se consolida un modelo de gestión orientado a la eficiencia 
+                                operativa y a la prevención integral de riesgos financieros y no financieros.
+                            </p>
                         </div>
                     </div>
                 </div>

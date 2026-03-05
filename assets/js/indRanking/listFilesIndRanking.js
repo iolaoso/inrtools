@@ -42,7 +42,11 @@ function extraerVersionNumerica(nombreArchivo) {
 // Función para mostrar archivos en una tabla específica
 function mostrarArchivosEnTabla(archivos, tablaId) {
     const tbody = document.getElementById(tablaId);
-    if (!tbody) return console.error(`No se encontró el elemento con ID: ${tablaId}`);
+    
+    // Validar si el elemento existe - salir silenciosamente si no existe
+    if (!tbody) {
+        return; // Salir sin errores ni mensajes
+    }
     
     tbody.innerHTML = archivos.length === 0
         ? `<tr><td colspan="6" class="text-center text-muted">No se encontraron archivos</td></tr>`
@@ -186,9 +190,23 @@ function fetchIndRanking(carpetaReportes) {
                     archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas') && 
                     (item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
                     tablaId: 'rTBodyIndRankingMutualistasPreDTA'
+                },
+                /* PARA LAS ORAS IBNTENDENCIAS */
+                INFMR: {
+                    archivos: data.filter(item => item.name.includes('cuentas_e_indicadores_ult_bal_coacs_y_mutualistas_INFMR') && 
+                    item.name.endsWith('.xlsx')),
+                    tablaId: 'rTBodyIndRankingINFMR'
+                },
+                INSESF: {
+                    archivos: data.filter(item => item.name.includes('cuentas_e_indicadores_coacs_y_mutualistas_INSESF') && 
+                    item.name.endsWith('.xlsx')),
+                    tablaId: 'rTBodyIndRankingINSESF'
                 }
             };
+            
+            // Iterar sobre las categorías de forma segura
             Object.values(categorias).forEach(({ archivos, tablaId }) => {
+                // Validación adicional: si no hay archivos, aún así intentamos mostrar (mostrará "No se encontraron archivos")
                 mostrarArchivosEnTabla(ordenarArchivos(archivos), tablaId);
             });
         })
