@@ -55,7 +55,7 @@ const menuItems = [
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     }, */
-                    
+                    // establecer un comentario 
                 ],
                 direccion: ['ALL'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
