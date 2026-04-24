@@ -1,0 +1,22 @@
+echo "# productosjs" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/iolaosoes7/productosjs.git
+git push -u origin main
+
+## clonar un repositorio de otro usuario o a la computadora 
+# Clones a repository to your computer
+
+git clone https://github.com/iolaosoes7/productosjs.git
+
+## colocar los archivos en github
+
+git add .
+git commit -m "mensaje"
+git push 
+
+## extraer los cambios del repositorio
+
+git pull

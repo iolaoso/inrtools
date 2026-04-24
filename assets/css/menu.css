@@ -1,0 +1,118 @@
+.sidebar {
+    width: 220px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2c3e50; /* Color más profesional */
+    color: #ecf0f1;
+    scrollbar-width: thin;
+    scrollbar-color: #7f8c8d #34495e;
+    transition: width 0.3s ease; /* Transición suave al colapsar */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.sidebar.collapsed {
+    width: 50px; /* Ancho del menú colapsado */
+}
+
+/* Personalización del scroll para Chrome, Edge, y Safari */
+.sidebar::-webkit-scrollbar {
+    width: 6px; /* Ancho del scroll */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color de la barra */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+.sidebar::-webkit-scrollbar-track {
+     background: #34495e; /* Color de fondo */
+}
+
+
+.menu-item {
+    list-style: none; /* Eliminar puntos de la lista */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el elemento */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Separador sutil */
+}
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 15px; /* Más espaciado */
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.menu-header:hover {
+     background-color: #34495e; /* Color de fondo al pasar el cursor */
+}
+
+.icon {
+    font-size: 20px; /* Tamaño del ícono */
+    margin-right: 25px; /* Espaciado a la derecha del ícono */
+    min-width: 20px; /* Evita saltos al colapsar */
+    text-align: center; /* Centra iconos */
+    color: #bdc3c7; /* Color más suave */
+}
+
+.menu-title {
+    white-space: nowrap; /* Evita salto de línea */
+    transition: opacity 0.3s ease; /* Transición al colapsar */
+}
+
+.sidebar.collapsed .menu-title {
+    opacity: 0; /* Oculta texto al colapsar */
+    width: 0;
+}
+
+.arrow {
+    margin-left: auto; /* Alinear flecha a la derecha */
+    transition: all 0.3s ease; /* Transición suave para la rotación */
+    color: #bdc3c7;
+    font-size: 14px;
+}
+
+.rotate {
+    transform: rotate(90deg); /* Rotar la flecha */
+}
+
+.sub-menu, .third-menu {
+    list-style: none;
+    display: none; /* Ocultar submenús por defecto */
+    flex-direction: column; /* Disposición vertical */
+    padding-left: 0px; /* Espaciado a la izquierda */
+
+    padding-left: 0; /* Elimina el padding inicial */
+    background-color: rgba(0, 0, 0, 0.1); /* Fondo diferenciado */
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+
+/* muestra los submenus importante */
+.menu-item.active > .sub-menu,
+.menu-item.active > .third-menu {
+    display: flex; /*Mostrar submenús cuando el elemento es activo */
+} 
+
+
+.sub-menu li, .third-menu li {
+    /* Espaciado interno en los ítems de los submenús */
+    padding-top: 8px;
+    padding-right: 0px;
+    padding-bottom: 8px;
+    padding-left: 25px; 
+    transition: all 0.2s ease; /* Transición suave al cambiar el color de fondo */
+    position: relative;
+}
+
+
+.sub-menu a, .third-menu a {
+    color: #ecf0f1; /* Color del texto en el submenú */
+    text-decoration: none; /* Sin subrayado en enlaces */
+    display: block; /* Hacer que el enlace ocupe todo el espacio disponible */
+     font-size: 0.9em; /* Tamaño ligeramente menor */
+}
+
+
