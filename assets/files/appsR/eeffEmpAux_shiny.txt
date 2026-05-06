@@ -1,0 +1,6 @@
+@echo off
+echo Iniciando Shiny App...
+
+"C:\Program Files\R\R-4.3.1\bin\Rscript.exe" "C:\laragon\www\EEFF_APP\run_app.R"
+
+pause

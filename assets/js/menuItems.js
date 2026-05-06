@@ -55,7 +55,6 @@ const menuItems = [
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     }, */
-                    // establecer un comentario 
                 ],
                 direccion: ['ALL'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
@@ -67,8 +66,13 @@ const menuItems = [
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                 usuarios: [] 
             },
-            {
-                title: 'Reportes',
+            {   title: 'Diagnóstico Emp. Auxiliares', 
+                url: '/INRtools/frontend/inr/eeff_emp_aux/eeff_emp_aux.php',
+                direccion: ['ALL'],
+                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                usuarios: [] 
+            },
+            {   title: 'Reportes',
                 subMenu: [
                     {   title: 'Reporte de Diagnóstico', 
                         url: '/INRtools/frontend/inr/reportes/rdiagnostico/rdiagnostico.php',
