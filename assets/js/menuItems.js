@@ -21,7 +21,7 @@ const menuItems = [
                 subMenu: [
                     {   title: 'Ind Ranking Preliminar',
                         url: '/INRtools/frontend/inr/IndRanking/rIndRankingPreliminar.php',
-                        direccion: ['INR', 'DNR','DNSES'],
+                        direccion: ['INR', 'DNR','DNSES','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     },
@@ -62,7 +62,7 @@ const menuItems = [
             },
             {   title: 'Validar Estructuras', 
                 url: '/INRtools/frontend/inr/valestructuras/valestructuras.php',
-                direccion: ['ALL'],
+                direccion: ['INR', 'DNR','DNSES','DNS','DNRPLA'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                 usuarios: [] 
             },
@@ -77,24 +77,24 @@ const menuItems = [
                     {   title: 'Reporte de Diagnóstico', 
                         url: '/INRtools/frontend/inr/reportes/rdiagnostico/rdiagnostico.php',
                         direccion: ['INR', 'DNR','DNS','DNSES', 'DNPLA'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     },
                     {   title: 'Comite', 
                         url: '/INRtools/frontend/inr/reportes/comite/comiteTecnico.php',
                         direccion: ['INR', 'DNR','DNS','DNSES', 'DNPLA'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     },
                     {   title: 'Boletin INR', 
                         url: '/INRtools/frontend/inr/reportes/boletin/boletininr.php',
                         direccion: ['INR', 'DNR','DNS','DNSES', 'DNPLA'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     }
                 ],
                 direccion: ['ALL'],
-                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             } 
         ],
@@ -109,13 +109,13 @@ const menuItems = [
             {   title: 'Estructuras', 
                 url: '/INRtools/frontend/dnr/estructuras/estructuras.php',
                 direccion: ['INR', 'DNR'],
-                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
             {   title: 'PSI', 
                 url: '/INRtools/frontend/dnr/psi/psi.php',
                 direccion: ['INR', 'DNR'],
-                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
             {
@@ -124,85 +124,85 @@ const menuItems = [
                     {   title: 'Riesgo de Crédito', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/riesgoCredito.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: []
                     },
                     {   title: 'Riesgo de Liquidez', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/riesgoLiquidez.php',
                         //url: '/INRtools/frontend/enConstruccion.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: []
                     },
                     {   title: 'Riesgo de Mercado', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/riesgoMercado.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: []
                     },
                     {   title: 'Riesgo de Interconexion', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/riesgoInterconexion.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: []
                     },
                     {   title: 'Calidad de Activos', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/CalidadActivos.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: []
                     },
                     {   title: 'Calidad de Resultados', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/calidadResultados.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: []
                     },
                     {   title: 'Provisiones', 
                         url: '/INRtools/frontend/dnr/reportes/provisiones/provisiones.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: []
                     },
                     {   title: 'Brechas', 
                         url: '/INRtools/frontend/dnr/reportes/brechas/brechas.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     },
                     {   title: 'Endeudamiento', 
                         url: '/INRtools/frontend/dnr/reportes/endeudamiento/endeudamiento.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     },
                     {   title: 'Saras', 
                         url: '/INRtools/frontend/dnr/reportes/saras/saras.php',
                         direccion: ['INR', 'DNR', 'DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     },
                     {   title: 'Conafips', 
                         url: '/INRtools/frontend/dnr/reportes/conafips/conafips.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     },
                     {   title: 'Riesgo Ambiental', 
                         url: '/INRtools/frontend/dnr/reportes/rambiental/rambiental.php',
                         direccion: ['INR', 'DNR','DNS'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     }
                 ],
                 direccion: ['ALL'],
-                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             }  
         ],
         icon: 'fa-solid fa-chart-line',
         direccion: ['ALL'],
-        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
         usuarios: [] 
     },
     {
@@ -212,7 +212,7 @@ const menuItems = [
                 //url: '/INRtools/frontend/dnses/supervision/asupervision.php',
                 url: '/INRtools/frontend/enConstruccion.php',
                 direccion: ['DNSES','INR', 'DNR'], 
-                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
+                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
             {
@@ -221,18 +221,18 @@ const menuItems = [
                     {   title: 'Coacs DNSES', 
                         url: '/INRtools/frontend/dnses/reportes/coacsdnses/coacsdnses.php',
                         direccion: ['DNSES','INR', 'DNR'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: ['MFLORES','CLUNA','EVACA','RSOTO','ILOPEZA','ILOPEZ'] 
                     },
                     {   title: 'Variaciones B11', 
                         url: '/INRtools/frontend/dnses/reportes/variacionesb11/variacionesb11.php',
                         direccion: ['DNSES','INR', 'DNR'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     },
                 ],
                 direccion: ['ALL'],
-                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
+                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             } 
         ],
@@ -246,8 +246,8 @@ const menuItems = [
         subMenu: [
             { title: 'Informes', 
                 url: '/INRtools/frontend/dns/informes/informes.php',
-                direccion: ['ALL'], 
-                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
+                direccion: ['INR', 'DNR','DNSES','DNS','DNRPLA'], 
+                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
             {
@@ -255,7 +255,7 @@ const menuItems = [
                 subMenu: [
                     {   title: 'Detalles PA', 
                         url: '/INRtools/frontend/dns/reportes/detallesPA/detallesPA.php',
-                        direccion: ['ALL'],
+                        direccion: ['INR', 'DNR','DNSES','DNS','DNRPLA'],
                         rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS'],
                         usuarios: [] 
                     },

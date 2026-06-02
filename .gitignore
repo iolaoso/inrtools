@@ -1,8 +1,27 @@
-# Ignorar todos los archivos en assets/files/reportes
+# Igorar las los archivos de conexion 
+backend/conexiones/*
+# Ignorar todos los archivos en assets
 /assets/files/reportes/*
-# Ignorar el archivo sync.ffs_db
+assets/files/*
+!assets/files/.gitkeep
+# Ignorar el archivos de syncronizacion 
+/.stfolder/*
 sync.ffs_db
 # Ignorar todos los archivos en assets/adodb5
 /assets/adodb5/*
 # Ignorar todos los archivos en vendor
 /vendor/*
+# Ignorar los archivos de configuración de node
+/node_modules/
+# Ignorar los archivod de configuracion de enviroment 
+.env
+.env.local
+# ignorar todos los logs que se creen 
+*.log
+# Ignoprar archivosd de store
+Thumbs.db
+.DS_Store
+# Ignorar las configuraciones de vscode
+.vscode/settings.json
+
+
