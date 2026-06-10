@@ -1,4 +1,5 @@
-<header class="header bg-dark text-white d-flex justify-content-between align-items-center p-2">
+<header class="header text-white d-flex justify-content-between align-items-center p-2
+        <?php echo ($ambiente === 'Desarrollo') ? 'bg-warning' : 'bg-dark'; ?>">
     <!-- div para mensajes de alerta  -->
     <div id="alert-container"></div>    
     <!-- TITULO ENCABEZADO -->

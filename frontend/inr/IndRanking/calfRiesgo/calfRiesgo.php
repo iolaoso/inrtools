@@ -61,14 +61,15 @@ include BASE_PATH . 'backend/session.php';
                                         id="tablaRepCalfRiegso">
                                         <thead class="text-center">
                                             <tr>
-                                                <th>N. Mes</th>
-                                                <th>Año</th>
-                                                <th>Mes</th>
+                                                <th>Fecha Corte</th>
+                                                <th>Fecha Carga</th>
                                                 <th>Archivo</th>
+                                                <th>Tamaño</th>
+                                                <th>Fecha Modificación</th>
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="reportTableBody">
+                                        <tbody id="rTBodyRepCalfRiegso">
                                         </tbody>
                                     </table>
                                 </div>
@@ -92,9 +93,6 @@ include BASE_PATH . 'backend/session.php';
     // Define la carpeta que deseas usar
     const carpetaReportes = 'assets/files/reportes/indRanking/05 Reporte de calificación';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/reportes/listarArchivos.js"></script>
-
-
+    <script src="<?php echo $base_url; ?>/assets/js/indRanking/listFilesIndRanking.js"></script>
 </body>
-
 </html>

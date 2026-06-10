@@ -1,5 +1,5 @@
 # Igorar las los archivos de conexion 
-backend/conexiones/*
+# backend/conexiones/*
 # Ignorar todos los archivos en assets
 /assets/files/reportes/*
 assets/files/*

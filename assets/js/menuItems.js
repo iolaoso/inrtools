@@ -70,7 +70,7 @@ const menuItems = [
                 url: '/INRtools/frontend/inr/eeff_emp_aux/eeff_emp_aux.php',
                 direccion: ['ALL'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
-                usuarios: [] 
+                usuarios: ['ILOPEZ'] 
             },
             {   title: 'Reportes',
                 subMenu: [
@@ -164,6 +164,13 @@ const menuItems = [
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: []
                     },
+                    {   title: 'Empresas Auxiliares', 
+                        url: '/INRtools/frontend/dnr/reportes/empaux/empaux.php',
+                        direccion: ['INR', 'DNR','DNS'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
+                        usuarios: []
+                    },
+
                     {   title: 'Brechas', 
                         url: '/INRtools/frontend/dnr/reportes/brechas/brechas.php',
                         direccion: ['INR', 'DNR','DNS'],

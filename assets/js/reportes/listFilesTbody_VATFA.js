@@ -1,4 +1,4 @@
-console.log("listFilesIndRanking.js funcionando");
+console.log("listFilesTbody_VATFA.js funcionando");
 
 // Función para ordenar archivos (por fecha y luego por versión)
 function ordenarArchivos(archivos) {
