@@ -20,11 +20,11 @@ if (in_array($rol_nombre, $rolesDireccion)) {
     
 } else {
     $catastroEmpAux = obtenerCatastroEmpAux();
-    /* $catEstructuras = obtenerCatalogoEstructuras(); */
+    /* $catc_empAuxs = obtenerCatalogoEstructuras(); */
 }
 
-$entidadesActSf = entidadesActivasSf();
-$analistas = obtenerAnalistas($direccion);
+//$entidadesActSf = entidadesActivasSf();
+//$analistas = obtenerAnalistas($direccion);
 
 
 ?>
@@ -47,9 +47,9 @@ $analistas = obtenerAnalistas($direccion);
                 <h1 class="display-6 tituloPagina">EMPRESAS AUXILIARES</h1>
                 <p>Reportes relacionados con las Empresas Auxiliares del SFPS</p>
             </div>
+            <!-- Catastro Empresa Auxiliares -->
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
-                <!-- Catastro Empresa Auxiliares -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
@@ -64,19 +64,40 @@ $analistas = obtenerAnalistas($direccion);
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
-                                <div class="table-responsive" style="max-height: 300px;">
+                                <div class="table-responsive" style="max-height: 800px;">
                                     <table class="table table-bordered table-striped table-hover table-sm"
                                         id="tablaCatastroEmpAux">
                                         <thead class="text-center">
                                             <tr>
-                                                <th>Versión</th>
-                                                <th>Archivo</th>
-                                                <th>Tamaño</th>
-                                                <th>Fecha Modificación</th>
-                                                <th>Acción</th>
+                                                <th>ID</th>
+                                                <th>RUC</th>
+                                                <th>RAZON SOCIAL</th>
+                                                <th>TIPO ORGANIZACION</th>
+                                                <th>NUM RESOLUCION CALIFICACION</th>
+                                                <th>FECHA RESOLUCION</th>
+                                                <th>SERVICIO PRESTADO</th>
+                                                <th>REPRESENTANTE LEGAL</th>
+                                                <th>CORREO ELECTRONICO</th>
+                                                <th>NUEVA</th>
+                                                <th>CON CONDICION</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rTBodyCatastroEmpAux">
+                                            <?php foreach ($catastroEmpAux as $c_empAux): ?>
+                                                <tr>
+                                                    <td style="width: 5%"><?= htmlspecialchars($c_empAux['ID']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['RUC']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['RAZON_SOCIAL']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['TIPO_ORGANIZACION']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['NUM_RESOLUCION_CALIFICACION']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['FECHA_RESOLUCION']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['SERVICIO_PRESTADO']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['REPRESENTANTE_LEGAL']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['CORREO_ELECTRONICO']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['NUEVA']) ?></td>
+                                                    <td><?= htmlspecialchars($c_empAux['CON_CONDICION']) ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -84,9 +105,9 @@ $analistas = obtenerAnalistas($direccion);
                         </div>
                     </div>
             </section>
+            <!-- Reporte de Cooperativas y Emp Aux -->
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
-                <!-- Reporte de Cooperativas y Emp Aux -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
@@ -114,9 +135,9 @@ $analistas = obtenerAnalistas($direccion);
                         </div>
                     </div>
             </section>
+            <!-- Reporte de Empresas que Presentan formulario -->
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
-                <!-- Reporte de Empresas que Presentan formulario -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
@@ -161,6 +182,7 @@ $analistas = obtenerAnalistas($direccion);
     // Define la carpeta que deseas usar
     const carpetaReportes = 'assets/files/reportes/empaux';
     </script>
+    <script src="<?php echo $base_url; ?>/assets/js/empAux/empAux.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesTbody_VATFA.js"></script>
 </body>
 

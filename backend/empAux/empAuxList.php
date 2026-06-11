@@ -13,25 +13,32 @@ function obtenerCatastroEmpAux()
                 ,TIPO_ORGANIZACION
                 ,NUM_RESOLUCION_CALIFICACION
                 ,FECHA_RESOLUCION
-                ,SOFTWARE_FINANCIERO_Y_COMPUTACIONAL
-                ,TRANSACCIONALES_Y_DE_PAGO
-                ,TRANSPORTE_DE_ESPECIES_MONETARIAS_Y_DE_VALORES
-                ,RED_Y_CAJEROS_AUTOMATICOS
-                ,COBRANZAS
-                ,SERVICIOS_CONTABLES
-                ,GENERADORAS_DE_CARTERA
-                ,ADMINISTRADORAS_Y_OPERADORAS_DE_TARJETAS
-                ,GIRO_INMOBILIARIO
+                ,CONCAT_WS(', ',
+                    CASE WHEN SOFTWARE_FINANCIERO_Y_COMPUTACIONAL = 1
+                        THEN 'Software Financiero y Computacional' END,
+                    CASE WHEN TRANSACCIONALES_Y_DE_PAGO = 1
+                        THEN 'Transaccionales y de Pago' END,
+                    CASE WHEN TRANSPORTE_DE_ESPECIES_MONETARIAS_Y_DE_VALORES = 1
+                        THEN 'Transporte de Especies Monetarias y Valores' END,
+                    CASE WHEN RED_Y_CAJEROS_AUTOMATICOS = 1
+                        THEN 'Red y Cajeros Automáticos' END,
+                    CASE WHEN COBRANZAS = 1
+                        THEN 'Cobranzas' END,
+                    CASE WHEN SERVICIOS_CONTABLES = 1
+                        THEN 'Servicios Contables' END,
+                    CASE WHEN GENERADORAS_DE_CARTERA = 1
+                        THEN 'Generadoras de Cartera' END,
+                    CASE WHEN ADMINISTRADORAS_Y_OPERADORAS_DE_TARJETAS = 1
+                        THEN 'Administradoras y Operadoras de Tarjetas' END,
+                    CASE WHEN GIRO_INMOBILIARIO = 1
+                        THEN 'Giro Inmobiliario' END
+                ) AS SERVICIO_PRESTADO
                 ,REPRESENTANTE_LEGAL
                 ,CORREO_ELECTRONICO
-                ,NUEVA
-                ,SIN_CONDICION
-                ,CON_CONDICION
-                --,EST_REGISTRO
-                --,USR_CREACION
-                --,CREATED_AT
-                --,UPDATED_AT
-                --,DELETED_AT
+                ,CASE WHEN NUEVA = 1
+                    THEN 'SI' ELSE 'NO' END AS NUEVA
+                , CASE WHEN CON_CONDICION = 1
+                    THEN 'SI' ELSE 'NO' END AS CON_CONDICION
             from catastro 
             where EST_REGISTRO = 1
             order by RUC;";

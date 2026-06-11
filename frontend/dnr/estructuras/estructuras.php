@@ -184,7 +184,7 @@ $analistas = obtenerAnalistas($direccion);
                             <input class="form-control mb-3" type="text" id="searchInput"
                                 onkeyup="filterTable('tablaReportes')" placeholder="Buscar...">
                             <div class="d-flex justify-content-center">
-                                <div class="table-responsive" style="max-height: 800px;">
+                                <div class="table-responsive" style="max-height: 1024px;">
                                     <table class="table table-bordered table-striped table-hover table-sm"
                                         id="tablaReportes">
                                         <thead>

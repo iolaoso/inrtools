@@ -356,3 +356,34 @@ thead {
     color: #2c3e50;
     font-weight: 400;
 }
+
+/* Arriba - Derecha - Abajo - Izquierda */
+
+div.dataTables_wrapper {
+    padding: 5px;
+}
+
+table.dataTable {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Separación inferior de la paginación DataTables */
+.dataTables_paginate {
+    margin-bottom: 15px !important;
+}
+
+/* Corrección paginación DataTables */
+.dataTables_paginate .pagination {
+    gap: 0 !important;
+    margin: 0 !important;
+}
+
+.dataTables_paginate .page-item {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.dataTables_paginate .page-link {
+    margin: 0 !important;
+}
