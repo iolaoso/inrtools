@@ -12,6 +12,8 @@ define('BASE_URL', 'http://localhost/Inrtools'); // Cambia por tu dominio real
 // En tu archivo config.php
 define('ENVIRONMENT', 'desarrollo'); // o 'development' según tu entorno
 
+require_once BASE_PATH . '/backend/helpers/funciones.php';
+
 // Configuración de errores
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

@@ -47,6 +47,52 @@ function obtenerCatastroEmpAux()
     return $stmt->get_result();
 }
 
+function obtenerCoopEmpAux()
+{
+    global $connEmpAux; // Usar la conexión global
+    $sql = "select e.ID
+                ,e.RUC_COOP
+                ,e.SEGMENTO
+                ,e.NUM_EMP_AUX
+                ,e.RUC_EMPRESA
+                ,c.ruc as RUC_EMP_CATASTRO
+                ,e.RAZON_SOCIAL_EMPRESA
+                ,c.razon_social as RZ_EMP_CATASTRO
+            from empaux_coops e
+            left join (select ruc,razon_social from catastro) c
+                on e.RUC_EMPRESA = c.ruc 
+            where e.EST_REGISTRO = 1;";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
+function obtenerFormEmpAux()
+{
+    global $connEmpAux; // Usar la conexión global
+    $sql = "select ID
+                ,FECHA_CORTE
+                ,RUC
+                ,RAZON_SOCIAL
+                ,NUMERO_PERIODO
+                ,case when  LINEA_BASE = 1
+                    then 'SI' else 'NO' end as LINEA_BASE
+                ,case when VALIDACION_SERVICIOS = 1
+                    then 'SI' else 'NO' end as VALIDACION_SERVICIOS
+                ,ACTIVO
+                ,PASIVO
+                ,PATRIMONIO_NETO
+                ,RESULTADOS_DEL_EJERCICIO
+                ,INGRESOS_DE_ACTIVIDADES_ORDINARIAS
+                ,GASTOS
+                ,COALESCE(SEGMENTO_1,0) + COALESCE(SEGMENTO_2,0) + COALESCE(SEGMENTO_3,0) + COALESCE(SEGMENTO_4,0) + COALESCE(SEGMENTO_5,0) AS NUM_ENTIDADES
+            from vw_full_entidad_data;";    
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
+
 /* function obtenerEmpEEFFPorUsuario($nickname)
 {
     global $conn; // Usar la conexión global

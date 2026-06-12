@@ -17,9 +17,13 @@ $rolesDireccion = [
 // Obtener registros filtrados por usuario
 if (in_array($rol_nombre, $rolesDireccion)) {
     $catastroEmpAux = obtenerCatastroEmpAux();
+    $coopEmpAux = obtenerCoopEmpAux();
+    $formEmpAux = obtenerFormEmpAux();
     
 } else {
     $catastroEmpAux = obtenerCatastroEmpAux();
+    $coopEmpAux = obtenerCoopEmpAux();
+    $formEmpAux = obtenerFormEmpAux();
     /* $catc_empAuxs = obtenerCatalogoEstructuras(); */
 }
 
@@ -47,20 +51,74 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                 <h1 class="display-6 tituloPagina">EMPRESAS AUXILIARES</h1>
                 <p>Reportes relacionados con las Empresas Auxiliares del SFPS</p>
             </div>
+            <!-- Reporte de Empresas que Presentan formulario -->
+            <section class="row align-items-stretch mb-4">
+                <!-- Cambiar align-items-center a align-items-stretch -->
+                <div class="col-md-12">
+                    <div class="card h-100 d-flex flex-column border-secondary">
+                        <div class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
+                            <h4>Reporte de Empresas que Presentan formulario</h4>
+                            <button id="btnGenerarRIL" class="btn btn-success btn-sm">
+                                <i class="fas fa-file-excel"></i>
+                                Generar RIL Empresas Auxiliares
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive" style="max-height: 800px;">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaFormEmpAux">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Fecha Corte</th>
+                                                <th>RUC</th>
+                                                <th>Razón Social</th>
+                                                <th>Número Período</th>
+                                                <th>Línea Base</th>
+                                                <th>Validación Servicios</th>
+                                                <th>Activo</th>
+                                                <th>Pasivo</th>
+                                                <th>Patrimonio Neto</th>
+                                                <th>Resultados del Ejercicio</th>
+                                                <th>Ingresos de Actividades Ordinarias</th>
+                                                <th>Gastos</th>
+                                                <th>Núm. Entidades</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rTBodyFormEmpAux">
+                                        <?php foreach ($formEmpAux as $entidad): ?>
+                                            <tr>
+                                                <td><?= h($entidad['ID']) ?></td>
+                                                <td><?= h($entidad['FECHA_CORTE']) ?></td>
+                                                <td><?= h($entidad['RUC']) ?></td>
+                                                <td><?= h($entidad['RAZON_SOCIAL']) ?></td>
+                                                <td><?= h($entidad['NUMERO_PERIODO']) ?></td>
+                                                <td><?= h($entidad['LINEA_BASE']) ?></td>
+                                                <td><?= h($entidad['VALIDACION_SERVICIOS']) ?></td>
+                                                <td><?= h($entidad['ACTIVO']) ?></td>
+                                                <td><?= h($entidad['PASIVO']) ?></td>
+                                                <td><?= h($entidad['PATRIMONIO_NETO']) ?></td>
+                                                <td><?= h($entidad['RESULTADOS_DEL_EJERCICIO']) ?></td>
+                                                <td><?= h($entidad['INGRESOS_DE_ACTIVIDADES_ORDINARIAS']) ?></td>
+                                                <td><?= h($entidad['GASTOS']) ?></td>
+                                                <td><?= h($entidad['NUM_ENTIDADES']) ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
             <!-- Catastro Empresa Auxiliares -->
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-info text-white">
+                        <div class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
                             <h4>Catastro</h4>
-                            <ul class="list-unstyled d-flex mb-0">
-                                <li class="mx-2">
-                                    <button id="exportButton" class="btn btn-warning btn-sm"
-                                        onclick="exportTableToExcel('tablaReportes', 'ReporteEstructuras')">Reporte
-                                        General</button>
-                                </li>
-                            </ul>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -110,24 +168,40 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                 <!-- Cambiar align-items-center a align-items-stretch -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-info text-white">
-                            <h4>Cooperativas y Empresas Auxiliares</h4>
+                        <div class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
+                            <h4>Reporte de Cooperativas y Empresas Auxiliares</h4>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
-                                <div class="table-responsive" style="max-height: 300px;">
+                                <div class="table-responsive" style="max-height: 800px;">
                                     <table class="table table-bordered table-striped table-hover table-sm"
                                         id="tablaCoopEmpAux">
                                         <thead class="text-center">
                                             <tr>
-                                                <th>Versión</th>
-                                                <th>Archivo</th>
-                                                <th>Tamaño</th>
-                                                <th>Fecha Modificación</th>
-                                                <th>Acción</th>
+                                                <th>ID</th>
+                                                <th>RUC COOPERATIVA</th>
+                                                <!-- <th>RZ_COOP</th> -->
+                                                <th>SEGMENTO</th>
+                                                <th>NUM EMP AUX</th>
+                                                <th>RUC EMPRESA</th>
+                                                <th>RUC_EMP_CATASTRO</th>
+                                                <th>RAZON_SOCIAL_EMPRESA</th>
+                                                <th>RZ_EMP_CATASTRO</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rTBodyCoopEmpAux">
+                                            <?php foreach ($coopEmpAux as $coop_EmpAux): ?>
+                                                <tr>
+                                                    <td style="width: 5%"><?= htmlspecialchars($coop_EmpAux['ID']) ?></td>
+                                                    <td><?= h($coop_EmpAux['RUC_COOP']) ?></td>
+                                                    <td><?= h($coop_EmpAux['SEGMENTO']) ?></td>
+                                                    <td><?= h($coop_EmpAux['NUM_EMP_AUX']) ?></td>
+                                                    <td><?= h($coop_EmpAux['RUC_EMPRESA']) ?></td>
+                                                    <td><?= h($coop_EmpAux['RUC_EMP_CATASTRO']) ?></td>
+                                                    <td><?= h($coop_EmpAux['RAZON_SOCIAL_EMPRESA']) ?></td>
+                                                    <td><?= h($coop_EmpAux['RZ_EMP_CATASTRO']) ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -135,39 +209,7 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                         </div>
                     </div>
             </section>
-            <!-- Reporte de Empresas que Presentan formulario -->
-            <section class="row align-items-stretch mb-4">
-                <!-- Cambiar align-items-center a align-items-stretch -->
-                <div class="col-md-12">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-info text-white">
-                            <h4>Empresas con Estados Financieros</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-center">
-                                <div class="table-responsive" style="max-height: 300px;">
-                                    <table class="table table-bordered table-striped table-hover table-sm"
-                                        id="tablaEmpEEFF">
-                                        <thead class="text-center">
-                                            <tr>
-                                                <th>Fecha Corte</th>
-                                                <th>Ruc</th>
-                                                <th>Razon Social</th>
-                                                <th>Periodo</th>
-                                                <th>Es Linea Base</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="rTBodyEmpEEFF">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </section>
-    </div>
-    </section>
-    </main>
+        </main>
     </div>
 
     <div id="base_url" data-base-url="<?= $base_url; ?>"></div>
@@ -182,7 +224,8 @@ if (in_array($rol_nombre, $rolesDireccion)) {
     // Define la carpeta que deseas usar
     const carpetaReportes = 'assets/files/reportes/empaux';
     </script>
-    <script src="<?php echo $base_url; ?>/assets/js/empAux/empAux.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/empAux/empAuxTables.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/empAux/empAuxReportes.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/reportes/listFilesTbody_VATFA.js"></script>
 </body>
 
