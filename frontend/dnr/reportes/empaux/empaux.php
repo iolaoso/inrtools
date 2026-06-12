@@ -58,10 +58,16 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
                             <h4>Reporte de Empresas que Presentan formulario</h4>
-                            <button id="btnGenerarRIL" class="btn btn-success btn-sm">
-                                <i class="fas fa-file-excel"></i>
-                                Generar RIL Empresas Auxiliares
-                            </button>
+                            <div>
+                                <button id="btnDescargarAnexo2" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-download"></i>
+                                    Descargar Anexo 2
+                                </button>
+                                <button id="btnGenerarRIL" class="btn btn-success btn-sm">
+                                    <i class="fas fa-file-excel"></i>
+                                    Generar RIL Empresas Auxiliares
+                                </button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -117,7 +123,7 @@ if (in_array($rol_nombre, $rolesDireccion)) {
                 <!-- Cambiar align-items-center a align-items-stretch -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
+                        <div class="card-header card-header text-white d-flex justify-content-between align-items-center" style="background-color: #059b87ff;">
                             <h4>Catastro</h4>
                         </div>
                         <div class="card-body">

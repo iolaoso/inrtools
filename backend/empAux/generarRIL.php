@@ -236,4 +236,12 @@ $writer = new Xlsx($spreadsheet);
 
 $writer->save('php://output');
 
+registrarEstructura(
+    $connINRTools,
+    'EMPRESAS AUXILIARES',
+    'RIL EMPRESAS AUXILIARES',
+    $fechaProceso,
+    'Se ha descargado el archivo con la información acopiada de las Empresas Auxiliares. Tome en cuenta que es un registro de auditoria'
+);
+
 exit;
