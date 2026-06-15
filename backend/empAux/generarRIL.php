@@ -98,7 +98,11 @@ foreach ($indicadores as $row) {
         $row['VALOR'];
 }
 
+
 /**
+ * 
+ * 
+ * 
  * ============================================
  * CABECERAS DINÁMICAS
  * ============================================
@@ -116,6 +120,26 @@ foreach ($dfFinal as $row) {
 $headers = array_keys($headersMap);
 
 
+
+
+/**
+ * ============================================
+ * SANITIZAR HEADERS
+ * ============================================
+ */
+
+$headers = array_map(function($h) {
+
+    $h = preg_replace('/[\x00-\x1F\x7F]/u', '', $h);
+
+    if (strlen($h) > 150) {
+        $h = substr($h, 0, 150);
+    }
+
+    return trim($h);
+
+}, $headers);
+
 /**
  * ============================================
  * CREAR EXCEL
@@ -123,41 +147,24 @@ $headers = array_keys($headersMap);
  */
 
 $spreadsheet = new Spreadsheet();
-
 $sheet = $spreadsheet->getActiveSheet();
-
 $sheet->setTitle('RIL');
 
 /**
  * ============================================
- * ENCABEZADOS
+ * CABECERAS
  * ============================================
  */
 
-$columna = 1;
+foreach ($headers as $i => $header) {
 
-foreach ($headers as $header) {
+    $celda = Coordinate::stringFromColumnIndex($i + 1) . '1';
 
-    $celda =
-        Coordinate::stringFromColumnIndex($columna)
-        . '1';
-
-    $sheet->setCellValue(
-        $celda,
-        $header
-    );
-
-    $columna++;
+    $sheet->setCellValue($celda, $header);
 }
 
-/**
- * Encabezado en negrita
- */
-
-$ultimaColumna = $sheet->getHighestColumn();
-
 $sheet->getStyle(
-    'A1:' . $ultimaColumna . '1'
+    'A1:' . $sheet->getHighestColumn() . '1'
 )->getFont()->setBold(true);
 
 /**
@@ -170,19 +177,23 @@ $fila = 2;
 
 foreach ($dfFinal as $registro) {
 
-    $columna = 1;
+    foreach ($headers as $i => $header) {
 
-    foreach ($headers as $header) {
+        $celda =
+            Coordinate::stringFromColumnIndex($i + 1)
+            . $fila;
 
         $valor = $registro[$header] ?? '';
 
-        $celda =
-            Coordinate::stringFromColumnIndex($columna)
-            . $fila;
+        if (is_string($valor)) {
 
-        /**
-         * RUC_EMPRESA como texto
-         */
+            $valor = preg_replace(
+                '/[\x00-\x1F\x7F]/u',
+                '',
+                $valor
+            );
+        }
+
         if ($header === 'RUC_EMPRESA') {
 
             $sheet->setCellValueExplicit(
@@ -198,8 +209,6 @@ foreach ($dfFinal as $registro) {
                 $valor
             );
         }
-
-        $columna++;
     }
 
     $fila++;
@@ -207,7 +216,21 @@ foreach ($dfFinal as $registro) {
 
 /**
  * ============================================
- * NOMBRE ARCHIVO
+ * OPCIONES EXCEL
+ * ============================================
+ */
+
+$sheet->freezePane('A2');
+
+$sheet->setAutoFilter(
+    'A1:' .
+    $sheet->getHighestColumn() .
+    $sheet->getHighestRow()
+);
+
+/**
+ * ============================================
+ * GUARDAR TEMPORALMENTE
  * ============================================
  */
 
@@ -216,32 +239,50 @@ $nombreArchivo =
     date('Ymd_His') .
     '.xlsx';
 
-/**
- * ============================================
- * DESCARGAR
- * ============================================
- */
-
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
-header(
-    'Content-Disposition: attachment; filename="' .
-    $nombreArchivo .
-    '"'
-);
-
-header('Cache-Control: max-age=0');
+$tempFile =
+    sys_get_temp_dir() .
+    DIRECTORY_SEPARATOR .
+    $nombreArchivo;
 
 $writer = new Xlsx($spreadsheet);
 
-$writer->save('php://output');
+$writer->save($tempFile);
 
-registrarEstructura(
-    $connINRTools,
-    'EMPRESAS AUXILIARES',
-    'RIL EMPRESAS AUXILIARES',
-    $fechaProceso,
-    'Se ha descargado el archivo con la información acopiada de las Empresas Auxiliares. Tome en cuenta que es un registro de auditoria'
-);
+/**
+ * ============================================
+ * VALIDACIONES
+ * ============================================
+ */
+
+if (!file_exists($tempFile)) {
+
+    die('No se pudo generar el archivo');
+}
+
+if (filesize($tempFile) <= 0) {
+
+    die('Archivo generado vacío');
+}
+
+/**
+ * ============================================
+ * DESCARGA
+ * ============================================
+ */
+
+while (ob_get_level()) {
+    ob_end_clean();
+}
+
+header('Content-Description: File Transfer');
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment; filename="' . $nombreArchivo . '"');
+header('Content-Length: ' . filesize($tempFile));
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+
+readfile($tempFile);
+
+unlink($tempFile);
 
 exit;
