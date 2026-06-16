@@ -1,5 +1,8 @@
 <?php
 require_once '../backend/config.php';
+// Base URL para los enlaces
+$base_url = '/INRtools'; // Cambia esto según la raíz de tu proyecto
+
 
 // Recibe mensaje
 if (isset($_GET['msg'])) {
@@ -17,6 +20,9 @@ if (isset($_GET['msg'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <!-- FAVICON -->
+    <link rel="icon" href="<?php echo $base_url; ?>/assets/images/sepsFavicon.ico">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/login_style.css"> <!-- Enlace al archivo CSS -->
 </head>

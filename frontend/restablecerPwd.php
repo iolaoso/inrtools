@@ -6,8 +6,11 @@ include_once BASE_PATH . 'backend/conexiones/db_connection.php';
 $token = $_GET['token'] ?? '';
 $token = trim($token);
 
+//echo $token;
+
 if (empty($token)) {
     // Mostrar página de error en lugar de redirigir
+    //echo 'Enlace Invalido';
     mostrarPaginaError("Enlace inválido", "El enlace de recuperación no es válido o ha expirado.");
     exit;
 }
@@ -40,13 +43,16 @@ if ($result->num_rows === 1) {
         $mark_stmt->execute();
         
         // Mostrar página de éxito
+        //echo 'Pagina de Exito';
         mostrarPaginaExito();
         exit;
     } else {
+        //echo 'No se pudo actualizar la contraseña. Por favor, intenta nuevamente.';
         mostrarPaginaError("Error", "No se pudo actualizar la contraseña. Por favor, intenta nuevamente.");
         exit;
     }
 } else {
+    //echo 'El enlace de recuperación no es válido o ha expirado.';
     mostrarPaginaError("Enlace inválido", "El enlace de recuperación no es válido o ha expirado.");
     exit;
 }
@@ -134,4 +140,5 @@ function mostrarPaginaError($titulo, $mensaje) {
     </html>
     <?php
 }
+
 ?>

@@ -1,44 +1,133 @@
 <?php
-// Incluir los archivos de PHPMailer
-require BASE_PATH . 'assets/libs/PHPMailer/src/Exception.php';
-require BASE_PATH . 'assets/libs/PHPMailer/src/PHPMailer.php';
-require BASE_PATH . 'assets/libs/PHPMailer/src/SMTP.php';
+
+/**
+ * ==========================================================
+ * CONFMAIL.PHP
+ * ==========================================================
+ * Configuración centralizada de PHPMailer para INRTools.
+ *
+ * Este archivo:
+ *   - Carga PHPMailer
+ *   - Configura SMTP Gmail
+ *   - Crea el objeto $mail
+ *
+ * Este archivo NO envía correos.
+ * El envío se realiza desde cada módulo:
+ * ==========================================================
+ */
 
 
-// Incluir PHPMailer
+/**
+ * ==========================================================
+ * CARGAR LIBRERÍAS PHPMailer
+ * ==========================================================
+ */
+
+require_once BASE_PATH . 'assets/libs/PHPMailer/src/Exception.php';
+require_once BASE_PATH . 'assets/libs/PHPMailer/src/PHPMailer.php';
+require_once BASE_PATH . 'assets/libs/PHPMailer/src/SMTP.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Definir variables
-$userEmail = 'Israel.lopez@seps.gob.ec';
-$userPassword = 'Iolaseps@2626'; 
-$userName = 'Israel Lopez';
+
+/**
+ * ==========================================================
+ * CONFIGURACIÓN DE LA CUENTA
+ * ==========================================================
+ *
+ * IMPORTANTE:
+ * Utilizar una contraseña de aplicación de Gmail.
+ */
+
+$correoSistema = 'inrtools.support@gmail.com';
+
+$passwordSistema = 'affulyzvqiahfyye';
+
+
+/**
+ * ==========================================================
+ * CREAR OBJETO PHPMailer
+ * ==========================================================
+ */
 
 $mail = new PHPMailer(true);
 
 try {
-        // Configuración del servidor SMTP
+
+    /**
+     * ======================================================
+     * CONFIGURACIÓN SMTP
+     * ======================================================
+     */
+
     $mail->isSMTP();
-    $mail->Host = 'mail.seps.gob.ec'; // Servidor SMTP
+
+    /**
+     * Servidor SMTP de Gmail
+     */
+    $mail->Host = 'smtp.gmail.com';
+
+    /**
+     * Puerto TLS
+     */
+    $mail->Port = 587;
+
+    /**
+     * Autenticación requerida
+     */
     $mail->SMTPAuth = true;
-    $mail->Username = $userEmail;
-    $mail->Password = $userPassword;
-    
-    // Configuración según los puertos especificados
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS para SMTP
-    $mail->Port = 25; // Puerto 25 para SMTP con TLS
-    
-    // Configuración de timeout (1 minuto = 60 segundos)
+
+    /**
+     * Credenciales
+     */
+    $mail->Username = $correoSistema;
+    $mail->Password = $passwordSistema;
+
+    /**
+     * Seguridad TLS
+     */
+    $mail->SMTPSecure =
+        PHPMailer::ENCRYPTION_STARTTLS;
+
+    /**
+     * Tiempo máximo de espera
+     */
     $mail->Timeout = 60;
-    
-    // Configuración del remitente 
-    $mail->setFrom($userEmail, $userName);
 
-    $mail->CharSet    = 'UTF-8'; // Establecer codificación UTF-8
-    
-}catch (Exception $e) {
-    echo "Error al configurar el correo: {$mail->ErrorInfo}";
-    exit;
+    /**
+     * ======================================================
+     * CONFIGURACIÓN GENERAL
+     * ======================================================
+     */
+
+    $mail->CharSet = 'UTF-8';
+
+    $mail->isHTML(true);
+
+    /**
+     * Nivel de depuración
+     *
+     * 0 = Producción
+     * 2 = Diagnóstico SMTP
+     */
+    $mail->SMTPDebug = 0;
+
+    /**
+     * Remitente por defecto
+     */
+    $mail->setFrom(
+        $correoSistema,
+        'INRTools'
+    );
+
+} catch (Exception $e) {
+
+    error_log(
+        'Error configurando PHPMailer: '
+        . $e->getMessage()
+    );
+
+    throw $e;
 }
-
 ?>
