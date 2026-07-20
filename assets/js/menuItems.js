@@ -39,7 +39,7 @@ const menuItems = [
                     },
                     {   title: 'Ind Ranking Definitivo',
                         url: '/INRtools/frontend/inr/IndRanking/rIndRankingDefinitivo.php',
-                        direccion: ['INR', 'DNR','DNSES','DNS'],
+                        direccion: ['INR', 'DNR','DNSES','DNS','DNPLA'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                         usuarios: [] 
                     },
@@ -62,7 +62,7 @@ const menuItems = [
             },
             {   title: 'Validar Estructuras', 
                 url: '/INRtools/frontend/inr/valestructuras/valestructuras.php',
-                direccion: ['INR', 'DNR','DNSES','DNS','DNRPLA'],
+                direccion: ['INR', 'DNR','DNSES','DNS','DNPLA'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                 usuarios: [] 
             },
@@ -82,7 +82,7 @@ const menuItems = [
                     },
                     {   title: 'Comite', 
                         url: '/INRtools/frontend/inr/reportes/comite/comiteTecnico.php',
-                        direccion: ['INR', 'DNR','DNS','DNSES', 'DNPLA'],
+                        direccion: ['INR', 'DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                         usuarios: [] 
                     },
@@ -115,7 +115,7 @@ const menuItems = [
             {   title: 'PSI', 
                 url: '/INRtools/frontend/dnr/psi/psi.php',
                 direccion: ['INR', 'DNR'],
-                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
+                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
             {
@@ -253,7 +253,7 @@ const menuItems = [
         subMenu: [
             { title: 'Informes', 
                 url: '/INRtools/frontend/dns/informes/informes.php',
-                direccion: ['INR', 'DNR','DNSES','DNS','DNRPLA'], 
+                direccion: ['INR', 'DNR','DNSES','DNS','DNPLA'], 
                 rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
@@ -262,7 +262,7 @@ const menuItems = [
                 subMenu: [
                     {   title: 'Detalles PA', 
                         url: '/INRtools/frontend/dns/reportes/detallesPA/detallesPA.php',
-                        direccion: ['INR', 'DNR','DNSES','DNS','DNRPLA'],
+                        direccion: ['INR', 'DNR','DNSES','DNS','DNPLA'],
                         rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS'],
                         usuarios: [] 
                     },

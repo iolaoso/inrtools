@@ -79,23 +79,17 @@ foreach ($eeff as $row) {
 
 foreach ($indicadores as $row) {
 
-    $key =
-        $row['FECHA_CORTE']
-        . '|'
-        . $row['RUC_EMPRESA'];
+    $key = $row['FECHA_CORTE'] . '|' . $row['RUC_EMPRESA'];
 
     if (!isset($dfFinal[$key])) {
         continue;
     }
 
-    $columna =
-        'IND_' .
-        normalizarNombreColumna(
-            $row['INDICADOR']
-        );
+    $prefijo = normalizarNombreColumna($row['INDICADOR']);
 
-    $dfFinal[$key][$columna] =
-        $row['VALOR'];
+    $dfFinal[$key]["NUM_$prefijo"] = $row['NUMERADOR'];
+    $dfFinal[$key]["DEN_$prefijo"] = $row['DENOMINADOR'];
+    $dfFinal[$key]["IND_$prefijo"] = $row['VALOR'];
 }
 
 

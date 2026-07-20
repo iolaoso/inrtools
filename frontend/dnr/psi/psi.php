@@ -9,7 +9,7 @@ include BASE_PATH . 'backend/psi/psiList.php'; // Archivo con funciones para PSI
 include BASE_PATH . 'backend/validarAcceso.php';
 
 // Define usuarios permitidos (variable configurable)
-$usuarios_permitidos = ['DPAGUAY', 'ILOPEZ'];
+$usuarios_permitidos = ['DPAGUAY', 'ILOPEZ','ILOPEZA','CLUNA','FOROZCO'];
 
 // Valida acceso
 validarAccesoUsuario($nickname, $usuarios_permitidos, $base_url);

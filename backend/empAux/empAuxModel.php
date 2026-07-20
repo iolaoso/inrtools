@@ -85,6 +85,8 @@ function obtenerIndicadoresRIL(){
                 FECHA_CORTE,
                 RUC AS RUC_EMPRESA,
                 INDICADOR,
+                NUMERADOR,
+                DENOMINADOR,
                 VALOR
             FROM vw_full_ind_ruc_feccorte;";
 

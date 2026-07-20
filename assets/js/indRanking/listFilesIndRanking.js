@@ -202,10 +202,16 @@ function fetchIndRanking(carpetaReportes) {
                     item.name.endsWith('.xlsx')),
                     tablaId: 'rTBodyIndRankingINSESF'
                 },
+                /* Para el apartado de reporte de Calificación */
                 CALFRIESGO: {
                     archivos: data.filter(item => item.name.includes('reporte_calificacion_riesgo') && 
                     item.name.endsWith('.xlsx')),
                     tablaId: 'rTBodyRepCalfRiegso'
+                },
+                INDCALFRIESGO: {
+                    archivos: data.filter(item => item.name.includes('reporte_indicadores_calificacion_riesgo') && 
+                    item.name.endsWith('.xlsx')),
+                    tablaId: 'rTBodyRepIndCalfRiesgo'
                 }
             };
             
