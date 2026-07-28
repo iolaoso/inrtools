@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../../../backend/config.php';
+include_once __DIR__ . '/../../../../backend/config.php'; 
 include BASE_PATH . 'backend/session.php';
 ?>
 

@@ -72,6 +72,12 @@ const menuItems = [
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                 usuarios: ['ILOPEZ'] 
             },
+            {   title: 'Backups Ilitia', 
+                url: '/INRtools/frontend/inr/backups/backupsview.php',
+                direccion: ['ALL'],
+                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+                usuarios: [] 
+            },
             {   title: 'Reportes',
                 subMenu: [
                     {   title: 'Reporte de Diagnóstico', 

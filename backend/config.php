@@ -11,21 +11,13 @@ define('BASE_PATH', dirname(__DIR__) . '/'); // Esto apunta a C:/laragon/www/INR
 define('ENVIRONMENT', 'desarrollo'); // o 'development' según tu entorno
 
 if (ENVIRONMENT === 'Produccion') {
-
-    define(
-        'BASE_URL',
-        'http://ilitia.seps.local/INRtools'
-    );
+    define('BASE_URL','http://ilitia.seps.local/INRtools');
+    define('BACKUPS_PATH','\\\\ilitia.seps.local\\ILOPEZ\\BACKUPS_BDD_ILITIA');
 
 } else {
-
-    define(
-        'BASE_URL',
-        'http://localhost/INRtools'
-    );
-
+    define('BASE_URL','http://localhost/INRtools');
+    define('BACKUPS_PATH','\\\\ilitia.seps.local\\ILOPEZ\\BACKUPS_BDD_ILITIA');
 }
-
 
 require_once BASE_PATH . '/backend/helpers/funciones.php';
 
