@@ -5,7 +5,7 @@ header('Content-Type: application/json; charset=utf-8');
 include_once __DIR__ . '/../../backend/config.php';
 include_once BASE_PATH . 'backend/session.php';
 include_once BASE_PATH . 'backend/backups/parametrosBackups.php';
-include_once BASE_PATH . 'backend/conexiones/eeffempauxdb_connection.php'; 
+/* include_once BASE_PATH . 'backend/conexiones/eeffempauxdb_connection.php';  */
 
 
 date_default_timezone_set('America/Guayaquil');

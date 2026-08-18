@@ -1,4 +1,4 @@
-console.log("listFilesRiesgoCredito.js funcionando");
+console.log("listFilesSSI.js funcionando");
 
 // Función para ordenar archivos (por fecha y luego por versión)
 function ordenarArchivos(archivos) {
@@ -19,6 +19,18 @@ function ordenarArchivos(archivos) {
     });
 }
 
+// Función para ordenar archivos alfabéticamente por nombre
+function ordenarArchivosAlfabeticamente(archivos) {
+    return archivos.sort((a, b) => {
+        return a.name.localeCompare(
+            b.name,
+            'es',
+            {
+                sensitivity: 'base'
+            }
+        );
+    });
+}
 
 // Función mejorada para extraer versión numérica
 function extraerVersionNumerica(nombreArchivo) {
@@ -69,12 +81,9 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
 
 // Función para mostrar errores en todas las tablas
 function mostrarErrorEnTodasTablas(mensaje) {
-    ['rTBodyPerdidasEsperadas',
-     'rTBodyHistPEMT',
-     'rTBodyPerdidasEsperadasMT',
-     'rTBodyMonitoreoMora',
-     'rTBodyCosechas',
-     'rTBodyCartSociosCli'].forEach(id => {
+    ['rTBodyOtrosSsi',
+     'rTBodyPlanTrabajoSsi',
+     'rTBodyPlanAccionSsi'].forEach(id => {
         const tbody = document.getElementById(id);
         if (tbody) {
             tbody.innerHTML = `<tr><td colspan="4" class="text-center text-danger">${mensaje}</td></tr>`;
@@ -83,8 +92,8 @@ function mostrarErrorEnTodasTablas(mensaje) {
 }
 
 // Función reportes Perdidas Esperadas
-function fetchRiesgoCredito(carpetaReportes) {
-    const url = `${baseurl}/backend/reportes/listFilesReportesAlertas.php?carpeta=${encodeURIComponent(carpetaReportes)}`;
+function fetchDatosCarpeta(carpetaReportes) {
+    const url = `${baseurl}/backend/reportes/listFilesRepVersion.php?carpeta=${encodeURIComponent(carpetaReportes)}`;
     console.log("Fetching URL:", url);
 
     fetch(url)
@@ -95,33 +104,21 @@ function fetchRiesgoCredito(carpetaReportes) {
         .then(data => {
             //console.log("Datos recibidos:", data);
             const categorias = {
-                perdidasEsperadas: {
-                    archivos: data.filter(item => item.name.includes('perdidas_esperadas')),
-                    tablaId: 'rTBodyPerdidasEsperadas'
+                OtrosSSI: {
+                    archivos: data.filter(item => item.name.includes('RIL_OT')),
+                    tablaId: 'rTBodyOtrosSsi'
                 },
-                histPerdidasEsperadasMT: {
-                    archivos: data.filter(item => item.name.includes('RIL_HIST_PERDIDAS_ESPERADAS_MT')),
-                    tablaId: 'rTBodyHistPEMT'
+                PlanDeTrabajo: {
+                    archivos: data.filter(item => item.name.includes('RIL_PT')),
+                    tablaId: 'rTBodyPlanTrabajoSsi'
                 },
-                perdidasEsperadasMT: {
-                    archivos: data.filter(item => item.name.includes('Perdidas esperadas_mod')),
-                    tablaId: 'rTBodyPerdidasEsperadasMT'
-                },
-                monitoreoMora: {
-                    archivos: data.filter(item => item.name.includes('Monitoreo Mora')),
-                    tablaId: 'rTBodyMonitoreoMora'
-                },
-                cosechas: {
-                    archivos: data.filter(item => item.name.includes('Cosechas')),
-                    tablaId: 'rTBodyCosechas'
-                },
-                cartSociosClientes: {
-                   archivos: data.filter(item => item.name.toLowerCase().includes('cartera_socios_clientes')),
-                    tablaId: 'rTBodyCartSociosCli'
+                PlanDeAccion: {
+                    archivos: data.filter(item => item.name.includes('RIL_PA')),
+                    tablaId: 'rTBodyPlanAccionSsi'
                 }
             };
             Object.values(categorias).forEach(({ archivos, tablaId }) => {
-                mostrarArchivosEnTabla(ordenarArchivos(archivos), tablaId);
+                mostrarArchivosEnTabla(ordenarArchivosAlfabeticamente(archivos), tablaId);
             });
         })
         .catch(error => {
@@ -133,7 +130,7 @@ function fetchRiesgoCredito(carpetaReportes) {
 // Inicialización cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof carpetaReportes !== 'undefined') {
-        fetchRiesgoCredito(carpetaReportes);
+        fetchDatosCarpeta(carpetaReportes);
     } else {
         console.error("La variable 'carpetaReportes' no está definida");
         mostrarErrorEnTodasTablas("Error de configuración: ruta no definida");

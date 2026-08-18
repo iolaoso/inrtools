@@ -266,6 +266,12 @@ const menuItems = [
             {
                 title: 'Reportes',
                 subMenu: [
+                    {   title: 'SSI', 
+                        url: '/INRtools/frontend/dns/reportes/ssi/ssi.php',
+                        direccion: ['INR', 'DNR','DNSES','DNS','DNPLA'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNS','ANALISTA'],
+                        usuarios: [] 
+                    },
                     {   title: 'Detalles PA', 
                         url: '/INRtools/frontend/dns/reportes/detallesPA/detallesPA.php',
                         direccion: ['INR', 'DNR','DNSES','DNS','DNPLA'],
