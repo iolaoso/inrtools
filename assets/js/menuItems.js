@@ -371,6 +371,12 @@ const menuItems = [
                 rol: ['SUPERUSER','ADMINISTRADOR'],
                 usuarios: []
             },
+            { title: 'Bitacora de Usuarios',
+                url: '/INRtools/frontend/configuracion/bitacora/bitacoraUsuariosView.php',
+                direccion: ['ALL'],
+                rol: ['SUPERUSER','ADMINISTRADOR'],
+                usuarios: []
+            },
             /* { title: 'Roles y Permisos',
                 url: '/INRtools/frontend/configuracion/roles/roles.php',
                 direccion: ['ALL'],
