@@ -57,9 +57,7 @@ include BASE_PATH . 'backend/session.php';
                     </div>
                 </div>
             </section> 
-    </div>
-    </section>
-    </main>
+        </main>
     </div>
 
     <div id="base_url" data-base-url="<?= $base_url; ?>"></div>

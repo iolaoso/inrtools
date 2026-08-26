@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../../backend/config.php';
+include_once __DIR__ . '/../../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';
 include BASE_PATH . 'backend/psi/psiList.php'; // Archivo con funciones para PSI
 //include BASE_PATH . 'backend/catastroList.php'; // consulta catastro activas
@@ -9,7 +9,7 @@ include BASE_PATH . 'backend/psi/psiList.php'; // Archivo con funciones para PSI
 include BASE_PATH . 'backend/validarAcceso.php';
 
 // Define usuarios permitidos (variable configurable)
-$usuarios_permitidos = ['DPAGUAY', 'ILOPEZ','ILOPEZA','CLUNA','FOROZCO'];
+$usuarios_permitidos = ['DPAGUAY','ILOPEZ','ILOPEZA','PCARRILLO','FOROZCO'];
 
 // Valida acceso
 validarAccesoUsuario($nickname, $usuarios_permitidos, $base_url);
@@ -648,10 +648,10 @@ if ($rol_nombre == 'ADMINISTRADOR' || $rol_nombre == 'SUPERUSER' || $rol_nombre 
         });
 
         // Limpiar formulario
-        document.getElementById('btnLimpiar').addEventListener('click', () => {
+        /* document.getElementById('btnLimpiar').addEventListener('click', () => {
             document.getElementById('formPsi').reset();
             document.getElementById('id').value = 0;
-        });
+        }); */
     </script>
 
 </body>

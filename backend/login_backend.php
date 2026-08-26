@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'conexiones/db_connection.php'; // Incluir conexión a la base de datos
+include 'helpers/rbitacora.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nickname = $_POST['nickname'];
@@ -74,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['direccion'] = $direccion['direccion'];
                 }
             }
-
+            insertarBitacora('LOGIN','AUTENTICACION','Inicio de sesión exitoso');
             header("Location: ../frontend/main.php"); // Redirigir a main.php
             exit();
         } else {

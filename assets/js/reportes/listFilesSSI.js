@@ -70,8 +70,14 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
                     <td class="text-center">${fechaFormateada}</td>
                     <td class="text-center">
                         <a href="${baseurl}/${archivo.path}/${archivo.name}"
-                           class="btn btn-sm btn-primary" title="Descargar ${archivo.name}">
-                            <i class="fas fa-download"></i> Descargar
+                           target="_blank"
+                           class="btn btn-sm btn-outline-primary btn-descargar"
+                           data-nombre="${archivo.name}"
+                           data-ruta="${archivo.path}"
+                           data-tamanio="${archivo.size}"
+                           data-url="${baseurl}/${archivo.path}/${archivo.name}"
+                           title="Descargar ${archivo.name}">
+                                <i class="fas fa-download"></i> Descargar
                         </a>
                     </td>
                 </tr>

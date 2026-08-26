@@ -1,4 +1,4 @@
-console.log("listFilesIndRanking.js funcionando");
+console.log("listFilescosede.js funcionando");
 
 // Función para ordenar archivos (por fecha y luego por versión)
 function ordenarArchivos(archivos) {
@@ -59,20 +59,17 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
             // Dividir por guiones bajos
             const partes = nombreSinExtension.split('_');
             
-            let fechaCarga = 'N/A';
-            let fechaCorte = 'N/A';
+            let anioCorte = 'N/A';
+            let mesCorte = 'N/A';
             
-            // Formato esperado: ind_ranking_coacs_preliminar_nov2025_31dic2025
-            // La fecha de carga es el penúltimo elemento (nov2025)
-            // La fecha de corte es el último elemento (31dic2025)
             if (partes.length >= 2) {
-                fechaCarga = partes[partes.length - 1]; // Penúltimo elemento
-                fechaCorte = partes[partes.length - 2];  // Último elemento
+                anioCorte = partes[partes.length - 1]; // Penúltimo elemento
+                mesCorte = partes[partes.length - 2];  // Último elemento
             }
             
             // Formatear fechas para mostrarlas más legibles (opcional)
-            const fechaCargaFormateada = formatearFechaArchivo(fechaCarga);
-            const fechaCorteFormateada = formatearFechaArchivo(fechaCorte, true); // true para formato día-mes-año
+            const anioCorteFormateada = formatearFechaArchivo(anioCorte);
+            const mesCorteFormateada = formatearFechaArchivo(mesCorte, true); // true para formato día-mes-año
             
             const version = extraerVersionNumerica(archivo.name);
             const fechaFormateada = new Date(archivo.lastModified).toLocaleDateString('es-ES', {
@@ -81,8 +78,8 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
             
             return `
                 <tr>
-                    <td class="text-center">${fechaCorteFormateada}</td>
-                    <td class="text-center">${fechaCargaFormateada}</td>
+                    <td class="text-center">${mesCorteFormateada}</td>
+                    <td class="text-center">${anioCorteFormateada}</td>
                     <td>${archivo.name}</td>
                     <td class="text-center">${(archivo.size / (1024 * 1024)).toFixed(2)} MB</td>
                     <td class="text-center">${fechaFormateada}</td>
@@ -98,14 +95,13 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
                                 <i class="fas fa-download"></i> Descargar
                         </a>
                     </td>
-
                 </tr>
             `;
         }).join('');
 }
 
 // Función auxiliar para formatear fechas como "nov2025" o "31dic2025"
-function formatearFechaArchivo(fechaStr, esFechaCorte = false) {
+function formatearFechaArchivo(fechaStr, esmesCorte = false) {
     if (!fechaStr || fechaStr === 'N/A') return fechaStr;
     
     // Convertir mes de abreviatura a número
@@ -115,7 +111,7 @@ function formatearFechaArchivo(fechaStr, esFechaCorte = false) {
         'sep': '09', 'oct': '10', 'nov': '11', 'dic': '12'
     };
     
-    if (esFechaCorte) {
+    if (esmesCorte) {
         // Es fecha de Corte (formato: nov2025)
         const match = fechaStr.match(/([a-z]{3})(\d{4})/i);
         if (match) {
@@ -146,11 +142,9 @@ function formatearFechaArchivo(fechaStr, esFechaCorte = false) {
 
 // Función para mostrar errores en todas las tablas
 function mostrarErrorEnTodasTablas(mensaje) {
-    ['rTBodyIndRankingCoacsPreDTA',
-        'rTBodyIndRankingCoacsPreXLSX',
-        'rTBodyIndRankingMutualistasPreDTA',
-        'rTBodyIndRankingMutualistasPreXLSX',
-        'rTBodyIndRankingUltBalCoacsMutPreXLSX'
+    [
+     'rTBodycosede',
+     'rTBodyetap',
     ].forEach(id => {
         const tbody = document.getElementById(id);
         if (tbody) {
@@ -160,8 +154,8 @@ function mostrarErrorEnTodasTablas(mensaje) {
 }
 
 // Función principal para obtener y mostrar reportes
-function fetchIndRanking(carpetaReportes) {
-    const url = `${baseurl}/backend/reportes/listFilesRepVersion.php?carpeta=${encodeURIComponent(carpetaReportes)}`;
+function fetchCosede(carpetaReportes) {
+    const url = `${baseurl}/backend/reportes/listFilesReportesMesAnio.php?carpeta=${encodeURIComponent(carpetaReportes)}`;
     //console.log("Fetching URL:", url);
 
     fetch(url)
@@ -172,53 +166,23 @@ function fetchIndRanking(carpetaReportes) {
         .then(data => {
             //console.log("Datos recibidos:", data);
             const categorias = {
-                coacsXlsx: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_coacs_activas')),
-                    tablaId: 'rTBodyIndRankingCoacsPreXLSX'
+                cosede: {
+                    archivos: data.filter(item => item.name.includes('COSEDE_PSI')),
+                    tablaId: 'rTBodycosede'
                 },
-                 mutualistasXlsx: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas') && 
-                    item.name.endsWith('.xlsx')),
-                    tablaId: 'rTBodyIndRankingMutualistasPreXLSX'
+                etap: {
+                    archivos: data.filter(item => item.name.includes('etap_1_PSI')),
+                    tablaId: 'rTBodyetap'
                 },
-                coacsMutualistasXlsx: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_ult_bal_coacs_y_mutualistas')),
-                    tablaId: 'rTBodyIndRankingUltBalCoacsMutPreXLSX'
+                cosedeDNLESF: {
+                    archivos: data.filter(item => item.name.includes('COSEDE_DNLESF')),
+                    tablaId: 'rTBodycosedednlesf'
                 },
-                coacsDta: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_coacs') && 
-                    (item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
-                    tablaId: 'rTBodyIndRankingCoacsPreDTA'
+                etapDNLESF: {
+                    archivos: data.filter(item => item.name.includes('etap_1_DNLESF')),
+                    tablaId: 'rTBodyetapdnlesf'
                 },
-                mutualistasDta: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas') && 
-                    (item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
-                    tablaId: 'rTBodyIndRankingMutualistasPreDTA'
-                },
-                /* PARA LAS OTRAS INTENDENCIAS */
-                INFMR: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_ult_bal_coacs_y_mutualistas_preliminar_INFMR') && 
-                    item.name.endsWith('.xlsx')),
-                    tablaId: 'rTBodyIndRankingINFMR'
-                },
-                INSESF: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_coacs_y_mutualistas_preliminar_INSESF') && 
-                    item.name.endsWith('.xlsx')),
-                    tablaId: 'rTBodyIndRankingINSESF'
-                },
-                /* Para el apartado de reporte de Calificación */
-                CALFRIESGO: {
-                    archivos: data.filter(item => item.name.includes('reporte_calificacion_riesgo') && 
-                    item.name.endsWith('.xlsx')),
-                    tablaId: 'rTBodyRepCalfRiegso'
-                },
-                INDCALFRIESGO: {
-                    archivos: data.filter(item => item.name.includes('reporte_indicadores_calificacion_riesgo') && 
-                    item.name.endsWith('.xlsx')),
-                    tablaId: 'rTBodyRepIndCalfRiesgo'
-                }
             };
-            
             // Iterar sobre las categorías de forma segura
             Object.values(categorias).forEach(({ archivos, tablaId }) => {
                 // Validación adicional: si no hay archivos, aún así intentamos mostrar (mostrará "No se encontraron archivos")
@@ -234,9 +198,13 @@ function fetchIndRanking(carpetaReportes) {
 // Inicialización cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof carpetaReportes !== 'undefined') {
-        fetchIndRanking(carpetaReportes);
+        fetchCosede(carpetaReportes);
     } else {
         console.error("La variable 'carpetaReportes' no está definida");
         mostrarErrorEnTodasTablas("Error de configuración: ruta no definida");
     }
 });
+
+
+
+

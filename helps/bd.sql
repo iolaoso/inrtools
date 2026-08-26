@@ -98,8 +98,68 @@
 );
 
     SET foreign_key_checks = 0;
-    -- inserción de datos
 
+CREATE TABLE bitacora_usuarios (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    -- IDENTIFICADOR ÚNICO DE LA OPERACIÓN
+    request_id CHAR(36) NOT NULL,
+    -- USUARIO
+    usuario_id INT NULL,
+    nickname VARCHAR(100) NULL,
+    correo VARCHAR(150) NULL,
+    -- INFORMACIÓN INSTITUCIONAL
+    direccion VARCHAR(150) NULL,
+    rol VARCHAR(100) NULL,
+    -- ACCIÓN REALIZADA
+    accion VARCHAR(50) NOT NULL,
+    modulo VARCHAR(100) NULL,
+    descripcion VARCHAR(500) NULL,
+    -- ARCHIVO / RECURSO
+    nombre_archivo VARCHAR(255) NULL,
+    ruta_archivo VARCHAR(500) NULL,
+    tipo_archivo VARCHAR(50) NULL,
+    tamanio_archivo BIGINT UNSIGNED NULL,
+    -- INFORMACIÓN DEL CLIENTE
+    ip VARCHAR(45) NULL,
+    user_agent VARCHAR(500) NULL,
+    host_cliente VARCHAR(255) NULL,
+    -- SESIÓN
+    session_id VARCHAR(255) NULL,
+    -- RESULTADO DE LA OPERACIÓN
+    estado VARCHAR(30) NOT NULL DEFAULT 'OK',
+    mensaje VARCHAR(500) NULL,
+    -- INFORMACIÓN ADICIONAL
+    datos_extra JSON NULL,
+    -- FECHAS
+    fecha_evento DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    -- CLAVES
+    PRIMARY KEY (id),
+    -- ÍNDICES
+    INDEX idx_bitacora_request_id (request_id),
+    INDEX idx_bitacora_usuario (usuario_id),
+    INDEX idx_bitacora_nickname (nickname),
+    INDEX idx_bitacora_accion (accion),
+    INDEX idx_bitacora_modulo (modulo),
+    INDEX idx_bitacora_ip (ip),
+    INDEX idx_bitacora_fecha (fecha_evento),
+    INDEX idx_bitacora_archivo (nombre_archivo),
+    INDEX idx_bitacora_estado (estado),
+    INDEX idx_bitacora_direccion (direccion),
+    INDEX idx_bitacora_rol (rol)
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+
+
+
+
+
+    -----------------------------------------------------------------------------
+    ------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------
+    -- inserción de datos
     -- Insertar direcciones
     INSERT INTO inrdireccion (direccion, dirNombre, estRegistro, UsrCreacion) VALUES 
     ('INR', 'Intendencia Nacional de Riesgos', 1, 'ILOPEZ'),

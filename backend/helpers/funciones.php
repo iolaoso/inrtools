@@ -98,48 +98,14 @@ function registrarGestionINR(
     string $gestion,
     string $comentario = ''
 ): bool {
-
     global $nickname;
-
-    $sql = "
-        INSERT INTO gestioninr (
-            DIRECCION,
-            COD_CATEGORIA,
-            COD_SUBCATEGORIA,
-            FECHA_REGISTRO,
-            ANALISTA,
-            RUC_ENTIDAD,
-            RAZON_SOCIAL,
-            GESTION,
-            ESTADO,
-            COMENTARIO,
-            EST_REGISTRO,
-            USR_CREACION,
-            FECHA_CREACION
-        )
-        VALUES (
-            ?,
-            ?,
-            ?,
-            NOW(),
-            ?,
-            ?,
-            ?,
-            ?,
-            'COMPLETADA',
-            ?,
-            1,
-            ?,
-            NOW()
-        )
-    ";
-
+    $sql = "INSERT INTO gestioninr (DIRECCION,COD_CATEGORIA,COD_SUBCATEGORIA,FECHA_REGISTRO,ANALISTA,RUC_ENTIDAD,
+                RAZON_SOCIAL,GESTION,ESTADO,COMENTARIO,EST_REGISTRO,USR_CREACION,FECHA_CREACION)
+            VALUES (?,?,?,NOW(),?,?,?,?,'COMPLETADA',?,1,?,NOW())";
     $stmt = $conn->prepare($sql);
-
     if (!$stmt) {
         return false;
     }
-
     $stmt->bind_param(
         "sssssssss",
         $direccion,
@@ -152,6 +118,6 @@ function registrarGestionINR(
         $comentario,
         $nickname
     );
-
     return $stmt->execute();
 }
+

@@ -26,6 +26,7 @@ function obtenerReportes($carpetaReportes)
     if (is_dir($directory)) {
         $files = scandir($directory);
         foreach ($files as $file) {
+            $filePath = $directory . DIRECTORY_SEPARATOR . $file;
             // Para archivos de Excel, PDF y HTML
             if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['xlsm', 'xlsx', 'pdf', 'html'])) {
                 $fileParts = explode('_', pathinfo($file, PATHINFO_FILENAME));
@@ -42,7 +43,8 @@ function obtenerReportes($carpetaReportes)
                     'repPath' => $carpetaReportes,
                     'year' => $year,
                     'month' => $monthName,
-                    'monthId' => $monthId
+                    'monthId' => $monthId,
+                    'size' => filesize($filePath)
                 ];
             }
         }

@@ -15,6 +15,8 @@
 <!-- JAVASCRIPT PROPIO DEL SISTEMA -->
 <!-- ========================================================= -->
 
+<!-- REGISTRAR BITACORA -->
+<script src="<?php echo $base_url; ?>/assets/js/registrarBitacora.js?v=<?= time(); ?>"></script> 
 <!-- Menú lateral dinámico -->
 <script src="<?php echo $base_url; ?>/assets/js/menuItems.js?v=<?= time(); ?>"></script>
 

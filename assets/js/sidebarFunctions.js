@@ -25,10 +25,9 @@ function generateMenu(usrDir, usrRol, usrName) {
     const menu = document.getElementById('menu');
     const fragment = document.createDocumentFragment();
 
-    /* console.log('usrDir:', usrDir);
-    console.log('usrRol:', usrRol);
-    console.log('usrName:', usrName); */
+    console.log('Log in usrDir:',usrDir,'usrRol:', usrRol,'usrName:',usrName);
 
+    // toma la estructura que tememos del menu en menuItems.js
     menuItems.forEach(item => {
         // Validar acceso al menú principal
         const hasUserRestriction = item.usuarios && item.usuarios.length > 0;

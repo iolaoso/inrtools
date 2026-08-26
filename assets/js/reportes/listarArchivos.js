@@ -3,14 +3,14 @@ console.log("listarArchivos.js funcionando");
 ////archivo para listar los reportes 
 function fetchReports(carpetaReportes) {
     const url = `${baseurl}/backend/reportes/listFilesReportes.php?carpeta=${encodeURIComponent(carpetaReportes)}`; // Asegúrate de definir baseurl
-    console.log(url);
+    //console.log(url);
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
             const tbody = document.getElementById('reportTableBody');
             tbody.innerHTML = ''; // Limpiar el cuerpo de la tabla
-            
+            //console.log(data);
             data.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -19,7 +19,16 @@ function fetchReports(carpetaReportes) {
                     <td class="text-center">${item.month.toUpperCase()}</td>
                     <td>${item.file}</td>
                     <td class="text-center">
-                        <a href="${baseurl}/${item.repPath}/${item.file}" class="btn btn-primary btn-sm" target="_blank">Descargar</a>
+                        <a href="${baseurl}/${item.repPath}/${item.file}"
+                           target="_blank"
+                           class="btn btn-sm btn-outline-primary btn-descargar"
+                           data-nombre="${item.file}"
+                           data-ruta="${item.repPath}"
+                           data-tamanio="${item.size}"
+                           data-url="${baseurl}/${item.repPath}/${item.file}"
+                           title="Descargar ${item.file}">
+                                <i class="fas fa-download"></i> Descargar
+                        </a>
                     </td>
                 `;
                 tbody.appendChild(row);

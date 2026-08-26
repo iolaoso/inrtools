@@ -47,7 +47,7 @@ const menuItems = [
                         url: '/INRtools/frontend/inr/IndRanking/calfRiesgo/calfRiesgo.php',
                         direccion: ['INR', 'DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
-                        usuarios: ['MFLORES','CLUNA','ESIMBAÑA','EACOSTA','FLARCO','ILOPEZA']
+                        usuarios: ['FOROZCO','PCARRILLO','ESIMBAÑA','EACOSTA','FLARCO','ILOPEZA']
                     }
                     /* {   title: 'Ind ranking Imputados',
                         url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRankingImputados.php',
@@ -66,12 +66,12 @@ const menuItems = [
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                 usuarios: [] 
             },
-            {   title: 'Diagnóstico Emp. Auxiliares', 
+            /* {   title: 'Diagnóstico Emp. Auxiliares', 
                 url: '/INRtools/frontend/inr/eeff_emp_aux/eeff_emp_aux.php',
                 direccion: ['ALL'],
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
                 usuarios: ['ILOPEZ'] 
-            },
+            }, */
             {   title: 'Backups Ilitia', 
                 url: '/INRtools/frontend/inr/backups/backupsview.php',
                 direccion: ['ALL'],
@@ -118,16 +118,39 @@ const menuItems = [
                 rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
-            {   title: 'PSI', 
-                url: '/INRtools/frontend/dnr/psi/psi.php',
-                direccion: ['INR', 'DNR'],
-                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
+            {   title: 'PSI',
+                subMenu: [
+                    {   
+                        title: 'PSI', 
+                        url: '/INRtools/frontend/dnr/psi/psi/psi.php',
+                        direccion: ['INR', 'DNR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA','ANALISTA'],
+                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY'] 
+                    },
+                    {
+                        title: 'COSEDE', 
+                        url: '/INRtools/frontend/dnr/psi/cosede/cosede.php',
+                        direccion: ['INR', 'DNR'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA','ANALISTA'],
+                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA'] 
+                    },
+                    {
+                        title: 'COSEDE DNLESF', 
+                        url: '/INRtools/frontend/dnr/psi/cosede/cosedeDNLESF.php',
+                        direccion: ['INR', 'DNR','DNLESF'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA','ANALISTA'],
+                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA'] 
+                    },
+                ],
+                direccion: ['ALL'],
+                rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
             {
                 title: 'Reportes',
                 subMenu: [
-                    {   title: 'Riesgo de Crédito', 
+                    {   
+                        title: 'Riesgo de Crédito', 
                         url: '/INRtools/frontend/dnr/reportes/alertas/riesgoCredito.php',
                         direccion: ['INR', 'DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
@@ -235,7 +258,7 @@ const menuItems = [
                         url: '/INRtools/frontend/dnses/reportes/coacsdnses/coacsdnses.php',
                         direccion: ['DNSES','INR', 'DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
-                        usuarios: ['MFLORES','CLUNA','EVACA','RSOTO','ILOPEZA','ILOPEZ'] 
+                        usuarios: ['FOROZCO','PCARRILLO','EVACA','RSOTO','ILOPEZA','ILOPEZ'] 
                     },
                     {   title: 'Variaciones B11', 
                         url: '/INRtools/frontend/dnses/reportes/variacionesb11/variacionesb11.php',
@@ -372,7 +395,7 @@ const menuItems = [
         icon: 'fa-solid fa-user',
         url: '/INRtools/frontend/profile.php',
         direccion: ['ALL'],
-        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
+        rol: ['ALL'],
         usuarios: [] 
     },
     {
@@ -381,7 +404,7 @@ const menuItems = [
         icon: 'fa-solid fa-info-circle',
         url: '/INRtools/frontend/about.php',
         direccion: ['ALL'],
-        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
+        rol: ['ALL'],
         usuarios: [] 
     },
     {
@@ -390,14 +413,14 @@ const menuItems = [
             { 
               title: 'Tareas', 
               url: '/INRtools/frontend/mUtilidades/tareas/gestionTareas.php',
-              direccion: ['INR', 'DNR'],
+              direccion: ['ALL'],
               rol: ['SUPERUSER'],
-              usuarios: [] 
+              usuarios: ['ILOPEZA'] 
             },
             { 
               title: 'Avance de Supervision DNSES', 
               url: '/INRtools/frontend/dnses/supervision/asupervision.php',
-              direccion: ['DNSES','INR', 'DNR'],
+              direccion: ['ALL'],
               rol: ['SUPERUSER','ANALISTA'],
               usuarios: ['ILOPEZA','EVACA'] 
             },
@@ -405,7 +428,7 @@ const menuItems = [
         url: '/INRtools/frontend/porUsuario.php',
         icon: 'fa fa-file-text',
         direccion: ['ALL'],
-        rol: ['SUPERUSER','ANALISTA'],
+        rol: ['ALL'],
         usuarios: ['ILOPEZA','EVACA'] // Opcional: lista de usuarios específicos permitidos
     },
 ];
