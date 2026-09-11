@@ -33,7 +33,7 @@ const menuItems = [
                     },
                     {   title: 'Ind Ranking Preliminar (INSESF)',
                         url: '/INRtools/frontend/inr/IndRanking/rIndRankingINSESF.php',
-                         direccion: ['INR', 'DNR', 'INSESF'],
+                         direccion: ['INR', 'DNR', 'INSESF','DNSSFI','DNSSFII'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNSESF'],
                         usuarios: [] 
                     },
@@ -47,7 +47,7 @@ const menuItems = [
                         url: '/INRtools/frontend/inr/IndRanking/calfRiesgo/calfRiesgo.php',
                         direccion: ['INR', 'DNR','DNS'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
-                        usuarios: ['FOROZCO','PCARRILLO','ESIMBAÑA','EACOSTA','FLARCO','ILOPEZA']
+                        usuarios: ['FOROZCO','PCARRILLO','ESIMBAÑA','EACOSTA','FLARCO','ILOPEZA','ILOPEZ']
                     }
                     /* {   title: 'Ind ranking Imputados',
                         url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRankingImputados.php',

@@ -19,6 +19,8 @@ if (ENVIRONMENT === 'Produccion') {
     define('BACKUPS_PATH','\\\\ilitia.seps.local\\ILOPEZ\\BACKUPS_BDD_ILITIA');
 }
 
+require_once BASE_PATH . 'vendor/autoload.php';
+
 require_once BASE_PATH . '/backend/helpers/funciones.php';
 
 // Configuración de errores

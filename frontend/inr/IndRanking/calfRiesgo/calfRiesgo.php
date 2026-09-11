@@ -1,6 +1,9 @@
 <?php
 include_once __DIR__ . '/../../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';
+include BASE_PATH . 'backend/indRanking/indrankingList.php'; // consulta catastro activas
+
+$datosRiesgo = obtenerRiesgoEntidad();
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +70,56 @@ include BASE_PATH . 'backend/session.php';
                     <?php include BASE_PATH . 'frontend/partials/confidentiality.php'; ?>
                 </div>
             </div>
+
+            <!-- Visualizacion de la calificacion  -->
+            <section class="row align-items-stretch mb-4">
+                <!-- Cambiar align-items-center a align-items-stretch -->
+                <div class="col-md-12">
+                    <div class="card h-100 d-flex flex-column border-secondary">
+                        <div class="card-header text-white" style="background-color: #05829bff;">
+                            <h4>Resumen Calificación de Riesgo</h4>
+                            <p>Vista rapida de la Calificación de Riesgo</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive" style="max-height: 600px;">
+                                <table id="tablaRankingCalf" class="table table-sm table-bordered table-hover align-middle mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>RUC</th>
+                                            <th>Institución</th>
+                                            <th>Fecha de balance</th>
+                                            <th>Segmento</th>
+                                            <th>Estado actual</th>
+                                            <th>Nivel de riesgo (x)</th>
+                                            <th>Administración de riesgo (z)</th>
+                                            <th>Causales normativas</th>
+                                            <th>Calificación de riesgo (y)</th>
+                                            <th>Metodología</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyRankingCalf">
+                                        <?php foreach ($datosRiesgo['data'] as $riesgoEntidad): ?>
+                                            <tr>
+                                                <td><?= h($riesgoEntidad['ruc']) ?></td>
+                                                <td><?= h($riesgoEntidad['nom_inst']) ?></td>
+                                                <td><?= h($riesgoEntidad['fecha_balance']) ?></td>
+                                                <td><?= h($riesgoEntidad['seg_comyf']) ?></td>
+                                                <td><?= h($riesgoEntidad['estado_actual']) ?></td>
+                                                <td><?= h($riesgoEntidad['c_n_cr_nivel']) ?></td>
+                                                <td><?= h($riesgoEntidad['c_calidad_adm_riesgo']) ?></td>
+                                                <td><?= h($riesgoEntidad['causal_liquidacion']) ?></td>
+                                                <td style="<?= claseNivelRiesgo($riesgoEntidad['calif_riesgo_def_categ_unif']) ?>" class="text-center fw-bold">
+                                                    <?= h($riesgoEntidad['calif_riesgo_def_categ_unif']) ?></td>
+                                                <td><?= h($riesgoEntidad['metodologia_unif']) ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </section>
 
             <!-- 1. Calificación de riesgo -->
             <section class="row align-items-stretch mb-4">

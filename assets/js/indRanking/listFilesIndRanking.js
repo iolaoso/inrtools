@@ -240,3 +240,65 @@ document.addEventListener("DOMContentLoaded", () => {
         mostrarErrorEnTodasTablas("Error de configuración: ruta no definida");
     }
 });
+
+
+
+$(document).ready(function() {
+    $('#tablaRankingCalf').DataTable({
+        "autoWidth": false, // Habilita el ajuste automático de ancho
+        "dom": '<"botones"B><"filtro"f><"ctabla"rt><"pie"ip>',
+        "buttons": [{
+                        extend: 'excelHtml5',
+                        title: 'Reporte_Calificacion_Riesgo',
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        messageTop: 'Reporte_Calificacion_Riesgo',
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        download: 'open'
+                    },
+                    {
+                        extend: 'print',
+                        messageTop: 'Reporte_Calificacion_Riesgo',
+                        orientation: 'landscape',
+                        exportOptions: {columns: ':visible'},
+                        customize: function ( win ) {
+                            $(win.document.body)
+                                .css( 'font-size', '10pt' );
+                            $(win.document.body).find( 'table' )
+                                .addClass( 'compact' )
+                                .css( 'font-size', 'inherit' );
+                        }
+                    },
+                    'colvis',
+        ],
+        "paging": true, // Activa la paginación
+        "lengthChange": false, // Oculta el menú de selección de entradas
+        "pageLength": 5, // Número de registros por página
+        "ordering": true, // Habilita la ordenación
+        "language": {
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        },
+        columnDefs: [
+        {
+            targets: [5,6], // columna c_n_cr_nivel
+            searchable: false
+        }
+    ]
+
+    }); 
+});
