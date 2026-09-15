@@ -19,7 +19,6 @@ function ordenarArchivos(archivos) {
     });
 }
 
-
 // Función mejorada para extraer versión numérica
 function extraerVersionNumerica(nombreArchivo) {
     const regexVersiones = [
@@ -241,8 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
-
+/* Carga datos en la datatable del riesgo por entidad */
 $(document).ready(function() {
     $('#tablaRankingCalf').DataTable({
         "autoWidth": false, // Habilita el ajuste automático de ancho
@@ -268,7 +266,7 @@ $(document).ready(function() {
                         exportOptions: {columns: ':visible'},
                         customize: function ( win ) {
                             $(win.document.body)
-                                .css( 'font-size', '10pt' );
+                                .css( 'font-size', '12pt' );
                             $(win.document.body).find( 'table' )
                                 .addClass( 'compact' )
                                 .css( 'font-size', 'inherit' );

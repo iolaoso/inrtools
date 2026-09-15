@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . '/../../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';
-include BASE_PATH . 'backend/indRanking/indrankingList.php'; // consulta catastro activas
+include BASE_PATH . 'backend/indRanking/indrankingList.php'; // consulta el reporte de calificación 
 
 $datosRiesgo = obtenerRiesgoEntidad();
 ?>
@@ -20,50 +20,18 @@ $datosRiesgo = obtenerRiesgoEntidad();
 
         <!-- Contenido principal -->
         <main class="content p-3" id="main-content">
-            <div class="row align-items-start mb-4">
+            <div class="row align-items-start mb-1">
                 <h1 class="display-6 tituloPagina">Reporte de Calificación de Riesgo</h1>
                 <!-- Columna izquierda -->
-                <div class="col-md-6">
-                    <h5>1. Calificación de Riesgo</h5>
-                    <p>El Reporte de la calificación de riesgo de coacs y mutualistas contiene:</p>
+                <div class="col-md-12">
+                    <p>El reporte de la calificación de riesgo de coacs y mutualistas calculado según la "Guía metodológica de la calificación de riesgo para ESFPS" v3.0 de ago2026 contiene:</p>
                     <ol>
-                        <li>Comparación de la calificación de riesgo: mes anterior vs. mes actual.</li>
-                        <li>Evolución de la calificación de riesgo: diciembres-actual y últimos meses-actual.</li>
-                        <li>Desglose de la calificación de riesgo: por indicadores según sus umbrales y metodología utilizada.</li>
-                        <li>Evolución de los indicadores del modelo de calificación de riesgo.</li>
-                        <li>Reporte de resultados:
-                            <ol>
-                                <li>Comparación en la calificación de riesgo por categorías: mes anterior vs. mes actual.</li>
-                                <li>Evolución histórica de la calificación de riesgo por categorías.</li>
-                                <li>Variación de la calificación de riesgo: mes anterior vs. mes actual.</li>
-                                <li>Evolución histórica de la variación de la calificación de riesgo.</li>
-                                <li>Detalle de la calificación de riesgo por categorías y segmentos.</li>
-                            </ol>
-                        </li>
-                    </ol>
-                </div>
-
-                <!-- Columna derecha -->
-                <div class="col-md-6">
-                    <h5>2. Indicadores de la calificación de riesgo</h5>
-                    <p>El reporte de los 11 indicadores de la calificación de riesgo de coacs se desglosa en:</p>
-                    <ol>
-                        <li>Resoluciones del Catálogo Único de Cuentas (CUC)</li>
-                        <li>Nombre del indicador</li>
-                        <li>Definición</li>
-                        <li>Componente</li>
-                        <li>Dirección (sentido)</li>
-                        <li>Tendencia</li>
-                        <li>Ponderación</li>
-                        <li>Resolución del CUC</li>
-                        <li>Fórmula de cálculo</li>
-                        <li>Datos de la entidad</li>
-                        <li>Estructura del indicador: numerador y denominador por: desglose de cuentas, aplicabilidad y saldo de los 5 últimos periodos (anuales)</li>
+                        <li>Vista rápida de la calificación: última calificación de riesgo disponible.</li>
+                        <li>Análisis de la calificación: comparación de la calificación, gráficos de la evolución de la calificación, desglose de la calificación por indicadores según sus umbrales, gráficos de la evolución de los indicadores y reporte de resultados. </li>
+                        <li>Indicadores a nivel de cuentas de la calificación: Desglose de los indicadores a nivel de cuentas del CUC de la calificación de riesgo.</li>
                     </ol>
                 </div>
             </div>
-
-
             <div class="row align-items-start mb-3">
                 <div class="col-md-12">
                     <!-- Nota de confidencialidad de la información -->
@@ -77,8 +45,8 @@ $datosRiesgo = obtenerRiesgoEntidad();
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>Resumen Calificación de Riesgo</h4>
-                            <p>Vista rapida de la Calificación de Riesgo</p>
+                            <h4>1. Vista rápida de la calificación</h4>
+                            <p>Vista rápida de la calificación de riesgo a la última fecha de corte disponible.</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive" style="max-height: 600px;">
@@ -86,14 +54,14 @@ $datosRiesgo = obtenerRiesgoEntidad();
                                     <thead>
                                         <tr>
                                             <th>RUC</th>
-                                            <th>Institución</th>
-                                            <th>Fecha de balance</th>
+                                            <th>Entidad</th>
+                                            <th>Fecha de Corte</th>
                                             <th>Segmento</th>
                                             <th>Estado actual</th>
-                                            <th>Nivel de riesgo (x)</th>
-                                            <th>Administración de riesgo (z)</th>
-                                            <th>Causales normativas</th>
-                                            <th>Calificación de riesgo (y)</th>
+                                            <th>1.1. Nivel de riesgo</th>
+                                            <th>1.2. Administración de riesgo</th>
+                                            <th>1.3. Causales normativas</th>
+                                            <th>1. Calificación de riesgo</th>
                                             <th>Metodología</th>
                                         </tr>
                                     </thead>
@@ -107,7 +75,7 @@ $datosRiesgo = obtenerRiesgoEntidad();
                                                 <td><?= h($riesgoEntidad['estado_actual']) ?></td>
                                                 <td><?= h($riesgoEntidad['c_n_cr_nivel']) ?></td>
                                                 <td><?= h($riesgoEntidad['c_calidad_adm_riesgo']) ?></td>
-                                                <td><?= h($riesgoEntidad['causal_liquidacion']) ?></td>
+                                                <td><?= h($riesgoEntidad['causal_liquidacion_cat']) ?></td>
                                                 <td style="<?= claseNivelRiesgo($riesgoEntidad['calif_riesgo_def_categ_unif']) ?>" class="text-center fw-bold">
                                                     <?= h($riesgoEntidad['calif_riesgo_def_categ_unif']) ?></td>
                                                 <td><?= h($riesgoEntidad['metodologia_unif']) ?></td>
@@ -121,14 +89,14 @@ $datosRiesgo = obtenerRiesgoEntidad();
                 </div>
             </section>
 
-            <!-- 1. Calificación de riesgo -->
+            <!-- 2. Análisis de la calificación -->
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
-                            <h4>1. Calificación de riesgo</h4>
-                            <p>Reporte histórico de la calificación de riesgo de coacs y mutualistas (nueva 1 y nueva 2) que contiene: comparación, evolución, desglose y reporte de resultados.</p>
+                            <h4>2. Análisis de la calificación</h4>
+                            <p>Reporte histórico del análisis de la calificación de riesgo de coacs y mutualistas que contiene: comparación de la calificación, gráficos de la evolución de la calificación, desglose de la calificación por indicadores según sus umbrales, gráficos de la evolución de los indicadores y reporte de resultados.</p>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -155,14 +123,14 @@ $datosRiesgo = obtenerRiesgoEntidad();
                 </div>
             </section>
 
-            <!-- 2. Indicadores de la calificación de riesgo -->
+            <!-- 3. Indicadores a nivel de cuentas de la calificación -->
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>2. Indicadores de la calificación de riesgo</h4>
-                            <p>Reporte histórico de los 11 indicadores de la calificación de riesgo de coacs (nueva 2) que contiene: desglose a nivel de cuentas del CUC.</p>
+                            <h4>3. Indicadores a nivel de cuentas de la calificación</h4>
+                            <p>Reporte histórico de los indicadores a nivel de cuentas de la calificación de riesgo de coacs que contiene: nombre, definición, fórmula de cálculo, estructura del indicador: numerador y denominador por: desglose de cuentas del CUC, aplicabilidad y saldo.</p>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">

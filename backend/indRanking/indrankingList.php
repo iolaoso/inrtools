@@ -2,26 +2,24 @@
 include_once __DIR__ . '/../../backend/config.php';
 include_once BASE_PATH . 'backend/session.php';
 
-
-function claseNivelRiesgo($nivel)
+function claseNivelRiesgo($nivel = NULL)
 {
     return match (strtoupper(trim($nivel))) {
-        'CRÍTICO', 'CRITICO','CRíTICO'  => 'background-color: #FF0000; color: #FFFFFF;',
-        'ALTO'                          => 'background-color: #FF5A14; color: #FFFFFF;',
-        'MEDIO'                         => 'background-color: #FFC000; color: #000000;',
-        'BAJO'                          => 'background-color: #147A0F; color: #FFFFFF;',
-        'MUY BAJO'                      => 'background-color: #3D64E3; color: #FFFFFF;',
-        default                         => 'background-color: #484952; color: #FFFFFF;'
+        'CRÍTICO', 'CRITICO','CRíTICO'  => 'background-color: #FF0000; color: #000000;',
+        'ALTO'                          => 'background-color: #FFC000; color: #000000;',
+        'MEDIO'                         => 'background-color: #FFFF00; color: #000000;',
+        'BAJO'                          => 'background-color: #BDD7EE; color: #000000;',
+        'MUY BAJO'                      => 'background-color: #92D050; color: #000000;',
+        default                         => 'background-color: #484952; color: #000000;'
     };
 }
 
 
 function obtenerRiesgoEntidad(){
     try {
-        $directorio = BASE_PATH . '/assets/files/reportes/indRanking/02 Ind ranking definitivo/';
+        $directorio = BASE_PATH . 'assets/files/reportes/indRanking/05 Reporte de calificación/';
         $prefijo = 'rep_ind_ranking_ult_bal_coacs_y_mutualistas_';
         $archivos = glob($directorio . DIRECTORY_SEPARATOR . $prefijo . '*.xlsx');
-    
         if (empty($archivos)) {
             return [
                 'success' => false,
@@ -72,7 +70,7 @@ function obtenerRiesgoEntidad(){
             'estado_actual',
             'c_n_cr_nivel',
             'c_calidad_adm_riesgo',
-            'causal_liquidacion',
+            'causal_liquidacion_cat',
             'calif_riesgo_def_categ_unif',
             'metodologia_unif'
         ];
@@ -113,7 +111,7 @@ function obtenerRiesgoEntidad(){
                 'estado_actual' => strtoupper(trim((string) ($fila[$columnas['estado_actual']] ?? ''))),
                 'c_n_cr_nivel' => strtoupper(trim((string) ($fila[$columnas['c_n_cr_nivel']] ?? ''))),
                 'c_calidad_adm_riesgo' => strtoupper(trim((string) ($fila[$columnas['c_calidad_adm_riesgo']] ?? ''))),
-                'causal_liquidacion' => strtoupper(trim((string) ($fila[$columnas['causal_liquidacion']] ?? ''))),
+                'causal_liquidacion_cat' => strtoupper(trim((string) ($fila[$columnas['causal_liquidacion_cat']] ?? ''))),
                 'calif_riesgo_def_categ_unif' => strtoupper(trim((string) ($fila[$columnas['calif_riesgo_def_categ_unif']] ?? ''))),
                 'metodologia_unif' => strtoupper(trim((string) ($fila[$columnas['metodologia_unif']] ?? '')))
             ];
