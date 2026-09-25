@@ -71,6 +71,7 @@ function obtenerRiesgoEntidad(){
             'c_n_cr_nivel',
             'c_calidad_adm_riesgo',
             'causal_liquidacion_cat',
+            'criterio_solv_seps_cat',
             'calif_riesgo_def_categ_unif',
             'metodologia_unif'
         ];
@@ -112,6 +113,7 @@ function obtenerRiesgoEntidad(){
                 'c_n_cr_nivel' => strtoupper(trim((string) ($fila[$columnas['c_n_cr_nivel']] ?? ''))),
                 'c_calidad_adm_riesgo' => strtoupper(trim((string) ($fila[$columnas['c_calidad_adm_riesgo']] ?? ''))),
                 'causal_liquidacion_cat' => strtoupper(trim((string) ($fila[$columnas['causal_liquidacion_cat']] ?? ''))),
+                'criterio_solv_seps_cat' => strtoupper(trim((string) ($fila[$columnas['criterio_solv_seps_cat']] ?? ''))),
                 'calif_riesgo_def_categ_unif' => strtoupper(trim((string) ($fila[$columnas['calif_riesgo_def_categ_unif']] ?? ''))),
                 'metodologia_unif' => strtoupper(trim((string) ($fila[$columnas['metodologia_unif']] ?? '')))
             ];

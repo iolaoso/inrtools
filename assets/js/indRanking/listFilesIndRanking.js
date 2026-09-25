@@ -83,6 +83,7 @@ function mostrarArchivosEnTabla(archivos, tablaId) {
                     <td class="text-center">${fechaCorteFormateada}</td>
                     <td class="text-center">${fechaCargaFormateada}</td>
                     <td>${archivo.name}</td>
+                    <td class="text-center">${archivo.formato}</td>
                     <td class="text-center">${(archivo.size / (1024 * 1024)).toFixed(2)} MB</td>
                     <td class="text-center">${fechaFormateada}</td>
                     <td class="text-center">
@@ -172,28 +173,29 @@ function fetchIndRanking(carpetaReportes) {
             //console.log("Datos recibidos:", data);
             const categorias = {
                 coacsXlsx: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_coacs_activas')),
+                    archivos: data.filter(item => (item.name.includes('ind_ranking_coacs')) && 
+                    (item.name.endsWith('.xlsx') || item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
                     tablaId: 'rTBodyIndRankingCoacsPreXLSX'
                 },
                  mutualistasXlsx: {
-                    archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas') && 
-                    item.name.endsWith('.xlsx')),
+                    archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas')  && 
+                    (item.name.endsWith('.xlsx') || item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
                     tablaId: 'rTBodyIndRankingMutualistasPreXLSX'
                 },
                 coacsMutualistasXlsx: {
                     archivos: data.filter(item => item.name.includes('ind_ranking_ult_bal_coacs_y_mutualistas')),
                     tablaId: 'rTBodyIndRankingUltBalCoacsMutPreXLSX'
                 },
-                coacsDta: {
+                /* coacsDta: {
                     archivos: data.filter(item => item.name.includes('ind_ranking_coacs') && 
                     (item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
                     tablaId: 'rTBodyIndRankingCoacsPreDTA'
-                },
-                mutualistasDta: {
+                }, */
+                /* mutualistasDta: {
                     archivos: data.filter(item => item.name.includes('ind_ranking_mutualistas') && 
                     (item.name.endsWith('.dta') || item.name.endsWith('.rds'))),
-                    tablaId: 'rTBodyIndRankingMutualistasPreDTA'
-                },
+                    tablaId: 'rTBodyIndRankingMutualistasPreDTA' 
+                },*/
                 /* PARA LAS OTRAS INTENDENCIAS */
                 INFMR: {
                     archivos: data.filter(item => item.name.includes('ind_ranking_ult_bal_coacs_y_mutualistas_preliminar_INFMR') && 

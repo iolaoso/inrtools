@@ -30,7 +30,7 @@ include BASE_PATH . 'backend/session.php';
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>1. Ind Ranking COACS ACTIVAS Definitivo (EXCEL)</h4>
+                            <h4>1. Ind Ranking COACS ACTIVAS Definitivo</h4>
                             <em>Base de datos histórica de coacs activas definitiva que contiene: variables de identificación, cuentas contables del CUC, indicadores financieros; promedios por segmento, benchmark y tipo; y calificación de riesgo.</em>
                         </div>
                         <div class="card-body">
@@ -43,6 +43,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
+                                                <th>Tipo</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -62,8 +63,8 @@ include BASE_PATH . 'backend/session.php';
             <section class="row align-items-stretch mb-4">
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>2. Ind Ranking MUTUALISTAS Definitivo (EXCEL)</h4>
+                        <div class="card-header bg-info text-white">
+                            <h4>2. Ind Ranking MUTUALISTAS Definitivo</h4>
                             <em>Base de datos histórica de mutualistas definitiva que contiene: variables de identificación, cuentas contables del CUC, indicadores financieros; promedios por segmento, benchmark y tipo; y calificación de riesgo.</em>
                         </div>
                         <div class="card-body">
@@ -76,6 +77,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
+                                                <th>Tipo</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -96,7 +98,7 @@ include BASE_PATH . 'backend/session.php';
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>3. Ind Ranking ULTIMO BALANCE COACS Y MUTUALISTAS Definitivo (EXCEL)</h4>
+                            <h4>3. Ind Ranking ULTIMO BALANCE COACS Y MUTUALISTAS Definitivo</h4>
                             <em>Base de datos con el último balance de coacs y mutualistas definitiva que contiene: variables de identificación, cuentas contables del CUC, indicadores financieros; promedios por segmento, benchmark y tipo; y calificación de riesgo.</em>
                         </div>
                         <div class="card-body">
@@ -109,6 +111,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
+                                                <th>Tipo</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -127,7 +130,7 @@ include BASE_PATH . 'backend/session.php';
             <!-- 4. Reportes de Ind Ranking COACS Definitivo DTA -->
             <section class="row align-items-stretch mb-4">
                 <!-- Cambiar align-items-center a align-items-stretch -->
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
                             <h4>4. Ind Ranking COACS Definitivo (R)</h4>
@@ -143,6 +146,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
+                                                <th>Tipo</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -155,12 +159,12 @@ include BASE_PATH . 'backend/session.php';
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </section>
             
             <!-- 5. Ind Ranking MUTUALISTAS Definitivo DTA -->
             <section class="row align-items-stretch mb-4">
-                <div class="col-md-12">
+              <!--   <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header bg-info text-white">
                             <h4>5. Ind Ranking MUTUALISTAS Definitivo (R)</h4>
@@ -176,6 +180,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
+                                                <th>Tipo</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -188,8 +193,9 @@ include BASE_PATH . 'backend/session.php';
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>           
+                </div> -->
+            </section> 
+                      
         </main>
     </div>
 

@@ -61,6 +61,7 @@ $datosRiesgo = obtenerRiesgoEntidad();
                                             <th>1.1. Nivel de riesgo</th>
                                             <th>1.2. Administración de riesgo</th>
                                             <th>1.3. Causales normativas</th>
+                                            <th>1.4. Criterio de Solvencia</th>
                                             <th>1. Calificación de riesgo</th>
                                             <th>Metodología</th>
                                         </tr>
@@ -76,6 +77,7 @@ $datosRiesgo = obtenerRiesgoEntidad();
                                                 <td><?= h($riesgoEntidad['c_n_cr_nivel']) ?></td>
                                                 <td><?= h($riesgoEntidad['c_calidad_adm_riesgo']) ?></td>
                                                 <td><?= h($riesgoEntidad['causal_liquidacion_cat']) ?></td>
+                                                <td><?= h($riesgoEntidad['criterio_solv_seps_cat']) ?></td>
                                                 <td style="<?= claseNivelRiesgo($riesgoEntidad['calif_riesgo_def_categ_unif']) ?>" class="text-center fw-bold">
                                                     <?= h($riesgoEntidad['calif_riesgo_def_categ_unif']) ?></td>
                                                 <td><?= h($riesgoEntidad['metodologia_unif']) ?></td>

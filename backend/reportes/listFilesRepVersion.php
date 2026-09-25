@@ -19,6 +19,17 @@ function obtenerRepVersion($carpetaReportes)
 
             if (is_file($filePath) && in_array($extension, $extensionesPermitidas)) {
                 $modTime = filemtime($filePath);
+                
+                $formato = match (strtolower($extension)) {
+                    'xlsx', 'xls', 'csv' => 'EXCEL',
+                    'rds', 'rdata' => 'R',
+                    'dta' => 'STATA',
+                    'pdf', 'doc', 'pptx' => 'DOCUMENTO',
+                    'txt' => 'TEXTO',
+                    'zip', '7z', 'rar' => 'COMPRIMIDO',
+                    default => strtoupper($extension)
+                };
+
                 $archivos[] = [
                     'name' => $file,
                     'path' => $carpetaReportes,
@@ -27,6 +38,7 @@ function obtenerRepVersion($carpetaReportes)
                     'lastModified' => date('Y-m-d H:i:s', $modTime),
                     'size' => filesize($filePath),
                     'extension' => $extension,
+                    'formato' => $formato,
                     'timestamp' => $modTime  // Para ordenar más eficientemente
                 ];
             }
