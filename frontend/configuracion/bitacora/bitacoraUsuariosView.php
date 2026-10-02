@@ -399,7 +399,7 @@ include BASE_PATH . 'backend/session.php';
                                     <th>Módulo</th>
                                     <th>Descripción</th>
                                     <th>Archivo</th>
-                                    <th>Tipo</th>
+                                    <th>Formato</th>
                                     <th>Tamaño</th>
                                     <th>IP</th>
                                     <th>Estado</th>

@@ -30,7 +30,7 @@ include BASE_PATH . 'backend/session.php';
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>1. Ind Ranking COACS ACTIVAS Preliminar</h4>
+                            <h4>1. Ind Ranking COACS Preliminar</h4>
                             <em>Base de datos histórica de coacs activas preliminar que contiene: variables de identificación, cuentas contables del CUC, indicadores financieros y promedios por segmento, benchmark y tipo.</em>
                         </div>
                         <div class="card-body">
@@ -43,7 +43,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -77,7 +77,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -111,7 +111,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -146,7 +146,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -180,7 +180,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>

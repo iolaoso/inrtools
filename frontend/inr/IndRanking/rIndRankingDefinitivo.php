@@ -25,13 +25,13 @@ include BASE_PATH . 'backend/session.php';
             <!-- Nota de confidencialidad de la información -->
             <?php include BASE_PATH . 'frontend/partials/confidentiality.php'; ?>            
             
-            <!-- 1. Ind Ranking COACS ACTIVAS Definitivo XLSX -->
+            <!-- 1. Ind Ranking COACS Definitivo XLSX -->
             <section class="row align-items-stretch mb-4">
                 <div class="col-md-12">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header text-white" style="background-color: #05829bff;">
-                            <h4>1. Ind Ranking COACS ACTIVAS Definitivo</h4>
-                            <em>Base de datos histórica de coacs activas definitiva que contiene: variables de identificación, cuentas contables del CUC, indicadores financieros; promedios por segmento, benchmark y tipo; y calificación de riesgo.</em>
+                            <h4>1. Ind Ranking COACS Definitivo</h4>
+                            <em>Base de datos histórica de coacs definitiva que contiene: variables de identificación, cuentas contables del CUC, indicadores financieros; promedios por segmento, benchmark y tipo; y calificación de riesgo.</em>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -43,7 +43,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -77,7 +77,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -111,7 +111,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -146,7 +146,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -180,7 +180,7 @@ include BASE_PATH . 'backend/session.php';
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
-                                                <th>Tipo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>

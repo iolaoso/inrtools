@@ -286,6 +286,12 @@ const menuItems = [
                 rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
+            { title: 'Seguimiento Emp. Auxiliares', 
+                url: '/INRtools/frontend/dns/segEmpAux/segEmpAux.php',
+                direccion: ['INR','DNR','DNS'], 
+                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
+                usuarios: [] 
+            },
             {
                 title: 'Reportes',
                 subMenu: [
