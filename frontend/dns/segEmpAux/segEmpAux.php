@@ -3,10 +3,18 @@ include_once __DIR__ . '/../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';  // Incluye la sesión
 include BASE_PATH . 'backend/empAux/empAuxList.php'; // Incluir el archivo de consultas
 
+$bitacorasEntrega = bitacora_entrega();
 
-//$catastroEmpAux = catastroEmpAux();
-//$analistas = obtenerAnalistas($direccion);
-//$categorias = obtenerCategorias($inrdireccion_id, $rol_id);
+$servicios = [
+    'GENERADORAS_DE_CARTERA',
+    'SOFTWARE_FINANCIERO_Y_COMPUTACIONAL',
+    'TRANSACCIONALES_Y_DE_PAGO',
+    'TRANSPORTE_DE_ESPECIES_MONETARIAS_Y_DE_VALORES',
+    'RED_Y_CAJEROS_AUTOMATICOS',
+    'COBRANZAS',
+    'SERVICIOS_CONTABLES',
+    'ADMINISTRADORAS_Y_OPERADORAS_DE_TARJETAS',
+    'GIRO_INMOBILIARIO'];
 
 // Definir roles con acceso a nivel de dirección
 $rolesDireccion = [
@@ -194,62 +202,45 @@ $rolesDireccion = [
                                         id="tablaSegEmpAux">
                                         <thead>
                                             <tr>
-                                                <!-- crear la vista para mostrar los datos de las enridades que van a ir al seguimeinto 
-                                                 de cada mes es decir una vista donde se corte por mes y los que estan incumplidos o pendientes
-                                                  -->
-                                                <th>COD</th>
-                                                <th>F. REGISTRO</th>
-                                                <th>GESTION/PRODUCTO</th>
-                                                <th>ESTADO</th>
-                                                <th>RUC</th>
-                                                <th>CATEGORIA</th>
-                                                <th>OFICIO</th>
-                                                <th>DETALLE</th>
-                                                <th>ANALISTA</th>
-                                                <th>ACCIÓN</th>
+                                                <th class="text-center">RUC</th>
+                                                <th class="text-center">RAZÓN SOCIAL</th>
+                                                <th class="text-center">SERVICIO</th>
+                                                <th class="text-center">RES. CALIFICACIÓN</th>
+                                                <th class="text-center">FEC. RESOLUCIÓN</th>  
+                                                <th class="text-center">PERÍODO</th>
+                                                <th class="text-center">CORTE</th>
+                                                <th class="text-center">ESTADO</th>
+                                                <th class="text-center">MEDIO</th>
+                                                <th class="text-center">SEGUIMIENTO</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($result as $gestioninr): ?>
-                                                <tr>
-                                                    <td><?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?></td>
-                                                    <td class="text-center">
-                                                        <?= htmlspecialchars($gestioninr['FECHA_REGISTRO'] ?? '') ?>
-                                                    </td>
-                                                    <td><?= htmlspecialchars($gestioninr['GESTION'] ?? '') ?></td>
-                                                    <td
-                                                        class="<?= htmlspecialchars($gestioninr['ESTADO']) === 'PENDIENTE' ? 'pendiente' : (htmlspecialchars($gestioninr['ESTADO']) === 'COMPLETADA' ? 'completada' : '') ?>">
-                                                        <?= htmlspecialchars($gestioninr['ESTADO'] ?? '') ?></td>
-                                                    <td><?= htmlspecialchars($gestioninr['RUC_ENTIDAD'] ?? '') ?></td>
-                                                    <td><?= htmlspecialchars($gestioninr['CATEGORIA'] ?? '') ?></td>
-                                                    <td><?= htmlspecialchars($gestioninr['OFICIO_TRAMITE'] ?? '') ?></td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-primary detalle-btn btn-sm"
-                                                            data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                            title="Detalle" data-bs-toggle="modal"
-                                                            data-bs-target="#detalleModal" onclick="cargarDatos(this)">
-                                                            <i class="fa-solid fa-comment"></i>
+                                            <?php foreach ($bitacorasEntrega as $bitacoraEntrega): ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($bitacoraEntrega['RUC_CATASTRO'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($bitacoraEntrega['RAZON_SOCIAL'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($bitacoraEntrega['SERVICIO_PRESTADO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['NUM_RESOLUCION_CALIFICACION'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['NUMERO_PERIODO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['ESTADO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['MEDIO_ENVIO'] ?? '') ?></td>
+                                                <td class="text-center">
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info detalle-btn btn-sm" disabled>
+                                                            N°. <?= htmlspecialchars($bitacoraEntrega['NSEGUIMIENTOS'] ?? '') ?>                                               
                                                         </button>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <?= htmlspecialchars($gestioninr['ANALISTA'] ?? '') ?>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <div class="btn-group">
-                                                            <button class="btn btn-info edit-btn btn-sm"
-                                                                data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                                title="Editar" onclick="cargarDatosForm(this)">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                            <button class="btn btn-danger delete-btn btn-sm"
-                                                                data-id="<?= htmlspecialchars($gestioninr['COD_GESTION'] ?? '') ?>"
-                                                                logUser="<?= htmlspecialchars($nickname ?? '') ?>"
-                                                                title="Eliminar" onclick="eliminarRegistro(this)">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        <button class="btn btn-primary detalle-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
+                                                            title="Agregar Seguimiento" data-bs-toggle="modal"
+                                                            data-bs-target="#agregarSeguimiento"
+                                                            onclick="cDatSegEmpAux(this)">
+                                                            <i class="fa fa-flag"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -262,91 +253,243 @@ $rolesDireccion = [
         </main>
     </div>
 
-    <!-- Modal detalleModal -->
-    <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModal" aria-hidden="false">
-        <div class="modal-dialog modal-dialog-centered modal-lg bg-primary" role="document">
+    <!-- Modal agregarSeguimiento -->
+    <div class="modal fade" id="agregarSeguimiento" tabindex="-1" aria-labelledby="agregarSeguimiento" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl bg-primary" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel">Detalle de la Gestión Realizada</h5>
-                    <div class="input-group">
-                        <span class="input-group-text">ID</span>
-                        <input type="text" class="form-control text-center" id="detalleId" disabled>
-                        <span class="input-group-text">Dirección</span>
-                        <input type="text" class="form-control text-center" id="mDireccion" disabled>
-                    </div>
-
+                    <h2 class="modal-title" id="ModalLabel">Agregar Seguimiento</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="detalleForm">
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="mCategoria" class="form-label">Categoría</label>
-                                <input type="text" class="form-control" id="mCategoria" readonly>
+                        <!-- ENTIDAD CALIFICADA -->
+                        <div class="row mb-2">
+                            <div class="col-md-1">
+                                <label for="mNumeroPeriodo" class="form-label">Período</label>
+                                <input type="text" class="form-control" id="mNumeroPeriodo" readonly>
                             </div>
-                            <div class="col-6">
-                                <label for="mSubCategoria" class="form-label">SubCategoría</label>
-                                <input type="text" class="form-control" id="mSubCategoria" readonly>
+                            <div class="col-md-2">
+                                <label for="mIdEntidad" class="form-label">ID Entidad</label>
+                                <input type="text" class="form-control" id="mIdEntidad" readonly>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <label for="mGestion" class="form-label">Gestión/Produto</label>
-                                <input type="text" class="form-control" id="mGestion" readonly>
+                            <div class="col-md-3">
+                                <label for="mRucCatastro" class="form-label">RUC</label>
+                                <input type="text" class="form-control" id="mRucCatastro" readonly>
                             </div>
-                            <div class="col-6">
-                                <label for="mEstado" class="form-label">Estado</label>
-                                <input type="text" class="form-control" id="mEstado" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb3">
-                            <div class="col-6">
-                                <label for="mfecIncio" class="form-label">F. Inicio Gestión</label>
-                                <input type="date" class="form-control" id="mfecIncio" readonly>
-                            </div>
-                            <div class="col-6">
-                                <label for="mfecFin" class="form-label">F. Fin Gestión</label>
-                                <input type="date" class="form-control" id="mfecFin" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4">
-                                <label for="mRucEntidad" class="form-label">RUC</label>
-                                <input type="text" class="form-control" id="mRucEntidad" readonly>
-                            </div>
-                            <div class="col-8">
+                            <div class="col-md-5">
                                 <label for="mRazonSocial" class="form-label">Razón Social</label>
                                 <input type="text" class="form-control" id="mRazonSocial" readonly>
                             </div>
                         </div>
-                        <div class="row mb3">
-                            <div class="col-6">
-                                <label for="mFechaOficTram" class="form-label">Fecha
-                                    <span style="font-size: 11px; color: blue;">
-                                        Oficio/Trámite/Memorando/Correo
-                                    </span>
-                                </label>
-                                <input type="date" class="form-control" id="mFechaOficTram" readonly>
-                            </div>
-                            <div class="col-6">
-                                <label for="mOficioTramite" class="form-label">Oficio/Trámite/Memorando/Correo</label>
-                                <input type="text" class="form-control" id="mOficioTramite" readonly>
-                            </div>
-                        </div>
                         <div class="row mb-3">
                             <div class="col-12">
-                                <label for="mComentario" class="form-label">Comentario</label>
-                                <textarea class="form-control" id="mComentario" rows="3" readonly></textarea>
+                                <label class="form-label fw-bold">Servicios Prestados</label>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mSoftwareFinanciero" disabled>
+                                    <label class="form-check-label" for="mSoftwareFinanciero">
+                                        Software Financiero y Computacional
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mTransaccionalesPago" disabled>
+                                    <label class="form-check-label" for="mTransaccionalesPago">
+                                        Transaccionales y de Pago
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mTransporteValores" disabled>
+                                    <label class="form-check-label" for="mTransporteValores">
+                                        Transporte de Especies Monetarias y Valores
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mRedCajeros" disabled>
+                                    <label class="form-check-label" for="mRedCajeros">
+                                        Red y Cajeros Automáticos
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mCobranzas" disabled>
+                                    <label class="form-check-label" for="mCobranzas">
+                                        Cobranzas
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mServiciosContables" disabled>
+                                    <label class="form-check-label" for="mServiciosContables">
+                                        Servicios Contables
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mGeneradorasCartera" disabled>
+                                    <label class="form-check-label" for="mGeneradorasCartera">
+                                        Generadoras de Cartera
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mOperadorasTarjetas" disabled>
+                                    <label class="form-check-label" for="mOperadorasTarjetas">
+                                        Administradoras y Operadoras de Tarjetas
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="mGiroInmobiliario" disabled>
+                                    <label class="form-check-label" for="mGiroInmobiliario">
+                                        Giro Inmobiliario
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- INFORMACION DE CALIFICACION -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="mOfComunicacionResolucion" class="form-label">
+                                    Oficio Comunicación / Resolución
+                                </label>
+                                <input type="text" class="form-control" id="mOfComunicacionResolucion" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mFechaOficioComRes" class="form-label">
+                                    Fecha Oficio Comunicación
+                                </label>
+                                <input type="date" class="form-control" id="mFechaOficioComRes" readonly>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-6">
+                            <div class="col-md-6">
+                                <label for="mNumResolucionCalificacion" class="form-label">
+                                    Resolución de Calificación
+                                </label>
+                                <input type="text" class="form-control" id="mNumResolucionCalificacion" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mFechaResolucion" class="form-label">
+                                    Fecha Resolución
+                                </label>
+                                <input type="date" class="form-control" id="mFechaResolucion" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mFechaVencimientoRes" class="form-label">
+                                    Vencimiento
+                                </label>
+                                <input type="date" class="form-control" id="mFechaVencimientoRes" readonly>
+                            </div>
+                        </div>
+                        <!-- INFORMACION DE LA ENTREGA -->
+                        <div class="row mb-2">
+                            <div class="col-md-2">
+                                <label for="mEstado" class="form-label">Estado</label>
+                                <input type="text" class="form-control" id="mEstado" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mMedioEnvio" class="form-label">Medio Envío</label>
+                                <input type="text" class="form-control" id="mMedioEnvio" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="mCorreo" class="form-label">Documento</label>
+                                <input type="text" class="form-control" id="mCorreo" readonly>
+                            </div>
+                            <div class="col-md-3">
                                 <label for="mFechaRegistro" class="form-label">Fecha Registro</label>
                                 <input type="date" class="form-control" id="mFechaRegistro" readonly>
                             </div>
-                            <div class="col-6">
-                                <label for="mAnalista" class="form-label">Analista</label>
-                                <input type="text" class="form-control" id="mAnalista" readonly>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="mFechaCorte" class="form-label">Fecha Corte</label>
+                                <input type="date" class="form-control" id="mFechaCorte" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mFechaLineaBase" class="form-label">Fecha Línea Base</label>
+                                <input type="date" class="form-control" id="mFechaLineaBase" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mFechaRegularizacion" class="form-label">
+                                    Fecha Regularización
+                                </label>
+                                <input type="date" class="form-control" id="mFechaRegularizacion" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mFechaProrroga" class="form-label">
+                                    Fecha Prórroga
+                                </label>
+                                <input type="date" class="form-control" id="mFechaProrroga" readonly>
+                            </div>
+                        </div>
+                        <!-- OBSERVACIONES -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="mObservacionDnr" class="form-label">
+                                    Observación DNR
+                                </label>
+                                <textarea class="form-control" id="mObservacionDnr" rows="4" readonly></textarea>
+                            </div>
+                        </div>
+                        <!-- Campos para el seguimiento -->
+                        <hr>
+                        <h3 class="mb-3 text-primary">Seguimiento</h3>
+                        <!-- IDENTIFICACIÓN DEL SEGUIMIENTO -->
+                        <!-- DOCUMENTO DE SEGUIMIENTO -->
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="mEstadoSeguimiento" class="form-label">Estado Seguimiento</label>
+                                <select class="form-control" id="mEstadoSeguimiento"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mOficioSeguimiento" class="form-label">
+                                    Oficio de Seguimiento
+                                </label>
+                                <input type="text" class="form-control" id="mOficioSeguimiento" >
+                            </div>
+                            <div class="col-md-4">
+                                <label for="mFechaOfSeguimiento" class="form-label">
+                                    Fecha Oficio
+                                </label>
+                                <input type="date" class="form-control" id="mFechaOfSeguimiento" >
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Regularizado</label>
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox"
+                                        id="mIndRegularizado">
+                                    <label class="form-check-label" for="mIndRegularizado">
+                                        Sí
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- CUMPLIMIENTO -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="mEstadoCumplimiento" class="form-label">
+                                    Estado Cumplimiento
+                                </label>
+                                <select class="form-control" id="mEstadoCumplimiento"></select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mMotivoIncumplimiento" class="form-label">
+                                    Motivo de Incumplimiento
+                                </label>
+                                <select class="form-control" id="mMotivoIncumplimiento"></select>
+                            </div>
+                        </div>
+                        <!-- OBSERVACIONES -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="mObservacionDns" class="form-label">
+                                    Observación DNS
+                                </label>
+                                <textarea class="form-control"
+                                    id="mObservacionDns"
+                                    rows="3">
+                                </textarea>
                             </div>
                         </div>
                     </form>
@@ -358,74 +501,6 @@ $rolesDireccion = [
         </div>
     </div>
 
-    <!-- Modal newCatModal -->
-    <div class="modal fade" id="newCatModal" tabindex="-1" aria-labelledby="newCatModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-info text-white">
-                    <h5 class="modal-title" id="ModalLabel">Nueva Categoría/SubCategoria</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="frmAddCat" name="frmAddCat" method="post" onsubmit="addCategoria('frmAddCat',event)">
-                        <div class="row mb-3">
-                            <input type="hidden" class="form-control" id="user" name="user"
-                                value="<?= htmlspecialchars($nickname) ?>" readonly>
-                            <input type="hidden" class="form-control" id="dir" name="dir"
-                                value="<?= htmlspecialchars($direccion) ?>" readonly>
-                            <input type="hidden" class="form-control" id="dirid" name="dirid"
-                                value="<?= htmlspecialchars($inrdireccion_id) ?>" readonly>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="cbCat" class="form-label">Categoria Existente</label>
-                            <select class="form-control" id="cbCat" name="cbCat" onchange="selecCatExistente()">
-                                <option value="0">Seleccione la Categoria</option>
-                                <?php foreach ($categorias as $categoria): ?>
-                                    <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>"
-                                        data-text="<?= htmlspecialchars($categoria['CATEGORIA']) ?>">
-                                        <?= htmlspecialchars($categoria['CATEGORIA']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="row mb-3">
-                            <input type="hidden" class="form-control" id="tbnCatid" name="tbnCatid" value="0" readonly>
-                            <label class="form-label" id="lbnewCat" for="tbnewCat">Nueva Catagoría</label>
-                            <input type="text" class="form-control" id="tbnewCat" name="tbnewCat"
-                                style="text-transform: uppercase;" required>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="tbnewSubCat" class="form-label">Nueva SubCategoría</label>
-                            <input type="text" class="form-control" id="tbnewSubCat" name="tbnewSubCat"
-                                style="text-transform: uppercase;" required>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="form-check m-4">
-                                <input class="form-check-input" type="checkbox" id="choficio" name="choficio">
-                                <label class="form-check-label" for="choficio">Requiere Oficio</label><br>
-                                <input class="form-check-input" type="checkbox" id="chcomentario" name="chcomentario">
-                                <label class="form-check-label" for="chcomentario">Requiere Comentario</label>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="form-label" for="cbComplejidad">Complejidad</label>
-                            <select class="form-control" id="cbComplejidad" name="cbComplejidad" required>
-                                <option value="">Seleccione</option>
-                                <option value="ALTA">ALTA</option>
-                                <option value="MEDIA">MEDIA</option>
-                                <option value="BAJA">BAJA</option>
-                            </select>
-                        </div>
-                </div>
-                <div class="modal-footer border-top-0 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
     <!-- Modal Buscar Catastro-->
     <?php include BASE_PATH . 'frontend/partials/modalCatastro.php'; ?>
 
@@ -436,7 +511,7 @@ $rolesDireccion = [
     <?php include_once BASE_PATH . 'frontend/partials/scripts.php'; ?>
 
     <!-- Incluir el archivo AJAX -->
-    <script src="<?php echo $base_url; ?>/assets/js/gestioninr/gestioninr.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/empAux/segEmpAux.js"></script>
 </body>
 
 </html>

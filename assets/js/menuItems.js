@@ -380,7 +380,7 @@ const menuItems = [
             { title: 'Bitacora de Usuarios',
                 url: '/INRtools/frontend/configuracion/bitacora/bitacoraUsuariosView.php',
                 direccion: ['ALL'],
-                rol: ['SUPERUSER','ADMINISTRADOR'],
+                rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
                 usuarios: []
             },
             /* { title: 'Roles y Permisos',
@@ -398,8 +398,8 @@ const menuItems = [
         ],
         icon: 'fa-solid fa-cog',
         direccion: ['ALL'],
-        rol: ['SUPERUSER','ADMINISTRADOR'],
-        usuarios: [] 
+        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
+        usuarios: ['ILOPEZA','FOROZCO','PCARRILLO'] 
     },
     {
         title: 'Perfil',
