@@ -4,8 +4,7 @@ include_once BASE_PATH . 'backend/session.php';
 include_once BASE_PATH . 'backend/conexiones/eeffempauxdb_connection.php'; // Asegúrate de incluir la conexión a la base de datos
 
 
-function obtenerCatastroEmpAux()
-{
+function obtenerCatastroEmpAux(){
     global $connEmpAux; // Usar la conexión global
     $sql = "select ID
                 ,RUC
@@ -47,8 +46,7 @@ function obtenerCatastroEmpAux()
     return $stmt->get_result();
 }
 
-function obtenerCoopEmpAux()
-{
+function obtenerCoopEmpAux(){
     global $connEmpAux; // Usar la conexión global
     $sql = "select e.ID
                 ,e.RUC_COOP
@@ -67,8 +65,7 @@ function obtenerCoopEmpAux()
     return $stmt->get_result();
 }
 
-function obtenerFormEmpAux()
-{
+function obtenerFormEmpAux(){
     global $connEmpAux; // Usar la conexión global
     $sql = "select ID
                 ,FECHA_CORTE
@@ -92,61 +89,41 @@ function obtenerFormEmpAux()
     return $stmt->get_result();
 }
 
-function bitacora_entrega()
-{
+function bitacora_entrega(){
     global $connEmpAux; // Usar la conexión global
-    $sql = "select c.RUC as RUC_CATASTRO
-                ,c.RAZON_SOCIAL
-                ,CONCAT_WS(', ',
-                    CASE WHEN c.SOFTWARE_FINANCIERO_Y_COMPUTACIONAL = 1
-                        THEN 'Software Financiero y Computacional' END,
-                    CASE WHEN c.TRANSACCIONALES_Y_DE_PAGO = 1
-                        THEN 'Transaccionales y de Pago' END,
-                    CASE WHEN c.TRANSPORTE_DE_ESPECIES_MONETARIAS_Y_DE_VALORES = 1
-                        THEN 'Transporte de Especies Monetarias y Valores' END,
-                    CASE WHEN c.RED_Y_CAJEROS_AUTOMATICOS = 1
-                        THEN 'Red y Cajeros Automáticos' END,
-                    CASE WHEN c.COBRANZAS = 1
-                        THEN 'Cobranzas' END,
-                    CASE WHEN c.SERVICIOS_CONTABLES = 1
-                        THEN 'Servicios Contables' END,
-                    CASE WHEN c.GENERADORAS_DE_CARTERA = 1
-                        THEN 'Generadoras de Cartera' END,
-                    CASE WHEN c.ADMINISTRADORAS_Y_OPERADORAS_DE_TARJETAS = 1
-                        THEN 'Administradoras y Operadoras de Tarjetas' END,
-                    CASE WHEN c.GIRO_INMOBILIARIO = 1
-                        THEN 'Giro Inmobiliario' END
-                ) AS SERVICIO_PRESTADO
-                ,c.NUM_RESOLUCION_CALIFICACION
-                ,c.FECHA_RESOLUCION
-                ,c.FECHA_VENCIMIENTO_RES
-                ,e.ID_ENTIDAD
-                ,e.NUMERO_PERIODO
-                ,e.FECHA_CORTE
-                ,e.ESTADO
-                ,e.MEDIO_ENVIO
-            from (select * from catastro where EST_REGISTRO =1) c 
-            left join (select ID AS ID_ENTIDAD
-                        ,RUC  
-                        ,FECHA_LINEA_BASE
-                        ,NUMERO_PERIODO
-                        ,FECHA_CORTE
-                        ,ESTADO
-                        ,MEDIO_ENVIO
-                        ,FECHA_REGISTRO
-                    from entidades 
-                    where EST_REGISTRO = 1) e on c.RUC = e.RUC
-            order by e.FECHA_REGISTRO desc , c.RUC ";
+    $sql = "select RUC
+                ,RAZON_SOCIAL
+                ,SERVICIO_PRESTADO
+                ,OF_COMUNICACION_RESOLUCION
+                ,FECHA_OFICIO_COM_RES
+                ,NUM_RESOLUCION_CALIFICACION
+                ,FECHA_RESOLUCION
+                ,CON_CONDICION
+                ,NUM_PERIODO
+                ,FEC_PROX_ENVIO
+                ,ID_ENTIDAD
+                ,FECHA_LINEA_BASE
+                ,NUM_PERIODO_REPORTADO
+                ,FECHA_CORTE
+                ,ESTADO
+                ,MEDIO_ENVIO
+                ,CORREO
+                ,FECHA_REGISTRO
+                ,REGULARIZACIONES
+                ,PRORROGAS
+                ,OBSERVACIONES_DNR
+                ,CREATED_AT
+                ,NUM_SEGUIMIENTOS 
+            FROM VM_BITACORA_ENVIO";
     $stmt = $connEmpAux->prepare($sql);
     $stmt->execute();
     return $stmt->get_result();
 }
 
-function bitacora_entrega_id($id)
-{
+function bitacora_entrega_id($id){
     global $connEmpAux; // Usar la conexión global
-    $sql = "select c.RUC as RUC_CATASTRO
-                ,c.RAZON_SOCIAL
+    $sql = "select be.RUC as RUC_CATASTRO
+                ,be.RAZON_SOCIAL
                 ,c.SOFTWARE_FINANCIERO_Y_COMPUTACIONAL
                 ,c.TRANSACCIONALES_Y_DE_PAGO 
                 ,c.TRANSPORTE_DE_ESPECIES_MONETARIAS_Y_DE_VALORES
@@ -156,47 +133,104 @@ function bitacora_entrega_id($id)
                 ,c.GENERADORAS_DE_CARTERA
                 ,c.ADMINISTRADORAS_Y_OPERADORAS_DE_TARJETAS
                 ,c.GIRO_INMOBILIARIO
-                ,c.OF_COMUNICACION_RESOLUCION
-                ,c.FECHA_OFICIO_COM_RES
-                ,c.NUM_RESOLUCION_CALIFICACION
-                ,c.FECHA_RESOLUCION
-                ,c.FECHA_VENCIMIENTO_RES
-                ,e.ID_ENTIDAD
-                ,e.RUC as RUC_ENTIDAD
-                ,e.FECHA_LINEA_BASE
-                ,e.NUMERO_PERIODO
-                ,e.FECHA_CORTE
-                ,e.ESTADO
-                ,e.MEDIO_ENVIO
-                ,e.CORREO
-                ,e.FECHA_REGISTRO
-                ,e.OBSERVACION_DNR
-                ,e.FECHA_REGULARIZACION
-                ,e.FECHA_PRORROGA
-            from (select * from catastro where EST_REGISTRO =1) c 
-            left join (select ID AS ID_ENTIDAD
-                        ,RUC  
-                        ,FECHA_LINEA_BASE
-                        ,NUMERO_PERIODO
-                        ,FECHA_CORTE
-                        ,ESTADO
-                        ,MEDIO_ENVIO
-                        ,CORREO
-                        ,FECHA_REGISTRO
-                        ,OBSERVACION_DNR
-                        ,FECHA_REGULARIZACION
-                        ,FECHA_PRORROGA
-                        ,CREATED_AT 
-                    from entidades 
-                    where EST_REGISTRO = 1) e on c.RUC = e.RUC
-            where ID_ENTIDAD = ?
-            order by e.FECHA_REGISTRO desc , c.RUC ";
+                ,be.OF_COMUNICACION_RESOLUCION
+                ,be.FECHA_OFICIO_COM_RES
+                ,be.NUM_RESOLUCION_CALIFICACION
+                ,be.FECHA_RESOLUCION
+                ,be.FECHA_VENCIMIENTO_RES
+                ,be.ID_ENTIDAD
+                ,be.FECHA_LINEA_BASE
+                ,be.NUM_PERIODO
+                ,be.FECHA_CORTE
+                ,be.ESTADO
+                ,be.MEDIO_ENVIO
+                ,be.CORREO
+                ,be.FECHA_REGISTRO
+                ,be.REGULARIZACIONES
+                ,be.PRORROGAS
+                ,be.OBSERVACIONES_DNR
+            from VM_BITACORA_ENVIO be
+            left join (select RUC
+                            ,RAZON_SOCIAL
+                            ,SOFTWARE_FINANCIERO_Y_COMPUTACIONAL
+                            ,TRANSACCIONALES_Y_DE_PAGO 
+                            ,TRANSPORTE_DE_ESPECIES_MONETARIAS_Y_DE_VALORES
+                            ,RED_Y_CAJEROS_AUTOMATICOS
+                            ,COBRANZAS
+                            ,SERVICIOS_CONTABLES 
+                            ,GENERADORAS_DE_CARTERA
+                            ,ADMINISTRADORAS_Y_OPERADORAS_DE_TARJETAS
+                            ,GIRO_INMOBILIARIO
+                        from catastro) c on be.RUC = c.RUC
+            where ID_ENTIDAD = ?;";
     $stmt = $connEmpAux->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_assoc();
 }
+
+function observaciones_DNR_id($id){
+    global $connEmpAux;
+    $sql = "select ID_PROCESO_DNR
+                ,ID_ENTIDAD
+                ,OBSERVACION_DNR
+                ,FECHA_REGULARIZACION
+                ,FECHA_PRORROGA
+                ,EST_REGISTRO
+                ,USR_CREACION
+                ,UPDATED_AT
+            from PROCESO_DNR
+            where  EST_REGISTRO = 1
+            and ID_ENTIDAD = ?
+            order by UPDATED_AT DESC";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
+function cat_est_seguimiento(){
+    global $connEmpAux;
+    $sql = "select ID,
+                CODIGO,
+                DESCRIPCION
+            from cat_estado_seguimiento
+            where  EST_REGISTRO = 1
+            order by DESCRIPCION";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
+function cat_est_cumplimiento()
+{
+    global $connEmpAux;
+    $sql = "select ID,
+                CODIGO,
+                DESCRIPCION
+            from cat_estado_cumplimiento
+            where EST_REGISTRO = 1
+            order BY DESCRIPCION";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
+function cat_mot_cumplimiento()
+{
+    global $connEmpAux;
+    $sql = "select ID,
+                CODIGO,
+                DESCRIPCION
+            from cat_motivo_incumplimiento
+            where EST_REGISTRO = 1
+            order BY DESCRIPCION";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
 
 /* function obtenerEmpEEFFPorUsuario($nickname)
 {
@@ -423,9 +457,12 @@ function obtenerSubCategorias($categoriaId)
 
 
 if (isset($_GET['idEntidad'])) {
-    header('Content-Type: application/json');
-    echo json_encode(
-        bitacora_entrega_id($_GET['idEntidad'])
-    );
+
+    $result = [
+        'bitacora' => bitacora_entrega_id($_GET['idEntidad']),
+        'obsDNR'   => observaciones_DNR_id($_GET['idEntidad'])
+    ];
+
+    echo json_encode($result);
     exit;
 }

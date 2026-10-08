@@ -4,6 +4,11 @@ include BASE_PATH . 'backend/session.php';  // Incluye la sesión
 include BASE_PATH . 'backend/empAux/empAuxList.php'; // Incluir el archivo de consultas
 
 $bitacorasEntrega = bitacora_entrega();
+$catEstSeguimiento = cat_est_seguimiento();
+$catEstCumplimiento = cat_est_cumplimiento();
+$catMotCumplimiento = cat_mot_cumplimiento(); 
+// para revisar que llega en la variable 
+//var_dump($catEstSeguimiento); 
 
 $servicios = [
     'GENERADORAS_DE_CARTERA',
@@ -192,8 +197,8 @@ $rolesDireccion = [
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div
                             class="card-header card-header bg-info text-white d-flex justify-content-between align-items-center">
-                            <h4 class="mb-0">Seguimiento Pendiente</h4>
-                            <button id="verTablaCompleta" class="btn btn-warning btn-sm">Reporte Completo</button>
+                            <h4 class="mb-0">Bitácora de Seguimiento</h4>
+                            <!-- <button id="verTablaCompleta" class="btn btn-warning btn-sm">Reporte Completo</button> -->
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -211,32 +216,94 @@ $rolesDireccion = [
                                                 <th class="text-center">CORTE</th>
                                                 <th class="text-center">ESTADO</th>
                                                 <th class="text-center">MEDIO</th>
+                                                <th class="text-center">BITACORA</th>
+                                                <th class="text-center">DNR</th>
                                                 <th class="text-center">SEGUIMIENTO</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php foreach ($bitacorasEntrega as $bitacoraEntrega): ?>
                                             <tr>
-                                                <td><?= htmlspecialchars($bitacoraEntrega['RUC_CATASTRO'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($bitacoraEntrega['RUC'] ?? '') ?></td>
                                                 <td><?= htmlspecialchars($bitacoraEntrega['RAZON_SOCIAL'] ?? '') ?></td>
                                                 <td><?= htmlspecialchars($bitacoraEntrega['SERVICIO_PRESTADO'] ?? '') ?></td>
                                                 <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['NUM_RESOLUCION_CALIFICACION'] ?? '') ?></td>
                                                 <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?></td>
-                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['NUMERO_PERIODO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['NUM_PERIODO'] ?? '') ?></td>
                                                 <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?></td>
-                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['ESTADO'] ?? '') ?></td>
+                                                <?php
+                                                    $estado = htmlspecialchars($bitacoraEntrega['ESTADO'] ?? '');
+                                                    if ($estado == 'ENVIADO') {$clase = 'badge rounded-pill bg-success'; // Celeste
+                                                    } elseif ($estado == 'NO ENVIADO') {
+                                                        $clase = 'badge rounded-pill bg-danger'; 
+                                                    } else {
+                                                        $clase = 'badge rounded-pill bg-secondary'; 
+                                                    }
+                                                ?>
+                                                <td class="text-center">
+                                                    <span class="<?= $clase ?>"><?= htmlspecialchars($estado) ?></span>
+                                                </td>
                                                 <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['MEDIO_ENVIO'] ?? '') ?></td>
                                                 <td class="text-center">
+                                                    <button class="btn btn-primary detalle-btn btn-sm"
+                                                        data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
+                                                        title="Bitácora de Envio" data-bs-toggle="modal"
+                                                        data-bs-target="#detalleBitacoraEnvio"
+                                                        onclick="cDatSegEmpAux(this)"
+                                                        <?= empty($bitacoraEntrega['ID_ENTIDAD']) ? ' disabled' : '' ?>>
+                                                        <i class="fa-solid fa-comment"></i>
+                                                    </button>
+                                                </td>
+                                                <td class="text-center p-1" >
+                                                    <div class="d-flex center-content-between align-items-center">
+                                                        <div class="d-flex flex-wrap gap-1">
+                                                            <span class="badge bg-primary">
+                                                                Regularizaciones: <?= $bitacoraEntrega['REGULARIZACIONES'] ?>
+                                                            </span>
+
+                                                            <span class="badge bg-warning text-dark">
+                                                                Prórrogas: <?= $bitacoraEntrega['PRORROGAS'] ?>
+                                                            </span>
+
+                                                            <span class="badge bg-secondary">
+                                                                Obs. DNR: <?= $bitacoraEntrega['OBSERVACIONES_DNR'] ?>
+                                                            </span>
+                                                        </div>
+
+                                                        <div>
+                                                            <button class="btn btn-info btn-sm"
+                                                                data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
+                                                                title="Agregar observación DNR"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#agregarProcesoDNR"
+                                                                onclick="cDatAgreProcesoDNR(this)">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
-                                                        <button class="btn btn-info detalle-btn btn-sm" disabled>
-                                                            N°. <?= htmlspecialchars($bitacoraEntrega['NSEGUIMIENTOS'] ?? '') ?>                                               
+                                                        <?php
+                                                            $seguimientos = (int)($bitacoraEntrega['NUM_SEGUIMIENTOS'] ?? 0);
+                                                            if ($seguimientos <= 0) {
+                                                                $clase = 'btn-secondary'; // PLOMO
+                                                            } elseif ($seguimientos <= 1) {
+                                                                $clase = 'btn-warning'; // AMARILLO
+                                                            } else {
+                                                                $clase = 'btn-danger'; // ROJO
+                                                            }
+                                                        ?>
+                                                        <button class="btn <?= $clase ?> detalle-btn btn-sm" disabled>
+                                                            <?= htmlspecialchars($seguimientos) ?>
                                                         </button>
-                                                        <button class="btn btn-primary detalle-btn btn-sm"
+                                                        <button class="btn btn-success detalle-btn btn-sm"
                                                             data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
                                                             title="Agregar Seguimiento" data-bs-toggle="modal"
                                                             data-bs-target="#agregarSeguimiento"
-                                                            onclick="cDatSegEmpAux(this)">
-                                                            <i class="fa fa-flag"></i>
+                                                            onclick="cDatAgregarSeg(this)">
+                                                            <i class="fa fa-plus"></i>
                                                         </button>
                                                     </div>
                                                 </td>
@@ -253,253 +320,345 @@ $rolesDireccion = [
         </main>
     </div>
 
-    <!-- Modal agregarSeguimiento -->
-    <div class="modal fade" id="agregarSeguimiento" tabindex="-1" aria-labelledby="agregarSeguimiento" aria-hidden="false">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl bg-primary" role="document">
+    <!-- Modal 1: detalleBitacoraEnvio -->
+    <div class="modal fade" id="detalleBitacoraEnvio" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="ModalLabel">Agregar Seguimiento</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h2 class="modal-title">
+                        Detalle Bitácora de Envío
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="detalleForm">
-                        <!-- ENTIDAD CALIFICADA -->
-                        <div class="row mb-2">
-                            <div class="col-md-1">
-                                <label for="mNumeroPeriodo" class="form-label">Período</label>
-                                <input type="text" class="form-control" id="mNumeroPeriodo" readonly>
+                    <!-- ENTIDAD CALIFICADA -->
+                    <div class="row mb-2">
+                        <div class="col-md-2">
+                            <label for="mNumeroPeriodo" class="form-label">Período</label>
+                            <input type="text" class="form-control" id="mNumeroPeriodo" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="mIdEntidad" class="form-label">ID Entidad</label>
+                            <input type="text" class="form-control" id="mIdEntidad" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mRucCatastro" class="form-label">RUC</label>
+                            <input type="text" class="form-control" id="mRucCatastro" readonly>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="mRazonSocial" class="form-label">Razón Social</label>
+                            <input type="text" class="form-control" id="mRazonSocial" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Servicios Prestados</label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mSoftwareFinanciero" disabled>
+                                <label class="form-check-label" for="mSoftwareFinanciero">
+                                    Software Financiero y Computacional
+                                </label>
                             </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mTransaccionalesPago" disabled>
+                                <label class="form-check-label" for="mTransaccionalesPago">
+                                    Transaccionales y de Pago
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mTransporteValores" disabled>
+                                <label class="form-check-label" for="mTransporteValores">
+                                    Transporte de Especies Monetarias y Valores
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mRedCajeros" disabled>
+                                <label class="form-check-label" for="mRedCajeros">
+                                    Red y Cajeros Automáticos
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mCobranzas" disabled>
+                                <label class="form-check-label" for="mCobranzas">
+                                    Cobranzas
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mServiciosContables" disabled>
+                                <label class="form-check-label" for="mServiciosContables">
+                                    Servicios Contables
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mGeneradorasCartera" disabled>
+                                <label class="form-check-label" for="mGeneradorasCartera">
+                                    Generadoras de Cartera
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mOperadorasTarjetas" disabled>
+                                <label class="form-check-label" for="mOperadorasTarjetas">
+                                    Administradoras y Operadoras de Tarjetas
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="mGiroInmobiliario" disabled>
+                                <label class="form-check-label" for="mGiroInmobiliario">
+                                    Giro Inmobiliario
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- INFORMACION DE CALIFICACION -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="mOfComunicacionResolucion" class="form-label">
+                                Oficio Comunicación de Resolución
+                            </label>
+                            <input type="text" class="form-control" id="mOfComunicacionResolucion" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="mFechaOficioComRes" class="form-label">
+                                Fecha Oficio Comunicación
+                            </label>
+                            <input type="date" class="form-control" id="mFechaOficioComRes" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mNumResolucionCalificacion" class="form-label">
+                                Resolución de Calificación
+                            </label>
+                            <input type="text" class="form-control" id="mNumResolucionCalificacion" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="mFechaResolucion" class="form-label">
+                                Fecha Resolución
+                            </label>
+                            <input type="date" class="form-control" id="mFechaResolucion" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="mFechaVencimientoRes" class="form-label">
+                                Vencimiento
+                            </label>
+                            <input type="date" class="form-control" id="mFechaVencimientoRes" readonly>
+                        </div>
+                    </div>
+                    <!-- INFORMACION DE LA ENTREGA -->
+                    <div class="row mb-2">
+                        <div class="col-md-2">
+                            <label for="mEstado" class="form-label">Estado</label>
+                            <input type="text" class="form-control" id="mEstado" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mMedioEnvio" class="form-label">Medio Envío</label>
+                            <input type="text" class="form-control" id="mMedioEnvio" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mCorreo" class="form-label">Documento</label>
+                            <input type="text" class="form-control" id="mCorreo" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mFechaRegistro" class="form-label">Fecha Registro</label>
+                            <input type="date" class="form-control" id="mFechaRegistro" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="mFechaCorte" class="form-label">Fecha Corte</label>
+                            <input type="date" class="form-control" id="mFechaCorte" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mFechaLineaBase" class="form-label">Fecha Línea Base</label>
+                            <input type="date" class="form-control" id="mFechaLineaBase" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mFechaRegularizacion" class="form-label">
+                                Fecha Regularización
+                            </label>
+                            <input type="date" class="form-control" id="mFechaRegularizacion" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mFechaProrroga" class="form-label">
+                                Fecha Prórroga
+                            </label>
+                            <input type="date" class="form-control" id="mFechaProrroga" readonly>
+                        </div>
+                    </div>
+                    <!-- OBSERVACIONES -->
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="mRegularizaciones" class="form-label">
+                                N. REGULARIZACIONES
+                            </label>
+                            <input type="text" class="form-control" id="mRegularizaciones" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mProrrogas" class="form-label">
+                                N. PRORROGAS
+                            </label>
+                            <input type="text" class="form-control" id="mProrrogas" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mObservacionesDNR" class="form-label">
+                                N. Observaciones DNR
+                            </label>
+                            <input type="text" class="form-control" id="mObservacionesDNR" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-3 p-2">
+                        <div class="col-md-12" style="border: 1px solid blue;">
+                            <table class="table table-bordered table-striped table-hover table-sm" id="tablaObsDNR">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 15%;">FECHA</th>
+                                        <th class="text-center" style="width: 15%;">REGULARIZACIÓN</th>
+                                        <th class="text-center" style="width: 15%;">PRÓRROGA</th>
+                                        <th class="text-center" style="width: 55%;">OBSERVACIÓN DNR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Modal 2: agregarSeguimiento -->
+    <div class="modal fade" id="agregarSeguimiento" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        Registro de Seguimiento
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="seguimientoForm">
+                        <div class="row mb-2">
                             <div class="col-md-2">
-                                <label for="mIdEntidad" class="form-label">ID Entidad</label>
-                                <input type="text" class="form-control" id="mIdEntidad" readonly>
+                                <label for="mAsIdEntidad" class="form-label">ID Entidad</label>
+                                <input type="text" class="form-control" id="mAsIdEntidad" disabled>
                             </div>
                             <div class="col-md-3">
-                                <label for="mRucCatastro" class="form-label">RUC</label>
-                                <input type="text" class="form-control" id="mRucCatastro" readonly>
+                                <label for="mAsRucCatastro" class="form-label">RUC</label>
+                                <input type="text" class="form-control" id="mAsRucCatastro" disabled>
                             </div>
                             <div class="col-md-5">
-                                <label for="mRazonSocial" class="form-label">Razón Social</label>
-                                <input type="text" class="form-control" id="mRazonSocial" readonly>
+                                <label for="mAsRazonSocial" class="form-label">Razón Social</label>
+                                <input type="text" class="form-control" id="mAsRazonSocial" disabled>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <label class="form-label fw-bold">Servicios Prestados</label>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mSoftwareFinanciero" disabled>
-                                    <label class="form-check-label" for="mSoftwareFinanciero">
-                                        Software Financiero y Computacional
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mTransaccionalesPago" disabled>
-                                    <label class="form-check-label" for="mTransaccionalesPago">
-                                        Transaccionales y de Pago
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mTransporteValores" disabled>
-                                    <label class="form-check-label" for="mTransporteValores">
-                                        Transporte de Especies Monetarias y Valores
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mRedCajeros" disabled>
-                                    <label class="form-check-label" for="mRedCajeros">
-                                        Red y Cajeros Automáticos
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mCobranzas" disabled>
-                                    <label class="form-check-label" for="mCobranzas">
-                                        Cobranzas
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mServiciosContables" disabled>
-                                    <label class="form-check-label" for="mServiciosContables">
-                                        Servicios Contables
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mGeneradorasCartera" disabled>
-                                    <label class="form-check-label" for="mGeneradorasCartera">
-                                        Generadoras de Cartera
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mOperadorasTarjetas" disabled>
-                                    <label class="form-check-label" for="mOperadorasTarjetas">
-                                        Administradoras y Operadoras de Tarjetas
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="mGiroInmobiliario" disabled>
-                                    <label class="form-check-label" for="mGiroInmobiliario">
-                                        Giro Inmobiliario
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- INFORMACION DE CALIFICACION -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="mOfComunicacionResolucion" class="form-label">
-                                    Oficio Comunicación / Resolución
-                                </label>
-                                <input type="text" class="form-control" id="mOfComunicacionResolucion" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="mFechaOficioComRes" class="form-label">
-                                    Fecha Oficio Comunicación
-                                </label>
-                                <input type="date" class="form-control" id="mFechaOficioComRes" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="mNumResolucionCalificacion" class="form-label">
-                                    Resolución de Calificación
-                                </label>
-                                <input type="text" class="form-control" id="mNumResolucionCalificacion" readonly>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="mFechaResolucion" class="form-label">
-                                    Fecha Resolución
-                                </label>
-                                <input type="date" class="form-control" id="mFechaResolucion" readonly>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="mFechaVencimientoRes" class="form-label">
-                                    Vencimiento
-                                </label>
-                                <input type="date" class="form-control" id="mFechaVencimientoRes" readonly>
-                            </div>
-                        </div>
-                        <!-- INFORMACION DE LA ENTREGA -->
-                        <div class="row mb-2">
                             <div class="col-md-2">
-                                <label for="mEstado" class="form-label">Estado</label>
-                                <input type="text" class="form-control" id="mEstado" readonly>
+                                <label for="mAsFechaCorte" class="form-label">Fecha Corte</label>
+                                <input type="text" class="form-control" id="mAsFechaCorte" disabled>
                             </div>
-                            <div class="col-md-3">
-                                <label for="mMedioEnvio" class="form-label">Medio Envío</label>
-                                <input type="text" class="form-control" id="mMedioEnvio" readonly>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="mAsEstadoSeguimiento" class="form-label">
+                                    Estado Seguimiento
+                                </label>
+                                <select class="form-control" id="mAsEstadoSeguimiento" required>
+                                    <option value="">Seleccione...</option>
+                                    <?php foreach ($catEstSeguimiento as $item): ?>
+                                    <option value="<?= htmlspecialchars($item['ID']) ?>">
+                                        <?= htmlspecialchars($item['DESCRIPCION']) ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="mCorreo" class="form-label">Documento</label>
-                                <input type="text" class="form-control" id="mCorreo" readonly>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="mFechaRegistro" class="form-label">Fecha Registro</label>
-                                <input type="date" class="form-control" id="mFechaRegistro" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-3">
-                                <label for="mFechaCorte" class="form-label">Fecha Corte</label>
-                                <input type="date" class="form-control" id="mFechaCorte" readonly>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="mFechaLineaBase" class="form-label">Fecha Línea Base</label>
-                                <input type="date" class="form-control" id="mFechaLineaBase" readonly>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="mFechaRegularizacion" class="form-label">
-                                    Fecha Regularización
+                                <label for="mAsOficioSeguimiento" class="form-label">
+                                    Oficio Seguimiento
                                 </label>
-                                <input type="date" class="form-control" id="mFechaRegularizacion" readonly>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="mFechaProrroga" class="form-label">
-                                    Fecha Prórroga
-                                </label>
-                                <input type="date" class="form-control" id="mFechaProrroga" readonly>
-                            </div>
-                        </div>
-                        <!-- OBSERVACIONES -->
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <label for="mObservacionDnr" class="form-label">
-                                    Observación DNR
-                                </label>
-                                <textarea class="form-control" id="mObservacionDnr" rows="4" readonly></textarea>
-                            </div>
-                        </div>
-                        <!-- Campos para el seguimiento -->
-                        <hr>
-                        <h3 class="mb-3 text-primary">Seguimiento</h3>
-                        <!-- IDENTIFICACIÓN DEL SEGUIMIENTO -->
-                        <!-- DOCUMENTO DE SEGUIMIENTO -->
-                        <div class="row mb-3">
-                            <div class="col-md-3">
-                                <label for="mEstadoSeguimiento" class="form-label">Estado Seguimiento</label>
-                                <select class="form-control" id="mEstadoSeguimiento"></select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="mOficioSeguimiento" class="form-label">
-                                    Oficio de Seguimiento
-                                </label>
-                                <input type="text" class="form-control" id="mOficioSeguimiento" >
+                                <input type="text" class="form-control" id="mAsOficioSeguimiento" required>
                             </div>
                             <div class="col-md-4">
-                                <label for="mFechaOfSeguimiento" class="form-label">
+                                <label for="mAsFechaOfSeguimiento" class="form-label">
                                     Fecha Oficio
                                 </label>
-                                <input type="date" class="form-control" id="mFechaOfSeguimiento" >
+                                <input type="date" class="form-control" id="mAsFechaOfSeguimiento" required>
                             </div>
-                            <div class="col-md-2">
-                                <label class="form-label">Regularizado</label>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="mAsEstadoCumplimiento" class="form-label">
+                                    Estado Cumplimiento
+                                </label>
+                                <select class="form-control" id="mAsEstadoCumplimiento" required>
+                                    <option value="">Seleccione...</option>
+                                    <?php foreach ($catEstCumplimiento as $cump): ?>
+                                    <option value="<?= htmlspecialchars($cump['ID']) ?>">
+                                        <?= htmlspecialchars($cump['DESCRIPCION']) ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mAsMotivoIncumplimiento" class="form-label">
+                                    Motivo Incumplimiento
+                                </label>
+                                <select class="form-control" id="mAsMotivoIncumplimiento">
+                                    <option value="">Seleccione...</option>
+                                    <?php foreach ($catMotCumplimiento as $mot): ?>
+                                    <option value="<?= htmlspecialchars($mot['ID']) ?>">
+                                        <?= htmlspecialchars($mot['DESCRIPCION']) ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label">
+                                    Regularizado
+                                </label>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input" type="checkbox"
-                                        id="mIndRegularizado">
-                                    <label class="form-check-label" for="mIndRegularizado">
+                                    <input class="form-check-input"
+                                        type="checkbox"
+                                        id="mAsIndRegularizado">
+                                    <label class="form-check-label"
+                                        for="mAsIndRegularizado">
                                         Sí
                                     </label>
                                 </div>
                             </div>
-                        </div>
-                        <!-- CUMPLIMIENTO -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="mEstadoCumplimiento" class="form-label">
-                                    Estado Cumplimiento
-                                </label>
-                                <select class="form-control" id="mEstadoCumplimiento"></select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="mMotivoIncumplimiento" class="form-label">
-                                    Motivo de Incumplimiento
-                                </label>
-                                <select class="form-control" id="mMotivoIncumplimiento"></select>
-                            </div>
-                        </div>
-                        <!-- OBSERVACIONES -->
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <label for="mObservacionDns" class="form-label">
+                            <div class="col-md-9">
+                                <label for="mAsObservacionDns" class="form-label">
                                     Observación DNS
                                 </label>
                                 <textarea class="form-control"
-                                    id="mObservacionDns"
-                                    rows="3">
-                                </textarea>
+                                    id="mAsObservacionDns"
+                                    rows="4"
+                                    required></textarea>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="submit" form="seguimientoForm" class="btn btn-success" id="btnGuardarSeguimiento">
+                        <i class="fas fa-save"></i>
+                        Guardar
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+
+   
 
     <!-- Modal Buscar Catastro-->
     <?php include BASE_PATH . 'frontend/partials/modalCatastro.php'; ?>
