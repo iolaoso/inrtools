@@ -91,7 +91,8 @@ function obtenerFormEmpAux(){
 
 function bitacora_entrega(){
     global $connEmpAux; // Usar la conexión global
-    $sql = "select RUC
+    $sql = "select ID_ENTIDAD
+                ,RUC
                 ,RAZON_SOCIAL
                 ,SERVICIO_PRESTADO
                 ,OF_COMUNICACION_RESOLUCION
@@ -101,7 +102,6 @@ function bitacora_entrega(){
                 ,CON_CONDICION
                 ,NUM_PERIODO
                 ,FEC_PROX_ENVIO
-                ,ID_ENTIDAD
                 ,FECHA_LINEA_BASE
                 ,NUM_PERIODO_REPORTADO
                 ,FECHA_CORTE
@@ -120,9 +120,10 @@ function bitacora_entrega(){
     return $stmt->get_result();
 }
 
-function bitacora_entrega_id($id){
+function bitacora_entrega_id($idEntidad,$ruc,$fecResolucion,$periodo,$fecCorte){
     global $connEmpAux; // Usar la conexión global
-    $sql = "select be.RUC as RUC_CATASTRO
+    $sql = "select be.ID_ENTIDAD
+                ,be.RUC as RUC_CATASTRO
                 ,be.RAZON_SOCIAL
                 ,c.SOFTWARE_FINANCIERO_Y_COMPUTACIONAL
                 ,c.TRANSACCIONALES_Y_DE_PAGO 
@@ -138,7 +139,6 @@ function bitacora_entrega_id($id){
                 ,be.NUM_RESOLUCION_CALIFICACION
                 ,be.FECHA_RESOLUCION
                 ,be.FECHA_VENCIMIENTO_RES
-                ,be.ID_ENTIDAD
                 ,be.FECHA_LINEA_BASE
                 ,be.NUM_PERIODO
                 ,be.FECHA_CORTE
@@ -162,31 +162,66 @@ function bitacora_entrega_id($id){
                             ,ADMINISTRADORAS_Y_OPERADORAS_DE_TARJETAS
                             ,GIRO_INMOBILIARIO
                         from catastro) c on be.RUC = c.RUC
-            where ID_ENTIDAD = ?;";
-    $stmt = $connEmpAux->prepare($sql);
-    $stmt->bind_param("i", $id);
+            where 1=1";
+            if (!empty($idEntidad)) {
+                $sql .= " and ID_ENTIDAD = ?";
+                $stmt = $connEmpAux->prepare($sql);
+                $stmt->bind_param("i",$idEntidad);
+            } else {
+                // filtros alternativos cuando no existe ID_ENTIDAD
+                $sql .= " and be.RUC = ? and FECHA_RESOLUCION = ? and NUM_PERIODO = ?";
+                $stmt = $connEmpAux->prepare($sql);
+                $stmt->bind_param("ssi",$ruc,$fecResolucion,$periodo);
+            }
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_assoc();
 }
 
-function observaciones_DNR_id($id){
+function observaciones_DNR_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCorte){
     global $connEmpAux;
-    $sql = "select ID_PROCESO_DNR
-                ,ID_ENTIDAD
-                ,OBSERVACION_DNR
-                ,FECHA_REGULARIZACION
-                ,FECHA_PRORROGA
-                ,EST_REGISTRO
-                ,USR_CREACION
-                ,UPDATED_AT
-            from PROCESO_DNR
-            where  EST_REGISTRO = 1
-            and ID_ENTIDAD = ?
-            order by UPDATED_AT DESC";
+    $sql = "SELECT ID_PROCESO_DNR,
+                ID_ENTIDAD,
+                RUC,
+                FECHA_RESOLUCION,
+                NUM_PERIODO,
+                FECHA_CORTE,
+                OBSERVACION_DNR,
+                FECHA_REGULARIZACION,
+                FECHA_PRORROGA,
+                EST_REGISTRO,
+                USR_CREACION,
+                UPDATED_AT
+            FROM PROCESO_DNR
+            WHERE EST_REGISTRO = 1";
+    
+    if (!empty($idEntidad)) {
+        $sql .= " AND ID_ENTIDAD = ?";
+        $stmt = $connEmpAux->prepare($sql);
+        $stmt->bind_param("i", $idEntidad);
+    } else {
+        $sql .= " and RUC = ? and FECHA_RESOLUCION = ? and NUM_PERIODO = ?";
+        $stmt = $connEmpAux->prepare($sql);
+        $stmt->bind_param("ssi",$ruc,$fecResolucion,$periodo);
+    }
+
+    $sql .= " ORDER BY UPDATED_AT DESC";
+
     $stmt = $connEmpAux->prepare($sql);
-    $stmt->bind_param("i", $id);
+
+    if (!empty($idEntidad)) {
+        $stmt->bind_param("i", $idEntidad);
+    } else {
+        $stmt->bind_param(
+            "ssi",
+            $ruc,
+            $fecResolucion,
+            $periodo
+        );
+    }
+
     $stmt->execute();
+
     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 
@@ -456,11 +491,16 @@ function obtenerSubCategorias($categoriaId)
 }*/
 
 
-if (isset($_GET['idEntidad'])) {
+if (!empty($_GET['idEntidad']) || !empty($_GET['ruc']) || !empty($_GET['periodo'])) {
+    $idEntidad     = $_GET['idEntidad'] ?? null;
+    $ruc           = $_GET['ruc'] ?? null;
+    $fecResolucion = $_GET['fecResolucion'] ?? null;
+    $periodo       = $_GET['periodo'] ?? null;
+    $fecCorte      = $_GET['fecCorte'] ?? null;
 
     $result = [
-        'bitacora' => bitacora_entrega_id($_GET['idEntidad']),
-        'obsDNR'   => observaciones_DNR_id($_GET['idEntidad'])
+        'bitacora' => bitacora_entrega_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCorte),
+        'obsDNR'   => observaciones_DNR_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCorte)
     ];
 
     echo json_encode($result);

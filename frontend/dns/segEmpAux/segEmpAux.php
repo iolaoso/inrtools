@@ -8,7 +8,7 @@ $catEstSeguimiento = cat_est_seguimiento();
 $catEstCumplimiento = cat_est_cumplimiento();
 $catMotCumplimiento = cat_mot_cumplimiento(); 
 // para revisar que llega en la variable 
-//var_dump($catEstSeguimiento); 
+//var_dump($bitacorasEntrega); 
 
 $servicios = [
     'GENERADORAS_DE_CARTERA',
@@ -247,10 +247,13 @@ $rolesDireccion = [
                                                 <td class="text-center">
                                                     <button class="btn btn-primary detalle-btn btn-sm"
                                                         data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
+                                                        data-ruc="<?= htmlspecialchars($bitacoraEntrega['RUC'] ?? '') ?>"
+                                                        data-fecRes="<?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?>"
+                                                        data-periodo="<?= htmlspecialchars($bitacoraEntrega['NUM_PERIODO'] ?? '') ?>"
+                                                        data-fCorte="<?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?>"
                                                         title="Bitácora de Envio" data-bs-toggle="modal"
                                                         data-bs-target="#detalleBitacoraEnvio"
-                                                        onclick="cDatSegEmpAux(this)"
-                                                        <?= empty($bitacoraEntrega['ID_ENTIDAD']) ? ' disabled' : '' ?>>
+                                                        onclick="cDatSegEmpAux(this)">
                                                         <i class="fa-solid fa-comment"></i>
                                                     </button>
                                                 </td>
@@ -258,25 +261,26 @@ $rolesDireccion = [
                                                     <div class="d-flex center-content-between align-items-center">
                                                         <div class="d-flex flex-wrap gap-1">
                                                             <span class="badge bg-primary">
-                                                                Regularizaciones: <?= $bitacoraEntrega['REGULARIZACIONES'] ?>
+                                                                Reg: <?= $bitacoraEntrega['REGULARIZACIONES'] ?>
                                                             </span>
-
                                                             <span class="badge bg-warning text-dark">
-                                                                Prórrogas: <?= $bitacoraEntrega['PRORROGAS'] ?>
+                                                                Prór: <?= $bitacoraEntrega['PRORROGAS'] ?>
                                                             </span>
-
                                                             <span class="badge bg-secondary">
-                                                                Obs. DNR: <?= $bitacoraEntrega['OBSERVACIONES_DNR'] ?>
+                                                                Obs: <?= $bitacoraEntrega['OBSERVACIONES_DNR'] ?>
                                                             </span>
                                                         </div>
-
                                                         <div>
                                                             <button class="btn btn-info btn-sm"
                                                                 data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
+                                                                data-ruc="<?= htmlspecialchars($bitacoraEntrega['RUC'] ?? '') ?>"
+                                                                data-fecRes="<?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?>"
+                                                                data-periodo="<?= htmlspecialchars($bitacoraEntrega['NUM_PERIODO'] ?? '') ?>"
+                                                                data-fCorte="<?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?>"
                                                                 title="Agregar observación DNR"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#agregarProcesoDNR"
-                                                                onclick="cDatAgreProcesoDNR(this)">
+                                                                onclick="cDatAgregarProcDNR(this)">
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
                                                         </div>
@@ -300,9 +304,14 @@ $rolesDireccion = [
                                                         </button>
                                                         <button class="btn btn-success detalle-btn btn-sm"
                                                             data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
+                                                            data-ruc="<?= htmlspecialchars($bitacoraEntrega['RUC'] ?? '') ?>"
+                                                            data-fecRes="<?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?>"
+                                                            data-periodo="<?= htmlspecialchars($bitacoraEntrega['NUM_PERIODO'] ?? '') ?>"
+                                                            data-fCorte="<?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?>"
                                                             title="Agregar Seguimiento" data-bs-toggle="modal"
                                                             data-bs-target="#agregarSeguimiento"
-                                                            onclick="cDatAgregarSeg(this)">
+                                                            onclick="cDatAgregarSeg(this)"
+                                                            <?= empty($bitacoraEntrega['ID_ENTIDAD']) ? ' disabled' : '' ?>>
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                     </div>
@@ -493,13 +502,13 @@ $rolesDireccion = [
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <label for="mRegularizaciones" class="form-label">
-                                N. REGULARIZACIONES
+                                REGULARIZACIONES
                             </label>
                             <input type="text" class="form-control" id="mRegularizaciones" readonly>
                         </div>
                         <div class="col-md-4">
                             <label for="mProrrogas" class="form-label">
-                                N. PRORROGAS
+                                PRORR
                             </label>
                             <input type="text" class="form-control" id="mProrrogas" readonly>
                         </div>
@@ -658,8 +667,81 @@ $rolesDireccion = [
         </div>
     </div>
 
+    <!-- Modal 3: agregarProcesoDNR -->
+    <div class="modal fade" id="agregarProcesoDNR" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Registro de Proceso DNR</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="procesoDNRForm">
+                        <!-- Datos de la entidad -->
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label for="mApIdEntidad" class="form-label">ID Entidad</label>
+                                <input type="text" class="form-control" id="mApIdEntidad" disabled>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mApRucCatastro" class="form-label">RUC</label>
+                                <input type="text" class="form-control" id="mApRucCatastro" disabled>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mApFechaRes" class="form-label">Fecha Resolución</label>
+                                <input type="date" class="form-control" id="mApFechaRes" disabled>
+                            </div>
+                            <div class="col-md-1">
+                                <label for="mApPeriodo" class="form-label">Periodo</label>
+                                <input type="text" class="form-control" id="mApPeriodo" disabled>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="mApFechaCorte" class="form-label">Fecha Corte</label>
+                                <input type="date" class="form-control" id="mApFechaCorte" disabled>
+                            </div>
+                        </div>
+                        <!-- Datos del catastro-->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="mApOfComunicacionRes" class="form-label">Oficio Comunicación Resolución</label>
+                                <input type="text" class="form-control" id="mApOfComunicacionRes">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mApFecOfComunicacionRes" class="form-label">Fecha de Comunicación Resolución</label>
+                                <input type="date" class="form-control" id="mApFecOfComunicacionRes">
+                            </div>
+                        </div>
+                        <!-- Datos del proceso -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="mApFecRegularizacion" class="form-label">Fecha de Regularización</label>
+                                <input type="date" class="form-control" id="mApFecRegularizacion">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mApFecProrroga" class="form-label">Fecha de Prórroga</label>
+                                <input type="date" class="form-control" id="mApFecProrroga">
+                            </div>
+                        </div>
+                        <!-- Observación -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="mApObservacionDNR" class="form-label">Observación DNR</label>
+                                <textarea class="form-control" id="mApObservacionDNR" rows="5" required></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="procesoDNRForm" class="btn btn-success" id="btnGuardarProcesoDNR">
+                        <i class="fas fa-save"></i>
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
    
-
     <!-- Modal Buscar Catastro-->
     <?php include BASE_PATH . 'frontend/partials/modalCatastro.php'; ?>
 

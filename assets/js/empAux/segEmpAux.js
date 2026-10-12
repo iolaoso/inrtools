@@ -4,9 +4,16 @@ console.log("segEmpAux.js funcionando")
 // Función para cargar datos en el modal
 function cDatSegEmpAux(button) {
     const idEntidad = button.getAttribute('data-id');
-    const url = baseurl + "/backend/empAux/empAuxList.php";
-    console.log(idEntidad);
-    fetch(`${url}?idEntidad=${idEntidad}`)
+    //console.log(idEntidad);
+    const ruc = button.getAttribute('data-ruc');
+    const fecResolucion = button.getAttribute('data-fecRes');
+    const periodo = button.getAttribute('data-periodo');
+    const fecCorte = button.getAttribute('data-fCorte');
+    console.log(`ID: ${idEntidad} | RUC: ${ruc} | Resolución: ${fecResolucion} | Período: ${periodo} | Corte: ${fecCorte}`);
+    const params = new URLSearchParams({idEntidad,ruc,fecResolucion,periodo,fecCorte});
+    const url = `${baseurl}/backend/empAux/empAuxList.php?${params.toString()}`;
+    console.log(url);
+    fetch(url)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la red');
@@ -17,10 +24,10 @@ function cDatSegEmpAux(button) {
             if (!selectedData) return;
             console.log(selectedData);
             // DATOS GENERALES
-            document.getElementById("mNumeroPeriodo").value     = selectedData.bitacora.NUM_PERIODO || '';
-            document.getElementById("mIdEntidad").value         = selectedData.bitacora.ID_ENTIDAD || '';
-            document.getElementById("mRucCatastro").value       = selectedData.bitacora.RUC_CATASTRO || '';
-            document.getElementById("mRazonSocial").value       = selectedData.bitacora.RAZON_SOCIAL || '';
+            document.getElementById("mNumeroPeriodo").value     = selectedData.bitacora?.NUM_PERIODO || periodo || '';
+            document.getElementById("mIdEntidad").value         = selectedData.bitacora?.ID_ENTIDAD || idEntidad || '';
+            document.getElementById("mRucCatastro").value       = selectedData.bitacora?.RUC_CATASTRO || ruc || '';
+            document.getElementById("mRazonSocial").value       = selectedData.bitacora?.RAZON_SOCIAL || '';
             // SERVICIOS PRESTADOS
             document.getElementById("mSoftwareFinanciero").checked  = selectedData.bitacora.SOFTWARE_FINANCIERO_Y_COMPUTACIONAL == 1;
             document.getElementById("mTransaccionalesPago").checked = selectedData.bitacora.TRANSACCIONALES_Y_DE_PAGO == 1;
@@ -80,8 +87,16 @@ function cDatSegEmpAux(button) {
 // Función para cargar datos en el modal de agregar seguimiento 
 function cDatAgregarSeg(button) {
     const idEntidad = button.getAttribute('data-id');
-    const url = baseurl + "/backend/empAux/empAuxList.php";
-    fetch(`${url}?idEntidad=${idEntidad}`)
+    //console.log(idEntidad);
+    const ruc = button.getAttribute('data-ruc');
+    const fecResolucion = button.getAttribute('data-fecRes');
+    const periodo = button.getAttribute('data-periodo');
+    const fecCorte = button.getAttribute('data-fCorte');
+    //console.log(`ID: ${idEntidad} | RUC: ${ruc} | Resolución: ${fecResolucion} | Período: ${periodo} | Corte: ${fecCorte}`);
+    const params = new URLSearchParams({idEntidad,ruc,fecResolucion,periodo,fecCorte});
+    const url = `${baseurl}/backend/empAux/empAuxList.php?${params.toString()}`;
+    //console.log(url);
+    fetch(url)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la red');
@@ -90,12 +105,45 @@ function cDatAgregarSeg(button) {
         })
         .then(selectedData => {
             if (!selectedData) return;
-            console.log(selectedData);
+            console.log(selectedData.bitacora);
             // DATOS GENERALES
-            document.getElementById("mAsIdEntidad").value         = selectedData.ID_ENTIDAD || '';
-            document.getElementById("mAsRucCatastro").value       = selectedData.RUC_CATASTRO || '';
-            document.getElementById("mAsRazonSocial").value       = selectedData.RAZON_SOCIAL || '';
-            document.getElementById("mAsFechaCorte").value        = selectedData.FECHA_CORTE || '';
+            document.getElementById("mAsIdEntidad").value         = selectedData.bitacora.ID_ENTIDAD || '';
+            document.getElementById("mAsRucCatastro").value       = selectedData.bitacora.RUC_CATASTRO || '';
+            document.getElementById("mAsRazonSocial").value       = selectedData.bitacora.RAZON_SOCIAL || '';
+            document.getElementById("mAsFechaCorte").value        = selectedData.bitacora.FECHA_CORTE || '';
+        })
+        .catch(error => {
+            console.error("Error al cargar los datos:", error);
+        });
+}
+
+// Función para cargar datos en el modal de agregar seguimiento 
+function cDatAgregarProcDNR(button) {
+    const idEntidad = button.getAttribute('data-id');
+    const ruc = button.getAttribute('data-ruc');
+    const fecResolucion = button.getAttribute('data-fecRes');
+    const periodo = button.getAttribute('data-periodo');
+    const fecCorte = button.getAttribute('data-fCorte');
+    //console.log(`ID: ${idEntidad} | RUC: ${ruc} | Resolución: ${fecResolucion} | Período: ${periodo} | Corte: ${fecCorte}`);
+    const params = new URLSearchParams({idEntidad,ruc,fecResolucion,periodo,fecCorte});
+    const url = `${baseurl}/backend/empAux/empAuxList.php?${params.toString()}`;
+    //console.log(url);
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la red');
+            }
+            return response.json();
+        })
+        .then(selectedData => {
+            if (!selectedData) return;
+            console.log(selectedData.bitacora);
+            // DATOS GENERALES
+            document.getElementById("mApIdEntidad").value   = selectedData.bitacora?.ID_ENTIDAD || idEntidad || '';
+            document.getElementById("mApRucCatastro").value = selectedData.bitacora?.RUC || ruc || '';
+            document.getElementById("mApFechaRes").value    = selectedData.bitacora?.FECHA_RESOLUCION || fecResolucion || '';
+            document.getElementById("mApPeriodo").value     = selectedData.bitacora?.NUM_PERIODO || periodo || '';
+            document.getElementById("mApFechaCorte").value  = selectedData.bitacora?.FECHA_CORTE || fecCorte || '';
         })
         .catch(error => {
             console.error("Error al cargar los datos:", error);
@@ -159,8 +207,6 @@ $(document).ready(function() {
     });
 
 });
-
-
 
 document.getElementById('seguimientoForm').addEventListener('submit', function(e) {
     e.preventDefault();
