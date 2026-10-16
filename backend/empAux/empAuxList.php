@@ -40,7 +40,7 @@ function obtenerCatastroEmpAux(){
                     THEN 'SI' ELSE 'NO' END AS CON_CONDICION
             from catastro 
             where EST_REGISTRO = 1
-            order by RUC;";
+            order by ID,RUC;";
     $stmt = $connEmpAux->prepare($sql);
     $stmt->execute();
     return $stmt->get_result();
@@ -89,7 +89,27 @@ function obtenerFormEmpAux(){
     return $stmt->get_result();
 }
 
-function bitacora_entrega(){
+function bitacora_entrega_full(){
+    global $connEmpAux; // Usar la conexión global
+    $sql = "select * FROM VM_BITACORA_ENVIO
+            ORDER BY RUC,NUM_PERIODO,FECHA_CORTE"; 
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
+function bitacora_entrega_full_usr($nickname){
+    global $connEmpAux; // Usar la conexión global
+    $sql = "select * FROM VM_BITACORA_ENVIO vf.
+            INNER JOIN (select * from asignacion where NICKNAME = ?) a on vf.ruc = a.ruc
+            ORDER BY RUC,NUM_PERIODO,FECHA_CORTE"; 
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->bind_param("s",$nickname);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
+function corte_seguimiento(){
     global $connEmpAux; // Usar la conexión global
     $sql = "select ID_ENTIDAD
                 ,RUC
@@ -114,8 +134,45 @@ function bitacora_entrega(){
                 ,OBSERVACIONES_DNR
                 ,CREATED_AT
                 ,NUM_SEGUIMIENTOS 
-            FROM VM_BITACORA_ENVIO";
+                ,ESTADO_PROCESO
+             FROM VM_CORTE_SEGUIMIENTO_MES"; 
     $stmt = $connEmpAux->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
+ function corte_seguimiento_usr($nickname){
+    global $connEmpAux; // Usar la conexión global
+    $sql = "select ID_ENTIDAD
+                ,vf.RUC
+                ,vf.RAZON_SOCIAL
+                ,vf.SERVICIO_PRESTADO
+                ,vf.OF_COMUNICACION_RESOLUCION
+                ,vf.FECHA_OFICIO_COM_RES
+                ,vf.NUM_RESOLUCION_CALIFICACION
+                ,vf.FECHA_RESOLUCION
+                ,vf.CON_CONDICION
+                ,vf.NUM_PERIODO
+                ,vf.FEC_PROX_ENVIO
+                ,vf.FECHA_LINEA_BASE
+                ,vf.NUM_PERIODO_REPORTADO
+                ,vf.FECHA_CORTE
+                ,vf.ESTADO
+                ,vf.MEDIO_ENVIO
+                ,vf.CORREO
+                ,vf.FECHA_REGISTRO
+                ,vf.REGULARIZACIONES
+                ,vf.PRORROGAS
+                ,vf.OBSERVACIONES_DNR
+                ,vf.CREATED_AT
+                ,vf.NUM_SEGUIMIENTOS 
+                ,vf.ESTADO_PROCESO
+                ,a.IDENTIFICACION
+                ,a.nickname
+            FROM VM_CORTE_SEGUIMIENTO_MES vf
+            INNER JOIN (select * from asignacion where NICKNAME = ?) a on vf.ruc = a.ruc";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->bind_param("s",$nickname);
     $stmt->execute();
     return $stmt->get_result();
 }
@@ -149,6 +206,7 @@ function bitacora_entrega_id($idEntidad,$ruc,$fecResolucion,$periodo,$fecCorte){
                 ,be.REGULARIZACIONES
                 ,be.PRORROGAS
                 ,be.OBSERVACIONES_DNR
+                ,be.ESTADO_PROCESO
             from VM_BITACORA_ENVIO be
             left join (select RUC
                             ,RAZON_SOCIAL
@@ -222,6 +280,58 @@ function observaciones_DNR_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCo
 
     $stmt->execute();
 
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
+function seguimiento_id($idSeguimiento)
+{
+    global $connEmpAux;
+    $sql = "SELECT ID_SEGUIMIENTO,
+                ID_ENTIDAD,
+                RUC,
+                FECHA_CORTE,
+                NUMERO_SEGUIMIENTO,
+                OFICIO_SEGUIMIENTO,
+                FECHA_OF_SEGUIMIENTO,
+                ID_ESTADO_CUMPLIMIENTO,
+                ID_MOTIVO_INCUMPLIMIENTO,
+                ID_ESTADO_SEGUIMIENTO,
+                IND_REGULARIZADO,
+                OBSERVACION_DNS
+            FROM seguimiento
+            WHERE ID_SEGUIMIENTO = ?
+            AND EST_REGISTRO = 1";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->bind_param("i", $idSeguimiento);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
+
+function seguimientos_entidad($idEntidad, $ruc, $periodo)
+{
+    global $connEmpAux;
+    $sql = "
+        SELECT
+            ID_SEGUIMIENTO,
+            NUMERO_SEGUIMIENTO,
+            OFICIO_SEGUIMIENTO,
+            FECHA_OF_SEGUIMIENTO
+        FROM seguimiento
+        WHERE EST_REGISTRO = 1
+          AND ID_ENTIDAD = ?
+          AND RUC = ?
+          AND PERIODO = ?
+          AND IND_REGULARIZADO = 0
+        ORDER BY NUMERO_SEGUIMIENTO DESC
+    ";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->bind_param(
+        "isi",
+        $idEntidad,
+        $ruc,
+        $periodo
+    );
+    $stmt->execute();
     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 
@@ -497,12 +607,22 @@ if (!empty($_GET['idEntidad']) || !empty($_GET['ruc']) || !empty($_GET['periodo'
     $fecResolucion = $_GET['fecResolucion'] ?? null;
     $periodo       = $_GET['periodo'] ?? null;
     $fecCorte      = $_GET['fecCorte'] ?? null;
-
     $result = [
-        'bitacora' => bitacora_entrega_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCorte),
-        'obsDNR'   => observaciones_DNR_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCorte)
+        'bitacora'  => bitacora_entrega_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCorte),
+        'obsDNR'    => observaciones_DNR_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCorte),
+        'segEnt'    => seguimientos_entidad($idEntidad,$ruc,$periodo)
     ];
-
     echo json_encode($result);
+    exit;
+}
+
+if (isset($_GET['idSeguimiento'])) {
+
+    header('Content-Type: application/json');
+
+    echo json_encode(
+        seguimiento_id($_GET['idSeguimiento'])
+    );
+
     exit;
 }

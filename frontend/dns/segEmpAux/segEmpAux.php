@@ -1,14 +1,10 @@
 <?php
+
+use PhpParser\Node\Expr\Include_;
+
 include_once __DIR__ . '/../../../backend/config.php';
 include BASE_PATH . 'backend/session.php';  // Incluye la sesión
 include BASE_PATH . 'backend/empAux/empAuxList.php'; // Incluir el archivo de consultas
-
-$bitacorasEntrega = bitacora_entrega();
-$catEstSeguimiento = cat_est_seguimiento();
-$catEstCumplimiento = cat_est_cumplimiento();
-$catMotCumplimiento = cat_mot_cumplimiento(); 
-// para revisar que llega en la variable 
-//var_dump($bitacorasEntrega); 
 
 $servicios = [
     'GENERADORAS_DE_CARTERA',
@@ -23,6 +19,7 @@ $servicios = [
 
 // Definir roles con acceso a nivel de dirección
 $rolesDireccion = [
+    'SUPERUSER',
     'ADMINISTRADOR',
     'DIRECTOR',
     'DIRADMINDR',
@@ -30,6 +27,21 @@ $rolesDireccion = [
     'DIRADMINDNSES',
     'DIRADMINPLA'
 ];
+
+if (in_array($rol_nombre, $rolesDireccion)) {
+    $corteSeguimiento = corte_seguimiento();
+    $bitacorasEnvio = bitacora_entrega_full();
+} else {
+    $corteSeguimiento = corte_seguimiento_usr($nickname);
+    $bitacorasEnvio = bitacora_entrega_full_usr($nickname);
+}
+
+$catEstSeguimiento = cat_est_seguimiento();
+$catEstCumplimiento = cat_est_cumplimiento();
+$catMotCumplimiento = cat_mot_cumplimiento(); 
+// para revisar que llega en la variable 
+//var_dump($corteSeguimiento); 
+
 
 // Optimización usando array y condicionales simplificadas
 /* if ($rol_nombre == 'SUPERUSER') {
@@ -62,137 +74,8 @@ $rolesDireccion = [
                 <h1 class="display-6 tituloPagina">Seguimiento Empresas Auxiliares</h1>
                 <p>Registro del proceso de seguiemto a las empresas auxiliares</p>
             </div>
+            <!-- seguimiento de empresas auxiliares  -->
             <section class="row align-items-stretch">
-                <!-- <div class="col-md-4 mb-3">
-                    <div class="card h-100 d-flex flex-column border-secondary">
-                        <div class="card-header bg-info text-white">
-                            <h4>Actividades</h4>
-                        </div>
-                        <div class="card-body">
-                            <form id="frmGestionesInr" method="post" autocomplete="off"
-                                onsubmit="guardarForm('frmGestionesInr',event)">
-                                <div class="mb-3">
-                                    <input type="hidden" class="form-control" id="codGestion" name="codGestion" value=""
-                                        readonly>
-                                    <input type="hidden" class="form-control" id="direccionid" name="direccionid"
-                                        value="<?= htmlspecialchars($inrdireccion_id)   ?>" readonly>
-                                    <input type="hidden" class="form-control" id="direccion" name="direccion"
-                                        value="<?= htmlspecialchars($direccion)   ?>" readonly>
-                                </div>
-                                <div class="mb-3">
-                                    <label id="lbcbCategoria" for="cbCategoria" class="form-label">Categoría
-                                        <span style="color: red; font-size: smaller">*</span>
-                                    </label><br>
-                                    <button id="btCrearCat" type="button" class="btn btn-outline-success btn-sm mb-3"
-                                        data-bs-toggle="modal" data-bs-target="#newCatModal">Crear
-                                        Categoria</button>
-                                    <select class="form-control" id="cbCategoria" name="cbCategoria">
-                                        <option value="">Seleccione la Categoria</option>
-                                        <?php foreach ($categorias as $categoria): ?>
-                                            <option value="<?= htmlspecialchars($categoria['COD_CATEGORIA']) ?>">
-                                                <?= htmlspecialchars($categoria['CATEGORIA']) ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select required>
-                                </div>
-                                <div class="mb-3">
-                                    <label id="lbcbSubCategoria" for="cbSubCategoria" class="form-label">SubCategoría
-                                        <span style="color: red; font-size: smaller">*</span>
-                                    </label>
-                                    <select class="form-control" id="cbSubCategoria" name="cbSubCategoria"></select
-                                        required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tbGestion" class="form-label">Gestión/Produto</label>
-                                    <input type="text" class="form-control" id="tbGestion" name="tbGestion"
-                                        style="text-transform: uppercase;">
-                                </div>
-                                <div class="form-container">
-                                    <div class="mb-3">
-                                        <label for="fechaInicio" class="form-label">F. Inicio Gestión</label>
-                                        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="fechaFin" class="form-label">F. Fin Gestión</label>
-                                        <input type="date" class="form-control" id="fechaFin" name="fechaFin">
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="estado" class="form-label">Estado de la Gestión
-                                        <span style="color: red; font-size: smaller">*</span>
-                                    </label>
-                                    <select class="form-control" id="estado" name="estado" required>
-                                        <option value="">-- Selecciona --</option>
-                                        <option value="PENDIENTE">PENDIENTE</option>
-                                        <option value="COMPLETADA">COMPLETADA</option>
-                                        <option value="ELIMINADA">ELIMINADA</option>
-                                        <option value="SUSPENDIDA">SUSPENDIDA</option>
-                                    </select required>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">RUC</span>
-                                    </div>
-                                    <input type="text" class="form-control" id="ruc" name="ruc"
-                                        oninput="buscarEntidad()" data-page="gestioninr.php">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#catastroModal">Buscar</button>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tbrazonSocial" class="form-label">Razón Social</label>
-                                    <textarea id="tbrazonSocial" name="tbrazonSocial"
-                                        class="form-control textarea small" disabled></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="fechaOficio" class="form-label">Fecha
-                                        <span style="font-size: 11px; color: blue;">
-                                            Oficio/Trámite/Memorando/Correo
-                                        </span>
-                                    </label>
-                                    <input type="date" class="form-control" id="fechaOficio" name="fechaOficio">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="oficio" class="form-label">Oficio/Trámite/Memorando/Correo</label>
-                                    <input type="text" class="form-control" id="oficio" name="oficio"
-                                        style="text-transform: uppercase;">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tbcomentario" class="form-label">Comentario</label>
-                                    <textarea id="tbcomentario" name="tbcomentario" class="form-control textarea small"
-                                        required></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label id="lbanalistaSelect" style="display: none;" for="analistaSelect"
-                                        class="form-label">Asignar
-                                        Analista</label>
-                                    <select class="form-control" id="analistaSelect" name="analistaSelect"
-                                        style="display: none;" onchange="actualizarAnalista()">
-                                        <option value="">Seleccione un analista</option>
-                                        <?php foreach ($analistas as $analista): ?>
-                                            <option value="<?= htmlspecialchars($analista['NICKNAME']) ?>">
-                                                <?= htmlspecialchars($analista['NOMBRE']) ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="analista" class="form-label">Analista</label>
-                                    <input class="form-control" id="analista" name="analista"
-                                        value="<?= htmlspecialchars($nickname)   ?>" readonly>
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary btn-sm btn-block">
-                                        Guardar Registro
-                                    </button>
-                                    <button type="submit" class="btn btn-secondary btn-sm btn-block"
-                                        onclick="limpiarForm('frmGestionesInr')">Limpiar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="col-md-12 mb-3">
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div
@@ -212,30 +95,35 @@ $rolesDireccion = [
                                                 <th class="text-center">SERVICIO</th>
                                                 <th class="text-center">RES. CALIFICACIÓN</th>
                                                 <th class="text-center">FEC. RESOLUCIÓN</th>  
+                                                <th class="text-center">PROXIMO ENVIO</th>  
                                                 <th class="text-center">PERÍODO</th>
                                                 <th class="text-center">CORTE</th>
                                                 <th class="text-center">ESTADO</th>
-                                                <th class="text-center">MEDIO</th>
+                                                <th class="text-center">ESTADO PROCESO</th>
                                                 <th class="text-center">BITACORA</th>
                                                 <th class="text-center">DNR</th>
                                                 <th class="text-center">SEGUIMIENTO</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($bitacorasEntrega as $bitacoraEntrega): ?>
+                                            <?php foreach ($corteSeguimiento as $cSeg): ?>
                                             <tr>
-                                                <td><?= htmlspecialchars($bitacoraEntrega['RUC'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($bitacoraEntrega['RAZON_SOCIAL'] ?? '') ?></td>
-                                                <td><?= htmlspecialchars($bitacoraEntrega['SERVICIO_PRESTADO'] ?? '') ?></td>
-                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['NUM_RESOLUCION_CALIFICACION'] ?? '') ?></td>
-                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?></td>
-                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['NUM_PERIODO'] ?? '') ?></td>
-                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($cSeg['RUC'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($cSeg['RAZON_SOCIAL'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($cSeg['SERVICIO_PRESTADO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($cSeg['NUM_RESOLUCION_CALIFICACION'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($cSeg['FECHA_RESOLUCION'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($cSeg['FEC_PROX_ENVIO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($cSeg['NUM_PERIODO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($cSeg['FECHA_CORTE'] ?? '') ?></td>
                                                 <?php
-                                                    $estado = htmlspecialchars($bitacoraEntrega['ESTADO'] ?? '');
-                                                    if ($estado == 'ENVIADO') {$clase = 'badge rounded-pill bg-success'; // Celeste
+                                                    $estado = htmlspecialchars($cSeg['ESTADO'] ?? '');
+                                                    if ($estado == 'ENVIADO') {
+                                                        $clase = 'badge rounded-pill bg-success'; // Celeste
                                                     } elseif ($estado == 'NO ENVIADO') {
                                                         $clase = 'badge rounded-pill bg-danger'; 
+                                                    } elseif ($estado == 'PENDIENTE') {
+                                                        $clase = 'badge rounded-pill bg-primary'; 
                                                     } else {
                                                         $clase = 'badge rounded-pill bg-secondary'; 
                                                     }
@@ -243,14 +131,39 @@ $rolesDireccion = [
                                                 <td class="text-center">
                                                     <span class="<?= $clase ?>"><?= htmlspecialchars($estado) ?></span>
                                                 </td>
-                                                <td class="text-center"><?= htmlspecialchars($bitacoraEntrega['MEDIO_ENVIO'] ?? '') ?></td>
+                                                <?php
+                                                $estadoProceso = strtoupper(trim(htmlspecialchars($cSeg['ESTADO_PROCESO'] ?? '')));
+                                                switch ($estadoProceso) {
+                                                    case 'SEGUIMIENTO':
+                                                        $clase = 'badge bg-success';
+                                                        break;
+                                                    case 'OFICIO':
+                                                        $clase = 'badge bg-warning text-dark';
+                                                        break;
+                                                    case 'REUNION':
+                                                        $clase = 'badge bg-danger';
+                                                        break;
+                                                    case 'PENDIENTE':
+                                                        $clase = 'badge bg-info';
+                                                        break;
+                                                    case '':
+                                                    case 'SIN ESTADO':
+                                                    default:
+                                                        $clase = 'badge bg-secondary';
+                                                        break;
+                                                }
+                                                ?>
+                                                <td class="text-center">
+                                                    <span class="<?= $clase ?>"><?= htmlspecialchars($cSeg['ESTADO_PROCESO'] ?? '') ?></span>
+                                                </td>
                                                 <td class="text-center">
                                                     <button class="btn btn-primary detalle-btn btn-sm"
-                                                        data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
-                                                        data-ruc="<?= htmlspecialchars($bitacoraEntrega['RUC'] ?? '') ?>"
-                                                        data-fecRes="<?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?>"
-                                                        data-periodo="<?= htmlspecialchars($bitacoraEntrega['NUM_PERIODO'] ?? '') ?>"
-                                                        data-fCorte="<?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?>"
+                                                        data-id="<?= htmlspecialchars($cSeg['ID_ENTIDAD'] ?? '') ?>"
+                                                        data-ruc="<?= htmlspecialchars($cSeg['RUC'] ?? '') ?>"
+                                                        data-periodo="<?= htmlspecialchars($cSeg['PERIODO'] ?? '') ?>"
+                                                        data-fecRes="<?= htmlspecialchars($cSeg['FECHA_RESOLUCION'] ?? '') ?>"
+                                                        data-periodo="<?= htmlspecialchars($cSeg['NUM_PERIODO'] ?? '') ?>"
+                                                        data-fCorte="<?= htmlspecialchars($cSeg['FECHA_CORTE'] ?? '') ?>"
                                                         title="Bitácora de Envio" data-bs-toggle="modal"
                                                         data-bs-target="#detalleBitacoraEnvio"
                                                         onclick="cDatSegEmpAux(this)">
@@ -258,39 +171,34 @@ $rolesDireccion = [
                                                     </button>
                                                 </td>
                                                 <td class="text-center p-1" >
-                                                    <div class="d-flex center-content-between align-items-center">
-                                                        <div class="d-flex flex-wrap gap-1">
-                                                            <span class="badge bg-primary">
-                                                                Reg: <?= $bitacoraEntrega['REGULARIZACIONES'] ?>
-                                                            </span>
-                                                            <span class="badge bg-warning text-dark">
-                                                                Prór: <?= $bitacoraEntrega['PRORROGAS'] ?>
-                                                            </span>
-                                                            <span class="badge bg-secondary">
-                                                                Obs: <?= $bitacoraEntrega['OBSERVACIONES_DNR'] ?>
-                                                            </span>
-                                                        </div>
-                                                        <div>
-                                                            <button class="btn btn-info btn-sm"
-                                                                data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
-                                                                data-ruc="<?= htmlspecialchars($bitacoraEntrega['RUC'] ?? '') ?>"
-                                                                data-fecRes="<?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?>"
-                                                                data-periodo="<?= htmlspecialchars($bitacoraEntrega['NUM_PERIODO'] ?? '') ?>"
-                                                                data-fCorte="<?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?>"
-                                                                title="Agregar observación DNR"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#agregarProcesoDNR"
-                                                                onclick="cDatAgregarProcDNR(this)">
-                                                                <i class="fa fa-plus"></i>
-                                                            </button>
-                                                        </div>
-
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info btn-sm" disabled>
+                                                            R. <?= $cSeg['REGULARIZACIONES'] ?>
+                                                        </button>
+                                                        <button class="btn btn-primary btn-sm" disabled>
+                                                            P. <?= $cSeg['PRORROGAS'] ?>
+                                                        </button>
+                                                        <button class="btn btn-secondary btn-sm" disabled>
+                                                            O. <?= $cSeg['OBSERVACIONES_DNR'] ?>
+                                                        </button>
+                                                        <button class="btn btn-info btn-sm"
+                                                            data-id="<?= htmlspecialchars($cSeg['ID_ENTIDAD'] ?? '') ?>"
+                                                            data-ruc="<?= htmlspecialchars($cSeg['RUC'] ?? '') ?>"
+                                                            data-fecRes="<?= htmlspecialchars($cSeg['FECHA_RESOLUCION'] ?? '') ?>"
+                                                            data-periodo="<?= htmlspecialchars($cSeg['NUM_PERIODO'] ?? '') ?>"
+                                                            data-fCorte="<?= htmlspecialchars($cSeg['FECHA_CORTE'] ?? '') ?>"
+                                                            title="Agregar observación DNR"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#agregarProcesoDNR"
+                                                            onclick="cDatAgregarProcDNR(this)">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <?php
-                                                            $seguimientos = (int)($bitacoraEntrega['NUM_SEGUIMIENTOS'] ?? 0);
+                                                            $seguimientos = (int)($cSeg['NUM_SEGUIMIENTOS'] ?? 0);
                                                             if ($seguimientos <= 0) {
                                                                 $clase = 'btn-secondary'; // PLOMO
                                                             } elseif ($seguimientos <= 1) {
@@ -302,19 +210,131 @@ $rolesDireccion = [
                                                         <button class="btn <?= $clase ?> detalle-btn btn-sm" disabled>
                                                             <?= htmlspecialchars($seguimientos) ?>
                                                         </button>
-                                                        <button class="btn btn-success detalle-btn btn-sm"
-                                                            data-id="<?= htmlspecialchars($bitacoraEntrega['ID_ENTIDAD'] ?? '') ?>"
-                                                            data-ruc="<?= htmlspecialchars($bitacoraEntrega['RUC'] ?? '') ?>"
-                                                            data-fecRes="<?= htmlspecialchars($bitacoraEntrega['FECHA_RESOLUCION'] ?? '') ?>"
-                                                            data-periodo="<?= htmlspecialchars($bitacoraEntrega['NUM_PERIODO'] ?? '') ?>"
-                                                            data-fCorte="<?= htmlspecialchars($bitacoraEntrega['FECHA_CORTE'] ?? '') ?>"
-                                                            title="Agregar Seguimiento" data-bs-toggle="modal"
+                                                        <button
+                                                            class="btn btn-success detalle-btn btn-sm"
+                                                            data-id="<?= htmlspecialchars($cSeg['ID_ENTIDAD'] ?? '') ?>"
+                                                            data-ruc="<?= htmlspecialchars($cSeg['RUC'] ?? '') ?>"
+                                                            data-fecres="<?= htmlspecialchars($cSeg['FECHA_RESOLUCION'] ?? '') ?>"
+                                                            data-periodo="<?= htmlspecialchars($cSeg['NUM_PERIODO'] ?? '') ?>"
+                                                            data-fcorte="<?= htmlspecialchars($cSeg['FECHA_CORTE'] ?? '') ?>"
+                                                            data-razonsocial="<?= htmlspecialchars($cSeg['RAZON_SOCIAL'] ?? '') ?>"
+                                                            title="Agregar / Editar Seguimiento"
+                                                            data-bs-toggle="modal"
                                                             data-bs-target="#agregarSeguimiento"
-                                                            onclick="cDatAgregarSeg(this)"
-                                                            <?= empty($bitacoraEntrega['ID_ENTIDAD']) ? ' disabled' : '' ?>>
-                                                            <i class="fa fa-plus"></i>
+                                                            onclick="cDatAgregarSeg(this)">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-dark detalle-btn btn-sm"
+                                                            title="Generar Oficio"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#generarOficio"
+                                                            onclick="">
+                                                            
+                                                            <i class="fa-regular fa-file-word"></i> 
                                                         </button>
                                                     </div>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- full cargas empresas  -->
+            <section class="row align-items-stretch">
+                <div class="col-md-12 mb-3">
+                    <div class="card h-100 d-flex flex-column border-secondary">
+                        <div class="card-header card-header bg-black text-white d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">Bitacora Empresas Auxiliares</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover table-sm"
+                                        id="tablaBitacoraEnvio">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">RUC</th>
+                                                <th class="text-center">RAZÓN SOCIAL</th>
+                                                <th class="text-center">SERVICIO</th>
+                                                <th class="text-center">RES. CALIFICACIÓN</th>
+                                                <th class="text-center">FEC. RESOLUCIÓN</th>  
+                                                <th class="text-center">PROXIMO ENVIO</th>  
+                                                <th class="text-center">PERÍODO</th>
+                                                <th class="text-center">CORTE</th>
+                                                <th class="text-center">ESTADO</th>
+                                                <th class="text-center">ESTADO PROCESO</th>
+                                                <th class="text-center">BITACORA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($bitacorasEnvio as $bitacoraEnvio): ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($bitacoraEnvio['RUC'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($bitacoraEnvio['RAZON_SOCIAL'] ?? '') ?></td>
+                                                <td><?= htmlspecialchars($bitacoraEnvio['SERVICIO_PRESTADO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEnvio['NUM_RESOLUCION_CALIFICACION'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEnvio['FECHA_RESOLUCION'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEnvio['FEC_PROX_ENVIO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEnvio['NUM_PERIODO'] ?? '') ?></td>
+                                                <td class="text-center"><?= htmlspecialchars($bitacoraEnvio['FECHA_CORTE'] ?? '') ?></td>
+                                                <?php
+                                                    $estado = htmlspecialchars($bitacoraEnvio['ESTADO'] ?? '');
+                                                    if ($estado == 'ENVIADO') {
+                                                        $clase = 'badge rounded-pill bg-success'; // Celeste
+                                                    } elseif ($estado == 'NO ENVIADO') {
+                                                        $clase = 'badge rounded-pill bg-danger'; 
+                                                    } elseif ($estado == 'PENDIENTE') {
+                                                        $clase = 'badge rounded-pill bg-primary'; 
+                                                    } else {
+                                                        $clase = 'badge rounded-pill bg-secondary'; 
+                                                    }
+                                                ?>
+                                                <td class="text-center">
+                                                    <span class="<?= $clase ?>"><?= htmlspecialchars($estado) ?></span>
+                                                </td>
+                                                <?php
+                                                $estadoProceso = strtoupper(trim(htmlspecialchars($bitacoraEnvio['ESTADO_PROCESO'] ?? '')));
+                                                switch ($estadoProceso) {
+                                                    case 'SEGUIMIENTO':
+                                                        $clase = 'badge bg-success';
+                                                        break;
+                                                    case 'OFICIO':
+                                                        $clase = 'badge bg-warning text-dark';
+                                                        break;
+                                                    case 'REUNION':
+                                                        $clase = 'badge bg-danger';
+                                                        break;
+                                                    case 'PENDIENTE':
+                                                        $clase = 'badge bg-info';
+                                                        break;
+                                                    case '':
+                                                    case 'SIN ESTADO':
+                                                    default:
+                                                        $clase = 'badge bg-secondary';
+                                                        break;
+                                                }
+                                                ?>
+                                                <td class="text-center">
+                                                    <span class="<?= $clase ?>"><?= htmlspecialchars($bitacoraEnvio['ESTADO_PROCESO'] ?? '') ?></span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-primary detalle-btn btn-sm"
+                                                        data-id="<?= htmlspecialchars($bitacoraEnvio['ID_ENTIDAD'] ?? '') ?>"
+                                                        data-ruc="<?= htmlspecialchars($bitacoraEnvio['RUC'] ?? '') ?>"
+                                                        data-periodo="<?= htmlspecialchars($bitacoraEnvio['PERIODO'] ?? '') ?>"
+                                                        data-fecRes="<?= htmlspecialchars($bitacoraEnvio['FECHA_RESOLUCION'] ?? '') ?>"
+                                                        data-periodo="<?= htmlspecialchars($bitacoraEnvio['NUM_PERIODO'] ?? '') ?>"
+                                                        data-fCorte="<?= htmlspecialchars($bitacoraEnvio['FECHA_CORTE'] ?? '') ?>"
+                                                        title="Bitácora de Envio" data-bs-toggle="modal"
+                                                        data-bs-target="#detalleBitacoraEnvio"
+                                                        onclick="cDatSegEmpAux(this)">
+                                                        <i class="fa-solid fa-comment"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -541,28 +561,36 @@ $rolesDireccion = [
             </div>
         </div>
     </div>
- 
+
     <!-- Modal 2: agregarSeguimiento -->
     <div class="modal fade" id="agregarSeguimiento" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title">
+                    <h2 class="modal-title" id="tituloSeguimiento">
                         Registro de Seguimiento
                     </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="seguimientoForm">
-                        <div class="row mb-2">
-                            <div class="col-md-2">
+                        <!-- ID oculto para edición -->
+                        <input type="hidden" id="mAsIdSeguimiento">
+                        <!-- DATOS ENTIDAD -->
+                        <div class="row mb-3">
+                            <div class="col-md-1">
                                 <label for="mAsIdEntidad" class="form-label">ID Entidad</label>
                                 <input type="text" class="form-control" id="mAsIdEntidad" disabled>
+                            </div>
+                            <div class="col-md-1">
+                                <label for="mAsPeriodo" class="form-label">RUC</label>
+                                <input type="text" class="form-control" id="mAsPeriodo" disabled>
                             </div>
                             <div class="col-md-3">
                                 <label for="mAsRucCatastro" class="form-label">RUC</label>
                                 <input type="text" class="form-control" id="mAsRucCatastro" disabled>
                             </div>
+                            
                             <div class="col-md-5">
                                 <label for="mAsRazonSocial" class="form-label">Razón Social</label>
                                 <input type="text" class="form-control" id="mAsRazonSocial" disabled>
@@ -572,13 +600,76 @@ $rolesDireccion = [
                                 <input type="text" class="form-control" id="mAsFechaCorte" disabled>
                             </div>
                         </div>
+                        <!-- SELECCIÓN DE SEGUIMIENTO -->
+                        <div class="row mb-3">
+                            <div class="col-md-8">
+                                <label for="mAsSeguimientoExistente" class="form-label">
+                                    Seguimiento Registrado
+                                </label>
+                                <select class="form-select" id="mAsSeguimientoExistente">
+                                    <option value="">Nuevo seguimiento...</option>
+                                    <?php $seguimientos = $cSeg['NUM_SEGUIMIENTOS']; ?>
+                                    <?php foreach ($seguimientos as $seg): ?>
+                                        <option value="<?= $seg['ID_SEGUIMIENTO'] ?>">
+                                            #<?= $seg['NUMERO_SEGUIMIENTO'] ?>
+                                            - <?= $seg['OFICIO_SEGUIMIENTO'] ?>
+                                            - <?= $seg['FECHA_OF_SEGUIMIENTO'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    id="btnNuevoSeguimiento">
+
+                                    <i class="fas fa-plus"></i>
+                                    Nuevo Seguimiento
+                                </button>
+                            </div>
+                        </div>
+                        <!-- HISTORIAL -->
+                        <!-- <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Historial de Seguimientos
+                                    </div>
+                                    <div class="card-body p-2">
+                                        <table class="table table-sm table-bordered table-hover mb-0"
+                                            id="tablaHistorialSeguimientos">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:8%">#</th>
+                                                    <th style="width:12%">Fecha</th>
+                                                    <th style="width:20%">Oficio</th>
+                                                    <th style="width:20%">Estado</th>
+                                                    <th style="width:20%">Cumplimiento</th>
+                                                    <th style="width:10%">Regularizado</th>
+                                                    <th style="width:10%">Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <hr>
+                        <!-- DATOS DEL SEGUIMIENTO -->
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="mAsEstadoSeguimiento" class="form-label">
                                     Estado Seguimiento
                                 </label>
-                                <select class="form-control" id="mAsEstadoSeguimiento" required>
-                                    <option value="">Seleccione...</option>
+                                <select class="form-control"
+                                    id="mAsEstadoSeguimiento"
+                                    required>
+                                    <option value="">
+                                        Seleccione...
+                                    </option>
                                     <?php foreach ($catEstSeguimiento as $item): ?>
                                     <option value="<?= htmlspecialchars($item['ID']) ?>">
                                         <?= htmlspecialchars($item['DESCRIPCION']) ?>
@@ -590,13 +681,19 @@ $rolesDireccion = [
                                 <label for="mAsOficioSeguimiento" class="form-label">
                                     Oficio Seguimiento
                                 </label>
-                                <input type="text" class="form-control" id="mAsOficioSeguimiento" required>
+                                <input type="text"
+                                    class="form-control"
+                                    id="mAsOficioSeguimiento"
+                                    required>
                             </div>
                             <div class="col-md-4">
                                 <label for="mAsFechaOfSeguimiento" class="form-label">
                                     Fecha Oficio
                                 </label>
-                                <input type="date" class="form-control" id="mAsFechaOfSeguimiento" required>
+                                <input type="date"
+                                    class="form-control"
+                                    id="mAsFechaOfSeguimiento"
+                                    required>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -604,8 +701,12 @@ $rolesDireccion = [
                                 <label for="mAsEstadoCumplimiento" class="form-label">
                                     Estado Cumplimiento
                                 </label>
-                                <select class="form-control" id="mAsEstadoCumplimiento" required>
-                                    <option value="">Seleccione...</option>
+                                <select class="form-control"
+                                    id="mAsEstadoCumplimiento"
+                                    required>
+                                    <option value="">
+                                        Seleccione...
+                                    </option>
                                     <?php foreach ($catEstCumplimiento as $cump): ?>
                                     <option value="<?= htmlspecialchars($cump['ID']) ?>">
                                         <?= htmlspecialchars($cump['DESCRIPCION']) ?>
@@ -617,8 +718,11 @@ $rolesDireccion = [
                                 <label for="mAsMotivoIncumplimiento" class="form-label">
                                     Motivo Incumplimiento
                                 </label>
-                                <select class="form-control" id="mAsMotivoIncumplimiento">
-                                    <option value="">Seleccione...</option>
+                                <select class="form-control"
+                                    id="mAsMotivoIncumplimiento">
+                                    <option value="">
+                                        Seleccione...
+                                    </option>
                                     <?php foreach ($catMotCumplimiento as $mot): ?>
                                     <option value="<?= htmlspecialchars($mot['ID']) ?>">
                                         <?= htmlspecialchars($mot['DESCRIPCION']) ?>
@@ -633,10 +737,12 @@ $rolesDireccion = [
                                     Regularizado
                                 </label>
                                 <div class="form-check mt-2">
-                                    <input class="form-check-input"
+                                    <input
+                                        class="form-check-input"
                                         type="checkbox"
                                         id="mAsIndRegularizado">
-                                    <label class="form-check-label"
+                                    <label
+                                        class="form-check-label"
                                         for="mAsIndRegularizado">
                                         Sí
                                     </label>
@@ -646,7 +752,8 @@ $rolesDireccion = [
                                 <label for="mAsObservacionDns" class="form-label">
                                     Observación DNS
                                 </label>
-                                <textarea class="form-control"
+                                <textarea
+                                    class="form-control"
                                     id="mAsObservacionDns"
                                     rows="4"
                                     required></textarea>
@@ -655,10 +762,17 @@ $rolesDireccion = [
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
                         Cancelar
                     </button>
-                    <button type="submit" form="seguimientoForm" class="btn btn-success" id="btnGuardarSeguimiento">
+                    <button
+                        type="submit"
+                        form="seguimientoForm"
+                        class="btn btn-success"
+                        id="btnGuardarSeguimiento">
                         <i class="fas fa-save"></i>
                         Guardar
                     </button>
@@ -666,6 +780,8 @@ $rolesDireccion = [
             </div>
         </div>
     </div>
+
+
 
     <!-- Modal 3: agregarProcesoDNR -->
     <div class="modal fade" id="agregarProcesoDNR" tabindex="-1">
@@ -738,6 +854,104 @@ $rolesDireccion = [
                         Guardar
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: generarOficio -->
+    <div class="modal fade" id="generarOficio" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        Formato: Oficio de Incumplimiento
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- ENTIDAD CALIFICADA -->
+                    <div class="row mb-2">
+                        <div class="col-md-2">
+                            <label for="mNumeroPeriodo" class="form-label">Período</label>
+                            <input type="text" class="form-control" id="mNumeroPeriodo" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="mIdEntidad" class="form-label">ID Entidad</label>
+                            <input type="text" class="form-control" id="mIdEntidad" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="mRucCatastro" class="form-label">RUC</label>
+                            <input type="text" class="form-control" id="mRucCatastro" readonly>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="mRazonSocial" class="form-label">Razón Social</label>
+                            <input type="text" class="form-control" id="mRazonSocial" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label class="form-label">Oficio de Seguimiento</label>
+                            <select class="form-select" id="mOficioSeguimiento">
+                                <option value="">Seleccione...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Período</th>
+                                <th>Fecha Corte</th>
+                                <th>Fecha Límite</th>
+                                <th>Días de Atraso</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblPendientes">
+                        </tbody>
+                    </table>
+                    <!-- INFORMACION DE CALIFICACION -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="mNumResolucionCalificacion" class="form-label">
+                                Resolución de Calificación
+                            </label>
+                            <input type="text" class="form-control" id="mNumResolucionCalificacion" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="mFechaResolucion" class="form-label">
+                                Fecha Resolución
+                            </label>
+                            <input type="date" class="form-control" id="mFechaResolucion" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="form-label">
+                                Vista previa del oficio
+                            </label>
+
+                            <textarea
+                                id="mTextoOficio"
+                                class="form-control"
+                                rows="15">
+                            </textarea>
+                        </div>
+                    </div>
+
+                   
+                </div>
+                <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cerrar
+                </button>
+
+                <button id="btnPrevisualizar" class="btn btn-info">
+                    Previsualizar
+                </button>
+
+                <button id="btnGenerarWord" class="btn btn-primary">
+                    Generar Oficio
+                </button>
+            </div>
             </div>
         </div>
     </div>

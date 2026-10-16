@@ -286,8 +286,21 @@ const menuItems = [
                 rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
             },
-            { title: 'Seguimiento Emp. Auxiliares', 
-                url: '/INRtools/frontend/dns/segEmpAux/segEmpAux.php',
+            { title: 'Empresas Auxiliares', 
+                subMenu: [
+                    {   title: "Catastro",
+                        url: '/INRtools/frontend/dns/segEmpAux/catastroEmpAux.php',
+                        direccion: ['INR','DNR','DNS'], 
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
+                        usuarios: [] 
+                    },
+                    {   title: "Seguimiento",
+                        url: '/INRtools/frontend/dns/segEmpAux/segEmpAux.php',
+                        direccion: ['INR','DNR','DNS'], 
+                        rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
+                        usuarios: [] 
+                    }
+                ],
                 direccion: ['INR','DNR','DNS'], 
                 rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','ANALISTA','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
                 usuarios: [] 
