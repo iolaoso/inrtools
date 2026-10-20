@@ -121,3 +121,102 @@ function registrarGestionINR(
     return $stmt->execute();
 }
 
+/**
+ * Valida una cédula ecuatoriana.
+ */
+function validarCedula($cedula)
+{
+    $cedula = preg_replace('/[^0-9]/', '', trim($cedula));
+    if (strlen($cedula) != 10) {
+        return false;
+    }
+    $provincia = intval(substr($cedula, 0, 2));
+    if ($provincia < 1 || $provincia > 24) {
+        return false;
+    }
+    $tercerDigito = intval($cedula[2]);
+    if ($tercerDigito >= 6) {
+        return false;
+    }
+    $suma = 0;
+    for ($i = 0; $i < 9; $i++) {
+        $valor = intval($cedula[$i]);
+        if ($i % 2 == 0) {
+            $valor *= 2;
+            if ($valor > 9) {
+                $valor -= 9;
+            }
+        }
+        $suma += $valor;
+    }
+    $digitoVerificador = (10 - ($suma % 10)) % 10;
+    return $digitoVerificador == intval($cedula[9]);
+}
+
+function validarRuc($ruc)
+{
+    $ruc = preg_replace('/[^0-9]/', '', trim($ruc));
+
+    if (strlen($ruc) != 13) {
+        return false;
+    }
+
+    $provincia = intval(substr($ruc, 0, 2));
+    if ($provincia < 1 || $provincia > 24) {
+        return false;
+    }
+
+    $tercerDigito = intval($ruc[2]);
+
+    // Persona natural
+    if ($tercerDigito < 6) {
+
+        if (!validarCedula(substr($ruc, 0, 10))) {
+            return false;
+        }
+
+        return substr($ruc, 10, 3) !== '000';
+    }
+
+    // Sociedad privada
+    if ($tercerDigito == 9) {
+
+        $coef = [4,3,2,7,6,5,4,3,2];
+        $suma = 0;
+
+        for ($i=0; $i<9; $i++) {
+            $suma += intval($ruc[$i]) * $coef[$i];
+        }
+
+        $residuo = $suma % 11;
+        $digito = ($residuo == 0) ? 0 : 11 - $residuo;
+
+        if ($digito != intval($ruc[9])) {
+            return false;
+        }
+
+        return substr($ruc, 10, 3) !== '000';
+    }
+
+    // Entidad pública
+    if ($tercerDigito == 6) {
+
+        $coef = [3,2,7,6,5,4,3,2];
+        $suma = 0;
+
+        for ($i=0; $i<8; $i++) {
+            $suma += intval($ruc[$i]) * $coef[$i];
+        }
+
+        $residuo = $suma % 11;
+        $digito = ($residuo == 0) ? 0 : 11 - $residuo;
+
+        if ($digito != intval($ruc[8])) {
+            return false;
+        }
+
+        return substr($ruc, 9, 4) !== '0000';
+    }
+
+    return false;
+}

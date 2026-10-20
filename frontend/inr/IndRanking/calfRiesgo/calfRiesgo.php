@@ -110,6 +110,7 @@ $datosRiesgo = obtenerRiesgoEntidad();
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>
@@ -144,6 +145,7 @@ $datosRiesgo = obtenerRiesgoEntidad();
                                                 <th>Fecha Corte</th>
                                                 <th>Fecha Carga</th>
                                                 <th>Archivo</th>
+                                                <th>Formato</th>
                                                 <th>Tamaño</th>
                                                 <th>Fecha Modificación</th>
                                                 <th>Acción</th>

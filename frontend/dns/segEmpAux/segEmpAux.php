@@ -966,6 +966,7 @@ $catMotCumplimiento = cat_mot_cumplimiento();
     <?php include_once BASE_PATH . 'frontend/partials/scripts.php'; ?>
 
     <!-- Incluir el archivo AJAX -->
+     <script src="<?php echo $base_url; ?>/assets/js/empAux/funcEmpAux.js"></script>
     <script src="<?php echo $base_url; ?>/assets/js/empAux/segEmpAux.js"></script>
 </body>
 

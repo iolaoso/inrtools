@@ -46,6 +46,18 @@ function obtenerCatastroEmpAux(){
     return $stmt->get_result();
 }
 
+function obtenerDetalleCatastroEmpAux($ruc){
+    global $connEmpAux; // Usar la conexión global
+    $sql = "select *
+            from catastro 
+            where EST_REGISTRO = 1
+            and ruc = ?;";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->bind_param("s", $ruc);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
+
 function obtenerCoopEmpAux(){
     global $connEmpAux; // Usar la conexión global
     $sql = "select e.ID
@@ -622,6 +634,17 @@ if (isset($_GET['idSeguimiento'])) {
 
     echo json_encode(
         seguimiento_id($_GET['idSeguimiento'])
+    );
+
+    exit;
+}
+
+if (isset($_GET['rucid'])) {
+
+    header('Content-Type: application/json');
+
+    echo json_encode(
+        obtenerDetalleCatastroEmpAux($_GET['rucid'])
     );
 
     exit;

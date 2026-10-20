@@ -59,12 +59,19 @@ $catastroEmpAux = obtenerCatastroEmpAux();
                     <div class="card h-100 d-flex flex-column border-secondary">
                         <div class="card-header card-header text-white d-flex justify-content-between align-items-center" style="background-color: #059b87ff;">
                             <h4>Catastro</h4>
-                            <button class="btn btn-success btn-sm"
-                                data-bs-toggle="modal"
-                                data-bs-target="#nuevoCatastroEmpAux">
-                                <i class="fa fa-plus"></i>
-                                Nueva Empresa
-                            </button>
+                            <div class="d-flex justify-content-end align-items-center gap-2">
+                                <button class="btn btn-primary btn-sm"
+                                    onclick="window.open(baseurl + '/backend/empAux/catastroPublicoXlsx.php','_blank')">
+                                    <i class="fa-regular fa-file-lines"></i>
+                                    Reporte Catastro Público
+                                </button>
+                                <button class="btn btn-success btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#nuevoCatastroEmpAux">
+                                    <i class="fa fa-plus"></i>
+                                    Nueva Empresa
+                                </button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -80,7 +87,7 @@ $catastroEmpAux = obtenerCatastroEmpAux();
                                                 <th class="text-center">NUM RESOLUCION CALIFICACION</th>
                                                 <th class="text-center">FECHA RESOLUCION</th>
                                                 <th class="text-center">SERVICIO PRESTADO</th>
-                                                <th class="text-center">DETALLE</th>
+                                                <th class="text-center not-export">DETALLE</th>
                                                 <th class="text-center">NUEVA</th>
                                                 <th class="text-center">CON CONDICION</th>
                                             </tr>
@@ -237,16 +244,13 @@ $catastroEmpAux = obtenerCatastroEmpAux();
     <div class="modal fade" id="detalleCatastroEmpAux" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <h5 class="modal-title">
                         Detalle Catastro Empresa Auxiliar
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
-
                     <form id="frmDetalleCatastroEmpAux">
 
                         <input type="hidden" id="mIdEntidad">
@@ -412,26 +416,20 @@ $catastroEmpAux = obtenerCatastroEmpAux();
                         </div>
 
                     </form>
-
                 </div>
-
                 <div class="modal-footer">
-
                     <button
                         class="btn btn-secondary"
                         data-bs-dismiss="modal">
                         Cerrar
                     </button>
-
-                    <button
+                    <!-- <button
                         class="btn btn-success"
                         id="btnGuardarCatastroEmpAux">
                         <i class="fa fa-save"></i>
                         Guardar Cambios
-                    </button>
-
+                    </button> -->
                 </div>
-
             </div>
         </div>
     </div>
@@ -446,7 +444,9 @@ $catastroEmpAux = obtenerCatastroEmpAux();
     <?php include_once BASE_PATH . 'frontend/partials/scripts.php'; ?>
 
     <!-- Incluir el archivo AJAX -->
-    <script src="<?php echo $base_url; ?>/assets/js/empAux/segEmpAux.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/empAux/funcEmpAux.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/empAux/catastroEmpAux.js"></script>
+    
 </body>
 
 </html>
