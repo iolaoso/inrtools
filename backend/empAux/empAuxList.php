@@ -103,7 +103,12 @@ function obtenerFormEmpAux(){
 
 function bitacora_entrega_full(){
     global $connEmpAux; // Usar la conexión global
-    $sql = "select * FROM VM_BITACORA_ENVIO
+    $sql = "select vf.*
+                ,a.ID_PORTAFOLIO
+                ,a.IDENTIFICACION
+                ,a.NICKNAME
+            FROM VM_BITACORA_ENVIO vf
+            INNER JOIN (select * from asignacion where EST_REGISTRO = 1) a on vf.ruc = a.ruc
             ORDER BY RUC,NUM_PERIODO,FECHA_CORTE"; 
     $stmt = $connEmpAux->prepare($sql);
     $stmt->execute();
@@ -112,8 +117,12 @@ function bitacora_entrega_full(){
 
 function bitacora_entrega_full_usr($nickname){
     global $connEmpAux; // Usar la conexión global
-    $sql = "select * FROM VM_BITACORA_ENVIO vf.
-            INNER JOIN (select * from asignacion where NICKNAME = ?) a on vf.ruc = a.ruc
+    $sql = "select vf.*
+                ,a.ID_PORTAFOLIO
+                ,a.IDENTIFICACION
+                ,a.NICKNAME
+            FROM VM_BITACORA_ENVIO vf
+            INNER JOIN (select * from asignacion where EST_REGISTRO = 1 and NICKNAME = ?) a on vf.ruc = a.ruc
             ORDER BY RUC,NUM_PERIODO,FECHA_CORTE"; 
     $stmt = $connEmpAux->prepare($sql);
     $stmt->bind_param("s",$nickname);

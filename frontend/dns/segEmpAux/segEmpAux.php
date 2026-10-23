@@ -301,7 +301,7 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                                                 $estadoProceso = strtoupper(trim(htmlspecialchars($bitacoraEnvio['ESTADO_PROCESO'] ?? '')));
                                                 switch ($estadoProceso) {
                                                     case 'SEGUIMIENTO':
-                                                        $clase = 'badge bg-success';
+                                                        $clase = 'badge bg-info';
                                                         break;
                                                     case 'OFICIO':
                                                         $clase = 'badge bg-warning text-dark';
@@ -309,8 +309,8 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                                                     case 'REUNION':
                                                         $clase = 'badge bg-danger';
                                                         break;
-                                                    case 'PENDIENTE':
-                                                        $clase = 'badge bg-info';
+                                                    case 'REGULARIZADO':
+                                                        $clase = 'badge bg-success';
                                                         break;
                                                     case '':
                                                     case 'SIN ESTADO':
@@ -573,64 +573,9 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="seguimientoForm">
-                        <!-- ID oculto para edición -->
-                        <input type="hidden" id="mAsIdSeguimiento">
-                        <!-- DATOS ENTIDAD -->
-                        <div class="row mb-3">
-                            <div class="col-md-1">
-                                <label for="mAsIdEntidad" class="form-label">ID Entidad</label>
-                                <input type="text" class="form-control" id="mAsIdEntidad" disabled>
-                            </div>
-                            <div class="col-md-1">
-                                <label for="mAsPeriodo" class="form-label">RUC</label>
-                                <input type="text" class="form-control" id="mAsPeriodo" disabled>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="mAsRucCatastro" class="form-label">RUC</label>
-                                <input type="text" class="form-control" id="mAsRucCatastro" disabled>
-                            </div>
-                            
-                            <div class="col-md-5">
-                                <label for="mAsRazonSocial" class="form-label">Razón Social</label>
-                                <input type="text" class="form-control" id="mAsRazonSocial" disabled>
-                            </div>
-                            <div class="col-md-2">
-                                <label for="mAsFechaCorte" class="form-label">Fecha Corte</label>
-                                <input type="text" class="form-control" id="mAsFechaCorte" disabled>
-                            </div>
-                        </div>
-                        <!-- SELECCIÓN DE SEGUIMIENTO -->
-                        <div class="row mb-3">
-                            <div class="col-md-8">
-                                <label for="mAsSeguimientoExistente" class="form-label">
-                                    Seguimiento Registrado
-                                </label>
-                                <select class="form-select" id="mAsSeguimientoExistente">
-                                    <option value="">Nuevo seguimiento...</option>
-                                    <?php $seguimientos = $cSeg['NUM_SEGUIMIENTOS']; ?>
-                                    <?php foreach ($seguimientos as $seg): ?>
-                                        <option value="<?= $seg['ID_SEGUIMIENTO'] ?>">
-                                            #<?= $seg['NUMERO_SEGUIMIENTO'] ?>
-                                            - <?= $seg['OFICIO_SEGUIMIENTO'] ?>
-                                            - <?= $seg['FECHA_OF_SEGUIMIENTO'] ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-4 d-flex align-items-end">
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-primary"
-                                    id="btnNuevoSeguimiento">
-
-                                    <i class="fas fa-plus"></i>
-                                    Nuevo Seguimiento
-                                </button>
-                            </div>
-                        </div>
-                        <!-- HISTORIAL -->
-                        <!-- <div class="row mb-3">
+                    <div class="row">
+                        <div class="col col-md-6">
+                            <!-- HISTORIAL -->
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
@@ -641,13 +586,13 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                                             id="tablaHistorialSeguimientos">
                                             <thead>
                                                 <tr>
-                                                    <th style="width:8%">#</th>
-                                                    <th style="width:12%">Fecha</th>
+                                                    <th style="width:10%">#</th>
+                                                    <th style="width:10%">Fecha</th>
                                                     <th style="width:20%">Oficio</th>
-                                                    <th style="width:20%">Estado</th>
-                                                    <th style="width:20%">Cumplimiento</th>
-                                                    <th style="width:10%">Regularizado</th>
-                                                    <th style="width:10%">Acción</th>
+                                                    <th style="width:10%">Est</th>
+                                                    <th style="width:20%">Cump</th>
+                                                    <th style="width:20%">Reg</th>
+                                                    <th style="width:10%">Act</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -656,110 +601,139 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                        <hr>
-                        <!-- DATOS DEL SEGUIMIENTO -->
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="mAsEstadoSeguimiento" class="form-label">
-                                    Estado Seguimiento
-                                </label>
-                                <select class="form-control"
-                                    id="mAsEstadoSeguimiento"
-                                    required>
-                                    <option value="">
-                                        Seleccione...
-                                    </option>
-                                    <?php foreach ($catEstSeguimiento as $item): ?>
-                                    <option value="<?= htmlspecialchars($item['ID']) ?>">
-                                        <?= htmlspecialchars($item['DESCRIPCION']) ?>
-                                    </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="mAsOficioSeguimiento" class="form-label">
-                                    Oficio Seguimiento
-                                </label>
-                                <input type="text"
-                                    class="form-control"
-                                    id="mAsOficioSeguimiento"
-                                    required>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="mAsFechaOfSeguimiento" class="form-label">
-                                    Fecha Oficio
-                                </label>
-                                <input type="date"
-                                    class="form-control"
-                                    id="mAsFechaOfSeguimiento"
-                                    required>
-                            </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="mAsEstadoCumplimiento" class="form-label">
-                                    Estado Cumplimiento
-                                </label>
-                                <select class="form-control"
-                                    id="mAsEstadoCumplimiento"
-                                    required>
-                                    <option value="">
-                                        Seleccione...
-                                    </option>
-                                    <?php foreach ($catEstCumplimiento as $cump): ?>
-                                    <option value="<?= htmlspecialchars($cump['ID']) ?>">
-                                        <?= htmlspecialchars($cump['DESCRIPCION']) ?>
-                                    </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="mAsMotivoIncumplimiento" class="form-label">
-                                    Motivo Incumplimiento
-                                </label>
-                                <select class="form-control"
-                                    id="mAsMotivoIncumplimiento">
-                                    <option value="">
-                                        Seleccione...
-                                    </option>
-                                    <?php foreach ($catMotCumplimiento as $mot): ?>
-                                    <option value="<?= htmlspecialchars($mot['ID']) ?>">
-                                        <?= htmlspecialchars($mot['DESCRIPCION']) ?>
-                                    </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-3">
-                                <label class="form-label">
-                                    Regularizado
-                                </label>
-                                <div class="form-check mt-2">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        id="mAsIndRegularizado">
-                                    <label
-                                        class="form-check-label"
-                                        for="mAsIndRegularizado">
-                                        Sí
-                                    </label>
+                        <div class="col col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    Nuevo Seguimiento 
+                                </div>
+                                <div class="card-body p-2">                                    
+                                    <form id="seguimientoForm">
+                                        <!-- ID oculto para edición -->
+                                        <input type="hidden" id="mAsIdSeguimiento">
+                                        <!-- DATOS ENTIDAD -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-2">
+                                                <label for="mAsIdEntidad" class="form-label">ID</label>
+                                                <input type="text" class="form-control" id="mAsIdEntidad" disabled>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="mAsPeriodo" class="form-label">Periodo</label>
+                                                <input type="text" class="form-control" id="mAsPeriodo" disabled>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label for="mAsRucCatastro" class="form-label">RUC</label>
+                                                <input type="text" class="form-control" id="mAsRucCatastro" disabled>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="mAsFechaCorte" class="form-label">Fecha Corte</label>
+                                                <input type="text" class="form-control" id="mAsFechaCorte" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row mb3">
+                                            <div class="col-md-12">
+                                                <label for="mAsRazonSocial" class="form-label">Razón Social</label>
+                                                <input type="text" class="form-control" id="mAsRazonSocial" disabled>
+                                            </div>
+                                        </div>
+                                        <!-- SELECCIÓN DE SEGUIMIENTO -->
+                                        <!-- <div class="row mb-3">
+                                            <div class="col-md-8">
+                                                <label for="mAsSeguimientoExistente" class="form-label">
+                                                    Seguimiento Registrado
+                                                </label>
+                                                <select class="form-select" id="mAsSeguimientoExistente">
+                                                    <option value="">Nuevo seguimiento...</option>
+                                                    <?php $seguimientos = $cSeg['NUM_SEGUIMIENTOS']; ?>
+                                                    <?php foreach ($seguimientos as $seg): ?>
+                                                        <option value="<?= $seg['ID_SEGUIMIENTO'] ?>">
+                                                            #<?= $seg['NUMERO_SEGUIMIENTO'] ?>
+                                                            - <?= $seg['OFICIO_SEGUIMIENTO'] ?>
+                                                            - <?= $seg['FECHA_OF_SEGUIMIENTO'] ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 d-flex align-items-end">
+                                                
+                                            </div>
+                                        </div> -->
+                                        <!-- DATOS DEL SEGUIMIENTO -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="mAsEstadoSeguimiento" class="form-label">
+                                                    Estado Seguimiento
+                                                </label>
+                                                <input type="text" class="form-control" id="mAsEstadoSeguimiento" disabled>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="mAsEstadoCumplimiento" class="form-label">
+                                                    Estado Cumplimiento
+                                                </label>
+                                                <input type="text" class="form-control" id="mAsEstadoCumplimiento" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-8">
+                                                <label for="mAsOficioSeguimiento" class="form-label">
+                                                    Oficio Seguimiento
+                                                </label>
+                                                <input type="text" class="form-control" id="mAsOficioSeguimiento" required>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="mAsFechaOfSeguimiento" class="form-label">
+                                                    Fecha Oficio
+                                                </label>
+                                                <input type="date" class="form-control" id="mAsFechaOfSeguimiento" required>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            
+                                            <div class="col-md-6">
+                                                <label for="mAsMotivoIncumplimiento" class="form-label">
+                                                    Motivo Incumplimiento
+                                                </label>
+                                                <select class="form-control"
+                                                    id="mAsMotivoIncumplimiento">
+                                                    <option value="">
+                                                        Seleccione...
+                                                    </option>
+                                                    <?php foreach ($catMotCumplimiento as $mot): ?>
+                                                    <option value="<?= htmlspecialchars($mot['ID']) ?>">
+                                                        <?= htmlspecialchars($mot['DESCRIPCION']) ?>
+                                                    </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">                                            
+                                            <div class="col-md-9">
+                                                <label for="mAsObservacionDns" class="form-label">
+                                                    Observación DNS
+                                                </label>
+                                                <textarea class="form-control" id="mAsObservacionDns" rows="1" maxlength="500" required></textarea>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">Regularizado</label>
+                                                <div class="form-check mt-2">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        id="mAsIndRegularizado">
+                                                    <label
+                                                        class="form-check-label"
+                                                        for="mAsIndRegularizado">
+                                                        Sí
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="col-md-9">
-                                <label for="mAsObservacionDns" class="form-label">
-                                    Observación DNS
-                                </label>
-                                <textarea
-                                    class="form-control"
-                                    id="mAsObservacionDns"
-                                    rows="4"
-                                    required></textarea>
-                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button
@@ -767,6 +741,13 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                         class="btn btn-secondary"
                         data-bs-dismiss="modal">
                         Cancelar
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary"
+                        id="btnNuevoSeguimiento">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Seguimiento
                     </button>
                     <button
                         type="submit"
@@ -842,7 +823,7 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <label for="mApObservacionDNR" class="form-label">Observación DNR</label>
-                                <textarea class="form-control" id="mApObservacionDNR" rows="5" required></textarea>
+                                <textarea class="form-control" id="mApObservacionDNR" rows="5" maxlength="500" required></textarea>
                             </div>
                         </div>
                     </form>

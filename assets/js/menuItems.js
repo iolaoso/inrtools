@@ -132,14 +132,14 @@ const menuItems = [
                         url: '/INRtools/frontend/dnr/psi/cosede/cosede.php',
                         direccion: ['INR', 'DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA','ANALISTA'],
-                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA'] 
+                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA','JCASTILLO'] 
                     },
                     {
                         title: 'COSEDE DNLESF', 
                         url: '/INRtools/frontend/dnr/psi/cosede/cosedeDNLESF.php',
                         direccion: ['INR', 'DNR','DNLESF'],
                         rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA','ANALISTA'],
-                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA'] 
+                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA','JCASTILLO'] 
                     },
                 ],
                 direccion: ['ALL'],
