@@ -15,11 +15,11 @@ $ruc = $data['ruc'];
 $periodo = $data['periodo'];
 $fechaCorte = $data['fechaCorte'];
 
-$estadoSeguimiento = $data['estadoSeguimiento'];
+$idEstadoSeguimiento = $data['idEstadoSeguimiento'];
 $oficioSeguimiento = $data['oficioSeguimiento'];
 $fechaOfSeguimiento = $data['fechaOfSeguimiento'];
 
-$estadoCumplimiento = $data['estadoCumplimiento'];
+$idEstadoCumplimiento = $data['idEstadoCumplimiento'];
 $motivoIncumplimiento = !empty($data['motivoIncumplimiento'])
     ? $data['motivoIncumplimiento']
     : null;
@@ -57,9 +57,9 @@ try {
             "ssiiiissi",
             $oficioSeguimiento,
             $fechaOfSeguimiento,
-            $estadoCumplimiento,
+            $idEstadoCumplimiento,
             $motivoIncumplimiento,
-            $estadoSeguimiento,
+            $idEstadoSeguimiento,
             $indRegularizado,
             $observacionDns,
             $usuario,
@@ -129,9 +129,9 @@ try {
         $numeroSeguimiento,
         $oficioSeguimiento,
         $fechaOfSeguimiento,
-        $estadoCumplimiento,
+        $idEstadoCumplimiento,
         $motivoIncumplimiento,
-        $estadoSeguimiento,
+        $idEstadoSeguimiento,
         $indRegularizado,
         $observacionDns,
         $usuario

@@ -636,41 +636,22 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                                                 <input type="text" class="form-control" id="mAsRazonSocial" disabled>
                                             </div>
                                         </div>
-                                        <!-- SELECCIÓN DE SEGUIMIENTO -->
-                                        <!-- <div class="row mb-3">
-                                            <div class="col-md-8">
-                                                <label for="mAsSeguimientoExistente" class="form-label">
-                                                    Seguimiento Registrado
-                                                </label>
-                                                <select class="form-select" id="mAsSeguimientoExistente">
-                                                    <option value="">Nuevo seguimiento...</option>
-                                                    <?php $seguimientos = $cSeg['NUM_SEGUIMIENTOS']; ?>
-                                                    <?php foreach ($seguimientos as $seg): ?>
-                                                        <option value="<?= $seg['ID_SEGUIMIENTO'] ?>">
-                                                            #<?= $seg['NUMERO_SEGUIMIENTO'] ?>
-                                                            - <?= $seg['OFICIO_SEGUIMIENTO'] ?>
-                                                            - <?= $seg['FECHA_OF_SEGUIMIENTO'] ?>
-                                                        </option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4 d-flex align-items-end">
-                                                
-                                            </div>
-                                        </div> -->
+
                                         <!-- DATOS DEL SEGUIMIENTO -->
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <label for="mAsEstadoSeguimiento" class="form-label">
                                                     Estado Seguimiento
                                                 </label>
-                                                <input type="text" class="form-control" id="mAsEstadoSeguimiento" disabled>
+                                                <input type="hidden" id="mAsIdEstadoSeguimiento">
+                                                <input type="text" class="form-control" id="mAsEstadoSeguimiento" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="mAsEstadoCumplimiento" class="form-label">
                                                     Estado Cumplimiento
                                                 </label>
-                                                <input type="text" class="form-control" id="mAsEstadoCumplimiento" disabled>
+                                                <input type="hidden" id="mAsIdEstadoCumplimiento">
+                                                <input type="text" class="form-control" id="mAsEstadoCumplimiento" readonly>
                                             </div>
                                         </div>
                                         <div class="row mb-3">

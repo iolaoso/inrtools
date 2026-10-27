@@ -307,21 +307,29 @@ function observaciones_DNR_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCo
 function seguimiento_id($idSeguimiento)
 {
     global $connEmpAux;
-    $sql = "SELECT ID_SEGUIMIENTO,
-                ID_ENTIDAD,
-                RUC,
-                FECHA_CORTE,
-                NUMERO_SEGUIMIENTO,
-                OFICIO_SEGUIMIENTO,
-                FECHA_OF_SEGUIMIENTO,
-                ID_ESTADO_CUMPLIMIENTO,
-                ID_MOTIVO_INCUMPLIMIENTO,
-                ID_ESTADO_SEGUIMIENTO,
-                IND_REGULARIZADO,
-                OBSERVACION_DNS
-            FROM seguimiento
-            WHERE ID_SEGUIMIENTO = ?
-            AND EST_REGISTRO = 1";
+    $sql = "SELECT s.ID_SEGUIMIENTO,
+                s.ID_ENTIDAD,
+                s.RUC,
+                s.FECHA_CORTE,
+                s.NUMERO_SEGUIMIENTO,
+                s.OFICIO_SEGUIMIENTO,
+                s.FECHA_OF_SEGUIMIENTO,
+                s.ID_ESTADO_CUMPLIMIENTO,
+                cec.CODIGO as COD_ESTADO_CUMPLIMIENTO,
+                cec.DESCRIPCION as DESC_ESTADO_CUMPLIMIENTO, 
+                s.ID_MOTIVO_INCUMPLIMIENTO,
+                cmi.CODIGO as COD_MOTIVO_INCUMP,
+                cmi.DESCRIPCION as DESC_MOTIVO_INCUMP, 
+                s.ID_ESTADO_SEGUIMIENTO,
+                ces.CODIGO as COD_ESTADO_SEG,
+                cec.DESCRIPCION as DESC_ESTADO_SEG,
+                s.IND_REGULARIZADO,
+                s.OBSERVACION_DNS
+            FROM seguimiento s
+            left join cat_estado_cumplimiento cec on s.ID_ESTADO_CUMPLIMIENTO = cec.ID  
+            left join cat_motivo_incumplimiento cmi on s.ID_MOTIVO_INCUMPLIMIENTO = cmi.ID
+            left join cat_estado_seguimiento ces on s.ID_ESTADO_SEGUIMIENTO = ces.ID 
+            WHERE ID_SEGUIMIENTO = ?";
     $stmt = $connEmpAux->prepare($sql);
     $stmt->bind_param("i", $idSeguimiento);
     $stmt->execute();
@@ -654,6 +662,21 @@ if (isset($_GET['rucid'])) {
 
     echo json_encode(
         obtenerDetalleCatastroEmpAux($_GET['rucid'])
+    );
+
+    exit;
+}
+
+if (
+    isset($_GET['opt'])
+    && $_GET['opt'] == 'seguimiento'
+    && isset($_GET['idSeguimiento'])
+) {
+
+    header('Content-Type: application/json');
+
+    echo json_encode(
+        seguimiento_id($_GET['idSeguimiento'])
     );
 
     exit;

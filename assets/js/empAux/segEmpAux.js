@@ -178,9 +178,11 @@ document.getElementById('seguimientoForm').addEventListener('submit', function(e
         ruc: document.getElementById('mAsRucCatastro').value,
         periodo: document.getElementById('mAsPeriodo').value,
         fechaCorte: document.getElementById('mAsFechaCorte').value,
+        idEstadoSeguimiento: document.getElementById('mAsIdEstadoSeguimiento').value, 
         estadoSeguimiento: document.getElementById('mAsEstadoSeguimiento').value,
         oficioSeguimiento: document.getElementById('mAsOficioSeguimiento').value,
         fechaOfSeguimiento: document.getElementById('mAsFechaOfSeguimiento').value,
+        idEstadoCumplimiento: document.getElementById('mAsIdEstadoCumplimiento').value, 
         estadoCumplimiento: document.getElementById('mAsEstadoCumplimiento').value,
         motivoIncumplimiento: document.getElementById('mAsMotivoIncumplimiento').value,
         indRegularizado: document.getElementById('mAsIndRegularizado').checked ? 1 : 0,
@@ -250,7 +252,7 @@ document.getElementById('btnNuevoSeguimiento').addEventListener('click', () => {
     document.getElementById('btnGuardarSeguimiento').innerHTML  = '<i class="fas fa-save"></i> Guardar';
 });
 
-document.getElementById('mAsSeguimientoExistente').addEventListener('change', function () {
+/* document.getElementById('mAsSeguimientoExistente').addEventListener('change', function () {
 
     const idSeguimiento = this.value;
 
@@ -294,9 +296,9 @@ document.getElementById('mAsSeguimientoExistente').addEventListener('change', fu
         });
     });
 
-});
+}); */
 
-//PARA VALIDAR Y GUARDAR EL FORM DEL ÑPROCESO DNR
+//PARA VALIDAR Y GUARDAR EL FORM DEL PROCESO DNR
 document.getElementById('procesoDNRForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const data = {

@@ -106,11 +106,8 @@ function cDatAgregarSeg(btn) {
     document.getElementById('mAsIndRegularizado').checked = false;
     document.getElementById('mAsObservacionDns').value = '';
     document.getElementById('btnGuardarSeguimiento').innerHTML = '<i class="fas fa-save"></i> Guardar';
-    // Limpiar combo
-    const cmbSeguimientos = document.getElementById('mAsSeguimientoExistente');
-    cmbSeguimientos.innerHTML = '<option value="">Nuevo seguimiento...</option>';
     // Limpiar historial
-    /* document.querySelector('#tablaHistorialSeguimientos tbody').innerHTML = ''; */
+    document.querySelector('#tablaHistorialSeguimientos tbody').innerHTML = ''; 
 
     const params = new URLSearchParams({idEntidad,ruc,fecResolucion,periodo,fecCorte});
     fetch(`${baseurl}/backend/empAux/empAuxList.php?${params.toString()}`)
@@ -122,16 +119,8 @@ function cDatAgregarSeg(btn) {
         // Seguimientos
         if (result.segEnt) {
             result.segEnt.forEach(seg => {
-                // Combo
-                cmbSeguimientos.innerHTML += `
-                    <option value="${seg.ID_SEGUIMIENTO}">
-                        # ${seg.NUMERO_SEGUIMIENTO}
-                        - ${seg.FECHA_OF_SEGUIMIENTO ?? ''}
-                        - ${seg.OFICIO_SEGUIMIENTO ?? ''}
-                    </option>
-                `;
                 // Historial
-                /* document.querySelector('#tablaHistorialSeguimientos tbody').innerHTML += `
+                document.querySelector('#tablaHistorialSeguimientos tbody').innerHTML += `
                     <tr>
                         <td class="text-center">${seg.NUMERO_SEGUIMIENTO}</td>
                         <td>${seg.FECHA_OF_SEGUIMIENTO ?? ''}</td>
@@ -152,7 +141,7 @@ function cDatAgregarSeg(btn) {
                             </button>
                         </td>
                     </tr>
-                `; */
+                `; 
             });
         }
     })
@@ -164,6 +153,70 @@ function cDatAgregarSeg(btn) {
             text: 'No fue posible cargar los seguimientos.'
         });
     });
+}
+
+//para cargar el seguimiento al form
+function cargarSeguimiento(idSeguimiento) {
+
+    fetch(
+        `${baseurl}/backend/empAux/empAuxList.php?opt=seguimiento&idSeguimiento=${idSeguimiento}`
+    )
+    .then(response => response.json())
+    .then(seg => {
+        console.log(seg);
+        // Identificador
+        document.getElementById('mAsIdSeguimiento').value =
+            seg.ID_SEGUIMIENTO ?? '';
+        // Datos generales
+        /* document.getElementById('mAsIdEntidad').value =
+            seg.ID_ENTIDAD ?? '';
+        document.getElementById('mAsPeriodo').value =
+            seg.PERIODO ?? '';
+        document.getElementById('mAsRucCatastro').value =
+            seg.RUC ?? '';
+        document.getElementById('mAsFechaCorte').value =
+            seg.FECHA_CORTE ?? '';
+        document.getElementById('mAsRazonSocial').value =
+            seg.RAZON_SOCIAL ?? ''; */
+        // Estado (solo lectura)
+        document.getElementById('mAsIdEstadoSeguimiento').value =
+            seg.ID_ESTADO_CUMPLIMIENTO;
+        document.getElementById('mAsEstadoSeguimiento').value =
+            seg.DESC_ESTADO_SEG ?? '';
+        document.getElementById('mAsIdEstadoCumplimiento').value =
+            seg.ID_ESTADO_CUMPLIMIENTO;
+        document.getElementById('mAsEstadoCumplimiento').value =
+            seg.DESC_ESTADO_CUMPLIMIENTO ?? '';
+        // Datos editables
+        document.getElementById('mAsOficioSeguimiento').value =
+            seg.OFICIO_SEGUIMIENTO ?? '';
+        document.getElementById('mAsFechaOfSeguimiento').value =
+            seg.FECHA_OF_SEGUIMIENTO ?? '';
+        document.getElementById('mAsMotivoIncumplimiento').value =
+            seg.ID_MOTIVO_INCUMPLIMIENTO ?? '';
+        document.getElementById('mAsObservacionDns').value =
+            seg.OBSERVACION_DNS ?? '';
+        document.getElementById('mAsIndRegularizado').checked =
+            parseInt(seg.IND_REGULARIZADO) === 1;
+        // Actualizar título y botón
+        document.getElementById('tituloSeguimiento').textContent =
+            'Edición de Seguimiento';
+        document.getElementById('btnGuardarSeguimiento').innerHTML =
+            '<i class="fas fa-save"></i> Actualizar';
+    })
+    .catch(error => {
+
+        console.error(error);
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No fue posible cargar el seguimiento.',
+            confirmButtonColor: '#dc3545'
+        });
+
+    });
+
 }
 
 // Función para cargar datos en el modal de agregar seguimiento 
