@@ -28,6 +28,7 @@ function cDatSegEmpAux(button) {
             document.getElementById("mIdEntidad").value         = selectedData.bitacora?.ID_ENTIDAD || idEntidad || '';
             document.getElementById("mRucCatastro").value       = selectedData.bitacora?.RUC_CATASTRO || ruc || '';
             document.getElementById("mRazonSocial").value       = selectedData.bitacora?.RAZON_SOCIAL || '';
+
             // SERVICIOS PRESTADOS
             document.getElementById("mSoftwareFinanciero").checked  = selectedData.bitacora.SOFTWARE_FINANCIERO_Y_COMPUTACIONAL == 1;
             document.getElementById("mTransaccionalesPago").checked = selectedData.bitacora.TRANSACCIONALES_Y_DE_PAGO == 1;
@@ -86,24 +87,18 @@ function cDatSegEmpAux(button) {
 
 // Función para cargar datos en el modal de agregar seguimiento 
 function cDatAgregarSeg(btn) {
+    console.log ("cDatAgregarSeg:" + btn.dataset.flag);
+    
     const idEntidad = btn.dataset.id || '';
     const ruc = btn.dataset.ruc || '';
     const fecResolucion = btn.dataset.fecres || '';
     const periodo = btn.dataset.periodo || '';
     const fecCorte = btn.dataset.fcorte || '';
-    const numOfComunicacion = btn.dataset.numOfComunicacion || '';
-    const fechaOfComunicacion = btn.dataset.fechaOfComunicacion || '';
-    const numResolucion = btn.dataset.numResolucion || '';
-    const fechaResolucion = btn.dataset.fechaResolucion || '';
     // Datos cabecera
     document.getElementById('mAsIdEntidad').value = idEntidad;
     document.getElementById('mAsPeriodo').value = periodo;
     document.getElementById('mAsRucCatastro').value = ruc;
     document.getElementById('mAsFechaCorte').value = fecCorte;
-    document.getElementById('mAsNumOfComunicacion').value = numOfComunicacion
-    document.getElementById('mAsFechaOfComunicacion').value = fechaOfComunicacion
-    document.getElementById('mAsNumResolucion').value = numResolucion
-    document.getElementById('mAsFechare solucion').value = fechaResolucion
     // Modo nuevo seguimiento
     document.getElementById('tituloSeguimiento').textContent = 'Registro de Seguimiento';
     document.getElementById('mAsIdSeguimiento').value = '';
@@ -125,6 +120,11 @@ function cDatAgregarSeg(btn) {
         console.log(result);
         // Razon social
         document.getElementById('mAsRazonSocial').value = result.bitacora?.RAZON_SOCIAL || '';
+        // cabecera 
+        document.getElementById('mAsNumOfComunicacion').value = result.bitacora?.OF_COMUNICACION_RESOLUCION
+        document.getElementById('mAsFechaOfComunicacion').value = result.bitacora?.FECHA_OFICIO_COM_RES
+        document.getElementById('mAsNumResolucion').value = result.bitacora?.NUM_RESOLUCION_CALIFICACION
+        document.getElementById('mAsFechaResolucion').value = result.bitacora?.FECHA_RESOLUCION
         // Seguimientos
         if (result.segEnt) {
             result.segEnt.forEach(seg => {
@@ -441,4 +441,26 @@ function cDatCatastroEmpAux(button) {
         .catch(error => {
             console.error("Error al cargar los datos:", error);
         });
+}
+
+//funcion para preparar los reportes 
+function generarReporte(tipoReporte) {
+
+    Swal.fire({
+        title: 'Generando reporte...',
+        text: 'Espere un momento',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    window.location.href =
+        baseurl +
+        '/backend/empAux/reportes/empAux_xlsx.php?reporte=' +
+        encodeURIComponent(tipoReporte);
+
+    setTimeout(() => {
+        Swal.close();
+    }, 1500);
 }

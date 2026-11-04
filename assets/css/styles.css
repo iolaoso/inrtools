@@ -411,3 +411,13 @@ table.dataTable {
     font-size: 0.85rem;
     font-style: italic;
 }
+
+.reporte-card {
+    transition: all .25s ease;
+    cursor: pointer;
+}
+
+.reporte-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.20) !important;
+}

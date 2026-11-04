@@ -1,0 +1,40 @@
+<?php
+
+include_once __DIR__ . '/../config.php';
+include_once BASE_PATH . 'backend/session.php';
+include_once BASE_PATH . 'backend/conexiones/eeffempauxdb_connection.php';
+
+$sql="
+SELECT RUC
+    ,RAZON_SOCIAL
+    ,TIPO_ORGANIZACION
+    ,OF_COMUNICACION_RESOLUCION
+    ,FECHA_OFICIO_COM_RES
+    ,NUM_RESOLUCION_CALIFICACION
+    ,FECHA_RESOLUCION
+    ,FECHA_VENCIMIENTO_RES
+    ,SOFTWARE_FINANCIERO_Y_COMPUTACIONAL
+    ,TRANSACCIONALES_Y_DE_PAGO
+    ,TRANSPORTE_DE_ESPECIES_MONETARIAS_Y_DE_VALORES
+    ,RED_Y_CAJEROS_AUTOMATICOS
+    ,COBRANZAS
+    ,SERVICIOS_CONTABLES
+    ,GENERADORAS_DE_CARTERA
+    ,ADMINISTRADORAS_Y_OPERADORAS_DE_TARJETAS
+    ,GIRO_INMOBILIARIO
+    ,REPRESENTANTE_LEGAL
+    ,CORREO_ELECTRONICO
+    ,NUEVA
+    ,CON_CONDICION
+FROM catastro
+WHERE EST_REGISTRO = 1
+AND CON_CONDICION = 1
+";
+
+// Empresas Con Condición
+exportarExcel(
+    $connEmpAux,
+    $sql,
+    'Empresas_Con_Condicion',
+    'Empresas Con Condición'
+);

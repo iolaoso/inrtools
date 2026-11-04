@@ -42,16 +42,6 @@ $catMotCumplimiento = cat_mot_cumplimiento();
 $catTipoOficio = cat_tipo_oficio();
 // para revisar que llega en la variable 
 //var_dump($corteSeguimiento); 
-
-
-// Optimización usando array y condicionales simplificadas
-/* if ($rol_nombre == 'SUPERUSER') {
-    $result = obtenerGestionInrFull();
-} elseif (in_array($rol_nombre, $rolesDireccion)) {
-    $result = obtenerGestionInrDireccion($inrdireccion_id);
-} else {
-    $result = obtenerGestionInrPorUsuario($nickname);
-} */
 ?>
 
 <!DOCTYPE html>
@@ -219,6 +209,11 @@ $catTipoOficio = cat_tipo_oficio();
                                                             data-periodo="<?= htmlspecialchars($cSeg['NUM_PERIODO'] ?? '') ?>"
                                                             data-fcorte="<?= htmlspecialchars($cSeg['FECHA_CORTE'] ?? '') ?>"
                                                             data-razonsocial="<?= htmlspecialchars($cSeg['RAZON_SOCIAL'] ?? '') ?>"
+                                                            data-numOfComunicacion="<?= htmlspecialchars($cSeg['OF_COMUNICACION_RESOLUCION'] ?? '') ?>"
+                                                            data-fechaOfComunicacion="<?= htmlspecialchars($cSeg['FECHA_OFICIO_COM_RES'] ?? '') ?>"
+                                                            data-numResolucion="<?= htmlspecialchars($cSeg['NUM_RESOLUCION_CALIFICACION'] ?? '') ?>"
+                                                            data-fechaResolucion="<?= htmlspecialchars($cSeg['FECHA_RESOLUCION'] ) ?>"
+                                                            data-flag="1"
                                                             title="Agregar / Editar Seguimiento"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#agregarSeguimiento"
@@ -231,6 +226,137 @@ $catTipoOficio = cat_tipo_oficio();
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Reportes de empresas Auxiliares -->
+            <section class="row align-items-stretch">
+                <div class="col-md-12 mb-3">
+                    <div class="card h-100 d-flex flex-column border-secondary">
+                        <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">
+                                <i class="fas fa-chart-bar"></i>
+                                Reportes Empresas Auxiliares
+                            </h4>
+                            <span class="badge bg-dark fs-6">
+                                XLSX
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <!-- CATÁLOGO -->
+                                <div class="col-md-3">
+                                    <div class="card reporte-card border-primary h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-building fa-3x text-primary mb-3"></i>
+                                            <h5>Catastro General</h5>
+                                            <p class="small text-muted mb-3">Catastro completo de empresas auxiliares.</p>
+                                            <button class="btn btn-primary btn-sm w-100"
+                                                onclick="generarReporte('CATASTRO_GENERAL')">
+                                                <i class="fas fa-file-excel"></i> Descargar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- NUEVAS -->
+                                <div class="col-md-3">
+                                    <div class="card reporte-card border-success h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-star fa-3x text-success mb-3"></i>
+                                            <h5>Empresas Nuevas</h5>
+                                            <p class="small text-muted mb-3">Empresas calificadas recientemente.</p>
+                                            <button class="btn btn-success btn-sm w-100"
+                                                onclick="generarReporte('EMPRESAS_NUEVAS')">
+                                                <i class="fas fa-file-excel"></i> Descargar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CON CONDICION -->
+                                <div class="col-md-3">
+                                    <div class="card reporte-card border-danger h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-exclamation-triangle fa-3x text-danger mb-3"></i>
+                                            <h5>Con Condición</h5>
+                                            <p class="small text-muted mb-3">Empresas con observaciones pendientes.</p>
+                                            <button class="btn btn-danger btn-sm w-100"
+                                                onclick="generarReporte('CON_CONDICION')">
+                                                <i class="fas fa-file-excel"></i> Descargar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- SIN CONDICION -->
+                                <div class="col-md-3">
+                                    <div class="card reporte-card border-info h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-check-circle fa-3x text-info mb-3"></i>
+                                            <h5>Sin Condición</h5>
+                                            <p class="small text-muted mb-3">Empresas que cumplen los criterios.</p>
+                                            <button class="btn btn-info btn-sm w-100"
+                                                onclick="generarReporte('SIN_CONDICION')">
+                                                <i class="fas fa-file-excel"></i> Descargar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- SEGUIMIENTOS -->
+                                <div class="col-md-3">
+                                    <div class="card reporte-card border-secondary h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-clipboard-check fa-3x text-secondary mb-3"></i>
+                                            <h5>Seguimientos</h5>
+                                            <p class="small text-muted mb-3">Historial completo de seguimiento.</p>
+                                            <button class="btn btn-secondary btn-sm w-100"
+                                                onclick="generarReporte('SEGUIMIENTOS')">
+                                                <i class="fas fa-file-excel"></i> Descargar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- INCUMPLIDOS -->
+                                <div class="col-md-3">
+                                    <div class="card reporte-card border-danger h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-times-circle fa-3x text-danger mb-3"></i>
+                                            <h5>Incumplimientos</h5>
+                                            <p class="small text-muted mb-3">Casos con estados incumplidos.</p>
+                                            <button class="btn btn-danger btn-sm w-100"
+                                                onclick="generarReporte('INCUMPLIMIENTOS')">
+                                                <i class="fas fa-file-excel"></i> Descargar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- DNR -->
+                                <div class="col-md-3">
+                                    <div class="card reporte-card border-warning h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-file-signature fa-3x text-warning mb-3"></i>
+                                            <h5>Procesos DNR</h5>
+                                            <p class="small text-muted mb-3">Regularizaciones y prórrogas.</p>
+                                            <button class="btn btn-warning btn-sm w-100"
+                                                onclick="generarReporte('PROCESOS_DNR')">
+                                                <i class="fas fa-file-excel"></i> Descargar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- PORTAFOLIO -->
+                                <div class="col-md-3">
+                                    <div class="card reporte-card border-dark h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-users fa-3x text-dark mb-3"></i>
+                                            <h5>Portafolio</h5>
+                                            <p class="small text-muted mb-3">Empresas asignadas por analista.</p>
+                                            <button class="btn btn-dark btn-sm w-100"
+                                                onclick="generarReporte('PORTAFOLIO')">
+                                                <i class="fas fa-file-excel"></i> Descargar
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -696,10 +822,10 @@ $catTipoOficio = cat_tipo_oficio();
                                                 <label for="mAsFechaCorte" class="form-label">Fecha Corte</label>
                                                 <input type="text" class="form-control" id="mAsFechaCorte" disabled>
                                             </div>
-                                            <input type="text" class="form-control" id="mAsNumOfComunicacion" disabled>
-                                            <input type="text" class="form-control" id="mAsFechaOfComunicacion" disabled>
-                                            <input type="text" class="form-control" id="mAsNumResolucion" disabled>
-                                            <input type="text" class="form-control" id="mAsFechaResolucion" disabled>
+                                            <input type="text" class="" id="mAsNumOfComunicacion" readonly>
+                                            <input type="text" class="" id="mAsFechaOfComunicacion" readonly>
+                                            <input type="text" class="" id="mAsNumResolucion" readonly>
+                                            <input type="text" class="" id="mAsFechaResolucion" readonly>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-md-12">

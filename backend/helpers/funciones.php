@@ -1,16 +1,12 @@
 <?php
 
-/**
- * Escapa texto para mostrar en HTML
- */
+/** * Escapa texto para mostrar en HTML */
 function h($value): string
 {
     return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
 }
 
-/**
- * Normaliza nombres para columnas dinámicas
- */
+/*** Normaliza nombres para columnas dinámicas */
 function normalizarNombreColumna($texto): string
 {
     $texto = strtoupper($texto);
@@ -20,9 +16,7 @@ function normalizarNombreColumna($texto): string
     return trim($texto, '_');
 }
 
-/**
- * Registrar solicitud/reporte en tabla estructuras
- */
+/*** Registrar solicitud/reporte en tabla estructuras */
 function registrarEstructura(
     mysqli $conn,
     string $ruc,
@@ -85,9 +79,7 @@ function registrarEstructura(
     return $stmt->execute();
 }
 
-/**
- * Registrar gestión en INR
- */
+/*** Registrar gestión en INR*/
 function registrarGestionINR(
     mysqli $conn,
     string $direccion,
@@ -121,9 +113,7 @@ function registrarGestionINR(
     return $stmt->execute();
 }
 
-/**
- * Valida una cédula ecuatoriana.
- */
+/** * Valida una cédula ecuatoriana. */
 function validarCedula($cedula)
 {
     $cedula = preg_replace('/[^0-9]/', '', trim($cedula));
@@ -220,3 +210,6 @@ function validarRuc($ruc)
 
     return false;
 }
+
+/* exportar a excel  */
+include_once "exportador.php";

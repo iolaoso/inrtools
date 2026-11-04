@@ -179,6 +179,11 @@ document.getElementById('seguimientoForm').addEventListener('submit', function(e
         periodo: document.getElementById('mAsPeriodo').value,
         fechaCorte: document.getElementById('mAsFechaCorte').value,
                 
+        numOfComunicacionRes: document.getElementById('mAsNumOfComunicacion').value,
+        fechaOfComunicacionRes: document.getElementById('mAsFechaOfComunicacion').value,
+        numResolucion: document.getElementById('mAsNumResolucion').value,
+        fechaResolucion: document.getElementById('mAsFechaResolucion').value,
+
         oficioSeguimiento: document.getElementById('mAsOficioSeguimiento').value,
         fechaOfSeguimiento: document.getElementById('mAsFechaOfSeguimiento').value,
                 
