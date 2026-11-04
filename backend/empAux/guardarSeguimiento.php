@@ -15,19 +15,27 @@ $ruc = $data['ruc'];
 $periodo = $data['periodo'];
 $fechaCorte = $data['fechaCorte'];
 
-$idEstadoSeguimiento = $data['idEstadoSeguimiento'];
-$oficioSeguimiento = $data['oficioSeguimiento'];
+
+$oficioSeguimiento = mb_strtoupper($data['oficioSeguimiento']);
 $fechaOfSeguimiento = $data['fechaOfSeguimiento'];
 
-$idEstadoCumplimiento = $data['idEstadoCumplimiento'];
-$motivoIncumplimiento = !empty($data['motivoIncumplimiento'])
-    ? $data['motivoIncumplimiento']
-    : null;
-
 $indRegularizado = $data['indRegularizado'];
+
+$estadoSeguimiento  = ($indRegularizado == 1) ? 4: (!empty($data['estadoSeguimiento']) ? $data['estadoSeguimiento'] : null);
+$estadoCumplimiento = ($indRegularizado == 1) ? 1: (!empty($data['estadoCumplimiento']) ? $data['estadoCumplimiento'] : null);
+
+$motivoIncumplimiento = !empty($data['motivoIncumplimiento']) ? $data['motivoIncumplimiento'] : null;
+
+$tipoOficio = !empty($data['tipoOficio']) ? $data['tipoOficio']: null;
+
+$fechaReunion = !empty($data['fechaReunion']) ? $data['fechaReunion'] : null;
+$numActaReunion = !empty($data['numActaReunion']) ? trim($data['numActaReunion']) : null;
+$fechaInformeSeg = !empty($data['fechaInformeSeg']) ? $data['fechaInformeSeg'] : null;
+$numInformeSeg = !empty($data['numInformeSeg']) ? trim($data['numInformeSeg']) : null;
+
 $observacionDns = $data['observacionDns'];
 
-$usuario = $_SESSION['usuario'] ?? 'SISTEMA';
+$usuario = $_SESSION['nickname'] ?? 'Desconocido';
 
 try {
 
@@ -40,11 +48,16 @@ try {
             UPDATE seguimiento
             SET
                 OFICIO_SEGUIMIENTO = ?,
+                ID_TIPO_ULTIMO_OFICIO_ENVIADO = ?,
                 FECHA_OF_SEGUIMIENTO = ?,
                 ID_ESTADO_CUMPLIMIENTO = ?,
                 ID_MOTIVO_INCUMPLIMIENTO = ?,
                 ID_ESTADO_SEGUIMIENTO = ?,
                 IND_REGULARIZADO = ?,
+                FECHA_REUNION = ?,
+                NUM_ACTA_REUNION = ?,
+                FECHA_INFORME_SEG = ?,
+                NUM_INFORME_SEG = ?,
                 OBSERVACION_DNS = ?,
                 USR_CREACION = ?,
                 UPDATED_AT = NOW()
@@ -54,13 +67,18 @@ try {
         $stmt = $connEmpAux->prepare($sql);
 
         $stmt->bind_param(
-            "ssiiiissi",
+            "sisiiiissssssi",
             $oficioSeguimiento,
+            $tipoOficio,
             $fechaOfSeguimiento,
-            $idEstadoCumplimiento,
+            $estadoCumplimiento,
             $motivoIncumplimiento,
-            $idEstadoSeguimiento,
+            $estadoSeguimiento,
             $indRegularizado,
+            $fechaReunion,
+            $numActaReunion,
+            $fechaInformeSeg,
+            $numInformeSeg,
             $observacionDns,
             $usuario,
             $idSeguimiento
@@ -94,6 +112,21 @@ try {
         ->get_result()
         ->fetch_assoc()['NUMERO'];
 
+    // Desactivar seguimientos anteriores
+    $sqlUpdate = "
+        UPDATE seguimiento
+        SET EST_REGISTRO = 0,
+            UPDATED_AT = NOW()
+        WHERE ID_ENTIDAD = ?
+        AND EST_REGISTRO = 1
+    ";
+
+    $stmtUpdate = $connEmpAux->prepare($sqlUpdate);
+    $stmtUpdate->bind_param("i", $idEntidad);
+    $stmtUpdate->execute();
+
+
+    // Insertar nuevo seguimiento activo
     $sql = "
         INSERT INTO seguimiento(
             ID_ENTIDAD,
@@ -102,11 +135,16 @@ try {
             FECHA_CORTE,
             NUMERO_SEGUIMIENTO,
             OFICIO_SEGUIMIENTO,
+            ID_TIPO_ULTIMO_OFICIO_ENVIADO,
             FECHA_OF_SEGUIMIENTO,
             ID_ESTADO_CUMPLIMIENTO,
             ID_MOTIVO_INCUMPLIMIENTO,
             ID_ESTADO_SEGUIMIENTO,
             IND_REGULARIZADO,
+            FECHA_REUNION,
+            NUM_ACTA_REUNION,
+            FECHA_INFORME_SEG,
+            NUM_INFORME_SEG,
             OBSERVACION_DNS,
             EST_REGISTRO,
             USR_CREACION,
@@ -114,25 +152,32 @@ try {
             UPDATED_AT
         )
         VALUES (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, NOW(), NOW()
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, NOW(), NOW()
         )
     ";
 
     $stmt = $connEmpAux->prepare($sql);
 
+    $stmt = $connEmpAux->prepare($sql);
+
     $stmt->bind_param(
-        "isisissiiiiss",
+        "isisissiiiisssssss",
         $idEntidad,
         $ruc,
         $periodo,
         $fechaCorte,
         $numeroSeguimiento,
         $oficioSeguimiento,
+        $tipoOficio,
         $fechaOfSeguimiento,
-        $idEstadoCumplimiento,
+        $estadoCumplimiento,
         $motivoIncumplimiento,
-        $idEstadoSeguimiento,
+        $estadoSeguimiento,
         $indRegularizado,
+        $fechaReunion,
+        $numActaReunion,
+        $fechaInformeSeg,
+        $numInformeSeg,
         $observacionDns,
         $usuario
     );

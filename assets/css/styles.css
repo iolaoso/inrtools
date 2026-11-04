@@ -388,3 +388,26 @@ table.dataTable {
     margin: 0 !important;
 }
 
+#tablaHistorialSeguimientos th,
+#tablaHistorialSeguimientos td {
+    padding: 2px 4px;
+    font-size: 10px;
+}
+
+/* para campos requeridos */
+.lbl-required {
+    color: #b02a37;
+    font-weight: 600;
+}
+
+.lbl-required::after {
+    content: " *";
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.nota-obligatorio {
+    color: #dc3545;
+    font-size: 0.85rem;
+    font-style: italic;
+}

@@ -103,3 +103,11 @@
 
 <!-- chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+
+<!-- ========================================================= -->
+<!-- FECHAS -->
+<!-- ========================================================= -->
+
+<!-- moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>

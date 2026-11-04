@@ -168,7 +168,7 @@ $(document).ready(function() {
 
 });
 
-// 
+// envia la informacion a actualizar o insertar 
 document.getElementById('seguimientoForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const idSeguimiento = document.getElementById('mAsIdSeguimiento').value;
@@ -178,17 +178,23 @@ document.getElementById('seguimientoForm').addEventListener('submit', function(e
         ruc: document.getElementById('mAsRucCatastro').value,
         periodo: document.getElementById('mAsPeriodo').value,
         fechaCorte: document.getElementById('mAsFechaCorte').value,
-        idEstadoSeguimiento: document.getElementById('mAsIdEstadoSeguimiento').value, 
-        estadoSeguimiento: document.getElementById('mAsEstadoSeguimiento').value,
+                
         oficioSeguimiento: document.getElementById('mAsOficioSeguimiento').value,
         fechaOfSeguimiento: document.getElementById('mAsFechaOfSeguimiento').value,
-        idEstadoCumplimiento: document.getElementById('mAsIdEstadoCumplimiento').value, 
+                
+        estadoSeguimiento: document.getElementById('mAsEstadoSeguimiento').value,
         estadoCumplimiento: document.getElementById('mAsEstadoCumplimiento').value,
         motivoIncumplimiento: document.getElementById('mAsMotivoIncumplimiento').value,
+
+        tipoOficio: document.getElementById('mAsTipoOficio').value,
+        fechaReunion: document.getElementById('mAsFechaReunion').value,
+        numActaReunion: document.getElementById('mAsNumActaReunion').value,
+        fechaInformeSeg: document.getElementById('mAsFechaInformeSeg').value,
+        numInformeSeg: document.getElementById('mAsNumInformeSeg').value,
+        
         indRegularizado: document.getElementById('mAsIndRegularizado').checked ? 1 : 0,
         observacionDns: document.getElementById('mAsObservacionDns').value
     };
-
     var url = baseurl + '/backend/empAux/guardarSeguimiento.php'; 
     fetch(url, {
         method: 'POST',
@@ -239,6 +245,7 @@ document.getElementById('seguimientoForm').addEventListener('submit', function(e
     });
 });
 
+// limpia y vacia el formulario 
 document.getElementById('btnNuevoSeguimiento').addEventListener('click', () => {
     document.getElementById('mAsIdSeguimiento').value           = '';
     document.getElementById('mAsEstadoSeguimiento').value       = '';
@@ -250,53 +257,8 @@ document.getElementById('btnNuevoSeguimiento').addEventListener('click', () => {
     document.getElementById('mAsObservacionDns').value          = '';
     document.getElementById('tituloSeguimiento').textContent    = 'Registro de Seguimiento';
     document.getElementById('btnGuardarSeguimiento').innerHTML  = '<i class="fas fa-save"></i> Guardar';
+    actualizarBtnGenerarOficio();
 });
-
-/* document.getElementById('mAsSeguimientoExistente').addEventListener('change', function () {
-
-    const idSeguimiento = this.value;
-
-    if (!idSeguimiento) {
-        return;
-    }
-
-    fetch(`${baseurl}/backend/empAux/empAuxList.php?idSeguimiento=${idSeguimiento}`)
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('mAsIdSeguimiento').value =
-            data.ID_SEGUIMIENTO || '';
-        document.getElementById('mAsEstadoSeguimiento').value =
-            data.ID_ESTADO_SEGUIMIENTO || '';
-        document.getElementById('mAsOficioSeguimiento').value =
-            data.OFICIO_SEGUIMIENTO || '';
-        document.getElementById('mAsFechaOfSeguimiento').value =
-            data.FECHA_OF_SEGUIMIENTO || '';
-        document.getElementById('mAsEstadoCumplimiento').value =
-            data.ID_ESTADO_CUMPLIMIENTO || '';
-        document.getElementById('mAsMotivoIncumplimiento').value =
-            data.ID_MOTIVO_INCUMPLIMIENTO || '';
-        document.getElementById('mAsIndRegularizado').checked =
-            (data.IND_REGULARIZADO == 1);
-        document.getElementById('mAsObservacionDns').value =
-            data.OBSERVACION_DNS || '';
-        document.getElementById('tituloSeguimiento').textContent =
-            'Edición de Seguimiento';
-        document.getElementById('btnGuardarSeguimiento').innerHTML =
-            '<i class="fas fa-save"></i> Actualizar';
-
-    })
-    .catch(error => {
-        console.error(error);
-
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'No fue posible cargar el seguimiento.',
-            confirmButtonColor: '#dc3545'
-        });
-    });
-
-}); */
 
 //PARA VALIDAR Y GUARDAR EL FORM DEL PROCESO DNR
 document.getElementById('procesoDNRForm').addEventListener('submit', function(e) {
@@ -364,3 +326,13 @@ document.getElementById('procesoDNRForm').addEventListener('submit', function(e)
         });
     });
 });
+
+
+const selTipoOficio =
+    document.getElementById('mAsTipoOficio');
+
+if (selTipoOficio) {
+    selTipoOficio.addEventListener('change', () => {
+        actualizarBtnGenerarOficio();
+    });
+}

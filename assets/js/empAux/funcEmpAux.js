@@ -21,6 +21,7 @@ function cDatSegEmpAux(button) {
         })
         .then(selectedData => {
             if (!selectedData) return;
+            console.log("cDatSegEmpAux");
             console.log(selectedData);
             // DATOS GENERALES
             document.getElementById("mNumeroPeriodo").value     = selectedData.bitacora?.NUM_PERIODO || periodo || '';
@@ -90,11 +91,19 @@ function cDatAgregarSeg(btn) {
     const fecResolucion = btn.dataset.fecres || '';
     const periodo = btn.dataset.periodo || '';
     const fecCorte = btn.dataset.fcorte || '';
+    const numOfComunicacion = btn.dataset.numOfComunicacion || '';
+    const fechaOfComunicacion = btn.dataset.fechaOfComunicacion || '';
+    const numResolucion = btn.dataset.numResolucion || '';
+    const fechaResolucion = btn.dataset.fechaResolucion || '';
     // Datos cabecera
     document.getElementById('mAsIdEntidad').value = idEntidad;
     document.getElementById('mAsPeriodo').value = periodo;
     document.getElementById('mAsRucCatastro').value = ruc;
     document.getElementById('mAsFechaCorte').value = fecCorte;
+    document.getElementById('mAsNumOfComunicacion').value = numOfComunicacion
+    document.getElementById('mAsFechaOfComunicacion').value = fechaOfComunicacion
+    document.getElementById('mAsNumResolucion').value = numResolucion
+    document.getElementById('mAsFechare solucion').value = fechaResolucion
     // Modo nuevo seguimiento
     document.getElementById('tituloSeguimiento').textContent = 'Registro de Seguimiento';
     document.getElementById('mAsIdSeguimiento').value = '';
@@ -113,7 +122,7 @@ function cDatAgregarSeg(btn) {
     fetch(`${baseurl}/backend/empAux/empAuxList.php?${params.toString()}`)
     .then(response => response.json())
     .then(result => {
-        //console.log(result);
+        console.log(result);
         // Razon social
         document.getElementById('mAsRazonSocial').value = result.bitacora?.RAZON_SOCIAL || '';
         // Seguimientos
@@ -122,23 +131,24 @@ function cDatAgregarSeg(btn) {
                 // Historial
                 document.querySelector('#tablaHistorialSeguimientos tbody').innerHTML += `
                     <tr>
-                        <td class="text-center">${seg.NUMERO_SEGUIMIENTO}</td>
-                        <td>${seg.FECHA_OF_SEGUIMIENTO ?? ''}</td>
-                        <td>${seg.OFICIO_SEGUIMIENTO ?? ''}</td>
-                        <td>${seg.ESTADO_SEGUIMIENTO ?? ''}</td>
-                        <td>${seg.ESTADO_CUMPLIMIENTO ?? ''}</td>
-                        <td class="text-center">
+                        <td class="text-center align-middle">${seg.NUMERO_SEGUIMIENTO}</td>
+                        <td class="text-center align-middle">${seg.FECHA_OF_SEGUIMIENTO ?? ''}</td>
+                        <td class="align-middle">${seg.OFICIO_SEGUIMIENTO ?? ''}</td>
+                        <td class="text-center align-middle">${seg.DESC_ESTADO_SEG ?? ''}</td>
+                        <td class="text-center align-middle">${seg.DESC_ESTADO_CUMP ?? ''}</td>
+                        <td class="text-center align-middle">
                             ${seg.IND_REGULARIZADO == 1
                                 ? '<span class="badge bg-success">Sí</span>'
                                 : '<span class="badge bg-secondary">No</span>'}
                         </td>
-                        <td class="text-center">
+                        <td class="text-center align-middle">
                             <button
                                 type="button"
-                                class="btn btn-warning btn-sm"
-                                onclick="cargarSeguimiento(${seg.ID_SEGUIMIENTO})">
-                                <i class="fa fa-edit"></i>
-                            </button>
+                                class="btn btn-sm ${seg.EST_REGISTRO == 0 ? 'btn-secondary' : 'btn-warning'}"
+                                onclick="cargarSeguimiento(${seg.ID_SEGUIMIENTO})" 
+                                ${seg.EST_REGISTRO == 0 ? 'disabled' : ''}>
+                                <i class="fa ${seg.EST_REGISTRO == 0 ? 'fa-lock' : 'fa-edit'}"></i>
+                            </button>                            
                         </td>
                     </tr>
                 `; 
@@ -157,48 +167,49 @@ function cDatAgregarSeg(btn) {
 
 //para cargar el seguimiento al form
 function cargarSeguimiento(idSeguimiento) {
-
     fetch(
         `${baseurl}/backend/empAux/empAuxList.php?opt=seguimiento&idSeguimiento=${idSeguimiento}`
     )
     .then(response => response.json())
     .then(seg => {
+        console.log("CargarSeguimiento");
         console.log(seg);
         // Identificador
         document.getElementById('mAsIdSeguimiento').value =
             seg.ID_SEGUIMIENTO ?? '';
-        // Datos generales
-        /* document.getElementById('mAsIdEntidad').value =
-            seg.ID_ENTIDAD ?? '';
-        document.getElementById('mAsPeriodo').value =
-            seg.PERIODO ?? '';
-        document.getElementById('mAsRucCatastro').value =
-            seg.RUC ?? '';
-        document.getElementById('mAsFechaCorte').value =
-            seg.FECHA_CORTE ?? '';
-        document.getElementById('mAsRazonSocial').value =
-            seg.RAZON_SOCIAL ?? ''; */
-        // Estado (solo lectura)
-        document.getElementById('mAsIdEstadoSeguimiento').value =
-            seg.ID_ESTADO_CUMPLIMIENTO;
+        // Estados (solo lectura)
         document.getElementById('mAsEstadoSeguimiento').value =
-            seg.DESC_ESTADO_SEG ?? '';
-        document.getElementById('mAsIdEstadoCumplimiento').value =
-            seg.ID_ESTADO_CUMPLIMIENTO;
+            seg.ID_ESTADO_SEGUIMIENTO ?? '';
         document.getElementById('mAsEstadoCumplimiento').value =
-            seg.DESC_ESTADO_CUMPLIMIENTO ?? '';
-        // Datos editables
+            seg.ID_ESTADO_CUMPLIMIENTO ?? '';
+        // Tipo de oficio
+        document.getElementById('mAsTipoOficio').value =
+            seg.ID_TIPO_ULTIMO_OFICIO_ENVIADO ?? '';
+        // Motivo incumplimiento
+        document.getElementById('mAsMotivoIncumplimiento').value =
+            seg.ID_MOTIVO_INCUMPLIMIENTO ?? '';
+        // Oficio
         document.getElementById('mAsOficioSeguimiento').value =
             seg.OFICIO_SEGUIMIENTO ?? '';
         document.getElementById('mAsFechaOfSeguimiento').value =
             seg.FECHA_OF_SEGUIMIENTO ?? '';
-        document.getElementById('mAsMotivoIncumplimiento').value =
-            seg.ID_MOTIVO_INCUMPLIMIENTO ?? '';
+        // Reunión
+        document.getElementById('mAsFechaReunion').value =
+            seg.FECHA_REUNION ?? '';
+        document.getElementById('mAsNumActaReunion').value =
+            seg.NUM_ACTA_REUNION ?? '';
+        // Informe
+        document.getElementById('mAsFechaInformeSeg').value =
+            seg.FECHA_INFORME_SEG ?? '';
+        document.getElementById('mAsNumInformeSeg').value =
+            seg.NUM_INFORME_SEG ?? '';
+        // Observación
         document.getElementById('mAsObservacionDns').value =
             seg.OBSERVACION_DNS ?? '';
+        // Regularizado
         document.getElementById('mAsIndRegularizado').checked =
             parseInt(seg.IND_REGULARIZADO) === 1;
-        // Actualizar título y botón
+        // Actualizar interfaz
         document.getElementById('tituloSeguimiento').textContent =
             'Edición de Seguimiento';
         document.getElementById('btnGuardarSeguimiento').innerHTML =
@@ -217,6 +228,119 @@ function cargarSeguimiento(idSeguimiento) {
 
     });
 
+}
+
+// para mostrar el modal gwenerarOficio
+function abrirGenerarOficio() {
+    console.log("abrirGenerarOficio");
+    const periodo = document.getElementById('mAsPeriodo').value;
+    const ruc = document.getElementById('mAsRucCatastro').value;
+    const razonSocial = document.getElementById('mAsRazonSocial').value;
+    const fechCorte = document.getElementById('mAsFechaCorte').value;
+    const estSeguimiento = document.getElementById('mAsEstadoSeguimiento').value;
+    const estCumplimiento = document.getElementById('mAsEstadoCumplimiento').value;
+    const motIncumplimiento = document.getElementById('mAsMotivoIncumplimiento').value;
+    const tipoOfcio = document.getElementById('mAsTipoOficio').value;
+
+
+    if (!periodo) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Atención',
+            text: 'Se necesitan datos previos para poder generar el Oficio.'
+        });
+        return;
+    }
+
+    /* numResolucion
+    fechaRes
+    numOfComunicacion
+    fechaOfCOmunicacion */
+
+
+    console.log(document.getElementById('mAsIdSeguimiento').value);
+    // Datos básicos
+    document.getElementById('goNumeroPeriodo').value =
+        document.getElementById('mAsPeriodo').value;
+
+    document.getElementById('goIdEntidad').value =
+        document.getElementById('mAsIdEntidad').value;
+
+    document.getElementById('goRucCatastro').value =
+        document.getElementById('mAsRucCatastro').value;
+
+    document.getElementById('goRazonSocial').value =
+        document.getElementById('mAsRazonSocial').value;
+    
+    document.getElementById('goTipoOficio').value =
+        document.getElementById('mAsTipoOficio').value;
+    
+    /* document.getElementById('goTipoOficio').value =
+        document.getElementById('mAsTipoOficio').value; */
+
+    
+
+    // Cerrar modal Seguimiento
+    bootstrap.Modal.getInstance(
+        document.getElementById('agregarSeguimiento')
+    ).hide();
+
+    // Abrir modal Generar Oficio
+    setTimeout(() => {
+
+        const modalOficio =
+            new bootstrap.Modal(
+                document.getElementById('generarOficio')
+            );
+
+        modalOficio.show();
+
+        // Aquí puedes luego llamar:
+        // cargarDatosOficio(idSeguimiento);
+
+    }, 300);
+}
+
+/* Función para volver al seguimiento */
+function volverSeguimiento() {
+    bootstrap.Modal.getInstance(
+        document.getElementById('generarOficio')
+    ).hide();
+    setTimeout(() => {
+        new bootstrap.Modal(
+            document.getElementById('agregarSeguimiento')
+        ).show();
+    }, 300);
+}
+
+// controla el boton generar Oficio
+function actualizarBtnGenerarOficio() {
+    const tipoOficio =
+        document.getElementById('mAsTipoOficio').value;
+    const btn =
+        document.getElementById('btnGenerarOficio');
+    if (!tipoOficio || tipoOficio === '0') {
+        btn.disabled = true;
+        btn.classList.remove(
+            'btn-outline-primary',
+            'btn-primary'
+        );
+        btn.classList.add(
+            'btn-secondary'
+        );
+        btn.title =
+            'Seleccione un tipo de oficio';
+    } else {
+        btn.disabled = false;
+        btn.classList.remove(
+            'btn-secondary'
+        );
+        btn.classList.add(
+            'btn-outline-primary'
+        );
+        btn.title =
+            'Generar Oficio';
+    }
 }
 
 // Función para cargar datos en el modal de agregar seguimiento 

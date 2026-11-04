@@ -39,6 +39,7 @@ if (in_array($rol_nombre, $rolesDireccion)) {
 $catEstSeguimiento = cat_est_seguimiento();
 $catEstCumplimiento = cat_est_cumplimiento();
 $catMotCumplimiento = cat_mot_cumplimiento(); 
+$catTipoOficio = cat_tipo_oficio();
 // para revisar que llega en la variable 
 //var_dump($corteSeguimiento); 
 
@@ -223,15 +224,7 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                                                             data-bs-target="#agregarSeguimiento"
                                                             onclick="cDatAgregarSeg(this)">
                                                             <i class="fa fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-dark detalle-btn btn-sm"
-                                                            title="Generar Oficio"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#generarOficio"
-                                                            onclick="">
-                                                            
-                                                            <i class="fa-regular fa-file-word"></i> 
-                                                        </button>
+                                                        </button>                                                        
                                                     </div>
                                                 </td>
                                             </tr>
@@ -562,190 +555,7 @@ $catMotCumplimiento = cat_mot_cumplimiento();
         </div>
     </div>
 
-    <!-- Modal 2: agregarSeguimiento -->
-    <div class="modal fade" id="agregarSeguimiento" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="tituloSeguimiento">
-                        Registro de Seguimiento
-                    </h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col col-md-6">
-                            <!-- HISTORIAL -->
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        Historial de Seguimientos
-                                    </div>
-                                    <div class="card-body p-2">
-                                        <table class="table table-sm table-bordered table-hover mb-0"
-                                            id="tablaHistorialSeguimientos">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width:10%">#</th>
-                                                    <th style="width:10%">Fecha</th>
-                                                    <th style="width:20%">Oficio</th>
-                                                    <th style="width:10%">Est</th>
-                                                    <th style="width:20%">Cump</th>
-                                                    <th style="width:20%">Reg</th>
-                                                    <th style="width:10%">Act</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    Nuevo Seguimiento 
-                                </div>
-                                <div class="card-body p-2">                                    
-                                    <form id="seguimientoForm">
-                                        <!-- ID oculto para edición -->
-                                        <input type="hidden" id="mAsIdSeguimiento">
-                                        <!-- DATOS ENTIDAD -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-2">
-                                                <label for="mAsIdEntidad" class="form-label">ID</label>
-                                                <input type="text" class="form-control" id="mAsIdEntidad" disabled>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label for="mAsPeriodo" class="form-label">Periodo</label>
-                                                <input type="text" class="form-control" id="mAsPeriodo" disabled>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <label for="mAsRucCatastro" class="form-label">RUC</label>
-                                                <input type="text" class="form-control" id="mAsRucCatastro" disabled>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label for="mAsFechaCorte" class="form-label">Fecha Corte</label>
-                                                <input type="text" class="form-control" id="mAsFechaCorte" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="row mb3">
-                                            <div class="col-md-12">
-                                                <label for="mAsRazonSocial" class="form-label">Razón Social</label>
-                                                <input type="text" class="form-control" id="mAsRazonSocial" disabled>
-                                            </div>
-                                        </div>
-
-                                        <!-- DATOS DEL SEGUIMIENTO -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="mAsEstadoSeguimiento" class="form-label">
-                                                    Estado Seguimiento
-                                                </label>
-                                                <input type="hidden" id="mAsIdEstadoSeguimiento">
-                                                <input type="text" class="form-control" id="mAsEstadoSeguimiento" readonly>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="mAsEstadoCumplimiento" class="form-label">
-                                                    Estado Cumplimiento
-                                                </label>
-                                                <input type="hidden" id="mAsIdEstadoCumplimiento">
-                                                <input type="text" class="form-control" id="mAsEstadoCumplimiento" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-md-8">
-                                                <label for="mAsOficioSeguimiento" class="form-label">
-                                                    Oficio Seguimiento
-                                                </label>
-                                                <input type="text" class="form-control" id="mAsOficioSeguimiento" required>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="mAsFechaOfSeguimiento" class="form-label">
-                                                    Fecha Oficio
-                                                </label>
-                                                <input type="date" class="form-control" id="mAsFechaOfSeguimiento" required>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            
-                                            <div class="col-md-6">
-                                                <label for="mAsMotivoIncumplimiento" class="form-label">
-                                                    Motivo Incumplimiento
-                                                </label>
-                                                <select class="form-control"
-                                                    id="mAsMotivoIncumplimiento">
-                                                    <option value="">
-                                                        Seleccione...
-                                                    </option>
-                                                    <?php foreach ($catMotCumplimiento as $mot): ?>
-                                                    <option value="<?= htmlspecialchars($mot['ID']) ?>">
-                                                        <?= htmlspecialchars($mot['DESCRIPCION']) ?>
-                                                    </option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">                                            
-                                            <div class="col-md-9">
-                                                <label for="mAsObservacionDns" class="form-label">
-                                                    Observación DNS
-                                                </label>
-                                                <textarea class="form-control" id="mAsObservacionDns" rows="1" maxlength="500" required></textarea>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label class="form-label">Regularizado</label>
-                                                <div class="form-check mt-2">
-                                                    <input
-                                                        class="form-check-input"
-                                                        type="checkbox"
-                                                        id="mAsIndRegularizado">
-                                                    <label
-                                                        class="form-check-label"
-                                                        for="mAsIndRegularizado">
-                                                        Sí
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-                        Cancelar
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-outline-primary"
-                        id="btnNuevoSeguimiento">
-                        <i class="fas fa-plus"></i>
-                        Nuevo Seguimiento
-                    </button>
-                    <button
-                        type="submit"
-                        form="seguimientoForm"
-                        class="btn btn-success"
-                        id="btnGuardarSeguimiento">
-                        <i class="fas fa-save"></i>
-                        Guardar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- Modal 3: agregarProcesoDNR -->
+    <!-- Modal 2: agregarProcesoDNR -->
     <div class="modal fade" id="agregarProcesoDNR" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
@@ -820,6 +630,304 @@ $catMotCumplimiento = cat_mot_cumplimiento();
         </div>
     </div>
 
+    <!-- Modal 3: agregarSeguimiento -->
+    <div class="modal fade" id="agregarSeguimiento" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="tituloSeguimiento">
+                        Registro de Seguimiento
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col col-md-6">
+                            <!-- HISTORIAL -->
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Historial de Seguimientos
+                                    </div>
+                                    <div class="card-body p-2">
+                                        <table class="table table-sm table-bordered table-hover mb-0"
+                                            id="tablaHistorialSeguimientos">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center align-middle" style="width:5%">#</th>
+                                                    <th class="text-center align-middle" style="width:15%">Fecha</th>
+                                                    <th class="text-center align-middle" style="width:25%">Oficio</th>
+                                                    <th class="text-center align-middle" style="width:15%">Est</th>
+                                                    <th class="text-center align-middle" style="width:15%">Cump</th>
+                                                    <th class="text-center align-middle" style="width:10%">Reg</th>
+                                                    <th class="text-center align-middle" style="width:15%">Act</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    Nuevo Seguimiento 
+                                </div>
+                                <div class="card-body p-2">                                    
+                                    <form id="seguimientoForm">
+                                        <input type="hidden" id="mAsIdSeguimiento">
+                                        <!-- DATOS ENTIDAD -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-2">
+                                                <label for="mAsIdEntidad" class="form-label">ID</label>
+                                                <input type="text" class="form-control" id="mAsIdEntidad" disabled>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="mAsPeriodo" class="form-label">Periodo</label>
+                                                <input type="text" class="form-control" id="mAsPeriodo" disabled>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label for="mAsRucCatastro" class="form-label">RUC</label>
+                                                <input type="text" class="form-control" id="mAsRucCatastro" disabled>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="mAsFechaCorte" class="form-label">Fecha Corte</label>
+                                                <input type="text" class="form-control" id="mAsFechaCorte" disabled>
+                                            </div>
+                                            <input type="text" class="form-control" id="mAsNumOfComunicacion" disabled>
+                                            <input type="text" class="form-control" id="mAsFechaOfComunicacion" disabled>
+                                            <input type="text" class="form-control" id="mAsNumResolucion" disabled>
+                                            <input type="text" class="form-control" id="mAsFechaResolucion" disabled>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label for="mAsRazonSocial" class="form-label">
+                                                    Razón Social
+                                                </label>
+                                                <input type="text"
+                                                    class="form-control"
+                                                    id="mAsRazonSocial"
+                                                    disabled>
+                                            </div>
+                                        </div>
+                                        <!-- DATOS DEL SEGUIMIENTO -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="mAsEstadoSeguimiento"
+                                                    class="form-label lbl-required">
+                                                    Estado Seguimiento
+                                                </label>
+                                                <select class="form-control"
+                                                    id="mAsEstadoSeguimiento"
+                                                    required>
+                                                    <option value="">Seleccione...</option>
+                                                    <?php foreach ($catEstSeguimiento as $eseg): ?>
+                                                    <option value="<?= htmlspecialchars($eseg['ID']) ?>">
+                                                        <?= htmlspecialchars($eseg['DESCRIPCION']) ?>
+                                                    </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="mAsEstadoCumplimiento"
+                                                    class="form-label lbl-required">
+                                                    Estado Cumplimiento
+                                                </label>
+                                                <select class="form-control"
+                                                    id="mAsEstadoCumplimiento"
+                                                    required>
+                                                    <option value="">Seleccione...</option>
+                                                    <?php foreach ($catEstCumplimiento as $cump): ?>
+                                                    <option value="<?= htmlspecialchars($cump['ID']) ?>">
+                                                        <?= htmlspecialchars($cump['DESCRIPCION']) ?>
+                                                    </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>                                        
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="mAsMotivoIncumplimiento"
+                                                    class="form-label lbl-required">
+                                                    Motivo Incumplimiento
+                                                </label>
+                                                <select class="form-control" id="mAsMotivoIncumplimiento" required>
+                                                    <option value="">Seleccione...</option>
+                                                    <?php foreach ($catMotCumplimiento as $mot): ?>
+                                                    <option value="<?= htmlspecialchars($mot['ID']) ?>">
+                                                        <?= htmlspecialchars($mot['DESCRIPCION']) ?>
+                                                    </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="mAsTipoOficio" class="form-label lbl-required">
+                                                Tipo de Oficio
+                                                </label>
+                                                <div class="input-group">
+                                                    <select
+                                                        class="form-select"
+                                                        id="mAsTipoOficio"
+                                                        required>
+                                                        <option value="">Seleccione...</option>
+                                                        <?php foreach ($catTipoOficio as $tofi): ?>
+                                                        <option value="<?= htmlspecialchars($tofi['ID']) ?>">
+                                                            <?= htmlspecialchars($tofi['DESCRIPCION']) ?>
+                                                        </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                    <button
+                                                        id="btnGenerarOficio"
+                                                        type="button"
+                                                        class="btn btn-secondary"
+                                                        title="Generar Oficio"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#generarOficio"
+                                                         onclick="abrirGenerarOficio()"
+                                                        disabled>
+                                                        <i class="fa-regular fa-file-word"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-8">
+                                                <label for="mAsOficioSeguimiento"
+                                                    class="form-label">
+                                                    Oficio Seguimiento
+                                                </label>
+                                                <input type="text"
+                                                    class="form-control"
+                                                    id="mAsOficioSeguimiento"
+                                                    style="text-transform: uppercase;"
+                                                    maxlength="140">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="mAsFechaOfSeguimiento"
+                                                    class="form-label">
+                                                    Fecha Oficio
+                                                </label>
+                                                <input type="date"
+                                                    class="form-control"
+                                                    id="mAsFechaOfSeguimiento">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label for="mAsFechaReunion"
+                                                    class="form-label">
+                                                    Fecha Reunión
+                                                </label>
+                                                <input type="date"
+                                                    class="form-control"
+                                                    id="mAsFechaReunion">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label for="mAsNumActaReunion"
+                                                    class="form-label">
+                                                    Nro. Acta Reunión
+                                                </label>
+                                                <input type="text"
+                                                    class="form-control"
+                                                    id="mAsNumActaReunion"
+                                                    style="text-transform: uppercase;"
+                                                    maxlength="140">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label for="mAsFechaInformeSeg"
+                                                    class="form-label">
+                                                    Fecha Informe Seguimiento
+                                                </label>
+                                                <input type="date"
+                                                    class="form-control"
+                                                    id="mAsFechaInformeSeg">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label for="mAsNumInformeSeg"
+                                                    class="form-label">
+                                                    Nro. Informe Seguimiento
+                                                </label>
+                                                <input type="text"
+                                                    class="form-control"
+                                                    id="mAsNumInformeSeg"
+                                                    style="text-transform: uppercase;"
+                                                    maxlength="140">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-9">
+                                                <label for="mAsObservacionDns"
+                                                    class="form-label lbl-required">
+                                                    Observación DNS
+                                                </label>
+                                                <textarea
+                                                    class="form-control"
+                                                    id="mAsObservacionDns"
+                                                    rows="2"
+                                                    maxlength="500"
+                                                    required></textarea>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">
+                                                    Regularizado
+                                                </label>
+                                                <div class="form-check mt-2">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        id="mAsIndRegularizado">
+                                                    <label
+                                                        class="form-check-label"
+                                                        for="mAsIndRegularizado">
+                                                        Sí
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <span class="nota-obligatorio">
+                                                    * Campos obligatorios
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary"
+                        id="btnNuevoSeguimiento">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Seguimiento
+                    </button>
+                    <button
+                        type="submit"
+                        form="seguimientoForm"
+                        class="btn btn-success"
+                        id="btnGuardarSeguimiento">
+                        <i class="fas fa-save"></i>
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal 4: generarOficio -->
     <div class="modal fade" id="generarOficio" tabindex="-1">
         <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
@@ -832,91 +940,67 @@ $catMotCumplimiento = cat_mot_cumplimiento();
                 </div>
                 <div class="modal-body">
                     <!-- ENTIDAD CALIFICADA -->
-                    <div class="row mb-2">
+                    <div class="row mb-3">
                         <div class="col-md-2">
-                            <label for="mNumeroPeriodo" class="form-label">Período</label>
-                            <input type="text" class="form-control" id="mNumeroPeriodo" readonly>
+                            <label for="goNumeroPeriodo" class="form-label">Período</label>
+                            <input type="text" class="form-control" id="goNumeroPeriodo" readonly>
                         </div>
                         <div class="col-md-2">
-                            <label for="mIdEntidad" class="form-label">ID Entidad</label>
-                            <input type="text" class="form-control" id="mIdEntidad" readonly>
+                            <label for="goIdEntidad" class="form-label">ID Entidad</label>
+                            <input type="text" class="form-control" id="goIdEntidad" readonly>
                         </div>
                         <div class="col-md-3">
-                            <label for="mRucCatastro" class="form-label">RUC</label>
-                            <input type="text" class="form-control" id="mRucCatastro" readonly>
+                            <label for="goRucCatastro" class="form-label">RUC</label>
+                            <input type="text" class="form-control" id="goRucCatastro" readonly>
                         </div>
                         <div class="col-md-5">
-                            <label for="mRazonSocial" class="form-label">Razón Social</label>
-                            <input type="text" class="form-control" id="mRazonSocial" readonly>
+                            <label for="goRazonSocial" class="form-label">Razón Social</label>
+                            <input type="text" class="form-control" id="goRazonSocial" readonly>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <label class="form-label">Oficio de Seguimiento</label>
-                            <select class="form-select" id="mOficioSeguimiento">
-                                <option value="">Seleccione...</option>
-                            </select>
+                            <label for="goTipoOficio" class="form-label">Tipo de Oficio</label>
+                            <input type="text" class="form-control" id="goTipoOficio" readonly>
                         </div>
                     </div>
-                    <table class="table table-sm table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Período</th>
-                                <th>Fecha Corte</th>
-                                <th>Fecha Límite</th>
-                                <th>Días de Atraso</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tblPendientes">
-                        </tbody>
-                    </table>
                     <!-- INFORMACION DE CALIFICACION -->
                     <div class="row mb-3">
                         <div class="col-md-3">
-                            <label for="mNumResolucionCalificacion" class="form-label">
-                                Resolución de Calificación
-                            </label>
-                            <input type="text" class="form-control" id="mNumResolucionCalificacion" readonly>
+                            <label for="goNumResolucionCalificacion" class="form-label">Resolución de Calificación</label>
+                            <input type="text" class="form-control" id="goNumResolucionCalificacion" readonly>
                         </div>
                         <div class="col-md-2">
-                            <label for="mFechaResolucion" class="form-label">
-                                Fecha Resolución
-                            </label>
-                            <input type="date" class="form-control" id="mFechaResolucion" readonly>
+                            <label for="goFechaResolucion" class="form-label">Fecha Resolución</label>
+                            <input type="date"class="form-control" id="goFechaResolucion" readonly>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label class="form-label">
-                                Vista previa del oficio
-                            </label>
-
-                            <textarea
-                                id="mTextoOficio"
-                                class="form-control"
-                                rows="15">
-                            </textarea>
+                            <label class="form-label">Vista previa del oficio</label>
+                            <textarea id="goTextoOficio" class="form-control" rows="15"></textarea>
                         </div>
                     </div>
-
-                   
                 </div>
                 <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">
-                    Cerrar
+                <button type="button" class="btn btn-outline-secondary" onclick="volverSeguimiento()">
+                    <i class="fas fa-arrow-left"></i>
+                    Seguimiento
                 </button>
-
-                <button id="btnPrevisualizar" class="btn btn-info">
-                    Previsualizar
-                </button>
-
                 <button id="btnGenerarWord" class="btn btn-primary">
                     Generar Oficio
+                </button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cerrar
                 </button>
             </div>
             </div>
         </div>
     </div>
+
+    
+
+    
    
     <!-- Modal Buscar Catastro-->
     <?php include BASE_PATH . 'frontend/partials/modalCatastro.php'; ?>

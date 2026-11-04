@@ -4,6 +4,9 @@ include BASE_PATH . 'backend/session.php';
 include BASE_PATH . 'backend/indRanking/indrankingList.php'; // consulta el reporte de calificación 
 
 $datosRiesgo = obtenerRiesgoEntidad();
+
+//var_dump($datosRiesgo);
+
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +70,7 @@ $datosRiesgo = obtenerRiesgoEntidad();
                                         </tr>
                                     </thead>
                                     <tbody id="tbodyRankingCalf">
+                                        <!-- aqui agrego los datos  -->
                                         <?php foreach ($datosRiesgo['data'] as $riesgoEntidad): ?>
                                             <tr>
                                                 <td><?= h($riesgoEntidad['ruc']) ?></td>
@@ -78,8 +82,8 @@ $datosRiesgo = obtenerRiesgoEntidad();
                                                 <td><?= h($riesgoEntidad['c_calidad_adm_riesgo']) ?></td>
                                                 <td><?= h($riesgoEntidad['causal_liquidacion_cat']) ?></td>
                                                 <td><?= h($riesgoEntidad['criterio_solv_seps_cat']) ?></td>
-                                                <td style="<?= claseNivelRiesgo($riesgoEntidad['calif_riesgo_def_categ_unif']) ?>" class="text-center fw-bold">
-                                                    <?= h($riesgoEntidad['calif_riesgo_def_categ_unif']) ?></td>
+                                                <td style="<?= claseNivelRiesgo($riesgoEntidad['calif_riesgo_def_cat_unif']) ?>" class="text-center fw-bold">
+                                                    <?= h($riesgoEntidad['calif_riesgo_def_cat_unif']) ?></td>
                                                 <td><?= h($riesgoEntidad['metodologia_unif']) ?></td>
                                             </tr>
                                         <?php endforeach; ?>

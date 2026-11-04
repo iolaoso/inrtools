@@ -307,29 +307,45 @@ function observaciones_DNR_id($idEntidad, $ruc, $fecResolucion, $periodo, $fecCo
 function seguimiento_id($idSeguimiento)
 {
     global $connEmpAux;
-    $sql = "SELECT s.ID_SEGUIMIENTO,
-                s.ID_ENTIDAD,
-                s.RUC,
-                s.FECHA_CORTE,
-                s.NUMERO_SEGUIMIENTO,
-                s.OFICIO_SEGUIMIENTO,
-                s.FECHA_OF_SEGUIMIENTO,
-                s.ID_ESTADO_CUMPLIMIENTO,
-                cec.CODIGO as COD_ESTADO_CUMPLIMIENTO,
-                cec.DESCRIPCION as DESC_ESTADO_CUMPLIMIENTO, 
-                s.ID_MOTIVO_INCUMPLIMIENTO,
-                cmi.CODIGO as COD_MOTIVO_INCUMP,
-                cmi.DESCRIPCION as DESC_MOTIVO_INCUMP, 
-                s.ID_ESTADO_SEGUIMIENTO,
-                ces.CODIGO as COD_ESTADO_SEG,
-                cec.DESCRIPCION as DESC_ESTADO_SEG,
-                s.IND_REGULARIZADO,
-                s.OBSERVACION_DNS
-            FROM seguimiento s
-            left join cat_estado_cumplimiento cec on s.ID_ESTADO_CUMPLIMIENTO = cec.ID  
-            left join cat_motivo_incumplimiento cmi on s.ID_MOTIVO_INCUMPLIMIENTO = cmi.ID
-            left join cat_estado_seguimiento ces on s.ID_ESTADO_SEGUIMIENTO = ces.ID 
-            WHERE ID_SEGUIMIENTO = ?";
+    $sql = "
+        SELECT
+            s.ID_SEGUIMIENTO,
+            s.ID_ENTIDAD,
+            s.RUC,
+            s.PERIODO,
+            s.FECHA_CORTE,
+            s.NUMERO_SEGUIMIENTO,
+            s.OFICIO_SEGUIMIENTO,
+            s.ID_TIPO_ULTIMO_OFICIO_ENVIADO,
+            cto.CODIGO AS COD_TIPO_OFICIO,
+            cto.DESCRIPCION AS DESC_TIPO_OFICIO,
+            s.FECHA_OF_SEGUIMIENTO,
+            s.ID_ESTADO_CUMPLIMIENTO,
+            cec.CODIGO AS COD_ESTADO_CUMPLIMIENTO,
+            cec.DESCRIPCION AS DESC_ESTADO_CUMPLIMIENTO,
+            s.ID_MOTIVO_INCUMPLIMIENTO,
+            cmi.CODIGO AS COD_MOTIVO_INCUMP,
+            cmi.DESCRIPCION AS DESC_MOTIVO_INCUMP,
+            s.ID_ESTADO_SEGUIMIENTO,
+            ces.CODIGO AS COD_ESTADO_SEG,
+            ces.DESCRIPCION AS DESC_ESTADO_SEG,
+            s.IND_REGULARIZADO,
+            s.FECHA_REUNION,
+            s.NUM_ACTA_REUNION,
+            s.FECHA_INFORME_SEG,
+            s.NUM_INFORME_SEG,
+            s.OBSERVACION_DNS,
+            s.EST_REGISTRO,
+            s.USR_CREACION,
+            s.CREATED_AT,
+            s.UPDATED_AT
+        FROM seguimiento s
+        LEFT JOIN cat_tipo_oficio cto ON s.ID_TIPO_ULTIMO_OFICIO_ENVIADO = cto.ID
+        LEFT JOIN cat_estado_cumplimiento cec ON s.ID_ESTADO_CUMPLIMIENTO = cec.ID
+        LEFT JOIN cat_motivo_incumplimiento cmi ON s.ID_MOTIVO_INCUMPLIMIENTO = cmi.ID
+        LEFT JOIN cat_estado_seguimiento ces ON s.ID_ESTADO_SEGUIMIENTO = ces.ID
+        WHERE s.ID_SEGUIMIENTO = ?
+    ";
     $stmt = $connEmpAux->prepare($sql);
     $stmt->bind_param("i", $idSeguimiento);
     $stmt->execute();
@@ -340,18 +356,25 @@ function seguimientos_entidad($idEntidad, $ruc, $periodo)
 {
     global $connEmpAux;
     $sql = "
-        SELECT
-            ID_SEGUIMIENTO,
-            NUMERO_SEGUIMIENTO,
-            OFICIO_SEGUIMIENTO,
-            FECHA_OF_SEGUIMIENTO
-        FROM seguimiento
-        WHERE EST_REGISTRO = 1
-          AND ID_ENTIDAD = ?
-          AND RUC = ?
-          AND PERIODO = ?
-          AND IND_REGULARIZADO = 0
-        ORDER BY NUMERO_SEGUIMIENTO DESC
+         select s.ID_SEGUIMIENTO,
+            s.NUMERO_SEGUIMIENTO,
+            s.OFICIO_SEGUIMIENTO,
+            s.FECHA_OF_SEGUIMIENTO,
+            s.ID_ESTADO_SEGUIMIENTO,
+            ces.DESCRIPCION AS DESC_ESTADO_SEG,
+            s.ID_ESTADO_CUMPLIMIENTO,
+            cec.DESCRIPCION AS DESC_ESTADO_CUMP,
+            s.ID_MOTIVO_INCUMPLIMIENTO,
+            cmi.DESCRIPCION AS DESC_MOTIVO_INCUMP,
+            s.EST_REGISTRO 
+        FROM seguimiento s
+        left join cat_estado_cumplimiento cec on s.ID_ESTADO_CUMPLIMIENTO = cec.ID  
+        left join cat_motivo_incumplimiento cmi on s.ID_MOTIVO_INCUMPLIMIENTO = cmi.ID
+        left join cat_estado_seguimiento ces on s.ID_ESTADO_SEGUIMIENTO = ces.ID 
+        WHERE s.ID_ENTIDAD = ?
+          AND s.RUC = ?
+          AND s.PERIODO = ?
+        ORDER BY s.NUMERO_SEGUIMIENTO DESC
     ";
     $stmt = $connEmpAux->prepare($sql);
     $stmt->bind_param(
@@ -405,6 +428,19 @@ function cat_mot_cumplimiento()
     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 
+function cat_tipo_oficio()
+{
+    global $connEmpAux;
+    $sql = "select ID,
+                CODIGO,
+                DESCRIPCION
+            from cat_tipo_oficio
+            where EST_REGISTRO = 1
+            order BY DESCRIPCION";
+    $stmt = $connEmpAux->prepare($sql);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
 
 /* function obtenerEmpEEFFPorUsuario($nickname)
 {
