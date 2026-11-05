@@ -88,17 +88,20 @@ function cDatSegEmpAux(button) {
 // Función para cargar datos en el modal de agregar seguimiento 
 function cDatAgregarSeg(btn) {
     console.log ("cDatAgregarSeg:" + btn.dataset.flag);
-    
+    //lo que viene en del boton 
+    //console.log(btn.dataset);
     const idEntidad = btn.dataset.id || '';
     const ruc = btn.dataset.ruc || '';
     const fecResolucion = btn.dataset.fecres || '';
     const periodo = btn.dataset.periodo || '';
     const fecCorte = btn.dataset.fcorte || '';
+    const fecProxEnvio = btn.dataset.fproxenvio || '';
+    
     // Datos cabecera
     document.getElementById('mAsIdEntidad').value = idEntidad;
     document.getElementById('mAsPeriodo').value = periodo;
     document.getElementById('mAsRucCatastro').value = ruc;
-    document.getElementById('mAsFechaCorte').value = fecCorte;
+    document.getElementById('mAsFechaCorte').value = fecCorte && fecCorte.trim() !== '' ? fecCorte : fecProxEnvio;
     // Modo nuevo seguimiento
     document.getElementById('tituloSeguimiento').textContent = 'Registro de Seguimiento';
     document.getElementById('mAsIdSeguimiento').value = '';
@@ -214,6 +217,8 @@ function cargarSeguimiento(idSeguimiento) {
             'Edición de Seguimiento';
         document.getElementById('btnGuardarSeguimiento').innerHTML =
             '<i class="fas fa-save"></i> Actualizar';
+        
+        actualizarBtnGenerarOficio();
     })
     .catch(error => {
 
@@ -228,89 +233,152 @@ function cargarSeguimiento(idSeguimiento) {
 
     });
 
+
+
 }
 
 // para mostrar el modal gwenerarOficio
-function abrirGenerarOficio() {
-    console.log("abrirGenerarOficio");
-    const periodo = document.getElementById('mAsPeriodo').value;
-    const ruc = document.getElementById('mAsRucCatastro').value;
-    const razonSocial = document.getElementById('mAsRazonSocial').value;
-    const fechCorte = document.getElementById('mAsFechaCorte').value;
-    const estSeguimiento = document.getElementById('mAsEstadoSeguimiento').value;
-    const estCumplimiento = document.getElementById('mAsEstadoCumplimiento').value;
-    const motIncumplimiento = document.getElementById('mAsMotivoIncumplimiento').value;
-    const tipoOfcio = document.getElementById('mAsTipoOficio').value;
+// Mostrar modal Generar Oficio
+function abrirGenerarOficio(){
 
+    // Obtener datos
+    const periodo=document.getElementById('mAsPeriodo').value;
+    const ruc=document.getElementById('mAsRucCatastro').value;
+    const razonSocial=document.getElementById('mAsRazonSocial').value;
+    const fechaCorte=document.getElementById('mAsFechaCorte').value;
+    const estadoSeguimiento=document.getElementById('mAsEstadoSeguimiento').value;
+    const estadoCumplimiento=document.getElementById('mAsEstadoCumplimiento').value;
+    const motivoIncumplimiento=document.getElementById('mAsMotivoIncumplimiento').value;
+    const tipoOficio = document.getElementById('mAsTipoOficio').options[document.getElementById('mAsTipoOficio').selectedIndex].text;
+    const numOfComunicacion=document.getElementById('mAsNumOfComunicacion').value;
+    const fecOfComunicacion=document.getElementById('mAsFechaOfComunicacion').value;
+    const numResolucion=document.getElementById('mAsNumResolucion').value;
+    const fecResolucion=document.getElementById('mAsFechaResolucion').value;
+    
+    const fechaReunion=document.getElementById('mAsFechaReunion').value;
+    const numActaReunion=document.getElementById('mAsNumActaReunion').value;
+    const fechaInformeSeg=document.getElementById('mAsFechaInformeSeg').value;
+    const numInformeSeg=document.getElementById('mAsNumInformeSeg').value;
+    const observacionDns=document.getElementById('mAsObservacionDns').value;
 
-    if (!periodo) {
+    // Validar información básica
+    if(!periodo || !ruc || !razonSocial || !fechaCorte){
         Swal.fire({
-            icon: 'warning',
-            title: 'Atención',
-            text: 'Se necesitan datos previos para poder generar el Oficio.'
+            icon:'warning',
+            title:'Información incompleta',
+            text:'No existen datos suficientes de la entidad para generar el oficio.'
         });
         return;
     }
 
-    /* numResolucion
-    fechaRes
-    numOfComunicacion
-    fechaOfCOmunicacion */
+    // Validar Estados
+    if(!estadoSeguimiento && !estadoCumplimiento){
+        Swal.fire({
+            icon:'warning',
+            title:'Estado de seguimiento',
+            text:'Debe seleccionar un estado de seguimiento y un estado de cumplimiento.'
+        });
+        return;
+    }
 
+    // valida el tipo de oficio 
+    if(!tipoOficio){
+        Swal.fire({
+            icon:'warning',
+            title:'Tipo de oficio',
+            text:'Debe seleccionar un tipo de oficio.'
+        });
+        return;
+    }
 
-    console.log(document.getElementById('mAsIdSeguimiento').value);
-    // Datos básicos
-    document.getElementById('goNumeroPeriodo').value =
-        document.getElementById('mAsPeriodo').value;
+    // Tipo 2: Incumplimiento indicadores
+    if(tipoOficio==='2' && !motivoIncumplimiento){
+        Swal.fire({
+            icon:'warning',
+            title:'Motivo de incumplimiento',
+            text:'Debe registrar el motivo de incumplimiento.'
+        });
+        return;
+    }
 
-    document.getElementById('goIdEntidad').value =
-        document.getElementById('mAsIdEntidad').value;
+    // Tipo 3: Convocatoria a reunión
+    if(tipoOficio==='3'){
+        if(!fechaReunion){
+            Swal.fire({
+                icon:'warning',
+                title:'Fecha de reunión',
+                text:'Debe registrar la fecha de la reunión.'
+            });
+            return;
+        }
+    }
 
-    document.getElementById('goRucCatastro').value =
-        document.getElementById('mAsRucCatastro').value;
+    // Tipo 4: Informe técnico
+    if(tipoOficio==='4'){
+        if(!numInformeSeg && !fechaInformeSeg){
+            Swal.fire({
+                icon:'warning',
+                title:'Fecha de informe',
+                text:'Debe registrar el número de informe y la fecha del informe.'
+            });
+            return;
+        }
+    }
 
-    document.getElementById('goRazonSocial').value =
-        document.getElementById('mAsRazonSocial').value;
-    
-    document.getElementById('goTipoOficio').value =
-        document.getElementById('mAsTipoOficio').value;
-    
-    /* document.getElementById('goTipoOficio').value =
-        document.getElementById('mAsTipoOficio').value; */
+    // Observación DNS obligatoria para todos
+    if(!observacionDns.trim()){
+        Swal.fire({
+            icon:'warning',
+            title:'Observación DNS',
+            text:'Debe ingresar una observación.'
+        });
+        return;
+    }
 
-    
+    // Cargar información en modal Generar Oficio
+    document.getElementById('titleOfIncump').innerHTML = `Formato: ` + tipoOficio;
+    document.getElementById('goNumeroPeriodo').value=periodo;
+    document.getElementById('goRucCatastro').value=ruc;
+    document.getElementById('goRazonSocial').value=razonSocial;
+    document.getElementById('goNumOfComunicacion').value= numOfComunicacion;
+    document.getElementById('goFecComunicacion').value= fecOfComunicacion;
+    document.getElementById('goNumResolucion').value= numResolucion;
+    document.getElementById('goFecResolucion').value= fecResolucion;
+    document.getElementById('goTipoOficio').value= tipoOficio;
 
-    // Cerrar modal Seguimiento
-    bootstrap.Modal.getInstance(
-        document.getElementById('agregarSeguimiento')
-    ).hide();
+    // Alternar modales correctamente
+    const modalSeguimiento=document.getElementById('agregarSeguimiento');
+    const modalGenerar=document.getElementById('generarOficio');
 
-    // Abrir modal Generar Oficio
-    setTimeout(() => {
+    modalSeguimiento.addEventListener('hidden.bs.modal',function(){
+        new bootstrap.Modal(modalGenerar).show();
+    },{once:true});
 
-        const modalOficio =
-            new bootstrap.Modal(
-                document.getElementById('generarOficio')
-            );
+    bootstrap.Modal.getInstance(modalSeguimiento).hide();
 
-        modalOficio.show();
-
-        // Aquí puedes luego llamar:
-        // cargarDatosOficio(idSeguimiento);
-
-    }, 300);
 }
 
 /* Función para volver al seguimiento */
-function volverSeguimiento() {
-    bootstrap.Modal.getInstance(
-        document.getElementById('generarOficio')
-    ).hide();
-    setTimeout(() => {
-        new bootstrap.Modal(
-            document.getElementById('agregarSeguimiento')
-        ).show();
-    }, 300);
+function volverSeguimiento(){
+
+    const modalGenerar=
+        bootstrap.Modal.getInstance(
+            document.getElementById('generarOficio')
+        );
+
+    const modalSeguimientoEl=
+        document.getElementById('agregarSeguimiento');
+
+    document.getElementById('generarOficio')
+        .addEventListener(
+            'hidden.bs.modal',
+            () => {
+                new bootstrap.Modal(modalSeguimientoEl).show();
+            },
+            {once:true}
+        );
+
+    modalGenerar.hide();
 }
 
 // controla el boton generar Oficio

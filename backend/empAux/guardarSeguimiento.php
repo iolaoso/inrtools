@@ -15,7 +15,7 @@ $ruc = $data['ruc'];
 $periodo = $data['periodo'];
 $fechaCorte = $data['fechaCorte'];
 
-$numOfComunicacionRes = mb_strtoupper($data['numOfCominicacionRes']);
+$numOfComunicacionRes = mb_strtoupper($data['numOfComunicacionRes']);
 $fechaOfComunicacionRes = $data['fechaOfComunicacionRes'];
 $numResolucion = mb_strtoupper($data['numResolucion']);
 $fechaResolucion = $data['fechaResolucion'];

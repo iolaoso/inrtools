@@ -155,6 +155,7 @@ $catTipoOficio = cat_tipo_oficio();
                                                         data-fecRes="<?= htmlspecialchars($cSeg['FECHA_RESOLUCION'] ?? '') ?>"
                                                         data-periodo="<?= htmlspecialchars($cSeg['NUM_PERIODO'] ?? '') ?>"
                                                         data-fCorte="<?= htmlspecialchars($cSeg['FECHA_CORTE'] ?? '') ?>"
+                                                        data-fProxEnvio="<?= htmlspecialchars($cSeg['FEC_PROX_ENVIO'] ?? '') ?>"
                                                         title="Bitácora de Envio" data-bs-toggle="modal"
                                                         data-bs-target="#detalleBitacoraEnvio"
                                                         onclick="cDatSegEmpAux(this)">
@@ -178,6 +179,7 @@ $catTipoOficio = cat_tipo_oficio();
                                                             data-fecRes="<?= htmlspecialchars($cSeg['FECHA_RESOLUCION'] ?? '') ?>"
                                                             data-periodo="<?= htmlspecialchars($cSeg['NUM_PERIODO'] ?? '') ?>"
                                                             data-fCorte="<?= htmlspecialchars($cSeg['FECHA_CORTE'] ?? '') ?>"
+                                                            data-fProxEnvio="<?= htmlspecialchars($cSeg['FEC_PROX_ENVIO'] ?? '') ?>"
                                                             title="Agregar observación DNR"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#agregarProcesoDNR"
@@ -213,13 +215,15 @@ $catTipoOficio = cat_tipo_oficio();
                                                             data-fechaOfComunicacion="<?= htmlspecialchars($cSeg['FECHA_OFICIO_COM_RES'] ?? '') ?>"
                                                             data-numResolucion="<?= htmlspecialchars($cSeg['NUM_RESOLUCION_CALIFICACION'] ?? '') ?>"
                                                             data-fechaResolucion="<?= htmlspecialchars($cSeg['FECHA_RESOLUCION'] ) ?>"
+                                                            data-fProxEnvio="<?= htmlspecialchars($cSeg['FEC_PROX_ENVIO'] ?? '') ?>"
                                                             data-flag="1"
                                                             title="Agregar / Editar Seguimiento"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#agregarSeguimiento"
                                                             onclick="cDatAgregarSeg(this)">
                                                             <i class="fa fa-edit"></i>
-                                                        </button>                                                        
+                                                        </button>   
+                                                        <!-- <input type="text" value= "<?= htmlspecialchars($cSeg['FEC_PROX_ENVIO'] ?? '') ?>"> -->
                                                     </div>
                                                 </td>
                                             </tr>
@@ -781,7 +785,7 @@ $catTipoOficio = cat_tipo_oficio();
                                             <thead>
                                                 <tr>
                                                     <th class="text-center align-middle" style="width:5%">#</th>
-                                                    <th class="text-center align-middle" style="width:15%">Fecha</th>
+                                                    <th class="text-center align-middle" style="width:15%">Fec. Oficio</th>
                                                     <th class="text-center align-middle" style="width:25%">Oficio</th>
                                                     <th class="text-center align-middle" style="width:15%">Est</th>
                                                     <th class="text-center align-middle" style="width:15%">Cump</th>
@@ -790,6 +794,7 @@ $catTipoOficio = cat_tipo_oficio();
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <!-- se llena en cDatAgregarSeg  -->                                            
                                             </tbody>
                                         </table>
                                     </div>
@@ -822,10 +827,10 @@ $catTipoOficio = cat_tipo_oficio();
                                                 <label for="mAsFechaCorte" class="form-label">Fecha Corte</label>
                                                 <input type="text" class="form-control" id="mAsFechaCorte" disabled>
                                             </div>
-                                            <input type="text" class="" id="mAsNumOfComunicacion" readonly>
-                                            <input type="text" class="" id="mAsFechaOfComunicacion" readonly>
-                                            <input type="text" class="" id="mAsNumResolucion" readonly>
-                                            <input type="text" class="" id="mAsFechaResolucion" readonly>
+                                            <input type="hidden" class="" id="mAsNumOfComunicacion" readonly>
+                                            <input type="hidden" class="" id="mAsFechaOfComunicacion" readonly>
+                                            <input type="hidden" class="" id="mAsNumResolucion" readonly>
+                                            <input type="hidden" class="" id="mAsFechaResolucion" readonly>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-md-12">
@@ -1060,7 +1065,7 @@ $catTipoOficio = cat_tipo_oficio();
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title">
-                        Formato: Oficio de Incumplimiento
+                        <span id="titleOfIncump"><!-- llenado dinamico --></span>
                     </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
@@ -1071,11 +1076,7 @@ $catTipoOficio = cat_tipo_oficio();
                             <label for="goNumeroPeriodo" class="form-label">Período</label>
                             <input type="text" class="form-control" id="goNumeroPeriodo" readonly>
                         </div>
-                        <div class="col-md-2">
-                            <label for="goIdEntidad" class="form-label">ID Entidad</label>
-                            <input type="text" class="form-control" id="goIdEntidad" readonly>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <label for="goRucCatastro" class="form-label">RUC</label>
                             <input type="text" class="form-control" id="goRucCatastro" readonly>
                         </div>
@@ -1084,21 +1085,29 @@ $catTipoOficio = cat_tipo_oficio();
                             <input type="text" class="form-control" id="goRazonSocial" readonly>
                         </div>
                     </div>
+                    <!-- INFORMACION DE CALIFICACION -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="goNumOfComunicacion" class="form-label">Oficio de Comunicación de Resolución</label>
+                            <input type="text" class="form-control" id="goNumOfComunicacion" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="goFecComunicacion" class="form-label">Fecha Oficio Comunicación</label>
+                            <input type="date"class="form-control" id="goFecComunicacion" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="goNumResolucion" class="form-label">Resolución de Calificación</label>
+                            <input type="text" class="form-control" id="goNumResolucion" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="goFecResolucion" class="form-label">Fecha Resolución</label>
+                            <input type="date"class="form-control" id="goFecResolucion" readonly>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <label for="goTipoOficio" class="form-label">Tipo de Oficio</label>
                             <input type="text" class="form-control" id="goTipoOficio" readonly>
-                        </div>
-                    </div>
-                    <!-- INFORMACION DE CALIFICACION -->
-                    <div class="row mb-3">
-                        <div class="col-md-3">
-                            <label for="goNumResolucionCalificacion" class="form-label">Resolución de Calificación</label>
-                            <input type="text" class="form-control" id="goNumResolucionCalificacion" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="goFechaResolucion" class="form-label">Fecha Resolución</label>
-                            <input type="date"class="form-control" id="goFechaResolucion" readonly>
                         </div>
                     </div>
                     <div class="row">
@@ -1115,9 +1124,6 @@ $catTipoOficio = cat_tipo_oficio();
                 </button>
                 <button id="btnGenerarWord" class="btn btn-primary">
                     Generar Oficio
-                </button>
-                <button class="btn btn-secondary" data-bs-dismiss="modal">
-                    Cerrar
                 </button>
             </div>
             </div>

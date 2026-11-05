@@ -245,6 +245,7 @@ document.getElementById('seguimientoForm').addEventListener('submit', function(e
             icon: 'error',
             title: 'Error inesperado',
             text: 'Ocurrió un error al guardar el seguimiento.',
+            footer: error,
             confirmButtonColor: '#dc3545'
         });
     });
