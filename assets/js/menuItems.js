@@ -45,9 +45,9 @@ const menuItems = [
                     },
                     {   title: 'Reporte de Calificación de Riesgo', 
                         url: '/INRtools/frontend/inr/IndRanking/calfRiesgo/calfRiesgo.php',
-                        direccion: ['INR', 'DNR','DNS'],
+                        direccion: ['INR', 'DNR','DNSES','DNS','DNPLA'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
-                        usuarios: ['FOROZCO','PCARRILLO','ESIMBAÑA','EACOSTA','FLARCO','ILOPEZA','ILOPEZ']
+                        usuarios: ['FOROZCO','PCARRILLO','AOLALLA','NOSORIO','TVERGARA','EACOSTA','','ILOPEZ','ILOPEZA']
                     }
                     /* {   title: 'Ind ranking Imputados',
                         url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRankingImputados.php',

@@ -333,6 +333,35 @@ document.getElementById('procesoDNRForm').addEventListener('submit', function(e)
     });
 });
 
+// Limpiar modal Generar Oficio al cerrarse
+document.getElementById('generarOficio')
+    .addEventListener('hidden.bs.modal',function(){
+
+        // Datos generales
+        document.getElementById('goNumeroPeriodo').value='';
+        document.getElementById('goRucCatastro').value='';
+        document.getElementById('goRazonSocial').value='';
+
+        // Datos resolución
+        document.getElementById('goNumOfComunicacion').value='';
+        document.getElementById('goFecComunicacion').value='';
+        document.getElementById('goNumResolucion').value='';
+        document.getElementById('goFecResolucion').value='';
+
+        // Tipo oficio
+        document.getElementById('goTipoOficio').value='';
+        document.getElementById('goTipoOficioId').value='';
+
+        // Vista previa
+        document.getElementById('goTextoOficio').innerHTML='';
+
+    });
+
+document.getElementById('agregarSeguimiento')
+    .addEventListener('hidden.bs.modal',limpiarBackdrops);
+
+document.getElementById('generarOficio')
+    .addEventListener('hidden.bs.modal',limpiarBackdrops);
 
 const selTipoOficio =
     document.getElementById('mAsTipoOficio');

@@ -1,5 +1,15 @@
 console.log("funcEmpAux.js funcionando")
 
+
+function limpiarBackdrops(){
+    document.querySelectorAll('.modal-backdrop')
+        .forEach(el=>el.remove());
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow='';
+    document.body.style.paddingRight='';
+}
+
+
 // Función para cargar datos en el modal
 function cDatSegEmpAux(button) {
     const idEntidad = button.getAttribute('data-id');
@@ -250,6 +260,7 @@ function abrirGenerarOficio(){
     const estadoCumplimiento=document.getElementById('mAsEstadoCumplimiento').value;
     const motivoIncumplimiento=document.getElementById('mAsMotivoIncumplimiento').value;
     const tipoOficio = document.getElementById('mAsTipoOficio').options[document.getElementById('mAsTipoOficio').selectedIndex].text;
+    const tipoOficioId = document.getElementById('mAsTipoOficio').options[document.getElementById('mAsTipoOficio').selectedIndex].value;
     const numOfComunicacion=document.getElementById('mAsNumOfComunicacion').value;
     const fecOfComunicacion=document.getElementById('mAsFechaOfComunicacion').value;
     const numResolucion=document.getElementById('mAsNumResolucion').value;
@@ -345,6 +356,7 @@ function abrirGenerarOficio(){
     document.getElementById('goNumResolucion').value= numResolucion;
     document.getElementById('goFecResolucion').value= fecResolucion;
     document.getElementById('goTipoOficio').value= tipoOficio;
+    document.getElementById('goTipoOficioId').value = tipoOficioId;
 
     // Alternar modales correctamente
     const modalSeguimiento=document.getElementById('agregarSeguimiento');
@@ -366,19 +378,111 @@ function volverSeguimiento(){
             document.getElementById('generarOficio')
         );
 
-    const modalSeguimientoEl=
-        document.getElementById('agregarSeguimiento');
+    modalGenerar.hide();
 
     document.getElementById('generarOficio')
-        .addEventListener(
-            'hidden.bs.modal',
-            () => {
-                new bootstrap.Modal(modalSeguimientoEl).show();
-            },
-            {once:true}
-        );
+        .addEventListener('hidden.bs.modal',function(){
 
-    modalGenerar.hide();
+            limpiarBackdrops();
+
+            new bootstrap.Modal(
+                document.getElementById('agregarSeguimiento')
+            ).show();
+
+        },{once:true});
+
+}
+
+function vistaPreviaOficio(){
+    // Datos generales
+    const periodo=document.getElementById('goNumeroPeriodo').value;
+    const ruc=document.getElementById('goRucCatastro').value;
+    const razonSocial=document.getElementById('goRazonSocial').value;
+    const tipoOficio=document.getElementById('goTipoOficio').value;
+    const tipoOficioId=document.getElementById('goTipoOficioId').value;
+    const fecOficioComunicacion=document.getElementById('goFecComunicacion').value;
+    const numOfComunicacion=document.getElementById('goNumOfComunicacion').value;
+    const numResolucion=document.getElementById('goNumResolucion').value;
+    const fecResolucion=document.getElementById('goFecResolucion').value;
+    //const textoOficio=document.getElementById('goTextoOficio').value;
+    //const idEntidad=document.getElementById('goIdEntidad').value;
+    const fechaActualLarga=new Date().toLocaleDateString('es-EC',{year:'numeric',month:'long',day:'numeric'});
+    
+    // Validar
+    if(!tipoOficioId){
+        Swal.fire({
+            icon:'warning',
+            title:'Tipo de oficio',
+            text:'Debe seleccionar un tipo de oficio.'
+        });
+        return;
+    }
+
+    // Consultar plantilla
+    fetch(`${baseurl}/backend/empAux/obtenerPlantillaOficio.php?tipoOficioId=${tipoOficioId}`)
+    .then(response=>response.json())
+    .then(result=>{
+
+        if(!result.success){
+            throw new Error(result.message);
+        }
+
+        let texto=result.plantilla;
+        //console.log(texto);
+
+        // Reemplazar variables de plantilla
+        texto=texto.replaceAll('{PERIODO}',periodo);
+        texto=texto.replaceAll('{RUC}',ruc);
+        texto=texto.replaceAll('{RAZON_SOCIAL}',razonSocial);
+        
+        texto=texto.replaceAll('{TIPO_OFICIO_ID}',tipoOficioId);
+        texto=texto.replaceAll('{TIPO_OFICIO}',tipoOficio);
+
+        texto=texto.replaceAll('{NUM_OFICIO_COMUNICACION}',numOfComunicacion);
+        texto=texto.replaceAll('{FECHA_OFICIO_COMUNICACION}',fecOficioComunicacion);
+
+        texto=texto.replaceAll('{NUM_RESOLUCION}',numResolucion);
+        texto=texto.replaceAll('{FECHA_RESOLUCION}',fecResolucion);
+
+        texto=texto.replaceAll('{ESTADO_SEGUIMIENTO}',
+            document.getElementById('mAsEstadoSeguimiento').options[
+                document.getElementById('mAsEstadoSeguimiento').selectedIndex].text);
+
+        texto=texto.replaceAll('{ESTADO_CUMPLIMIENTO}',
+            document.getElementById('mAsEstadoCumplimiento').options[
+                document.getElementById('mAsEstadoCumplimiento').selectedIndex].text);
+
+        texto=texto.replaceAll('{MOTIVO_INCUMPLIMIENTO}',
+            document.getElementById('mAsMotivoIncumplimiento').selectedIndex>0
+                ? document.getElementById('mAsMotivoIncumplimiento').options[
+                    document.getElementById('mAsMotivoIncumplimiento').selectedIndex].text: '');
+
+        texto=texto.replaceAll('{OFICIO_SEGUIMIENTO}',document.getElementById('mAsOficioSeguimiento').value);
+        texto=texto.replaceAll('{FECHA_OFICIO_SEGUIMIENTO}',document.getElementById('mAsFechaOfSeguimiento').value);
+        texto=texto.replaceAll('{FECHA_REUNION}',document.getElementById('mAsFechaReunion').value);
+        texto=texto.replaceAll('{NUM_ACTA_REUNION}', document.getElementById('mAsNumActaReunion').value);
+        texto=texto.replaceAll('{FECHA_INFORME_SEG}',document.getElementById('mAsFechaInformeSeg').value);
+        texto=texto.replaceAll('{NUM_INFORME_SEG}',document.getElementById('mAsNumInformeSeg').value);
+        texto=texto.replaceAll('{OBSERVACION_DNS}',document.getElementById('mAsObservacionDns').value);
+        texto=texto.replaceAll('{FECHA_ACTUAL}',fechaActualLarga);
+        // evitar que queden variables sin reemplazar
+        texto=texto.replace(/\{[^}]+\}/g,'');
+
+        // Mostrar vista previa
+        //document.getElementById('goTextoOficio').innerHTML = texto.replace(/\n/g,'<br>');
+        document.getElementById('goTextoOficio').innerHTML = texto
+
+    })
+    .catch(error=>{
+
+        Swal.fire({
+            icon:'error',
+            title:'Vista previa',
+            text:error.message
+        });
+
+    });
+
 }
 
 // controla el boton generar Oficio

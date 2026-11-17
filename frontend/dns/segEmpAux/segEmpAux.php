@@ -1071,49 +1071,64 @@ $catTipoOficio = cat_tipo_oficio();
                 </div>
                 <div class="modal-body">
                     <!-- ENTIDAD CALIFICADA -->
+                    <form id="formDatosVistaOficio" action="">
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label for="goNumeroPeriodo" class="form-label">Período</label>
+                                <input type="text" class="form-control" id="goNumeroPeriodo" readonly>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="goRucCatastro" class="form-label">RUC</label>
+                                <input type="text" class="form-control" id="goRucCatastro" readonly>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="goRazonSocial" class="form-label">Razón Social</label>
+                                <input type="text" class="form-control" id="goRazonSocial" readonly>
+                            </div>
+                        </div>
+                        <!-- INFORMACION DE CALIFICACION -->
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="goNumOfComunicacion" class="form-label">Oficio de Comunicación de Resolución</label>
+                                <input type="text" class="form-control" id="goNumOfComunicacion" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="goFecComunicacion" class="form-label">Fecha Oficio Comunicación</label>
+                                <input type="date"class="form-control" id="goFecComunicacion" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="goNumResolucion" class="form-label">Resolución de Calificación</label>
+                                <input type="text" class="form-control" id="goNumResolucion" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="goFecResolucion" class="form-label">Fecha Resolución</label>
+                                <input type="date"class="form-control" id="goFecResolucion" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="goTipoOficio" class="form-label">Tipo de Oficio</label>
+                                <input type="hidden" class="form-control" id="goTipoOficioId" readonly>
+                                <input type="text" class="form-control" id="goTipoOficio" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">&nbsp;</label>
+                                <button
+                                    id="btnVistaPrevia"
+                                    type="button"
+                                    class="btn btn-outline-primary w-100"
+                                    onclick="vistaPreviaOficio()">
+                                    <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                                    Vista previa Oficio
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="row mb-3">
-                        <div class="col-md-2">
-                            <label for="goNumeroPeriodo" class="form-label">Período</label>
-                            <input type="text" class="form-control" id="goNumeroPeriodo" readonly>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="goRucCatastro" class="form-label">RUC</label>
-                            <input type="text" class="form-control" id="goRucCatastro" readonly>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="goRazonSocial" class="form-label">Razón Social</label>
-                            <input type="text" class="form-control" id="goRazonSocial" readonly>
-                        </div>
-                    </div>
-                    <!-- INFORMACION DE CALIFICACION -->
-                    <div class="row mb-3">
-                        <div class="col-md-3">
-                            <label for="goNumOfComunicacion" class="form-label">Oficio de Comunicación de Resolución</label>
-                            <input type="text" class="form-control" id="goNumOfComunicacion" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="goFecComunicacion" class="form-label">Fecha Oficio Comunicación</label>
-                            <input type="date"class="form-control" id="goFecComunicacion" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="goNumResolucion" class="form-label">Resolución de Calificación</label>
-                            <input type="text" class="form-control" id="goNumResolucion" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="goFecResolucion" class="form-label">Fecha Resolución</label>
-                            <input type="date"class="form-control" id="goFecResolucion" readonly>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-12">
-                            <label for="goTipoOficio" class="form-label">Tipo de Oficio</label>
-                            <input type="text" class="form-control" id="goTipoOficio" readonly>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-12">
                             <label class="form-label">Vista previa del oficio</label>
-                            <textarea id="goTextoOficio" class="form-control" rows="15"></textarea>
+                            <div id="goTextoOficio" class="form-control" style="height:250px;overflow-y:auto;">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1130,9 +1145,7 @@ $catTipoOficio = cat_tipo_oficio();
         </div>
     </div>
 
-    
-
-    
+      
    
     <!-- Modal Buscar Catastro-->
     <?php include BASE_PATH . 'frontend/partials/modalCatastro.php'; ?>

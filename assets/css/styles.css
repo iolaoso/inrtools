@@ -421,3 +421,10 @@ table.dataTable {
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(0,0,0,.20) !important;
 }
+
+/* #goTextoOficio{
+    font-family:"Times New Roman";
+    font-size:12pt;
+    line-height: normal;
+    padding:20px;
+} */
