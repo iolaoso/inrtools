@@ -971,7 +971,7 @@ $catTipoOficio = cat_tipo_oficio();
                                             <div class="col-md-4">
                                                 <label for="mAsFechaInformeSeg"
                                                     class="form-label">
-                                                    Fecha Informe Seguimiento
+                                                    Fecha Informe
                                                 </label>
                                                 <input type="date"
                                                     class="form-control"
