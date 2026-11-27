@@ -20,13 +20,13 @@ $menu = obtenerMenuUsuario(
 
 
 
-file_put_contents(
+/* file_put_contents(
     __DIR__ . '/debug_menu.txt',
     json_encode(
         $menu,
         JSON_PRETTY_PRINT
     )
-);
+); */
 
 echo json_encode(
     $menu,

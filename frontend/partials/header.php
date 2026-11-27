@@ -56,9 +56,9 @@
                         🔑 <?= htmlspecialchars($nickname, ENT_QUOTES, 'UTF-8') ?>
                     </span>
 
-                    <span class="badge <?= ($ambiente === 'Desarrollo') ? 'bg-warning text-dark' : 'bg-dark' ?>">
+                    <!-- <span class="badge <?= ($ambiente === 'Desarrollo') ? 'bg-warning text-dark' : 'bg-dark' ?>">
                         <?= htmlspecialchars($ambiente, ENT_QUOTES, 'UTF-8') ?>
-                    </span>
+                    </span> -->
 
                 </div>
 

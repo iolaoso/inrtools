@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/../../backend/config.php';
-include_once BASE_PATH . 'backend/conexiones/tareas_connection.php';
+//include_once BASE_PATH . 'backend/conexiones/tareas_connection.php';
 include_once BASE_PATH . 'backend/session.php';
 
 if (!isset($nickname)) {

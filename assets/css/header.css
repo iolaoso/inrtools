@@ -3,22 +3,72 @@
 ========================================== */
 
 .header{
-    
     border-bottom:1px solid #dee2e6;
     box-shadow:0 2px 6px rgba(0,0,0,.08);
     position:relative;
     z-index:1000;
 }
 
+/* ==========================================
+   DESARROLLO
+========================================== */
+
 .header-dev{
-    background:#75c3f7;
+    background:#f0d53c;
     border-bottom:4px solid #ffc107;
+    color:#083b66;
 }
+
+.header-dev h4,
+.header-dev h5,
+.header-dev .text-primary{
+    color:#083b66 !important;
+}
+
+.header-dev .text-muted{
+    color:#245d8b !important;
+}
+
+/* ==========================================
+   PRODUCCION
+========================================== */
 
 .header-prod{
     background:#2c3e50;
-    border-bottom:4px solid #198754;
+    border-bottom:4px solid #50df3d;
+    color:white;
 }
+
+.header-prod h4,
+.header-prod h5,
+.header-prod .text-primary{
+    color:white !important;
+}
+
+.header-prod .text-muted{
+    color:#d1e7dd !important;
+}
+
+/* ==========================================
+   CERTIFICACION (opcional)
+========================================== */
+
+.header-cert{
+    background:#fd7e14;
+    border-bottom:4px solid #842029;
+    color:white;
+}
+
+.header-cert h4,
+.header-cert h5,
+.header-cert .text-primary{
+    color:white !important;
+}
+
+.header-cert .text-muted{
+    color:#ffe5d0 !important;
+}
+
 
 .header .badge{
     font-size:.82rem;
