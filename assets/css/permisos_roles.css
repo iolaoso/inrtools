@@ -1,0 +1,10 @@
+.permisos-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:.5rem;
+}
+
+#usuariosContainer{
+    max-height:350px;
+    overflow-y:auto;
+}

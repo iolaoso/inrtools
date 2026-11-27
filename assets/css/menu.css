@@ -1,118 +1,246 @@
-.sidebar {
-    width: 220px; 
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: #2c3e50; /* Color más profesional */
-    color: #ecf0f1;
-    scrollbar-width: thin;
-    scrollbar-color: #7f8c8d #34495e;
-    transition: width 0.3s ease; /* Transición suave al colapsar */
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+    width:220px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:#2c3e50;
+    color:#ecf0f1;
+    scrollbar-width:thin;
+    scrollbar-color:#7f8c8d #34495e;
+    transition:width .3s ease;
+    box-shadow:2px 0 10px rgba(0,0,0,.1);
+    z-index:1000;
 }
 
-.sidebar.collapsed {
-    width: 50px; /* Ancho del menú colapsado */
+/* =====================================================
+   SCROLL
+===================================================== */
+
+.sidebar::-webkit-scrollbar{
+    width:6px;
 }
 
-/* Personalización del scroll para Chrome, Edge, y Safari */
-.sidebar::-webkit-scrollbar {
-    width: 6px; /* Ancho del scroll */
+.sidebar::-webkit-scrollbar-thumb{
+    background:#888;
+    border-radius:4px;
 }
 
-.sidebar::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color de la barra */
-    border-radius: 4px; /* Bordes redondeados */
+.sidebar::-webkit-scrollbar-track{
+    background:#34495e;
 }
 
-.sidebar::-webkit-scrollbar-track {
-     background: #34495e; /* Color de fondo */
+/* =====================================================
+   MENU PRINCIPAL
+===================================================== */
+
+#menu{
+    margin:0;
+    padding:0;
+}
+
+.menu-item{
+    list-style:none;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.menu-header{
+    display:flex;
+    align-items:center;
+    min-height:42px;
+    padding:10px 15px;
+    position:relative;
+    cursor:pointer;
+    transition:all .2s ease;
+}
+
+.menu-header:hover{
+    background:#34495e;
+}
+
+/* =====================================================
+   ICONOS
+===================================================== */
+
+.icon{
+    min-width:20px;
+    margin-right:15px;
+    text-align:center;
+    font-size:18px;
+    color:#bdc3c7;
+}
+
+/* =====================================================
+   TITULOS
+===================================================== */
+
+.menu-title{
+    white-space:nowrap;
+}
+
+.sidebar.collapsed .menu-title{
+    opacity:0;
+    width:0;
+    overflow:hidden;
+}
+
+/* =====================================================
+   FLECHAS
+===================================================== */
+
+.arrow{
+    margin-left:auto;
+    color:#bdc3c7;
+    font-size:12px;
+    transition:transform .2s ease;
+}
+
+.rotate{
+    transform:rotate(90deg);
+}
+
+/* =====================================================
+   ENLACES
+===================================================== */
+
+.menu-header a{
+    color:#ecf0f1;
+    text-decoration:none;
+    width:100%;
+    display:block;
+    font-size:.92rem;
+}
+
+.menu-header a:hover{
+    color:#fff;
+}
+
+/* =====================================================
+   MENUS RECURSIVOS
+===================================================== */
+
+.submenu-recursive{
+    display:none;
+    list-style:none;
+    padding-left:10px !important;
+    margin:0 0 0 12px;
+    border-left:1px solid rgba(255,255,255,.15);
+}
+
+.submenu-recursive .submenu-recursive{
+    margin-left:12px;
+    border-left:1px solid rgba(255,255,255,.10);
+}
+
+.submenu-recursive .menu-header{
+    min-height:34px;
+    padding:8px 10px;
+}
+
+.submenu-recursive .menu-item{
+    border-bottom:none;
+}
+
+/* =====================================================
+   ESTADO ACTIVO
+===================================================== */
+
+.menu-item.active > .menu-header{
+    background:#34495e;
+}
+
+.submenu-recursive .menu-item.active > .menu-header{
+    background:rgba(255,255,255,.08);
+}
+
+/* =====================================================
+   NIVELES VISUALES
+===================================================== */
+
+.submenu-recursive > .menu-item > .menu-header{
+    font-size:.92rem;
+}
+
+.submenu-recursive .submenu-recursive > .menu-item > .menu-header{
+    font-size:.90rem;
+}
+
+.submenu-recursive .submenu-recursive .submenu-recursive > .menu-item > .menu-header{
+    font-size:.88rem;
+}
+
+/* =====================================================
+   APERTURA DE NODOS
+===================================================== */
+
+.submenu-recursive.open{
+    display:block;
+}
+
+/* =====================================================
+   NODOS SIN URL
+===================================================== */
+
+.menu-header span{
+    color:#ecf0f1;
+    user-select:none;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width:768px){
+
+    .sidebar{
+        width:240px;
+    }
+
+    .menu-header{
+        padding:12px;
+    }
 }
 
 
-.menu-item {
-    list-style: none; /* Eliminar puntos de la lista */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el elemento */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Separador sutil */
+/* ==========================================
+   SIDEBAR COLAPSADO - CENTRAR ICONOS
+========================================== */
+
+.sidebar.collapsed{
+    width:50px !important;
 }
-
-.menu-header {
-    display: flex;
-    align-items: center;
-    padding: 14px 15px; /* Más espaciado */
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.menu-header:hover {
-     background-color: #34495e; /* Color de fondo al pasar el cursor */
-}
-
-.icon {
-    font-size: 20px; /* Tamaño del ícono */
-    margin-right: 25px; /* Espaciado a la derecha del ícono */
-    min-width: 20px; /* Evita saltos al colapsar */
-    text-align: center; /* Centra iconos */
-    color: #bdc3c7; /* Color más suave */
-}
-
-.menu-title {
-    white-space: nowrap; /* Evita salto de línea */
-    transition: opacity 0.3s ease; /* Transición al colapsar */
-}
-
-.sidebar.collapsed .menu-title {
-    opacity: 0; /* Oculta texto al colapsar */
-    width: 0;
-}
-
-.arrow {
-    margin-left: auto; /* Alinear flecha a la derecha */
-    transition: all 0.3s ease; /* Transición suave para la rotación */
-    color: #bdc3c7;
-    font-size: 14px;
-}
-
-.rotate {
-    transform: rotate(90deg); /* Rotar la flecha */
-}
-
-.sub-menu, .third-menu {
-    list-style: none;
-    display: none; /* Ocultar submenús por defecto */
-    flex-direction: column; /* Disposición vertical */
-    padding-left: 0px; /* Espaciado a la izquierda */
-
-    padding-left: 0; /* Elimina el padding inicial */
-    background-color: rgba(0, 0, 0, 0.1); /* Fondo diferenciado */
-    overflow: hidden;
-    transition: all 0.3s ease;
+.ulMenu{
+    list-style:none;
+    margin:0;
+    padding-left:5px;
 }
 
 
-/* muestra los submenus importante */
-.menu-item.active > .sub-menu,
-.menu-item.active > .third-menu {
-    display: flex; /*Mostrar submenús cuando el elemento es activo */
-} 
 
-
-.sub-menu li, .third-menu li {
-    /* Espaciado interno en los ítems de los submenús */
-    padding-top: 8px;
-    padding-right: 0px;
-    padding-bottom: 8px;
-    padding-left: 25px; 
-    transition: all 0.2s ease; /* Transición suave al cambiar el color de fondo */
-    position: relative;
+.sidebar.collapsed .menu-header{
+    padding:0 !important;
+    min-height:42px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-
-.sub-menu a, .third-menu a {
-    color: #ecf0f1; /* Color del texto en el submenú */
-    text-decoration: none; /* Sin subrayado en enlaces */
-    display: block; /* Hacer que el enlace ocupe todo el espacio disponible */
-     font-size: 0.9em; /* Tamaño ligeramente menor */
+.sidebar.collapsed .icon{
+    margin:0 !important;
+    padding:0 !important;
+    min-width:auto !important;
+    width:auto !important;
+    font-size:18px;
+    text-align:center;
 }
 
+.sidebar.collapsed .arrow{
+    display:none !important;
+}
 
+.sidebar.collapsed span,
+.sidebar.collapsed a{
+    display:none !important;
+}

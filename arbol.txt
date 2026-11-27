@@ -1,0 +1,3464 @@
+Listado de rutas de carpetas para el volumen Datos con 
+tree /f > arbol.txt
+El número de serie del volumen es 0D91-0F81
+D:.
+¦   .gitignore
+¦   arbol.txt
+¦   composer.json
+¦   composer.lock
+¦   index.php
+¦   LICENSE
+¦   README.md
+¦   
++---assets
+¦   +---css
+¦   ¦       backups.css
+¦   ¦       login_style.css
+¦   ¦       menu.css
+¦   ¦       styles.css
+¦   ¦       
+¦   +---files
+¦   ¦   ¦   test.png
+¦   ¦   ¦   
+¦   ¦   +---appsR
+¦   ¦   ¦       eeffEmpAux_shiny.bat
+¦   ¦   ¦       
+¦   ¦   +---reportes
+¦   ¦       +---aexternos
+¦   ¦       ¦       R_AUDEXT_v1_1_MENSUAL_ABRIL_2025.xlsx
+¦   ¦       ¦       R_AUDEXT_v1_1_MENSUAL_ENERO_2025.xlsx
+¦   ¦       ¦       R_AUDEXT_v1_1_MENSUAL_FEBRERO_2025.xlsx
+¦   ¦       ¦       R_AUDEXT_v2_DIARIO_09_SEPTIEMBRE_2025.xlsx
+¦   ¦       ¦       R_AUDEXT_v2_DIARIO_12_AGOSTO_2025.xlsx
+¦   ¦       ¦       R_AUDEXT_v2_MENSUAL_30_JUNIO_2025.xlsx
+¦   ¦       ¦       R_AUDEXT_v2_MENSUAL_31_AGOSTO_2025.xlsx
+¦   ¦       ¦       R_AUDEXT_v2_MENSUAL_31_JULIO_2025.xlsx
+¦   ¦       ¦       R_AUDEXT_v2_MENSUAL_31_MAYO_2025.xlsx
+¦   ¦       ¦       sync.ffs_db
+¦   ¦       ¦       
+¦   ¦       +---alertas
+¦   ¦       ¦   +---calidadActivos
+¦   ¦       ¦   ¦       1.- Reporte Inversiones y fondos disponibles_V1.2.xlsm
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---calidadResultados
+¦   ¦       ¦   ¦       1. Alertas Rentabilidad V1.xlsx
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---riesgoCredito
+¦   ¦       ¦   ¦       1. - Monitoreo Mora V1.xlsx
+¦   ¦       ¦   ¦       1. Monitoreo Mora V1.xlsx
+¦   ¦       ¦   ¦       2. Reporte Cosechas Cubo.xlsx
+¦   ¦       ¦   ¦       2.- Reporte Cosechas Cubo.xlsx
+¦   ¦       ¦   ¦       3. cartera_socios_clientes_may_2025.xlsx
+¦   ¦       ¦   ¦       3.- cartera_socios_clientes_jul_2025.xlsx
+¦   ¦       ¦   ¦       4. perdidas_esperadas_noesperadas_1.pbix
+¦   ¦       ¦   ¦       5. Reporte Perdidas esperadas_mod_Abr2025.xlsx
+¦   ¦       ¦   ¦       5. Reporte Perdidas esperadas_mod_Ene2025.xlsx
+¦   ¦       ¦   ¦       5. Reporte Perdidas esperadas_mod_Feb2025.xlsx
+¦   ¦       ¦   ¦       5. Reporte Perdidas esperadas_mod_Jun2025.xlsx
+¦   ¦       ¦   ¦       5. Reporte Perdidas esperadas_mod_Mar2025.xlsx
+¦   ¦       ¦   ¦       5. Reporte Perdidas esperadas_mod_May2025.xlsx
+¦   ¦       ¦   ¦       perdidas_esperadas_noesperadas_logit_jun_2025.pbix
+¦   ¦       ¦   ¦       RIL_HIST_PERDIDAS_ESPERADAS_MT_v3_MAR_2027_DIC_2025.xlsx
+¦   ¦       ¦   ¦       RIL_PERDIDAS_ESPERADAS_MT_V1_AGOSTO_2026.xlsx
+¦   ¦       ¦   ¦       RIL_Reporte Perdidas esperadas_mod_JULIO_2025.xlsx
+¦   ¦       ¦   ¦       RIL_REP_PERDIDAS_ESPERADAS_MT_AGOSTO_2026.html
+¦   ¦       ¦   ¦       sync.ffs_db
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---riesgoInterconexion
+¦   ¦       ¦   ¦       Base de cálculo ranking total _jun_2025.xlsx
+¦   ¦       ¦   ¦       interconexion_jun_2025.pdf
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---riesgoLiquidez
+¦   ¦       ¦   ¦       1.- Cumplimiento liquidez estructural.xlsx
+¦   ¦       ¦   ¦       2.- Reporte liquidez diaria.xlsm
+¦   ¦       ¦   ¦       3.- Reporte liquidez_3.xlsm
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---riesgoMercado
+¦   ¦       ¦           Tasas ponderadas activas.xlsx
+¦   ¦       ¦           
+¦   ¦       +---asagseps
+¦   ¦       ¦       REPORTE_ASAGSEPS_ABRIL_2025.xlsx
+¦   ¦       ¦       REPORTE_ASAGSEPS_AGOSTO_2025.xlsx
+¦   ¦       ¦       REPORTE_ASAGSEPS_ENERO_2025.xlsx
+¦   ¦       ¦       REPORTE_ASAGSEPS_FEBRERO_2025.xlsx
+¦   ¦       ¦       REPORTE_ASAGSEPS_JULIO_2025.xlsx
+¦   ¦       ¦       REPORTE_ASAGSEPS_JUNIO_2025.xlsx
+¦   ¦       ¦       REPORTE_ASAGSEPS_MARZO_2025.xlsx
+¦   ¦       ¦       REPORTE_ASAGSEPS_MAYO_2025.xlsx
+¦   ¦       ¦       
+¦   ¦       +---boletin
+¦   ¦       ¦       BOTELINES_SEPS_v1_6_DICIEMBRE_2024.xlsm
+¦   ¦       ¦       BOTELINES_SEPS_v1_6_ENERO_2025.xlsm
+¦   ¦       ¦       BOTELINES_SEPS_v1_6_FEBRERO_2025.xlsm
+¦   ¦       ¦       BOTELINES_SEPS_v1_6_MARZO_2025.xlsm
+¦   ¦       ¦       BOTELINES_SEPS_v1_7_ABRIL_2025.xlsm
+¦   ¦       ¦       BOTELINES_SEPS_v1_7_AGOSTO_2025.xlsm
+¦   ¦       ¦       BOTELINES_SEPS_v1_7_JULIO_2025.xlsm
+¦   ¦       ¦       BOTELINES_SEPS_v1_7_JUNIO_2025.xlsm
+¦   ¦       ¦       BOTELINES_SEPS_v1_7_MAYO_2025.xlsm
+¦   ¦       ¦       
+¦   ¦       +---brechas
+¦   ¦       ¦       reporteBrechasSeg_ABRIL_2025.html
+¦   ¦       ¦       reporteBrechasSeg_AGOSTO_2025.html
+¦   ¦       ¦       reporteBrechasSeg_DICIEMBRE_2024.html
+¦   ¦       ¦       reporteBrechasSeg_ENERO_2025.html
+¦   ¦       ¦       reporteBrechasSeg_FEBRERO_2025.html
+¦   ¦       ¦       reporteBrechasSeg_JULIO_2025.html
+¦   ¦       ¦       reporteBrechasSeg_JUNIO_2025.html
+¦   ¦       ¦       reporteBrechasSeg_MARZO_2025.html
+¦   ¦       ¦       reporteBrechasSeg_MAYO_2025.html
+¦   ¦       ¦       reporteBrechasSeg_NOVIEMBRE_2024.html
+¦   ¦       ¦       
+¦   ¦       +---coacsdnses
+¦   ¦       ¦       Reporte_COACS_DNSES.xlsx
+¦   ¦       ¦       
+¦   ¦       +---comite
+¦   ¦       ¦       6. COMITE_TECNICO_V14_ABRIL_2025.xlsm
+¦   ¦       ¦       6. COMITE_TECNICO_V14_DICIEMBRE_2024.xlsm
+¦   ¦       ¦       6. COMITE_TECNICO_V14_ENERO_2025.xlsm
+¦   ¦       ¦       6. COMITE_TECNICO_V14_FEBRERO_2025.xlsm
+¦   ¦       ¦       6. COMITE_TECNICO_V14_JULIO_2025.xlsm
+¦   ¦       ¦       6. COMITE_TECNICO_V14_JUNIO_2025.xlsm
+¦   ¦       ¦       6. COMITE_TECNICO_V14_MARZO_2025.xlsm
+¦   ¦       ¦       6. COMITE_TECNICO_V14_MAYO_2025.xlsm
+¦   ¦       ¦       6. COMITE_TECNICO_V15_AGOSTO_2025.xlsm
+¦   ¦       ¦       
+¦   ¦       +---conafips
+¦   ¦       ¦       REPORTE_CONAFIPS_v1_9_ABRIL_2025.xlsm
+¦   ¦       ¦       REPORTE_CONAFIPS_v1_9_AGOSTO_2025.xlsm
+¦   ¦       ¦       REPORTE_CONAFIPS_v1_9_DICIEMBRE_2024.xlsm
+¦   ¦       ¦       REPORTE_CONAFIPS_v1_9_JUNIO_2025.xlsm
+¦   ¦       ¦       REPORTE_CONAFIPS_v1_9_MARZO_2025.xlsm
+¦   ¦       ¦       REPORTE_CONAFIPS_v1_9_MAYO_2025.xlsm
+¦   ¦       ¦       
+¦   ¦       +---cosede
+¦   ¦       ¦       1_RESUMEN_COSEDE_PSI_JULIO _2026.xlsx
+¦   ¦       ¦       2_INDIVIDUALES_COSEDE_PSI_JULIO_2026.rar
+¦   ¦       ¦       3_informacion_etap_1_PSI_JULIO _2026 .xlsx
+¦   ¦       ¦       4_RESUMEN_COSEDE_DNLESF_JULIO _2026.xlsx
+¦   ¦       ¦       5_INDIVIDUALES_COSEDE_DNLESF_JULIO_2026.rar
+¦   ¦       ¦       6_informacion_etap_1_DNLESF_JULIO _2026 .xlsx
+¦   ¦       ¦       
+¦   ¦       +---detallesPA
+¦   ¦       ¦       2.14. DETALLE_HAL_REC_EST.xlsx
+¦   ¦       ¦       2.14. PLAN DE ACCION POR PORTAFOLIO_DETALLE.xlsx
+¦   ¦       ¦       sync.ffs_db
+¦   ¦       ¦       
+¦   ¦       +---diagsituacional
+¦   ¦       ¦       R_DIAGNOSTICOS_SITUACIONALES_OP_IL_v1_2_ABRIL_2025.xlsx
+¦   ¦       ¦       R_DIAGNOSTICOS_SITUACIONALES_OP_IL_v1_2_FEBRERO_2025.xlsx
+¦   ¦       ¦       R_DIAGNOSTICOS_SITUACIONALES_OP_IL_v1_2_MARZO_2025.xlsx
+¦   ¦       ¦       R_DIAGNOSTICOS_SITUACIONALES_OP_IL_v2_09_SEPTIEMBRE_2025.xlsx
+¦   ¦       ¦       R_DIAGNOSTICOS_SITUACIONALES_OP_IL_v2_12_AGOSTO_2025.xlsx
+¦   ¦       ¦       R_DIAGNOSTICOS_SITUACIONALES_OP_IL_v2_19_JUNIO_2025.xlsx
+¦   ¦       ¦       R_DIAGNOSTICOS_SITUACIONALES_OP_IL_v2_24_JULIO_2025.xlsx
+¦   ¦       ¦       R_DIAGNOSTICOS_SITUACIONALES_OP_IL_v2_31_MAYO_2025.xlsx
+¦   ¦       ¦       sync.ffs_db
+¦   ¦       ¦       
+¦   ¦       +---empaux
+¦   ¦       ¦       Anexo2_EMP_AUX_v1_2.xlsm
+¦   ¦       ¦       
+¦   ¦       +---endeudamiento
+¦   ¦       ¦       RepEndeudamientoSF_ABRIL_2024.html
+¦   ¦       ¦       RepEndeudamientoSF_ABRIL_2025.html
+¦   ¦       ¦       RepEndeudamientoSF_AGOSTO_2024.html
+¦   ¦       ¦       RepEndeudamientoSF_AGOSTO_2025.html
+¦   ¦       ¦       RepEndeudamientoSF_DICIEMBRE_2024.html
+¦   ¦       ¦       RepEndeudamientoSF_ENERO_2025.html
+¦   ¦       ¦       RepEndeudamientoSF_FEBRERO_2025.html
+¦   ¦       ¦       RepEndeudamientoSF_JULIO_2024.html
+¦   ¦       ¦       RepEndeudamientoSF_JULIO_2025.html
+¦   ¦       ¦       RepEndeudamientoSF_JUNIO_2024.html
+¦   ¦       ¦       RepEndeudamientoSF_JUNIO_2025.html
+¦   ¦       ¦       RepEndeudamientoSF_MARZO_2025.html
+¦   ¦       ¦       RepEndeudamientoSF_MAYO_2024.html
+¦   ¦       ¦       RepEndeudamientoSF_MAYO_2025.html
+¦   ¦       ¦       RepEndeudamientoSF_NOVIEMBRE_2024.html
+¦   ¦       ¦       RepEndeudamientoSF_OCTUBRE_2024.html
+¦   ¦       ¦       RepEndeudamientoSF_SEPTIEMBRE_2024.html
+¦   ¦       ¦       
+¦   ¦       +---halgeneraleps
+¦   ¦       ¦       HALGENERAL_MONTH_ABRIL_2025.xlsx
+¦   ¦       ¦       HALGENERAL_MONTH_AGOSTO_2025.xlsx
+¦   ¦       ¦       HALGENERAL_MONTH_ENERO_2025.xlsx
+¦   ¦       ¦       HALGENERAL_MONTH_FEBRERO_2025.xlsx
+¦   ¦       ¦       HALGENERAL_MONTH_JULIO_2025.xlsx
+¦   ¦       ¦       HALGENERAL_MONTH_JUNIO_2025.xlsx
+¦   ¦       ¦       HALGENERAL_MONTH_MARZO_2025.xlsx
+¦   ¦       ¦       HALGENERAL_MONTH_MAYO_2025.xlsx
+¦   ¦       ¦       sync.ffs_db
+¦   ¦       ¦       
+¦   ¦       +---hallazgoseps
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v1_ABRIL_2025.xlsx
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v1_FEBRERO_2025.xlsx
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v1_MARZO_2025.xlsx
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v2_12_AGOSTO_2025.xlsx
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v2_19_JUNIO_2025.xlsx
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v2_24_JULIO_2025.xlsx
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v2_31_MAYO_2025.xlsx
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v3_09_SEPTIEMBRE_2025.xlsx
+¦   ¦       ¦       R_GESTION_HALLAZGOS_OP_IL_v3_29_AGOSTO_2025.xlsx
+¦   ¦       ¦       sync.ffs_db
+¦   ¦       ¦       
+¦   ¦       +---indRanking
+¦   ¦       ¦   +---01 Ind ranking preliminar
+¦   ¦       ¦   ¦       ind_ranking_coacs_activas_preliminar_nov2025_31dic2025.xlsx
+¦   ¦       ¦   ¦       ind_ranking_coacs_preliminar_nov2025_31dic2025.dta
+¦   ¦       ¦   ¦       ind_ranking_mutualistas_preliminar_nov2025_31dic2025.dta
+¦   ¦       ¦   ¦       ind_ranking_mutualistas_preliminar_nov2025_31dic2025.xlsx
+¦   ¦       ¦   ¦       ind_ranking_ult_bal_coacs_y_mutualistas_preliminar_nov2025_31dic2025.xlsx
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---02 Ind ranking definitivo
+¦   ¦       ¦   ¦       ind_ranking_coacs_activas_nov2025_31dic2025.xlsx
+¦   ¦       ¦   ¦       ind_ranking_coacs_nov2025_31dic2025.rds
+¦   ¦       ¦   ¦       ind_ranking_mutualistas_nov2025_31dic2025.rds
+¦   ¦       ¦   ¦       ind_ranking_mutualistas_nov2025_31dic2025.xlsx
+¦   ¦       ¦   ¦       ind_ranking_ult_bal_coacs_y_mutualistas_feb2026_31mar2026.xlsx
+¦   ¦       ¦   ¦       Thumbs.db
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---03 Ind ranking INFMR
+¦   ¦       ¦   ¦       cuentas_e_indicadores_ult_bal_coacs_y_mutualistas_INFMR_nov2025_31dic2025.xlsx
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---04 Ind ranking INSESF
+¦   ¦       ¦   ¦       cuentas_e_indicadores_coacs_y_mutualistas_INSESF_nov2025_31dic2025.xlsx
+¦   ¦       ¦   ¦       
+¦   ¦       ¦   +---05 Reporte de calificación
+¦   ¦       ¦           reporte_calificacion_riesgo_JUNIO_2025.xlsx
+¦   ¦       ¦           reporte_calificacion_riesgo_MARZO_2025.xlsx
+¦   ¦       ¦           reporte_indicadores_calificacion_riesgo_coacs_todas_entidades_ene2026_28feb2026.xlsx
+¦   ¦       ¦           rep_ind_ranking_ult_bal_coacs_y_mutualistas_ago2026_30sep2026.xlsx
+¦   ¦       ¦           rep_ind_ranking_ult_bal_coacs_y_mutualistas_feb2026_31mar2026_funciona.xlsx
+¦   ¦       ¦           
+¦   ¦       +---provisiones
+¦   ¦       ¦       REPORTE_PROVISIONES_S123_12_febrero_2026.xlsx
+¦   ¦       ¦       REPORTE_PROVISIONES_S45_12_febrero_2026.xlsx
+¦   ¦       ¦       
+¦   ¦       +---rambiental
+¦   ¦       ¦       19. Riesgo Ambiental_DICIEMBRE_2024.xlsx
+¦   ¦       ¦       20. Riesgo Ambiental_ENERO_2025.xlsx
+¦   ¦       ¦       21. Riesgo Ambiental_FEBRERO_2025.xlsx
+¦   ¦       ¦       22. Riesgo Ambiental_MARZO_2025.xlsx
+¦   ¦       ¦       RIL_REPORTE_RIESGO_AMBIENTAL_ABRIL_2025.xlsx
+¦   ¦       ¦       RIL_REPORTE_RIESGO_AMBIENTAL_JULIO_2025.xlsx
+¦   ¦       ¦       RIL_REPORTE_RIESGO_AMBIENTAL_JUNIO_2025.xlsx
+¦   ¦       ¦       RIL_REPORTE_RIESGO_AMBIENTAL_MAYO_2025.xlsx
+¦   ¦       ¦       
+¦   ¦       +---reportesDiagnostico
+¦   ¦       ¦       Informe de Diagnóstico SNF V1.7.xlsm
+¦   ¦       ¦       Reporte de diagnostico simplificado_v1.4.xlsm
+¦   ¦       ¦       Reporte Diagnostico V3_135.xlsm
+¦   ¦       ¦       Reporte Diagnostico V3_136.xlsm
+¦   ¦       ¦       Reporte Diagnostico V3_138.xlsm
+¦   ¦       ¦       
+¦   ¦       +---saras
+¦   ¦       ¦       REPORTE_SARAS_V5_JULIO_2025.html
+¦   ¦       ¦       REPORTE_SARAS_V5_JUNIO_2025.html
+¦   ¦       ¦       repSARAS_AGOSTO_2024.html
+¦   ¦       ¦       repSARAS_DICIEMBRE_2024.html
+¦   ¦       ¦       repSARAS_JULIO_2024.html
+¦   ¦       ¦       repSARAS_JUNIO_2024.html
+¦   ¦       ¦       repSARAS_MAYO_2024.html
+¦   ¦       ¦       repSARAS_NOVIEMBRE_2024.html
+¦   ¦       ¦       repSARAS_OCTUBRE_2024.html
+¦   ¦       ¦       repSARAS_SEPTIEMBRE_2024.html
+¦   ¦       ¦       
+¦   ¦       +---ssi
+¦   ¦       ¦       1.1. RIL_PT ESTADO DE CARGA DE PLAN DE TRABAJO.xlsx
+¦   ¦       ¦       2.4. RIL_PA ESTRATEGIAS INCUMPLIDAS.xlsx
+¦   ¦       ¦       RIL_OT ASIGNACION DE ENTIDADES.xlsx
+¦   ¦       ¦       
+¦   ¦       +---valestructuras
+¦   ¦       ¦       ENT_FECHAS_MAX_EST_NO_BOM.json
+¦   ¦       ¦       VALEST_v2_2.xlsm
+¦   ¦       ¦       
+¦   ¦       +---variacionesB11
+¦   ¦               ALERTA_VARIACIONES_B11_v2_ABRIL_2025.html
+¦   ¦               ALERTA_VARIACIONES_B11_v2_ABRIL_2025.XLSX
+¦   ¦               ALERTA_VARIACIONES_B11_v2_JULIO_2025.html
+¦   ¦               ALERTA_VARIACIONES_B11_v2_JULIO_2025.XLSX
+¦   ¦               ALERTA_VARIACIONES_B11_v2_JUNIO_2025.html
+¦   ¦               ALERTA_VARIACIONES_B11_v2_JUNIO_2025.XLSX
+¦   ¦               ALERTA_VARIACIONES_B11_v2_MARZO_2025.html
+¦   ¦               ALERTA_VARIACIONES_B11_v2_MARZO_2025.XLSX
+¦   ¦               ALERTA_VARIACIONES_B11_v2_MAYO_2025.html
+¦   ¦               ALERTA_VARIACIONES_B11_v2_MAYO_2025.XLSX
+¦   ¦               
+¦   +---images
+¦   ¦   ¦   loader_seps.gif
+¦   ¦   ¦   Loading.gif
+¦   ¦   ¦   logoSeps.png
+¦   ¦   ¦   logo_blanco.png
+¦   ¦   ¦   Logo_SEPS.svg
+¦   ¦   ¦   paleta.png
+¦   ¦   ¦   restricted.jpg
+¦   ¦   ¦   SEPS-TRANS.png
+¦   ¦   ¦   seps.jpg
+¦   ¦   ¦   sepsFavicon.ico
+¦   ¦   ¦   seps_large.jpg
+¦   ¦   ¦   
+¦   ¦   +---profiles
+¦   ¦           noPhoto.png
+¦   ¦           user.png
+¦   ¦           user2.png
+¦   ¦           
+¦   +---js
+¦   ¦   ¦   alertas.js
+¦   ¦   ¦   analistas.js
+¦   ¦   ¦   entidades.js
+¦   ¦   ¦   exportarTabla.js
+¦   ¦   ¦   filtrarTablas.js
+¦   ¦   ¦   menuItems.js
+¦   ¦   ¦   registrarBitacora.js
+¦   ¦   ¦   script.js
+¦   ¦   ¦   selectOptions.js
+¦   ¦   ¦   session_timeout.js
+¦   ¦   ¦   sidebarFunctions.js
+¦   ¦   ¦   
+¦   ¦   +---backups
+¦   ¦   ¦       backups.js
+¦   ¦   ¦       
+¦   ¦   +---bitacora
+¦   ¦   ¦       bitacoraUsuarios.js
+¦   ¦   ¦       
+¦   ¦   +---direcciones
+¦   ¦   ¦       direcciones.js
+¦   ¦   ¦       
+¦   ¦   +---empAux
+¦   ¦   ¦       catastroEmpAux.js
+¦   ¦   ¦       empAuxReportes.js
+¦   ¦   ¦       empAuxTables.js
+¦   ¦   ¦       funcEmpAux.js
+¦   ¦   ¦       segEmpAux.js
+¦   ¦   ¦       
+¦   ¦   +---estructuras
+¦   ¦   ¦       estructuras.js
+¦   ¦   ¦       
+¦   ¦   +---gestioninr
+¦   ¦   ¦       gestioninr.js
+¦   ¦   ¦       tablaCompleta.js
+¦   ¦   ¦       
+¦   ¦   +---indRanking
+¦   ¦   ¦       listFilesIndRanking.js
+¦   ¦   ¦       
+¦   ¦   +---informesinr
+¦   ¦   ¦       informesinr.js
+¦   ¦   ¦       infRepGeneral.js
+¦   ¦   ¦       
+¦   ¦   +---psi
+¦   ¦   ¦   ¦   psi.js
+¦   ¦   ¦   ¦   
+¦   ¦   ¦   +---cosede
+¦   ¦   ¦           listFilescosede.js
+¦   ¦   ¦           
+¦   ¦   +---reportes
+¦   ¦   ¦   ¦   listarArchivos.js
+¦   ¦   ¦   ¦   listarArchivosVersion.js
+¦   ¦   ¦   ¦   listFilesDetallesPA.js
+¦   ¦   ¦   ¦   listFilesDiagnostico.js
+¦   ¦   ¦   ¦   listFilesProvisiones.js
+¦   ¦   ¦   ¦   listFilesSSI.js
+¦   ¦   ¦   ¦   listFilesTbody_VATFA.js
+¦   ¦   ¦   ¦   
+¦   ¦   ¦   +---alertas
+¦   ¦   ¦           listFilesCalidadActivos.js
+¦   ¦   ¦           listFilesCalidadResultados.js
+¦   ¦   ¦           listFilesRiesgoCredito.js
+¦   ¦   ¦           listFilesRiesgoInterconexion.js
+¦   ¦   ¦           listFilesRiesgoLiquidez.js
+¦   ¦   ¦           listFilesRiesgoMercado.js
+¦   ¦   ¦           
+¦   ¦   +---supervision
+¦   ¦   ¦       asupervision.js
+¦   ¦   ¦       bucarSupervisiones.js
+¦   ¦   ¦       crudSupervision.js
+¦   ¦   ¦       requiredSupervision.js
+¦   ¦   ¦       toggleFormularios.js
+¦   ¦   ¦       
+¦   ¦   +---tareas
+¦   ¦   ¦       gestionTareas.js
+¦   ¦   ¦       
+¦   ¦   +---users
+¦   ¦   ¦       persona.js
+¦   ¦   ¦       profile.js
+¦   ¦   ¦       user.js
+¦   ¦   ¦       
+¦   ¦   +---valestructuras
+¦   ¦           valestructuras.js
+¦   ¦           
+¦   +---libs
+¦       +---adodb5
+¦       ¦   ¦   .DS_Store
+¦       ¦   ¦   .editorconfig
+¦       ¦   ¦   adodb-active-record.inc.php
+¦       ¦   ¦   adodb-active-recordx.inc.php
+¦       ¦   ¦   adodb-csvlib.inc.php
+¦       ¦   ¦   adodb-datadict.inc.php
+¦       ¦   ¦   adodb-error.inc.php
+¦       ¦   ¦   adodb-errorhandler.inc.php
+¦       ¦   ¦   adodb-errorpear.inc.php
+¦       ¦   ¦   adodb-exceptions.inc.php
+¦       ¦   ¦   adodb-lib.inc.php
+¦       ¦   ¦   adodb-loadbalancer.inc.php
+¦       ¦   ¦   adodb-memcache.lib.inc.php
+¦       ¦   ¦   adodb-pager.inc.php
+¦       ¦   ¦   adodb-pear.inc.php
+¦       ¦   ¦   adodb-perf.inc.php
+¦       ¦   ¦   adodb-time.inc.php
+¦       ¦   ¦   adodb-xmlschema.inc.php
+¦       ¦   ¦   adodb-xmlschema03.inc.php
+¦       ¦   ¦   adodb.inc.php
+¦       ¦   ¦   composer.json
+¦       ¦   ¦   composer.lock
+¦       ¦   ¦   LICENSE.md
+¦       ¦   ¦   phpdoc
+¦       ¦   ¦   phpdoc.dist.xml
+¦       ¦   ¦   pivottable.inc.php
+¦       ¦   ¦   README.md
+¦       ¦   ¦   rsfilter.inc.php
+¦       ¦   ¦   SECURITY.md
+¦       ¦   ¦   t-1035.php
+¦       ¦   ¦   t-1049.php
+¦       ¦   ¦   t-899.php
+¦       ¦   ¦   t-changetablesql.php
+¦       ¦   ¦   t-marco-pgsql.php
+¦       ¦   ¦   t-pdo.php
+¦       ¦   ¦   t-pgsql.php
+¦       ¦   ¦   t-sess.php
+¦       ¦   ¦   t1.php
+¦       ¦   ¦   t1035.php
+¦       ¦   ¦   t3.php
+¦       ¦   ¦   t4.php
+¦       ¦   ¦   t6.php
+¦       ¦   ¦   t986-pdo.php
+¦       ¦   ¦   test-1010.php
+¦       ¦   ¦   test-sqlsrv.php
+¦       ¦   ¦   test.php
+¦       ¦   ¦   toexport.inc.php
+¦       ¦   ¦   tohtml.inc.php
+¦       ¦   ¦   xmlschema.dtd
+¦       ¦   ¦   xmlschema03.dtd
+¦       ¦   ¦   
+¦       ¦   +---datadict
+¦       ¦   ¦       datadict-access.inc.php
+¦       ¦   ¦       datadict-db2.inc.php
+¦       ¦   ¦       datadict-firebird.inc.php
+¦       ¦   ¦       datadict-generic.inc.php
+¦       ¦   ¦       datadict-ibase.inc.php
+¦       ¦   ¦       datadict-informix.inc.php
+¦       ¦   ¦       datadict-mssql.inc.php
+¦       ¦   ¦       datadict-mssqlnative.inc.php
+¦       ¦   ¦       datadict-mysql.inc.php
+¦       ¦   ¦       datadict-oci8.inc.php
+¦       ¦   ¦       datadict-postgres.inc.php
+¦       ¦   ¦       datadict-sapdb.inc.php
+¦       ¦   ¦       datadict-sqlite.inc.php
+¦       ¦   ¦       datadict-sybase.inc.php
+¦       ¦   ¦       
+¦       ¦   +---docs
+¦       ¦   ¦       adodb.gif
+¦       ¦   ¦       adodb2.gif
+¦       ¦   ¦       changelog.md
+¦       ¦   ¦       changelog_v2.x.md
+¦       ¦   ¦       changelog_v3.x.md
+¦       ¦   ¦       changelog_v4+5.md
+¦       ¦   ¦       changelog_v4.x.md
+¦       ¦   ¦       README.md
+¦       ¦   ¦       
+¦       ¦   +---drivers
+¦       ¦   ¦       adodb-access.inc.php
+¦       ¦   ¦       adodb-ado.inc.php
+¦       ¦   ¦       adodb-ado5.inc.php
+¦       ¦   ¦       adodb-ado_access.inc.php
+¦       ¦   ¦       adodb-ado_mssql.inc.php
+¦       ¦   ¦       adodb-ads.inc.php
+¦       ¦   ¦       adodb-borland_ibase.inc.php
+¦       ¦   ¦       adodb-csv.inc.php
+¦       ¦   ¦       adodb-db2.inc.php
+¦       ¦   ¦       adodb-db2oci.inc.php
+¦       ¦   ¦       adodb-db2ora.inc.php
+¦       ¦   ¦       adodb-fbsql.inc.php
+¦       ¦   ¦       adodb-firebird.inc.php
+¦       ¦   ¦       adodb-ibase.inc.php
+¦       ¦   ¦       adodb-informix.inc.php
+¦       ¦   ¦       adodb-informix72.inc.php
+¦       ¦   ¦       adodb-ldap.inc.php
+¦       ¦   ¦       adodb-mssql.inc.php
+¦       ¦   ¦       adodb-mssqlnative.inc.php
+¦       ¦   ¦       adodb-mssqlpo.inc.php
+¦       ¦   ¦       adodb-mssql_n.inc.php
+¦       ¦   ¦       adodb-mysqli.inc.php
+¦       ¦   ¦       adodb-netezza.inc.php
+¦       ¦   ¦       adodb-oci8.inc.php
+¦       ¦   ¦       adodb-oci805.inc.php
+¦       ¦   ¦       adodb-oci8po.inc.php
+¦       ¦   ¦       adodb-oci8quercus.inc.php
+¦       ¦   ¦       adodb-odbc.inc.php
+¦       ¦   ¦       adodb-odbc_db2.inc.php
+¦       ¦   ¦       adodb-odbc_mssql.inc.php
+¦       ¦   ¦       adodb-odbc_mssql2012.inc.php
+¦       ¦   ¦       adodb-odbc_oracle.inc.php
+¦       ¦   ¦       adodb-odbtp.inc.php
+¦       ¦   ¦       adodb-odbtp_unicode.inc.php
+¦       ¦   ¦       adodb-oracle.inc.php
+¦       ¦   ¦       adodb-pdo.inc.php
+¦       ¦   ¦       adodb-pdo_dblib.inc.php
+¦       ¦   ¦       adodb-pdo_firebird.inc.php
+¦       ¦   ¦       adodb-pdo_mssql.inc.php
+¦       ¦   ¦       adodb-pdo_mysql.inc.php
+¦       ¦   ¦       adodb-pdo_oci.inc.php
+¦       ¦   ¦       adodb-pdo_pgsql.inc.php
+¦       ¦   ¦       adodb-pdo_sqlite.inc.php
+¦       ¦   ¦       adodb-pdo_sqlsrv.inc.php
+¦       ¦   ¦       adodb-postgres.inc.php
+¦       ¦   ¦       adodb-postgres64.inc.php
+¦       ¦   ¦       adodb-postgres7.inc.php
+¦       ¦   ¦       adodb-postgres8.inc.php
+¦       ¦   ¦       adodb-postgres9.inc.php
+¦       ¦   ¦       adodb-proxy.inc.php
+¦       ¦   ¦       adodb-sapdb.inc.php
+¦       ¦   ¦       adodb-sqlanywhere.inc.php
+¦       ¦   ¦       adodb-sqlite.inc.php
+¦       ¦   ¦       adodb-sqlite3.inc.php
+¦       ¦   ¦       adodb-sqlitepo.inc.php
+¦       ¦   ¦       adodb-sybase.inc.php
+¦       ¦   ¦       adodb-sybase_ase.inc.php
+¦       ¦   ¦       adodb-text.inc.php
+¦       ¦   ¦       adodb-vfp.inc.php
+¦       ¦   ¦       
+¦       ¦   +---lang
+¦       ¦   ¦       adodb-ar.inc.php
+¦       ¦   ¦       adodb-bg.inc.php
+¦       ¦   ¦       adodb-ca.inc.php
+¦       ¦   ¦       adodb-cn.inc.php
+¦       ¦   ¦       adodb-cz.inc.php
+¦       ¦   ¦       adodb-da.inc.php
+¦       ¦   ¦       adodb-de.inc.php
+¦       ¦   ¦       adodb-en.inc.php
+¦       ¦   ¦       adodb-eo.inc.php
+¦       ¦   ¦       adodb-es.inc.php
+¦       ¦   ¦       adodb-fa.inc.php
+¦       ¦   ¦       adodb-fr.inc.php
+¦       ¦   ¦       adodb-hu.inc.php
+¦       ¦   ¦       adodb-id.inc.php
+¦       ¦   ¦       adodb-it.inc.php
+¦       ¦   ¦       adodb-ka.inc.php
+¦       ¦   ¦       adodb-nl.inc.php
+¦       ¦   ¦       adodb-oc.inc.php
+¦       ¦   ¦       adodb-pl.inc.php
+¦       ¦   ¦       adodb-pt-br.inc.php
+¦       ¦   ¦       adodb-ro.inc.php
+¦       ¦   ¦       adodb-ru.inc.php
+¦       ¦   ¦       adodb-sv.inc.php
+¦       ¦   ¦       adodb-th.inc.php
+¦       ¦   ¦       adodb-uk.inc.php
+¦       ¦   ¦       
+¦       ¦   +---pear
+¦       ¦   ¦   ¦   auth_adodb_example.php
+¦       ¦   ¦   ¦   readme.Auth.txt
+¦       ¦   ¦   ¦   
+¦       ¦   ¦   +---Auth
+¦       ¦   ¦       +---Container
+¦       ¦   ¦               ADOdb.php
+¦       ¦   ¦               
+¦       ¦   +---perf
+¦       ¦   ¦       perf-db2.inc.php
+¦       ¦   ¦       perf-informix.inc.php
+¦       ¦   ¦       perf-mssql.inc.php
+¦       ¦   ¦       perf-mssqlnative.inc.php
+¦       ¦   ¦       perf-mysql.inc.php
+¦       ¦   ¦       perf-oci8.inc.php
+¦       ¦   ¦       perf-postgres.inc.php
+¦       ¦   ¦       perf-sqlite3.inc.php
+¦       ¦   ¦       
+¦       ¦   +---session
+¦       ¦   ¦   ¦   adodb-compress-bzip2.php
+¦       ¦   ¦   ¦   adodb-compress-gzip.php
+¦       ¦   ¦   ¦   adodb-cryptsession.php
+¦       ¦   ¦   ¦   adodb-cryptsession2.php
+¦       ¦   ¦   ¦   adodb-encrypt-mcrypt.php
+¦       ¦   ¦   ¦   adodb-encrypt-md5.php
+¦       ¦   ¦   ¦   adodb-encrypt-secret.php
+¦       ¦   ¦   ¦   adodb-encrypt-sha1.php
+¦       ¦   ¦   ¦   adodb-sess.txt
+¦       ¦   ¦   ¦   adodb-session-clob.php
+¦       ¦   ¦   ¦   adodb-session-clob2.php
+¦       ¦   ¦   ¦   adodb-session.php
+¦       ¦   ¦   ¦   adodb-session2.php
+¦       ¦   ¦   ¦   adodb-sessions.mysql.sql
+¦       ¦   ¦   ¦   adodb-sessions.oracle.clob.sql
+¦       ¦   ¦   ¦   adodb-sessions.oracle.sql
+¦       ¦   ¦   ¦   crypt.inc.php
+¦       ¦   ¦   ¦   session_schema.xml
+¦       ¦   ¦   ¦   session_schema2.xml
+¦       ¦   ¦   ¦   
+¦       ¦   ¦   +---old
+¦       ¦   ¦           adodb-cryptsession.php
+¦       ¦   ¦           adodb-session-clob.php
+¦       ¦   ¦           adodb-session.php
+¦       ¦   ¦           crypt.inc.php
+¦       ¦   ¦           
+¦       ¦   +---vendor
+¦       ¦   ¦   ¦   autoload.php
+¦       ¦   ¦   ¦   
+¦       ¦   ¦   +---bin
+¦       ¦   ¦   ¦       .phpunit.result.cache
+¦       ¦   ¦   ¦       php-parse
+¦       ¦   ¦   ¦       phpunit
+¦       ¦   ¦   ¦       
+¦       ¦   ¦   +---composer
+¦       ¦   ¦   ¦       autoload_classmap.php
+¦       ¦   ¦   ¦       autoload_files.php
+¦       ¦   ¦   ¦       autoload_namespaces.php
+¦       ¦   ¦   ¦       autoload_psr4.php
+¦       ¦   ¦   ¦       autoload_real.php
+¦       ¦   ¦   ¦       autoload_static.php
+¦       ¦   ¦   ¦       ClassLoader.php
+¦       ¦   ¦   ¦       installed.json
+¦       ¦   ¦   ¦       installed.php
+¦       ¦   ¦   ¦       InstalledVersions.php
+¦       ¦   ¦   ¦       LICENSE
+¦       ¦   ¦   ¦       platform_check.php
+¦       ¦   ¦   ¦       
+¦       ¦   ¦   +---doctrine
+¦       ¦   ¦   ¦   +---instantiator
+¦       ¦   ¦   ¦       ¦   .doctrine-project.json
+¦       ¦   ¦   ¦       ¦   composer.json
+¦       ¦   ¦   ¦       ¦   CONTRIBUTING.md
+¦       ¦   ¦   ¦       ¦   LICENSE
+¦       ¦   ¦   ¦       ¦   psalm.xml
+¦       ¦   ¦   ¦       ¦   README.md
+¦       ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦       +---docs
+¦       ¦   ¦   ¦       ¦   +---en
+¦       ¦   ¦   ¦       ¦           index.rst
+¦       ¦   ¦   ¦       ¦           sidebar.rst
+¦       ¦   ¦   ¦       ¦           
+¦       ¦   ¦   ¦       +---src
+¦       ¦   ¦   ¦           +---Doctrine
+¦       ¦   ¦   ¦               +---Instantiator
+¦       ¦   ¦   ¦                   ¦   Instantiator.php
+¦       ¦   ¦   ¦                   ¦   InstantiatorInterface.php
+¦       ¦   ¦   ¦                   ¦   
+¦       ¦   ¦   ¦                   +---Exception
+¦       ¦   ¦   ¦                           ExceptionInterface.php
+¦       ¦   ¦   ¦                           InvalidArgumentException.php
+¦       ¦   ¦   ¦                           UnexpectedValueException.php
+¦       ¦   ¦   ¦                           
+¦       ¦   ¦   +---myclabs
+¦       ¦   ¦   ¦   +---deep-copy
+¦       ¦   ¦   ¦       ¦   composer.json
+¦       ¦   ¦   ¦       ¦   LICENSE
+¦       ¦   ¦   ¦       ¦   README.md
+¦       ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦       +---src
+¦       ¦   ¦   ¦           +---DeepCopy
+¦       ¦   ¦   ¦               ¦   DeepCopy.php
+¦       ¦   ¦   ¦               ¦   deep_copy.php
+¦       ¦   ¦   ¦               ¦   
+¦       ¦   ¦   ¦               +---Exception
+¦       ¦   ¦   ¦               ¦       CloneException.php
+¦       ¦   ¦   ¦               ¦       PropertyException.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---Filter
+¦       ¦   ¦   ¦               ¦   ¦   Filter.php
+¦       ¦   ¦   ¦               ¦   ¦   KeepFilter.php
+¦       ¦   ¦   ¦               ¦   ¦   ReplaceFilter.php
+¦       ¦   ¦   ¦               ¦   ¦   SetNullFilter.php
+¦       ¦   ¦   ¦               ¦   ¦   
+¦       ¦   ¦   ¦               ¦   +---Doctrine
+¦       ¦   ¦   ¦               ¦           DoctrineCollectionFilter.php
+¦       ¦   ¦   ¦               ¦           DoctrineEmptyCollectionFilter.php
+¦       ¦   ¦   ¦               ¦           DoctrineProxyFilter.php
+¦       ¦   ¦   ¦               ¦           
+¦       ¦   ¦   ¦               +---Matcher
+¦       ¦   ¦   ¦               ¦   ¦   Matcher.php
+¦       ¦   ¦   ¦               ¦   ¦   PropertyMatcher.php
+¦       ¦   ¦   ¦               ¦   ¦   PropertyNameMatcher.php
+¦       ¦   ¦   ¦               ¦   ¦   PropertyTypeMatcher.php
+¦       ¦   ¦   ¦               ¦   ¦   
+¦       ¦   ¦   ¦               ¦   +---Doctrine
+¦       ¦   ¦   ¦               ¦           DoctrineProxyMatcher.php
+¦       ¦   ¦   ¦               ¦           
+¦       ¦   ¦   ¦               +---Reflection
+¦       ¦   ¦   ¦               ¦       ReflectionHelper.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---TypeFilter
+¦       ¦   ¦   ¦               ¦   ¦   ReplaceFilter.php
+¦       ¦   ¦   ¦               ¦   ¦   ShallowCopyFilter.php
+¦       ¦   ¦   ¦               ¦   ¦   TypeFilter.php
+¦       ¦   ¦   ¦               ¦   ¦   
+¦       ¦   ¦   ¦               ¦   +---Date
+¦       ¦   ¦   ¦               ¦   ¦       DateIntervalFilter.php
+¦       ¦   ¦   ¦               ¦   ¦       
+¦       ¦   ¦   ¦               ¦   +---Spl
+¦       ¦   ¦   ¦               ¦           ArrayObjectFilter.php
+¦       ¦   ¦   ¦               ¦           SplDoublyLinkedList.php
+¦       ¦   ¦   ¦               ¦           SplDoublyLinkedListFilter.php
+¦       ¦   ¦   ¦               ¦           
+¦       ¦   ¦   ¦               +---TypeMatcher
+¦       ¦   ¦   ¦                       TypeMatcher.php
+¦       ¦   ¦   ¦                       
+¦       ¦   ¦   +---nikic
+¦       ¦   ¦   ¦   +---php-parser
+¦       ¦   ¦   ¦       ¦   composer.json
+¦       ¦   ¦   ¦       ¦   LICENSE
+¦       ¦   ¦   ¦       ¦   README.md
+¦       ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦       +---bin
+¦       ¦   ¦   ¦       ¦       php-parse
+¦       ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦       +---grammar
+¦       ¦   ¦   ¦       ¦       parser.template
+¦       ¦   ¦   ¦       ¦       php5.y
+¦       ¦   ¦   ¦       ¦       php7.y
+¦       ¦   ¦   ¦       ¦       phpyLang.php
+¦       ¦   ¦   ¦       ¦       README.md
+¦       ¦   ¦   ¦       ¦       rebuildParsers.php
+¦       ¦   ¦   ¦       ¦       tokens.template
+¦       ¦   ¦   ¦       ¦       tokens.y
+¦       ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦       +---lib
+¦       ¦   ¦   ¦           +---PhpParser
+¦       ¦   ¦   ¦               ¦   Builder.php
+¦       ¦   ¦   ¦               ¦   BuilderFactory.php
+¦       ¦   ¦   ¦               ¦   BuilderHelpers.php
+¦       ¦   ¦   ¦               ¦   Comment.php
+¦       ¦   ¦   ¦               ¦   ConstExprEvaluationException.php
+¦       ¦   ¦   ¦               ¦   ConstExprEvaluator.php
+¦       ¦   ¦   ¦               ¦   Error.php
+¦       ¦   ¦   ¦               ¦   ErrorHandler.php
+¦       ¦   ¦   ¦               ¦   JsonDecoder.php
+¦       ¦   ¦   ¦               ¦   Lexer.php
+¦       ¦   ¦   ¦               ¦   NameContext.php
+¦       ¦   ¦   ¦               ¦   Node.php
+¦       ¦   ¦   ¦               ¦   NodeAbstract.php
+¦       ¦   ¦   ¦               ¦   NodeDumper.php
+¦       ¦   ¦   ¦               ¦   NodeFinder.php
+¦       ¦   ¦   ¦               ¦   NodeTraverser.php
+¦       ¦   ¦   ¦               ¦   NodeTraverserInterface.php
+¦       ¦   ¦   ¦               ¦   NodeVisitor.php
+¦       ¦   ¦   ¦               ¦   NodeVisitorAbstract.php
+¦       ¦   ¦   ¦               ¦   Parser.php
+¦       ¦   ¦   ¦               ¦   ParserAbstract.php
+¦       ¦   ¦   ¦               ¦   ParserFactory.php
+¦       ¦   ¦   ¦               ¦   PrettyPrinterAbstract.php
+¦       ¦   ¦   ¦               ¦   
+¦       ¦   ¦   ¦               +---Builder
+¦       ¦   ¦   ¦               ¦       ClassConst.php
+¦       ¦   ¦   ¦               ¦       Class_.php
+¦       ¦   ¦   ¦               ¦       Declaration.php
+¦       ¦   ¦   ¦               ¦       EnumCase.php
+¦       ¦   ¦   ¦               ¦       Enum_.php
+¦       ¦   ¦   ¦               ¦       FunctionLike.php
+¦       ¦   ¦   ¦               ¦       Function_.php
+¦       ¦   ¦   ¦               ¦       Interface_.php
+¦       ¦   ¦   ¦               ¦       Method.php
+¦       ¦   ¦   ¦               ¦       Namespace_.php
+¦       ¦   ¦   ¦               ¦       Param.php
+¦       ¦   ¦   ¦               ¦       Property.php
+¦       ¦   ¦   ¦               ¦       TraitUse.php
+¦       ¦   ¦   ¦               ¦       TraitUseAdaptation.php
+¦       ¦   ¦   ¦               ¦       Trait_.php
+¦       ¦   ¦   ¦               ¦       Use_.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---Comment
+¦       ¦   ¦   ¦               ¦       Doc.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---ErrorHandler
+¦       ¦   ¦   ¦               ¦       Collecting.php
+¦       ¦   ¦   ¦               ¦       Throwing.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---Internal
+¦       ¦   ¦   ¦               ¦       DiffElem.php
+¦       ¦   ¦   ¦               ¦       Differ.php
+¦       ¦   ¦   ¦               ¦       PrintableNewAnonClassNode.php
+¦       ¦   ¦   ¦               ¦       TokenStream.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---Lexer
+¦       ¦   ¦   ¦               ¦   ¦   Emulative.php
+¦       ¦   ¦   ¦               ¦   ¦   
+¦       ¦   ¦   ¦               ¦   +---TokenEmulator
+¦       ¦   ¦   ¦               ¦           AttributeEmulator.php
+¦       ¦   ¦   ¦               ¦           CoaleseEqualTokenEmulator.php
+¦       ¦   ¦   ¦               ¦           EnumTokenEmulator.php
+¦       ¦   ¦   ¦               ¦           ExplicitOctalEmulator.php
+¦       ¦   ¦   ¦               ¦           FlexibleDocStringEmulator.php
+¦       ¦   ¦   ¦               ¦           FnTokenEmulator.php
+¦       ¦   ¦   ¦               ¦           KeywordEmulator.php
+¦       ¦   ¦   ¦               ¦           MatchTokenEmulator.php
+¦       ¦   ¦   ¦               ¦           NullsafeTokenEmulator.php
+¦       ¦   ¦   ¦               ¦           NumericLiteralSeparatorEmulator.php
+¦       ¦   ¦   ¦               ¦           ReadonlyTokenEmulator.php
+¦       ¦   ¦   ¦               ¦           ReverseEmulator.php
+¦       ¦   ¦   ¦               ¦           TokenEmulator.php
+¦       ¦   ¦   ¦               ¦           
+¦       ¦   ¦   ¦               +---Node
+¦       ¦   ¦   ¦               ¦   ¦   Arg.php
+¦       ¦   ¦   ¦               ¦   ¦   Attribute.php
+¦       ¦   ¦   ¦               ¦   ¦   AttributeGroup.php
+¦       ¦   ¦   ¦               ¦   ¦   ComplexType.php
+¦       ¦   ¦   ¦               ¦   ¦   Const_.php
+¦       ¦   ¦   ¦               ¦   ¦   Expr.php
+¦       ¦   ¦   ¦               ¦   ¦   FunctionLike.php
+¦       ¦   ¦   ¦               ¦   ¦   Identifier.php
+¦       ¦   ¦   ¦               ¦   ¦   IntersectionType.php
+¦       ¦   ¦   ¦               ¦   ¦   MatchArm.php
+¦       ¦   ¦   ¦               ¦   ¦   Name.php
+¦       ¦   ¦   ¦               ¦   ¦   NullableType.php
+¦       ¦   ¦   ¦               ¦   ¦   Param.php
+¦       ¦   ¦   ¦               ¦   ¦   Scalar.php
+¦       ¦   ¦   ¦               ¦   ¦   Stmt.php
+¦       ¦   ¦   ¦               ¦   ¦   UnionType.php
+¦       ¦   ¦   ¦               ¦   ¦   VariadicPlaceholder.php
+¦       ¦   ¦   ¦               ¦   ¦   VarLikeIdentifier.php
+¦       ¦   ¦   ¦               ¦   ¦   
+¦       ¦   ¦   ¦               ¦   +---Expr
+¦       ¦   ¦   ¦               ¦   ¦   ¦   ArrayDimFetch.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   ArrayItem.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Array_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   ArrowFunction.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Assign.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   AssignOp.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   AssignRef.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   BinaryOp.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   BitwiseNot.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   BooleanNot.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   CallLike.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Cast.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   ClassConstFetch.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Clone_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Closure.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   ClosureUse.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   ConstFetch.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Empty_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Error.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   ErrorSuppress.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Eval_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Exit_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   FuncCall.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Include_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Instanceof_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Isset_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   List_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Match_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   MethodCall.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   New_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   NullsafeMethodCall.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   NullsafePropertyFetch.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   PostDec.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   PostInc.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   PreDec.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   PreInc.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Print_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   PropertyFetch.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   ShellExec.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   StaticCall.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   StaticPropertyFetch.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Ternary.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Throw_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   UnaryMinus.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   UnaryPlus.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Variable.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   YieldFrom.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Yield_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   
+¦       ¦   ¦   ¦               ¦   ¦   +---AssignOp
+¦       ¦   ¦   ¦               ¦   ¦   ¦       BitwiseAnd.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       BitwiseOr.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       BitwiseXor.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Coalesce.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Concat.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Div.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Minus.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Mod.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Mul.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Plus.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Pow.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       ShiftLeft.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       ShiftRight.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       
+¦       ¦   ¦   ¦               ¦   ¦   +---BinaryOp
+¦       ¦   ¦   ¦               ¦   ¦   ¦       BitwiseAnd.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       BitwiseOr.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       BitwiseXor.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       BooleanAnd.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       BooleanOr.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Coalesce.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Concat.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Div.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Equal.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Greater.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       GreaterOrEqual.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Identical.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       LogicalAnd.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       LogicalOr.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       LogicalXor.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Minus.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Mod.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Mul.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       NotEqual.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       NotIdentical.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Plus.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Pow.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       ShiftLeft.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       ShiftRight.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Smaller.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       SmallerOrEqual.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       Spaceship.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦       
+¦       ¦   ¦   ¦               ¦   ¦   +---Cast
+¦       ¦   ¦   ¦               ¦   ¦           Array_.php
+¦       ¦   ¦   ¦               ¦   ¦           Bool_.php
+¦       ¦   ¦   ¦               ¦   ¦           Double.php
+¦       ¦   ¦   ¦               ¦   ¦           Int_.php
+¦       ¦   ¦   ¦               ¦   ¦           Object_.php
+¦       ¦   ¦   ¦               ¦   ¦           String_.php
+¦       ¦   ¦   ¦               ¦   ¦           Unset_.php
+¦       ¦   ¦   ¦               ¦   ¦           
+¦       ¦   ¦   ¦               ¦   +---Name
+¦       ¦   ¦   ¦               ¦   ¦       FullyQualified.php
+¦       ¦   ¦   ¦               ¦   ¦       Relative.php
+¦       ¦   ¦   ¦               ¦   ¦       
+¦       ¦   ¦   ¦               ¦   +---Scalar
+¦       ¦   ¦   ¦               ¦   ¦   ¦   DNumber.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   Encapsed.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   EncapsedStringPart.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   LNumber.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   MagicConst.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   String_.php
+¦       ¦   ¦   ¦               ¦   ¦   ¦   
+¦       ¦   ¦   ¦               ¦   ¦   +---MagicConst
+¦       ¦   ¦   ¦               ¦   ¦           Class_.php
+¦       ¦   ¦   ¦               ¦   ¦           Dir.php
+¦       ¦   ¦   ¦               ¦   ¦           File.php
+¦       ¦   ¦   ¦               ¦   ¦           Function_.php
+¦       ¦   ¦   ¦               ¦   ¦           Line.php
+¦       ¦   ¦   ¦               ¦   ¦           Method.php
+¦       ¦   ¦   ¦               ¦   ¦           Namespace_.php
+¦       ¦   ¦   ¦               ¦   ¦           Trait_.php
+¦       ¦   ¦   ¦               ¦   ¦           
+¦       ¦   ¦   ¦               ¦   +---Stmt
+¦       ¦   ¦   ¦               ¦       ¦   Break_.php
+¦       ¦   ¦   ¦               ¦       ¦   Case_.php
+¦       ¦   ¦   ¦               ¦       ¦   Catch_.php
+¦       ¦   ¦   ¦               ¦       ¦   ClassConst.php
+¦       ¦   ¦   ¦               ¦       ¦   ClassLike.php
+¦       ¦   ¦   ¦               ¦       ¦   ClassMethod.php
+¦       ¦   ¦   ¦               ¦       ¦   Class_.php
+¦       ¦   ¦   ¦               ¦       ¦   Const_.php
+¦       ¦   ¦   ¦               ¦       ¦   Continue_.php
+¦       ¦   ¦   ¦               ¦       ¦   DeclareDeclare.php
+¦       ¦   ¦   ¦               ¦       ¦   Declare_.php
+¦       ¦   ¦   ¦               ¦       ¦   Do_.php
+¦       ¦   ¦   ¦               ¦       ¦   Echo_.php
+¦       ¦   ¦   ¦               ¦       ¦   ElseIf_.php
+¦       ¦   ¦   ¦               ¦       ¦   Else_.php
+¦       ¦   ¦   ¦               ¦       ¦   EnumCase.php
+¦       ¦   ¦   ¦               ¦       ¦   Enum_.php
+¦       ¦   ¦   ¦               ¦       ¦   Expression.php
+¦       ¦   ¦   ¦               ¦       ¦   Finally_.php
+¦       ¦   ¦   ¦               ¦       ¦   Foreach_.php
+¦       ¦   ¦   ¦               ¦       ¦   For_.php
+¦       ¦   ¦   ¦               ¦       ¦   Function_.php
+¦       ¦   ¦   ¦               ¦       ¦   Global_.php
+¦       ¦   ¦   ¦               ¦       ¦   Goto_.php
+¦       ¦   ¦   ¦               ¦       ¦   GroupUse.php
+¦       ¦   ¦   ¦               ¦       ¦   HaltCompiler.php
+¦       ¦   ¦   ¦               ¦       ¦   If_.php
+¦       ¦   ¦   ¦               ¦       ¦   InlineHTML.php
+¦       ¦   ¦   ¦               ¦       ¦   Interface_.php
+¦       ¦   ¦   ¦               ¦       ¦   Label.php
+¦       ¦   ¦   ¦               ¦       ¦   Namespace_.php
+¦       ¦   ¦   ¦               ¦       ¦   Nop.php
+¦       ¦   ¦   ¦               ¦       ¦   Property.php
+¦       ¦   ¦   ¦               ¦       ¦   PropertyProperty.php
+¦       ¦   ¦   ¦               ¦       ¦   Return_.php
+¦       ¦   ¦   ¦               ¦       ¦   StaticVar.php
+¦       ¦   ¦   ¦               ¦       ¦   Static_.php
+¦       ¦   ¦   ¦               ¦       ¦   Switch_.php
+¦       ¦   ¦   ¦               ¦       ¦   Throw_.php
+¦       ¦   ¦   ¦               ¦       ¦   TraitUse.php
+¦       ¦   ¦   ¦               ¦       ¦   TraitUseAdaptation.php
+¦       ¦   ¦   ¦               ¦       ¦   Trait_.php
+¦       ¦   ¦   ¦               ¦       ¦   TryCatch.php
+¦       ¦   ¦   ¦               ¦       ¦   Unset_.php
+¦       ¦   ¦   ¦               ¦       ¦   UseUse.php
+¦       ¦   ¦   ¦               ¦       ¦   Use_.php
+¦       ¦   ¦   ¦               ¦       ¦   While_.php
+¦       ¦   ¦   ¦               ¦       ¦   
+¦       ¦   ¦   ¦               ¦       +---TraitUseAdaptation
+¦       ¦   ¦   ¦               ¦               Alias.php
+¦       ¦   ¦   ¦               ¦               Precedence.php
+¦       ¦   ¦   ¦               ¦               
+¦       ¦   ¦   ¦               +---NodeVisitor
+¦       ¦   ¦   ¦               ¦       CloningVisitor.php
+¦       ¦   ¦   ¦               ¦       FindingVisitor.php
+¦       ¦   ¦   ¦               ¦       FirstFindingVisitor.php
+¦       ¦   ¦   ¦               ¦       NameResolver.php
+¦       ¦   ¦   ¦               ¦       NodeConnectingVisitor.php
+¦       ¦   ¦   ¦               ¦       ParentConnectingVisitor.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---Parser
+¦       ¦   ¦   ¦               ¦       Multiple.php
+¦       ¦   ¦   ¦               ¦       Php5.php
+¦       ¦   ¦   ¦               ¦       Php7.php
+¦       ¦   ¦   ¦               ¦       Tokens.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---PrettyPrinter
+¦       ¦   ¦   ¦                       Standard.php
+¦       ¦   ¦   ¦                       
+¦       ¦   ¦   +---phar-io
+¦       ¦   ¦   ¦   +---manifest
+¦       ¦   ¦   ¦   ¦   ¦   CHANGELOG.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   composer.lock
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   ManifestDocumentMapper.php
+¦       ¦   ¦   ¦   ¦       ¦   ManifestLoader.php
+¦       ¦   ¦   ¦   ¦       ¦   ManifestSerializer.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exceptions
+¦       ¦   ¦   ¦   ¦       ¦       ElementCollectionException.php
+¦       ¦   ¦   ¦   ¦       ¦       Exception.php
+¦       ¦   ¦   ¦   ¦       ¦       InvalidApplicationNameException.php
+¦       ¦   ¦   ¦   ¦       ¦       InvalidEmailException.php
+¦       ¦   ¦   ¦   ¦       ¦       InvalidUrlException.php
+¦       ¦   ¦   ¦   ¦       ¦       ManifestDocumentException.php
+¦       ¦   ¦   ¦   ¦       ¦       ManifestDocumentLoadingException.php
+¦       ¦   ¦   ¦   ¦       ¦       ManifestDocumentMapperException.php
+¦       ¦   ¦   ¦   ¦       ¦       ManifestElementException.php
+¦       ¦   ¦   ¦   ¦       ¦       ManifestLoaderException.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---values
+¦       ¦   ¦   ¦   ¦       ¦       Application.php
+¦       ¦   ¦   ¦   ¦       ¦       ApplicationName.php
+¦       ¦   ¦   ¦   ¦       ¦       Author.php
+¦       ¦   ¦   ¦   ¦       ¦       AuthorCollection.php
+¦       ¦   ¦   ¦   ¦       ¦       AuthorCollectionIterator.php
+¦       ¦   ¦   ¦   ¦       ¦       BundledComponent.php
+¦       ¦   ¦   ¦   ¦       ¦       BundledComponentCollection.php
+¦       ¦   ¦   ¦   ¦       ¦       BundledComponentCollectionIterator.php
+¦       ¦   ¦   ¦   ¦       ¦       CopyrightInformation.php
+¦       ¦   ¦   ¦   ¦       ¦       Email.php
+¦       ¦   ¦   ¦   ¦       ¦       Extension.php
+¦       ¦   ¦   ¦   ¦       ¦       Library.php
+¦       ¦   ¦   ¦   ¦       ¦       License.php
+¦       ¦   ¦   ¦   ¦       ¦       Manifest.php
+¦       ¦   ¦   ¦   ¦       ¦       PhpExtensionRequirement.php
+¦       ¦   ¦   ¦   ¦       ¦       PhpVersionRequirement.php
+¦       ¦   ¦   ¦   ¦       ¦       Requirement.php
+¦       ¦   ¦   ¦   ¦       ¦       RequirementCollection.php
+¦       ¦   ¦   ¦   ¦       ¦       RequirementCollectionIterator.php
+¦       ¦   ¦   ¦   ¦       ¦       Type.php
+¦       ¦   ¦   ¦   ¦       ¦       Url.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---xml
+¦       ¦   ¦   ¦   ¦               AuthorElement.php
+¦       ¦   ¦   ¦   ¦               AuthorElementCollection.php
+¦       ¦   ¦   ¦   ¦               BundlesElement.php
+¦       ¦   ¦   ¦   ¦               ComponentElement.php
+¦       ¦   ¦   ¦   ¦               ComponentElementCollection.php
+¦       ¦   ¦   ¦   ¦               ContainsElement.php
+¦       ¦   ¦   ¦   ¦               CopyrightElement.php
+¦       ¦   ¦   ¦   ¦               ElementCollection.php
+¦       ¦   ¦   ¦   ¦               ExtElement.php
+¦       ¦   ¦   ¦   ¦               ExtElementCollection.php
+¦       ¦   ¦   ¦   ¦               ExtensionElement.php
+¦       ¦   ¦   ¦   ¦               LicenseElement.php
+¦       ¦   ¦   ¦   ¦               ManifestDocument.php
+¦       ¦   ¦   ¦   ¦               ManifestElement.php
+¦       ¦   ¦   ¦   ¦               PhpElement.php
+¦       ¦   ¦   ¦   ¦               RequiresElement.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---version
+¦       ¦   ¦   ¦       ¦   CHANGELOG.md
+¦       ¦   ¦   ¦       ¦   composer.json
+¦       ¦   ¦   ¦       ¦   LICENSE
+¦       ¦   ¦   ¦       ¦   README.md
+¦       ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦       +---src
+¦       ¦   ¦   ¦           ¦   BuildMetaData.php
+¦       ¦   ¦   ¦           ¦   PreReleaseSuffix.php
+¦       ¦   ¦   ¦           ¦   Version.php
+¦       ¦   ¦   ¦           ¦   VersionConstraintParser.php
+¦       ¦   ¦   ¦           ¦   VersionConstraintValue.php
+¦       ¦   ¦   ¦           ¦   VersionNumber.php
+¦       ¦   ¦   ¦           ¦   
+¦       ¦   ¦   ¦           +---constraints
+¦       ¦   ¦   ¦           ¦       AbstractVersionConstraint.php
+¦       ¦   ¦   ¦           ¦       AndVersionConstraintGroup.php
+¦       ¦   ¦   ¦           ¦       AnyVersionConstraint.php
+¦       ¦   ¦   ¦           ¦       ExactVersionConstraint.php
+¦       ¦   ¦   ¦           ¦       GreaterThanOrEqualToVersionConstraint.php
+¦       ¦   ¦   ¦           ¦       OrVersionConstraintGroup.php
+¦       ¦   ¦   ¦           ¦       SpecificMajorAndMinorVersionConstraint.php
+¦       ¦   ¦   ¦           ¦       SpecificMajorVersionConstraint.php
+¦       ¦   ¦   ¦           ¦       VersionConstraint.php
+¦       ¦   ¦   ¦           ¦       
+¦       ¦   ¦   ¦           +---exceptions
+¦       ¦   ¦   ¦                   Exception.php
+¦       ¦   ¦   ¦                   InvalidPreReleaseSuffixException.php
+¦       ¦   ¦   ¦                   InvalidVersionException.php
+¦       ¦   ¦   ¦                   NoBuildMetaDataException.php
+¦       ¦   ¦   ¦                   NoPreReleaseSuffixException.php
+¦       ¦   ¦   ¦                   UnsupportedVersionConstraintException.php
+¦       ¦   ¦   ¦                   
+¦       ¦   ¦   +---phpunit
+¦       ¦   ¦   ¦   +---php-code-coverage
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   CodeCoverage.php
+¦       ¦   ¦   ¦   ¦       ¦   Filter.php
+¦       ¦   ¦   ¦   ¦       ¦   ProcessedCodeCoverageData.php
+¦       ¦   ¦   ¦   ¦       ¦   RawCodeCoverageData.php
+¦       ¦   ¦   ¦   ¦       ¦   Version.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---Driver
+¦       ¦   ¦   ¦   ¦       ¦       Driver.php
+¦       ¦   ¦   ¦   ¦       ¦       PcovDriver.php
+¦       ¦   ¦   ¦   ¦       ¦       PhpdbgDriver.php
+¦       ¦   ¦   ¦   ¦       ¦       Selector.php
+¦       ¦   ¦   ¦   ¦       ¦       Xdebug2Driver.php
+¦       ¦   ¦   ¦   ¦       ¦       Xdebug3Driver.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---Exception
+¦       ¦   ¦   ¦   ¦       ¦       BranchAndPathCoverageNotSupportedException.php
+¦       ¦   ¦   ¦   ¦       ¦       DeadCodeDetectionNotSupportedException.php
+¦       ¦   ¦   ¦   ¦       ¦       DirectoryCouldNotBeCreatedException.php
+¦       ¦   ¦   ¦   ¦       ¦       Exception.php
+¦       ¦   ¦   ¦   ¦       ¦       InvalidArgumentException.php
+¦       ¦   ¦   ¦   ¦       ¦       NoCodeCoverageDriverAvailableException.php
+¦       ¦   ¦   ¦   ¦       ¦       NoCodeCoverageDriverWithPathCoverageSupportAvailableException.php
+¦       ¦   ¦   ¦   ¦       ¦       ParserException.php
+¦       ¦   ¦   ¦   ¦       ¦       PathExistsButIsNotDirectoryException.php
+¦       ¦   ¦   ¦   ¦       ¦       PcovNotAvailableException.php
+¦       ¦   ¦   ¦   ¦       ¦       PhpdbgNotAvailableException.php
+¦       ¦   ¦   ¦   ¦       ¦       ReflectionException.php
+¦       ¦   ¦   ¦   ¦       ¦       ReportAlreadyFinalizedException.php
+¦       ¦   ¦   ¦   ¦       ¦       StaticAnalysisCacheNotConfiguredException.php
+¦       ¦   ¦   ¦   ¦       ¦       TestIdMissingException.php
+¦       ¦   ¦   ¦   ¦       ¦       UnintentionallyCoveredCodeException.php
+¦       ¦   ¦   ¦   ¦       ¦       WriteOperationFailedException.php
+¦       ¦   ¦   ¦   ¦       ¦       WrongXdebugVersionException.php
+¦       ¦   ¦   ¦   ¦       ¦       Xdebug2NotEnabledException.php
+¦       ¦   ¦   ¦   ¦       ¦       Xdebug3NotEnabledException.php
+¦       ¦   ¦   ¦   ¦       ¦       XdebugNotAvailableException.php
+¦       ¦   ¦   ¦   ¦       ¦       XmlException.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---Node
+¦       ¦   ¦   ¦   ¦       ¦       AbstractNode.php
+¦       ¦   ¦   ¦   ¦       ¦       Builder.php
+¦       ¦   ¦   ¦   ¦       ¦       CrapIndex.php
+¦       ¦   ¦   ¦   ¦       ¦       Directory.php
+¦       ¦   ¦   ¦   ¦       ¦       File.php
+¦       ¦   ¦   ¦   ¦       ¦       Iterator.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---Report
+¦       ¦   ¦   ¦   ¦       ¦   ¦   Clover.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦   Cobertura.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦   Crap4j.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦   PHP.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦   Text.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦   
+¦       ¦   ¦   ¦   ¦       ¦   +---Html
+¦       ¦   ¦   ¦   ¦       ¦   ¦   ¦   Facade.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦   ¦   Renderer.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦       ¦   ¦   +---Renderer
+¦       ¦   ¦   ¦   ¦       ¦   ¦       ¦   Dashboard.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦       ¦   Directory.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦       ¦   File.php
+¦       ¦   ¦   ¦   ¦       ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       ¦   ¦       +---Template
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   branches.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   coverage_bar.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   coverage_bar_branch.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   dashboard.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   dashboard_branch.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   directory.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   directory_branch.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   directory_item.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   directory_item_branch.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   file.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   file_branch.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   file_item.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   file_item_branch.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   line.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   lines.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   method_item.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   method_item_branch.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   paths.html.dist
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦   
+¦       ¦   ¦   ¦   ¦       ¦   ¦           +---css
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       bootstrap.min.css
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       custom.css
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       nv.d3.min.css
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       octicons.css
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       style.css
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       
+¦       ¦   ¦   ¦   ¦       ¦   ¦           +---icons
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       file-code.svg
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       file-directory.svg
+¦       ¦   ¦   ¦   ¦       ¦   ¦           ¦       
+¦       ¦   ¦   ¦   ¦       ¦   ¦           +---js
+¦       ¦   ¦   ¦   ¦       ¦   ¦                   bootstrap.min.js
+¦       ¦   ¦   ¦   ¦       ¦   ¦                   d3.min.js
+¦       ¦   ¦   ¦   ¦       ¦   ¦                   file.js
+¦       ¦   ¦   ¦   ¦       ¦   ¦                   jquery.min.js
+¦       ¦   ¦   ¦   ¦       ¦   ¦                   nv.d3.min.js
+¦       ¦   ¦   ¦   ¦       ¦   ¦                   popper.min.js
+¦       ¦   ¦   ¦   ¦       ¦   ¦                   
+¦       ¦   ¦   ¦   ¦       ¦   +---Xml
+¦       ¦   ¦   ¦   ¦       ¦           BuildInformation.php
+¦       ¦   ¦   ¦   ¦       ¦           Coverage.php
+¦       ¦   ¦   ¦   ¦       ¦           Directory.php
+¦       ¦   ¦   ¦   ¦       ¦           Facade.php
+¦       ¦   ¦   ¦   ¦       ¦           File.php
+¦       ¦   ¦   ¦   ¦       ¦           Method.php
+¦       ¦   ¦   ¦   ¦       ¦           Node.php
+¦       ¦   ¦   ¦   ¦       ¦           Project.php
+¦       ¦   ¦   ¦   ¦       ¦           Report.php
+¦       ¦   ¦   ¦   ¦       ¦           Source.php
+¦       ¦   ¦   ¦   ¦       ¦           Tests.php
+¦       ¦   ¦   ¦   ¦       ¦           Totals.php
+¦       ¦   ¦   ¦   ¦       ¦           Unit.php
+¦       ¦   ¦   ¦   ¦       ¦           
+¦       ¦   ¦   ¦   ¦       +---StaticAnalysis
+¦       ¦   ¦   ¦   ¦       ¦       CacheWarmer.php
+¦       ¦   ¦   ¦   ¦       ¦       CachingFileAnalyser.php
+¦       ¦   ¦   ¦   ¦       ¦       CodeUnitFindingVisitor.php
+¦       ¦   ¦   ¦   ¦       ¦       ExecutableLinesFindingVisitor.php
+¦       ¦   ¦   ¦   ¦       ¦       FileAnalyser.php
+¦       ¦   ¦   ¦   ¦       ¦       IgnoredLinesFindingVisitor.php
+¦       ¦   ¦   ¦   ¦       ¦       ParsingFileAnalyser.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---Util
+¦       ¦   ¦   ¦   ¦               Filesystem.php
+¦       ¦   ¦   ¦   ¦               Percentage.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---php-file-iterator
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦           Facade.php
+¦       ¦   ¦   ¦   ¦           Factory.php
+¦       ¦   ¦   ¦   ¦           Iterator.php
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---php-invoker
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   Invoker.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exceptions
+¦       ¦   ¦   ¦   ¦               Exception.php
+¦       ¦   ¦   ¦   ¦               ProcessControlExtensionNotLoadedException.php
+¦       ¦   ¦   ¦   ¦               TimeoutException.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---php-text-template
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   Template.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exceptions
+¦       ¦   ¦   ¦   ¦               Exception.php
+¦       ¦   ¦   ¦   ¦               InvalidArgumentException.php
+¦       ¦   ¦   ¦   ¦               RuntimeException.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---php-timer
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   Duration.php
+¦       ¦   ¦   ¦   ¦       ¦   ResourceUsageFormatter.php
+¦       ¦   ¦   ¦   ¦       ¦   Timer.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exceptions
+¦       ¦   ¦   ¦   ¦               Exception.php
+¦       ¦   ¦   ¦   ¦               NoActiveTimerException.php
+¦       ¦   ¦   ¦   ¦               TimeSinceStartOfRequestNotAvailableException.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---phpunit
+¦       ¦   ¦   ¦       ¦   .phpstorm.meta.php
+¦       ¦   ¦   ¦       ¦   ChangeLog-8.5.md
+¦       ¦   ¦   ¦       ¦   ChangeLog-9.5.md
+¦       ¦   ¦   ¦       ¦   composer.json
+¦       ¦   ¦   ¦       ¦   LICENSE
+¦       ¦   ¦   ¦       ¦   phpunit
+¦       ¦   ¦   ¦       ¦   phpunit.xsd
+¦       ¦   ¦   ¦       ¦   README.md
+¦       ¦   ¦   ¦       ¦   SECURITY.md
+¦       ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦       +---schema
+¦       ¦   ¦   ¦       ¦       8.5.xsd
+¦       ¦   ¦   ¦       ¦       9.2.xsd
+¦       ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦       +---src
+¦       ¦   ¦   ¦           ¦   Exception.php
+¦       ¦   ¦   ¦           ¦   
+¦       ¦   ¦   ¦           +---Framework
+¦       ¦   ¦   ¦           ¦   ¦   Assert.php
+¦       ¦   ¦   ¦           ¦   ¦   DataProviderTestSuite.php
+¦       ¦   ¦   ¦           ¦   ¦   ErrorTestCase.php
+¦       ¦   ¦   ¦           ¦   ¦   ExceptionWrapper.php
+¦       ¦   ¦   ¦           ¦   ¦   ExecutionOrderDependency.php
+¦       ¦   ¦   ¦           ¦   ¦   IncompleteTest.php
+¦       ¦   ¦   ¦           ¦   ¦   IncompleteTestCase.php
+¦       ¦   ¦   ¦           ¦   ¦   InvalidParameterGroupException.php
+¦       ¦   ¦   ¦           ¦   ¦   Reorderable.php
+¦       ¦   ¦   ¦           ¦   ¦   SelfDescribing.php
+¦       ¦   ¦   ¦           ¦   ¦   SkippedTest.php
+¦       ¦   ¦   ¦           ¦   ¦   SkippedTestCase.php
+¦       ¦   ¦   ¦           ¦   ¦   Test.php
+¦       ¦   ¦   ¦           ¦   ¦   TestBuilder.php
+¦       ¦   ¦   ¦           ¦   ¦   TestCase.php
+¦       ¦   ¦   ¦           ¦   ¦   TestFailure.php
+¦       ¦   ¦   ¦           ¦   ¦   TestListener.php
+¦       ¦   ¦   ¦           ¦   ¦   TestListenerDefaultImplementation.php
+¦       ¦   ¦   ¦           ¦   ¦   TestResult.php
+¦       ¦   ¦   ¦           ¦   ¦   TestSuite.php
+¦       ¦   ¦   ¦           ¦   ¦   TestSuiteIterator.php
+¦       ¦   ¦   ¦           ¦   ¦   WarningTestCase.php
+¦       ¦   ¦   ¦           ¦   ¦   
+¦       ¦   ¦   ¦           ¦   +---Assert
+¦       ¦   ¦   ¦           ¦   ¦       Functions.php
+¦       ¦   ¦   ¦           ¦   ¦       
+¦       ¦   ¦   ¦           ¦   +---Constraint
+¦       ¦   ¦   ¦           ¦   ¦   ¦   Callback.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦   Constraint.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦   IsAnything.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦   IsIdentical.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦   JsonMatches.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦   JsonMatchesErrorMessageProvider.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦   
+¦       ¦   ¦   ¦           ¦   ¦   +---Boolean
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsFalse.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsTrue.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Cardinality
+¦       ¦   ¦   ¦           ¦   ¦   ¦       Count.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       GreaterThan.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsEmpty.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       LessThan.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       SameSize.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Equality
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsEqual.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsEqualCanonicalizing.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsEqualIgnoringCase.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsEqualWithDelta.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Exception
+¦       ¦   ¦   ¦           ¦   ¦   ¦       Exception.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       ExceptionCode.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       ExceptionMessage.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       ExceptionMessageRegularExpression.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Filesystem
+¦       ¦   ¦   ¦           ¦   ¦   ¦       DirectoryExists.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       FileExists.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsReadable.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsWritable.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Math
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsFinite.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsInfinite.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsNan.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Object
+¦       ¦   ¦   ¦           ¦   ¦   ¦       ClassHasAttribute.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       ClassHasStaticAttribute.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       ObjectEquals.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       ObjectHasAttribute.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Operator
+¦       ¦   ¦   ¦           ¦   ¦   ¦       BinaryOperator.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       LogicalAnd.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       LogicalNot.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       LogicalOr.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       LogicalXor.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       Operator.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       UnaryOperator.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---String
+¦       ¦   ¦   ¦           ¦   ¦   ¦       IsJson.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       RegularExpression.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       StringContains.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       StringEndsWith.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       StringMatchesFormatDescription.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       StringStartsWith.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Traversable
+¦       ¦   ¦   ¦           ¦   ¦   ¦       ArrayHasKey.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       TraversableContains.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       TraversableContainsEqual.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       TraversableContainsIdentical.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       TraversableContainsOnly.php
+¦       ¦   ¦   ¦           ¦   ¦   ¦       
+¦       ¦   ¦   ¦           ¦   ¦   +---Type
+¦       ¦   ¦   ¦           ¦   ¦           IsInstanceOf.php
+¦       ¦   ¦   ¦           ¦   ¦           IsNull.php
+¦       ¦   ¦   ¦           ¦   ¦           IsType.php
+¦       ¦   ¦   ¦           ¦   ¦           
+¦       ¦   ¦   ¦           ¦   +---Error
+¦       ¦   ¦   ¦           ¦   ¦       Deprecated.php
+¦       ¦   ¦   ¦           ¦   ¦       Error.php
+¦       ¦   ¦   ¦           ¦   ¦       Notice.php
+¦       ¦   ¦   ¦           ¦   ¦       Warning.php
+¦       ¦   ¦   ¦           ¦   ¦       
+¦       ¦   ¦   ¦           ¦   +---Exception
+¦       ¦   ¦   ¦           ¦   ¦       ActualValueIsNotAnObjectException.php
+¦       ¦   ¦   ¦           ¦   ¦       AssertionFailedError.php
+¦       ¦   ¦   ¦           ¦   ¦       CodeCoverageException.php
+¦       ¦   ¦   ¦           ¦   ¦       ComparisonMethodDoesNotAcceptParameterTypeException.php
+¦       ¦   ¦   ¦           ¦   ¦       ComparisonMethodDoesNotDeclareBoolReturnTypeException.php
+¦       ¦   ¦   ¦           ¦   ¦       ComparisonMethodDoesNotDeclareExactlyOneParameterException.php
+¦       ¦   ¦   ¦           ¦   ¦       ComparisonMethodDoesNotDeclareParameterTypeException.php
+¦       ¦   ¦   ¦           ¦   ¦       ComparisonMethodDoesNotExistException.php
+¦       ¦   ¦   ¦           ¦   ¦       CoveredCodeNotExecutedException.php
+¦       ¦   ¦   ¦           ¦   ¦       Error.php
+¦       ¦   ¦   ¦           ¦   ¦       Exception.php
+¦       ¦   ¦   ¦           ¦   ¦       ExpectationFailedException.php
+¦       ¦   ¦   ¦           ¦   ¦       IncompleteTestError.php
+¦       ¦   ¦   ¦           ¦   ¦       InvalidArgumentException.php
+¦       ¦   ¦   ¦           ¦   ¦       InvalidCoversTargetException.php
+¦       ¦   ¦   ¦           ¦   ¦       InvalidDataProviderException.php
+¦       ¦   ¦   ¦           ¦   ¦       MissingCoversAnnotationException.php
+¦       ¦   ¦   ¦           ¦   ¦       NoChildTestSuiteException.php
+¦       ¦   ¦   ¦           ¦   ¦       OutputError.php
+¦       ¦   ¦   ¦           ¦   ¦       PHPTAssertionFailedError.php
+¦       ¦   ¦   ¦           ¦   ¦       RiskyTestError.php
+¦       ¦   ¦   ¦           ¦   ¦       SkippedTestError.php
+¦       ¦   ¦   ¦           ¦   ¦       SkippedTestSuiteError.php
+¦       ¦   ¦   ¦           ¦   ¦       SyntheticError.php
+¦       ¦   ¦   ¦           ¦   ¦       SyntheticSkippedError.php
+¦       ¦   ¦   ¦           ¦   ¦       UnintentionallyCoveredCodeError.php
+¦       ¦   ¦   ¦           ¦   ¦       Warning.php
+¦       ¦   ¦   ¦           ¦   ¦       
+¦       ¦   ¦   ¦           ¦   +---MockObject
+¦       ¦   ¦   ¦           ¦       ¦   ConfigurableMethod.php
+¦       ¦   ¦   ¦           ¦       ¦   Generator.php
+¦       ¦   ¦   ¦           ¦       ¦   Invocation.php
+¦       ¦   ¦   ¦           ¦       ¦   InvocationHandler.php
+¦       ¦   ¦   ¦           ¦       ¦   Matcher.php
+¦       ¦   ¦   ¦           ¦       ¦   MethodNameConstraint.php
+¦       ¦   ¦   ¦           ¦       ¦   MockBuilder.php
+¦       ¦   ¦   ¦           ¦       ¦   MockClass.php
+¦       ¦   ¦   ¦           ¦       ¦   MockMethod.php
+¦       ¦   ¦   ¦           ¦       ¦   MockMethodSet.php
+¦       ¦   ¦   ¦           ¦       ¦   MockObject.php
+¦       ¦   ¦   ¦           ¦       ¦   MockTrait.php
+¦       ¦   ¦   ¦           ¦       ¦   MockType.php
+¦       ¦   ¦   ¦           ¦       ¦   Stub.php
+¦       ¦   ¦   ¦           ¦       ¦   Verifiable.php
+¦       ¦   ¦   ¦           ¦       ¦   
+¦       ¦   ¦   ¦           ¦       +---Api
+¦       ¦   ¦   ¦           ¦       ¦       Api.php
+¦       ¦   ¦   ¦           ¦       ¦       Method.php
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---Builder
+¦       ¦   ¦   ¦           ¦       ¦       Identity.php
+¦       ¦   ¦   ¦           ¦       ¦       InvocationMocker.php
+¦       ¦   ¦   ¦           ¦       ¦       InvocationStubber.php
+¦       ¦   ¦   ¦           ¦       ¦       MethodNameMatch.php
+¦       ¦   ¦   ¦           ¦       ¦       ParametersMatch.php
+¦       ¦   ¦   ¦           ¦       ¦       Stub.php
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---Exception
+¦       ¦   ¦   ¦           ¦       ¦       BadMethodCallException.php
+¦       ¦   ¦   ¦           ¦       ¦       CannotUseAddMethodsException.php
+¦       ¦   ¦   ¦           ¦       ¦       CannotUseOnlyMethodsException.php
+¦       ¦   ¦   ¦           ¦       ¦       ClassAlreadyExistsException.php
+¦       ¦   ¦   ¦           ¦       ¦       ClassIsFinalException.php
+¦       ¦   ¦   ¦           ¦       ¦       ConfigurableMethodsAlreadyInitializedException.php
+¦       ¦   ¦   ¦           ¦       ¦       DuplicateMethodException.php
+¦       ¦   ¦   ¦           ¦       ¦       Exception.php
+¦       ¦   ¦   ¦           ¦       ¦       IncompatibleReturnValueException.php
+¦       ¦   ¦   ¦           ¦       ¦       InvalidMethodNameException.php
+¦       ¦   ¦   ¦           ¦       ¦       MatchBuilderNotFoundException.php
+¦       ¦   ¦   ¦           ¦       ¦       MatcherAlreadyRegisteredException.php
+¦       ¦   ¦   ¦           ¦       ¦       MethodCannotBeConfiguredException.php
+¦       ¦   ¦   ¦           ¦       ¦       MethodNameAlreadyConfiguredException.php
+¦       ¦   ¦   ¦           ¦       ¦       MethodNameNotConfiguredException.php
+¦       ¦   ¦   ¦           ¦       ¦       MethodParametersAlreadyConfiguredException.php
+¦       ¦   ¦   ¦           ¦       ¦       OriginalConstructorInvocationRequiredException.php
+¦       ¦   ¦   ¦           ¦       ¦       ReflectionException.php
+¦       ¦   ¦   ¦           ¦       ¦       ReturnValueNotConfiguredException.php
+¦       ¦   ¦   ¦           ¦       ¦       RuntimeException.php
+¦       ¦   ¦   ¦           ¦       ¦       SoapExtensionNotAvailableException.php
+¦       ¦   ¦   ¦           ¦       ¦       UnknownClassException.php
+¦       ¦   ¦   ¦           ¦       ¦       UnknownTraitException.php
+¦       ¦   ¦   ¦           ¦       ¦       UnknownTypeException.php
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---Generator
+¦       ¦   ¦   ¦           ¦       ¦       deprecation.tpl
+¦       ¦   ¦   ¦           ¦       ¦       intersection.tpl
+¦       ¦   ¦   ¦           ¦       ¦       mocked_class.tpl
+¦       ¦   ¦   ¦           ¦       ¦       mocked_method.tpl
+¦       ¦   ¦   ¦           ¦       ¦       mocked_method_never_or_void.tpl
+¦       ¦   ¦   ¦           ¦       ¦       mocked_static_method.tpl
+¦       ¦   ¦   ¦           ¦       ¦       proxied_method.tpl
+¦       ¦   ¦   ¦           ¦       ¦       proxied_method_never_or_void.tpl
+¦       ¦   ¦   ¦           ¦       ¦       trait_class.tpl
+¦       ¦   ¦   ¦           ¦       ¦       wsdl_class.tpl
+¦       ¦   ¦   ¦           ¦       ¦       wsdl_method.tpl
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---Rule
+¦       ¦   ¦   ¦           ¦       ¦       AnyInvokedCount.php
+¦       ¦   ¦   ¦           ¦       ¦       AnyParameters.php
+¦       ¦   ¦   ¦           ¦       ¦       ConsecutiveParameters.php
+¦       ¦   ¦   ¦           ¦       ¦       InvocationOrder.php
+¦       ¦   ¦   ¦           ¦       ¦       InvokedAtIndex.php
+¦       ¦   ¦   ¦           ¦       ¦       InvokedAtLeastCount.php
+¦       ¦   ¦   ¦           ¦       ¦       InvokedAtLeastOnce.php
+¦       ¦   ¦   ¦           ¦       ¦       InvokedAtMostCount.php
+¦       ¦   ¦   ¦           ¦       ¦       InvokedCount.php
+¦       ¦   ¦   ¦           ¦       ¦       MethodName.php
+¦       ¦   ¦   ¦           ¦       ¦       Parameters.php
+¦       ¦   ¦   ¦           ¦       ¦       ParametersRule.php
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---Stub
+¦       ¦   ¦   ¦           ¦               ConsecutiveCalls.php
+¦       ¦   ¦   ¦           ¦               Exception.php
+¦       ¦   ¦   ¦           ¦               ReturnArgument.php
+¦       ¦   ¦   ¦           ¦               ReturnCallback.php
+¦       ¦   ¦   ¦           ¦               ReturnReference.php
+¦       ¦   ¦   ¦           ¦               ReturnSelf.php
+¦       ¦   ¦   ¦           ¦               ReturnStub.php
+¦       ¦   ¦   ¦           ¦               ReturnValueMap.php
+¦       ¦   ¦   ¦           ¦               Stub.php
+¦       ¦   ¦   ¦           ¦               
+¦       ¦   ¦   ¦           +---Runner
+¦       ¦   ¦   ¦           ¦   ¦   BaseTestRunner.php
+¦       ¦   ¦   ¦           ¦   ¦   DefaultTestResultCache.php
+¦       ¦   ¦   ¦           ¦   ¦   Exception.php
+¦       ¦   ¦   ¦           ¦   ¦   NullTestResultCache.php
+¦       ¦   ¦   ¦           ¦   ¦   PhptTestCase.php
+¦       ¦   ¦   ¦           ¦   ¦   ResultCacheExtension.php
+¦       ¦   ¦   ¦           ¦   ¦   StandardTestSuiteLoader.php
+¦       ¦   ¦   ¦           ¦   ¦   TestResultCache.php
+¦       ¦   ¦   ¦           ¦   ¦   TestSuiteLoader.php
+¦       ¦   ¦   ¦           ¦   ¦   TestSuiteSorter.php
+¦       ¦   ¦   ¦           ¦   ¦   Version.php
+¦       ¦   ¦   ¦           ¦   ¦   
+¦       ¦   ¦   ¦           ¦   +---Extension
+¦       ¦   ¦   ¦           ¦   ¦       ExtensionHandler.php
+¦       ¦   ¦   ¦           ¦   ¦       PharLoader.php
+¦       ¦   ¦   ¦           ¦   ¦       
+¦       ¦   ¦   ¦           ¦   +---Filter
+¦       ¦   ¦   ¦           ¦   ¦       ExcludeGroupFilterIterator.php
+¦       ¦   ¦   ¦           ¦   ¦       Factory.php
+¦       ¦   ¦   ¦           ¦   ¦       GroupFilterIterator.php
+¦       ¦   ¦   ¦           ¦   ¦       IncludeGroupFilterIterator.php
+¦       ¦   ¦   ¦           ¦   ¦       NameFilterIterator.php
+¦       ¦   ¦   ¦           ¦   ¦       
+¦       ¦   ¦   ¦           ¦   +---Hook
+¦       ¦   ¦   ¦           ¦           AfterIncompleteTestHook.php
+¦       ¦   ¦   ¦           ¦           AfterLastTestHook.php
+¦       ¦   ¦   ¦           ¦           AfterRiskyTestHook.php
+¦       ¦   ¦   ¦           ¦           AfterSkippedTestHook.php
+¦       ¦   ¦   ¦           ¦           AfterSuccessfulTestHook.php
+¦       ¦   ¦   ¦           ¦           AfterTestErrorHook.php
+¦       ¦   ¦   ¦           ¦           AfterTestFailureHook.php
+¦       ¦   ¦   ¦           ¦           AfterTestHook.php
+¦       ¦   ¦   ¦           ¦           AfterTestWarningHook.php
+¦       ¦   ¦   ¦           ¦           BeforeFirstTestHook.php
+¦       ¦   ¦   ¦           ¦           BeforeTestHook.php
+¦       ¦   ¦   ¦           ¦           Hook.php
+¦       ¦   ¦   ¦           ¦           TestHook.php
+¦       ¦   ¦   ¦           ¦           TestListenerAdapter.php
+¦       ¦   ¦   ¦           ¦           
+¦       ¦   ¦   ¦           +---TextUI
+¦       ¦   ¦   ¦           ¦   ¦   Command.php
+¦       ¦   ¦   ¦           ¦   ¦   DefaultResultPrinter.php
+¦       ¦   ¦   ¦           ¦   ¦   Help.php
+¦       ¦   ¦   ¦           ¦   ¦   ResultPrinter.php
+¦       ¦   ¦   ¦           ¦   ¦   TestRunner.php
+¦       ¦   ¦   ¦           ¦   ¦   TestSuiteMapper.php
+¦       ¦   ¦   ¦           ¦   ¦   
+¦       ¦   ¦   ¦           ¦   +---CliArguments
+¦       ¦   ¦   ¦           ¦   ¦       Builder.php
+¦       ¦   ¦   ¦           ¦   ¦       Configuration.php
+¦       ¦   ¦   ¦           ¦   ¦       Exception.php
+¦       ¦   ¦   ¦           ¦   ¦       Mapper.php
+¦       ¦   ¦   ¦           ¦   ¦       
+¦       ¦   ¦   ¦           ¦   +---Exception
+¦       ¦   ¦   ¦           ¦   ¦       Exception.php
+¦       ¦   ¦   ¦           ¦   ¦       ReflectionException.php
+¦       ¦   ¦   ¦           ¦   ¦       RuntimeException.php
+¦       ¦   ¦   ¦           ¦   ¦       TestDirectoryNotFoundException.php
+¦       ¦   ¦   ¦           ¦   ¦       TestFileNotFoundException.php
+¦       ¦   ¦   ¦           ¦   ¦       
+¦       ¦   ¦   ¦           ¦   +---XmlConfiguration
+¦       ¦   ¦   ¦           ¦       ¦   Configuration.php
+¦       ¦   ¦   ¦           ¦       ¦   Exception.php
+¦       ¦   ¦   ¦           ¦       ¦   Generator.php
+¦       ¦   ¦   ¦           ¦       ¦   Loader.php
+¦       ¦   ¦   ¦           ¦       ¦   
+¦       ¦   ¦   ¦           ¦       +---CodeCoverage
+¦       ¦   ¦   ¦           ¦       ¦   ¦   CodeCoverage.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   FilterMapper.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   
+¦       ¦   ¦   ¦           ¦       ¦   +---Filter
+¦       ¦   ¦   ¦           ¦       ¦   ¦       Directory.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦       DirectoryCollection.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦       DirectoryCollectionIterator.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦       
+¦       ¦   ¦   ¦           ¦       ¦   +---Report
+¦       ¦   ¦   ¦           ¦       ¦           Clover.php
+¦       ¦   ¦   ¦           ¦       ¦           Cobertura.php
+¦       ¦   ¦   ¦           ¦       ¦           Crap4j.php
+¦       ¦   ¦   ¦           ¦       ¦           Html.php
+¦       ¦   ¦   ¦           ¦       ¦           Php.php
+¦       ¦   ¦   ¦           ¦       ¦           Text.php
+¦       ¦   ¦   ¦           ¦       ¦           Xml.php
+¦       ¦   ¦   ¦           ¦       ¦           
+¦       ¦   ¦   ¦           ¦       +---Filesystem
+¦       ¦   ¦   ¦           ¦       ¦       Directory.php
+¦       ¦   ¦   ¦           ¦       ¦       DirectoryCollection.php
+¦       ¦   ¦   ¦           ¦       ¦       DirectoryCollectionIterator.php
+¦       ¦   ¦   ¦           ¦       ¦       File.php
+¦       ¦   ¦   ¦           ¦       ¦       FileCollection.php
+¦       ¦   ¦   ¦           ¦       ¦       FileCollectionIterator.php
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---Group
+¦       ¦   ¦   ¦           ¦       ¦       Group.php
+¦       ¦   ¦   ¦           ¦       ¦       GroupCollection.php
+¦       ¦   ¦   ¦           ¦       ¦       GroupCollectionIterator.php
+¦       ¦   ¦   ¦           ¦       ¦       Groups.php
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---Logging
+¦       ¦   ¦   ¦           ¦       ¦   ¦   Junit.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   Logging.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   TeamCity.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   Text.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   
+¦       ¦   ¦   ¦           ¦       ¦   +---TestDox
+¦       ¦   ¦   ¦           ¦       ¦           Html.php
+¦       ¦   ¦   ¦           ¦       ¦           Text.php
+¦       ¦   ¦   ¦           ¦       ¦           Xml.php
+¦       ¦   ¦   ¦           ¦       ¦           
+¦       ¦   ¦   ¦           ¦       +---Migration
+¦       ¦   ¦   ¦           ¦       ¦   ¦   MigrationBuilder.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   MigrationBuilderException.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   MigrationException.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   Migrator.php
+¦       ¦   ¦   ¦           ¦       ¦   ¦   
+¦       ¦   ¦   ¦           ¦       ¦   +---Migrations
+¦       ¦   ¦   ¦           ¦       ¦           ConvertLogTypes.php
+¦       ¦   ¦   ¦           ¦       ¦           CoverageCloverToReport.php
+¦       ¦   ¦   ¦           ¦       ¦           CoverageCrap4jToReport.php
+¦       ¦   ¦   ¦           ¦       ¦           CoverageHtmlToReport.php
+¦       ¦   ¦   ¦           ¦       ¦           CoveragePhpToReport.php
+¦       ¦   ¦   ¦           ¦       ¦           CoverageTextToReport.php
+¦       ¦   ¦   ¦           ¦       ¦           CoverageXmlToReport.php
+¦       ¦   ¦   ¦           ¦       ¦           IntroduceCoverageElement.php
+¦       ¦   ¦   ¦           ¦       ¦           LogToReportMigration.php
+¦       ¦   ¦   ¦           ¦       ¦           Migration.php
+¦       ¦   ¦   ¦           ¦       ¦           MoveAttributesFromFilterWhitelistToCoverage.php
+¦       ¦   ¦   ¦           ¦       ¦           MoveAttributesFromRootToCoverage.php
+¦       ¦   ¦   ¦           ¦       ¦           MoveWhitelistDirectoriesToCoverage.php
+¦       ¦   ¦   ¦           ¦       ¦           MoveWhitelistExcludesToCoverage.php
+¦       ¦   ¦   ¦           ¦       ¦           RemoveCacheTokensAttribute.php
+¦       ¦   ¦   ¦           ¦       ¦           RemoveEmptyFilter.php
+¦       ¦   ¦   ¦           ¦       ¦           RemoveLogTypes.php
+¦       ¦   ¦   ¦           ¦       ¦           UpdateSchemaLocationTo93.php
+¦       ¦   ¦   ¦           ¦       ¦           
+¦       ¦   ¦   ¦           ¦       +---PHP
+¦       ¦   ¦   ¦           ¦       ¦       Constant.php
+¦       ¦   ¦   ¦           ¦       ¦       ConstantCollection.php
+¦       ¦   ¦   ¦           ¦       ¦       ConstantCollectionIterator.php
+¦       ¦   ¦   ¦           ¦       ¦       IniSetting.php
+¦       ¦   ¦   ¦           ¦       ¦       IniSettingCollection.php
+¦       ¦   ¦   ¦           ¦       ¦       IniSettingCollectionIterator.php
+¦       ¦   ¦   ¦           ¦       ¦       Php.php
+¦       ¦   ¦   ¦           ¦       ¦       PhpHandler.php
+¦       ¦   ¦   ¦           ¦       ¦       Variable.php
+¦       ¦   ¦   ¦           ¦       ¦       VariableCollection.php
+¦       ¦   ¦   ¦           ¦       ¦       VariableCollectionIterator.php
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---PHPUnit
+¦       ¦   ¦   ¦           ¦       ¦       Extension.php
+¦       ¦   ¦   ¦           ¦       ¦       ExtensionCollection.php
+¦       ¦   ¦   ¦           ¦       ¦       ExtensionCollectionIterator.php
+¦       ¦   ¦   ¦           ¦       ¦       PHPUnit.php
+¦       ¦   ¦   ¦           ¦       ¦       
+¦       ¦   ¦   ¦           ¦       +---TestSuite
+¦       ¦   ¦   ¦           ¦               TestDirectory.php
+¦       ¦   ¦   ¦           ¦               TestDirectoryCollection.php
+¦       ¦   ¦   ¦           ¦               TestDirectoryCollectionIterator.php
+¦       ¦   ¦   ¦           ¦               TestFile.php
+¦       ¦   ¦   ¦           ¦               TestFileCollection.php
+¦       ¦   ¦   ¦           ¦               TestFileCollectionIterator.php
+¦       ¦   ¦   ¦           ¦               TestSuite.php
+¦       ¦   ¦   ¦           ¦               TestSuiteCollection.php
+¦       ¦   ¦   ¦           ¦               TestSuiteCollectionIterator.php
+¦       ¦   ¦   ¦           ¦               
+¦       ¦   ¦   ¦           +---Util
+¦       ¦   ¦   ¦               ¦   Blacklist.php
+¦       ¦   ¦   ¦               ¦   Cloner.php
+¦       ¦   ¦   ¦               ¦   Color.php
+¦       ¦   ¦   ¦               ¦   ErrorHandler.php
+¦       ¦   ¦   ¦               ¦   Exception.php
+¦       ¦   ¦   ¦               ¦   ExcludeList.php
+¦       ¦   ¦   ¦               ¦   FileLoader.php
+¦       ¦   ¦   ¦               ¦   Filesystem.php
+¦       ¦   ¦   ¦               ¦   Filter.php
+¦       ¦   ¦   ¦               ¦   GlobalState.php
+¦       ¦   ¦   ¦               ¦   InvalidDataSetException.php
+¦       ¦   ¦   ¦               ¦   Json.php
+¦       ¦   ¦   ¦               ¦   Printer.php
+¦       ¦   ¦   ¦               ¦   Reflection.php
+¦       ¦   ¦   ¦               ¦   RegularExpression.php
+¦       ¦   ¦   ¦               ¦   Test.php
+¦       ¦   ¦   ¦               ¦   TextTestListRenderer.php
+¦       ¦   ¦   ¦               ¦   Type.php
+¦       ¦   ¦   ¦               ¦   VersionComparisonOperator.php
+¦       ¦   ¦   ¦               ¦   XdebugFilterScriptGenerator.php
+¦       ¦   ¦   ¦               ¦   Xml.php
+¦       ¦   ¦   ¦               ¦   XmlTestListRenderer.php
+¦       ¦   ¦   ¦               ¦   
+¦       ¦   ¦   ¦               +---Annotation
+¦       ¦   ¦   ¦               ¦       DocBlock.php
+¦       ¦   ¦   ¦               ¦       Registry.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---Log
+¦       ¦   ¦   ¦               ¦       JUnit.php
+¦       ¦   ¦   ¦               ¦       TeamCity.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---PHP
+¦       ¦   ¦   ¦               ¦   ¦   AbstractPhpProcess.php
+¦       ¦   ¦   ¦               ¦   ¦   DefaultPhpProcess.php
+¦       ¦   ¦   ¦               ¦   ¦   WindowsPhpProcess.php
+¦       ¦   ¦   ¦               ¦   ¦   
+¦       ¦   ¦   ¦               ¦   +---Template
+¦       ¦   ¦   ¦               ¦           PhptTestCase.tpl
+¦       ¦   ¦   ¦               ¦           TestCaseClass.tpl
+¦       ¦   ¦   ¦               ¦           TestCaseMethod.tpl
+¦       ¦   ¦   ¦               ¦           
+¦       ¦   ¦   ¦               +---TestDox
+¦       ¦   ¦   ¦               ¦       CliTestDoxPrinter.php
+¦       ¦   ¦   ¦               ¦       HtmlResultPrinter.php
+¦       ¦   ¦   ¦               ¦       NamePrettifier.php
+¦       ¦   ¦   ¦               ¦       ResultPrinter.php
+¦       ¦   ¦   ¦               ¦       TestDoxPrinter.php
+¦       ¦   ¦   ¦               ¦       TextResultPrinter.php
+¦       ¦   ¦   ¦               ¦       XmlResultPrinter.php
+¦       ¦   ¦   ¦               ¦       
+¦       ¦   ¦   ¦               +---Xml
+¦       ¦   ¦   ¦                       Exception.php
+¦       ¦   ¦   ¦                       FailedSchemaDetectionResult.php
+¦       ¦   ¦   ¦                       Loader.php
+¦       ¦   ¦   ¦                       SchemaDetectionResult.php
+¦       ¦   ¦   ¦                       SchemaDetector.php
+¦       ¦   ¦   ¦                       SchemaFinder.php
+¦       ¦   ¦   ¦                       SnapshotNodeList.php
+¦       ¦   ¦   ¦                       SuccessfulSchemaDetectionResult.php
+¦       ¦   ¦   ¦                       ValidationResult.php
+¦       ¦   ¦   ¦                       Validator.php
+¦       ¦   ¦   ¦                       
+¦       ¦   ¦   +---sebastian
+¦       ¦   ¦   ¦   +---cli-parser
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   infection.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   Parser.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exceptions
+¦       ¦   ¦   ¦   ¦               AmbiguousOptionException.php
+¦       ¦   ¦   ¦   ¦               Exception.php
+¦       ¦   ¦   ¦   ¦               OptionDoesNotAllowArgumentException.php
+¦       ¦   ¦   ¦   ¦               RequiredOptionArgumentMissingException.php
+¦       ¦   ¦   ¦   ¦               UnknownOptionException.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---code-unit
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   ClassMethodUnit.php
+¦       ¦   ¦   ¦   ¦       ¦   ClassUnit.php
+¦       ¦   ¦   ¦   ¦       ¦   CodeUnit.php
+¦       ¦   ¦   ¦   ¦       ¦   CodeUnitCollection.php
+¦       ¦   ¦   ¦   ¦       ¦   CodeUnitCollectionIterator.php
+¦       ¦   ¦   ¦   ¦       ¦   FunctionUnit.php
+¦       ¦   ¦   ¦   ¦       ¦   InterfaceMethodUnit.php
+¦       ¦   ¦   ¦   ¦       ¦   InterfaceUnit.php
+¦       ¦   ¦   ¦   ¦       ¦   Mapper.php
+¦       ¦   ¦   ¦   ¦       ¦   TraitMethodUnit.php
+¦       ¦   ¦   ¦   ¦       ¦   TraitUnit.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exceptions
+¦       ¦   ¦   ¦   ¦               Exception.php
+¦       ¦   ¦   ¦   ¦               InvalidCodeUnitException.php
+¦       ¦   ¦   ¦   ¦               NoTraitException.php
+¦       ¦   ¦   ¦   ¦               ReflectionException.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---code-unit-reverse-lookup
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦           Wizard.php
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---comparator
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   ArrayComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   Comparator.php
+¦       ¦   ¦   ¦   ¦       ¦   ComparisonFailure.php
+¦       ¦   ¦   ¦   ¦       ¦   DateTimeComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   DOMNodeComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   DoubleComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   ExceptionComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   Factory.php
+¦       ¦   ¦   ¦   ¦       ¦   MockObjectComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   NumericComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   ObjectComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   ResourceComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   ScalarComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   SplObjectStorageComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   TypeComparator.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exceptions
+¦       ¦   ¦   ¦   ¦               Exception.php
+¦       ¦   ¦   ¦   ¦               RuntimeException.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---complexity
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   Calculator.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---Complexity
+¦       ¦   ¦   ¦   ¦       ¦       Complexity.php
+¦       ¦   ¦   ¦   ¦       ¦       ComplexityCollection.php
+¦       ¦   ¦   ¦   ¦       ¦       ComplexityCollectionIterator.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---Exception
+¦       ¦   ¦   ¦   ¦       ¦       Exception.php
+¦       ¦   ¦   ¦   ¦       ¦       RuntimeException.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---Visitor
+¦       ¦   ¦   ¦   ¦               ComplexityCalculatingVisitor.php
+¦       ¦   ¦   ¦   ¦               CyclomaticComplexityCalculatingVisitor.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---diff
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   Chunk.php
+¦       ¦   ¦   ¦   ¦       ¦   Diff.php
+¦       ¦   ¦   ¦   ¦       ¦   Differ.php
+¦       ¦   ¦   ¦   ¦       ¦   Line.php
+¦       ¦   ¦   ¦   ¦       ¦   LongestCommonSubsequenceCalculator.php
+¦       ¦   ¦   ¦   ¦       ¦   MemoryEfficientLongestCommonSubsequenceCalculator.php
+¦       ¦   ¦   ¦   ¦       ¦   Parser.php
+¦       ¦   ¦   ¦   ¦       ¦   TimeEfficientLongestCommonSubsequenceCalculator.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---Exception
+¦       ¦   ¦   ¦   ¦       ¦       ConfigurationException.php
+¦       ¦   ¦   ¦   ¦       ¦       Exception.php
+¦       ¦   ¦   ¦   ¦       ¦       InvalidArgumentException.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---Output
+¦       ¦   ¦   ¦   ¦               AbstractChunkOutputBuilder.php
+¦       ¦   ¦   ¦   ¦               DiffOnlyOutputBuilder.php
+¦       ¦   ¦   ¦   ¦               DiffOutputBuilderInterface.php
+¦       ¦   ¦   ¦   ¦               StrictUnifiedDiffOutputBuilder.php
+¦       ¦   ¦   ¦   ¦               UnifiedDiffOutputBuilder.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---environment
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦           Console.php
+¦       ¦   ¦   ¦   ¦           OperatingSystem.php
+¦       ¦   ¦   ¦   ¦           Runtime.php
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---exporter
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦           Exporter.php
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---global-state
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   CodeExporter.php
+¦       ¦   ¦   ¦   ¦       ¦   ExcludeList.php
+¦       ¦   ¦   ¦   ¦       ¦   Restorer.php
+¦       ¦   ¦   ¦   ¦       ¦   Snapshot.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exceptions
+¦       ¦   ¦   ¦   ¦               Exception.php
+¦       ¦   ¦   ¦   ¦               RuntimeException.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---lines-of-code
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   Counter.php
+¦       ¦   ¦   ¦   ¦       ¦   LineCountingVisitor.php
+¦       ¦   ¦   ¦   ¦       ¦   LinesOfCode.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---Exception
+¦       ¦   ¦   ¦   ¦               Exception.php
+¦       ¦   ¦   ¦   ¦               IllogicalValuesException.php
+¦       ¦   ¦   ¦   ¦               NegativeValueException.php
+¦       ¦   ¦   ¦   ¦               RuntimeException.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---object-enumerator
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   phpunit.xml
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦           Enumerator.php
+¦       ¦   ¦   ¦   ¦           Exception.php
+¦       ¦   ¦   ¦   ¦           InvalidArgumentException.php
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---object-reflector
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦           Exception.php
+¦       ¦   ¦   ¦   ¦           InvalidArgumentException.php
+¦       ¦   ¦   ¦   ¦           ObjectReflector.php
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---recursion-context
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---.psalm
+¦       ¦   ¦   ¦   ¦   ¦       baseline.xml
+¦       ¦   ¦   ¦   ¦   ¦       config.xml
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦           Context.php
+¦       ¦   ¦   ¦   ¦           Exception.php
+¦       ¦   ¦   ¦   ¦           InvalidArgumentException.php
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---resource-operations
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---build
+¦       ¦   ¦   ¦   ¦   ¦       generate.php
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦           ResourceOperations.php
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---type
+¦       ¦   ¦   ¦   ¦   ¦   ChangeLog.md
+¦       ¦   ¦   ¦   ¦   ¦   composer.json
+¦       ¦   ¦   ¦   ¦   ¦   LICENSE
+¦       ¦   ¦   ¦   ¦   ¦   README.md
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---src
+¦       ¦   ¦   ¦   ¦       ¦   Parameter.php
+¦       ¦   ¦   ¦   ¦       ¦   ReflectionMapper.php
+¦       ¦   ¦   ¦   ¦       ¦   TypeName.php
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---exception
+¦       ¦   ¦   ¦   ¦       ¦       Exception.php
+¦       ¦   ¦   ¦   ¦       ¦       RuntimeException.php
+¦       ¦   ¦   ¦   ¦       ¦       
+¦       ¦   ¦   ¦   ¦       +---type
+¦       ¦   ¦   ¦   ¦               CallableType.php
+¦       ¦   ¦   ¦   ¦               FalseType.php
+¦       ¦   ¦   ¦   ¦               GenericObjectType.php
+¦       ¦   ¦   ¦   ¦               IntersectionType.php
+¦       ¦   ¦   ¦   ¦               IterableType.php
+¦       ¦   ¦   ¦   ¦               MixedType.php
+¦       ¦   ¦   ¦   ¦               NeverType.php
+¦       ¦   ¦   ¦   ¦               NullType.php
+¦       ¦   ¦   ¦   ¦               ObjectType.php
+¦       ¦   ¦   ¦   ¦               SimpleType.php
+¦       ¦   ¦   ¦   ¦               StaticType.php
+¦       ¦   ¦   ¦   ¦               TrueType.php
+¦       ¦   ¦   ¦   ¦               Type.php
+¦       ¦   ¦   ¦   ¦               UnionType.php
+¦       ¦   ¦   ¦   ¦               UnknownType.php
+¦       ¦   ¦   ¦   ¦               VoidType.php
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---version
+¦       ¦   ¦   ¦       ¦   ChangeLog.md
+¦       ¦   ¦   ¦       ¦   composer.json
+¦       ¦   ¦   ¦       ¦   LICENSE
+¦       ¦   ¦   ¦       ¦   README.md
+¦       ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦       +---src
+¦       ¦   ¦   ¦               Version.php
+¦       ¦   ¦   ¦               
+¦       ¦   ¦   +---theseer
+¦       ¦   ¦       +---tokenizer
+¦       ¦   ¦           ¦   .php_cs.dist
+¦       ¦   ¦           ¦   CHANGELOG.md
+¦       ¦   ¦           ¦   composer.json
+¦       ¦   ¦           ¦   composer.lock
+¦       ¦   ¦           ¦   LICENSE
+¦       ¦   ¦           ¦   README.md
+¦       ¦   ¦           ¦   
+¦       ¦   ¦           +---src
+¦       ¦   ¦                   Exception.php
+¦       ¦   ¦                   NamespaceUri.php
+¦       ¦   ¦                   NamespaceUriException.php
+¦       ¦   ¦                   Token.php
+¦       ¦   ¦                   TokenCollection.php
+¦       ¦   ¦                   TokenCollectionException.php
+¦       ¦   ¦                   Tokenizer.php
+¦       ¦   ¦                   XMLSerializer.php
+¦       ¦   ¦                   
+¦       ¦   +---xsl
+¦       ¦           convert-0.1-0.2.xsl
+¦       ¦           convert-0.1-0.3.xsl
+¦       ¦           convert-0.2-0.1.xsl
+¦       ¦           convert-0.2-0.3.xsl
+¦       ¦           remove-0.2.xsl
+¦       ¦           remove-0.3.xsl
+¦       ¦           
+¦       +---PHPMailer
+¦           ¦   COMMITMENT
+¦           ¦   composer.json
+¦           ¦   get_oauth_token.php
+¦           ¦   LICENSE
+¦           ¦   README.md
+¦           ¦   SECURITY.md
+¦           ¦   SMTPUTF8.md
+¦           ¦   VERSION
+¦           ¦   
+¦           +---language
+¦           ¦       phpmailer.lang-af.php
+¦           ¦       phpmailer.lang-ar.php
+¦           ¦       phpmailer.lang-as.php
+¦           ¦       phpmailer.lang-az.php
+¦           ¦       phpmailer.lang-ba.php
+¦           ¦       phpmailer.lang-be.php
+¦           ¦       phpmailer.lang-bg.php
+¦           ¦       phpmailer.lang-bn.php
+¦           ¦       phpmailer.lang-ca.php
+¦           ¦       phpmailer.lang-cs.php
+¦           ¦       phpmailer.lang-da.php
+¦           ¦       phpmailer.lang-de.php
+¦           ¦       phpmailer.lang-el.php
+¦           ¦       phpmailer.lang-eo.php
+¦           ¦       phpmailer.lang-es.php
+¦           ¦       phpmailer.lang-et.php
+¦           ¦       phpmailer.lang-fa.php
+¦           ¦       phpmailer.lang-fi.php
+¦           ¦       phpmailer.lang-fo.php
+¦           ¦       phpmailer.lang-fr.php
+¦           ¦       phpmailer.lang-gl.php
+¦           ¦       phpmailer.lang-he.php
+¦           ¦       phpmailer.lang-hi.php
+¦           ¦       phpmailer.lang-hr.php
+¦           ¦       phpmailer.lang-hu.php
+¦           ¦       phpmailer.lang-hy.php
+¦           ¦       phpmailer.lang-id.php
+¦           ¦       phpmailer.lang-it.php
+¦           ¦       phpmailer.lang-ja.php
+¦           ¦       phpmailer.lang-ka.php
+¦           ¦       phpmailer.lang-ko.php
+¦           ¦       phpmailer.lang-ku.php
+¦           ¦       phpmailer.lang-lt.php
+¦           ¦       phpmailer.lang-lv.php
+¦           ¦       phpmailer.lang-mg.php
+¦           ¦       phpmailer.lang-mn.php
+¦           ¦       phpmailer.lang-ms.php
+¦           ¦       phpmailer.lang-nb.php
+¦           ¦       phpmailer.lang-nl.php
+¦           ¦       phpmailer.lang-pl.php
+¦           ¦       phpmailer.lang-pt.php
+¦           ¦       phpmailer.lang-pt_br.php
+¦           ¦       phpmailer.lang-ro.php
+¦           ¦       phpmailer.lang-ru.php
+¦           ¦       phpmailer.lang-si.php
+¦           ¦       phpmailer.lang-sk.php
+¦           ¦       phpmailer.lang-sl.php
+¦           ¦       phpmailer.lang-sr.php
+¦           ¦       phpmailer.lang-sr_latn.php
+¦           ¦       phpmailer.lang-sv.php
+¦           ¦       phpmailer.lang-tl.php
+¦           ¦       phpmailer.lang-tr.php
+¦           ¦       phpmailer.lang-uk.php
+¦           ¦       phpmailer.lang-ur.php
+¦           ¦       phpmailer.lang-vi.php
+¦           ¦       phpmailer.lang-zh.php
+¦           ¦       phpmailer.lang-zh_cn.php
+¦           ¦       
+¦           +---src
+¦                   DSNConfigurator.php
+¦                   Exception.php
+¦                   OAuth.php
+¦                   OAuthTokenProvider.php
+¦                   PHPMailer.php
+¦                   POP3.php
+¦                   SMTP.php
+¦                   
++---backend
+¦   ¦   analistasList.php
+¦   ¦   catastroList.php
+¦   ¦   config.php
+¦   ¦   login_backend.php
+¦   ¦   logout.php
+¦   ¦   profile.php
+¦   ¦   recuperarPdw.php
+¦   ¦   session.php
+¦   ¦   validarAcceso.php
+¦   ¦   
+¦   +---backups
+¦   ¦       descargarBackup.php
+¦   ¦       funcionesBackups.php
+¦   ¦       listarBackups.php
+¦   ¦       parametrosBackups.php
+¦   ¦       
+¦   +---bitacora
+¦   ¦       listarBitacoraUsuarios.php
+¦   ¦       registrarBitacora.php
+¦   ¦       
+¦   +---conexiones
+¦   ¦       confMail.php
+¦   ¦       db_connection.php
+¦   ¦       eeffempauxdb_connection.php
+¦   ¦       excel_connection.php
+¦   ¦       infinr_connection.php
+¦   ¦       psidb_connection.php
+¦   ¦       SPSS_connection.php
+¦   ¦       
+¦   +---direcciones
+¦   ¦       direccionesList.php
+¦   ¦       eliminarDireccion.php
+¦   ¦       guardarDireccion.php
+¦   ¦       
+¦   +---empAux
+¦   ¦   ¦   catastroPublicoXlsx.php
+¦   ¦   ¦   descargarAnexo2.php
+¦   ¦   ¦   empAuxList.php
+¦   ¦   ¦   empAuxModel.php
+¦   ¦   ¦   generarRIL.php
+¦   ¦   ¦   guardarProcesoDNR.php
+¦   ¦   ¦   guardarSeguimiento.php
+¦   ¦   ¦   obtenerPlantillaOficio.php
+¦   ¦   ¦   
+¦   ¦   +---reportes
+¦   ¦       ¦   empAux_xlsx.php
+¦   ¦       ¦   
+¦   ¦       +---xlsx
+¦   ¦               rpt_catastro_general.php
+¦   ¦               rpt_con_condicion.php
+¦   ¦               rpt_empresas_nuevas.php
+¦   ¦               rpt_incumplimientos.php
+¦   ¦               rpt_portafolio.php
+¦   ¦               rpt_procesos_dnr.php
+¦   ¦               rpt_seguimientos.php
+¦   ¦               rpt_sin_condicion.php
+¦   ¦               
+¦   +---estructuras
+¦   ¦       actualizarTabla.php
+¦   ¦       eliminarEstructura.php
+¦   ¦       estructurasList.php
+¦   ¦       guardarEstructura.php
+¦   ¦       obtenerEstructura.php
+¦   ¦       
+¦   +---gestioninr
+¦   ¦       addCategoria.php
+¦   ¦       eliminarGestioninr.php
+¦   ¦       gestioninrList.php
+¦   ¦       guardarGestioninr.php
+¦   ¦       
+¦   +---helpers
+¦   ¦       exportador.php
+¦   ¦       funciones.php
+¦   ¦       rbitacora.php
+¦   ¦       
+¦   +---indRanking
+¦   ¦       indrankingList.php
+¦   ¦       
+¦   +---informesinr
+¦   ¦       eliminarInformeinr.php
+¦   ¦       guardarInforme.php
+¦   ¦       guardarNewArea.php
+¦   ¦       informesinrList.php
+¦   ¦       
+¦   +---psi
+¦   ¦       psiList.php
+¦   ¦       uploadFilePSI.php
+¦   ¦       
+¦   +---reportes
+¦   ¦       listFilesProvisiones.php
+¦   ¦       listFilesReportes.php
+¦   ¦       listFilesReportesAlertas.php
+¦   ¦       listFilesReportesDiag.php
+¦   ¦       listFilesReportesMesAnio.php
+¦   ¦       listFilesRepVersion.php
+¦   ¦       
+¦   +---supervision
+¦   ¦       crudSupervision.php
+¦   ¦       supervisionList.php
+¦   ¦       
+¦   +---tareas
+¦   ¦       gestionTareasList.php
+¦   ¦       
+¦   +---users
+¦   ¦       addPersona.php
+¦   ¦       addPerson_old.php
+¦   ¦       addUser.php
+¦   ¦       changePwd.php
+¦   ¦       deleteUser.php
+¦   ¦       delPersona.php
+¦   ¦       getPersona.php
+¦   ¦       personasList.php
+¦   ¦       
+¦   +---valestructuras
+¦           listValestructuras.php
+¦           
++---frontend
+¦   ¦   about.php
+¦   ¦   enConstruccion.php
+¦   ¦   login.php
+¦   ¦   main.php
+¦   ¦   profile.php
+¦   ¦   recuperarPdw.php
+¦   ¦   restablecerPwd.php
+¦   ¦   
+¦   +---configuracion
+¦   ¦   +---bitacora
+¦   ¦   ¦       bitacoraUsuariosView.php
+¦   ¦   ¦       
+¦   ¦   +---direcciones
+¦   ¦   ¦       newdireccion.php
+¦   ¦   ¦       
+¦   ¦   +---users
+¦   ¦           addDelUser.php
+¦   ¦           newperson.php
+¦   ¦           
+¦   +---dnpla
+¦   +---dnr
+¦   ¦   +---estructuras
+¦   ¦   ¦       estructuras.php
+¦   ¦   ¦       
+¦   ¦   +---psi
+¦   ¦   ¦   +---cosede
+¦   ¦   ¦   ¦       cosede.php
+¦   ¦   ¦   ¦       cosedednlesf.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---psi
+¦   ¦   ¦           psi.php
+¦   ¦   ¦           
+¦   ¦   +---reportes
+¦   ¦       ¦   reportes.php
+¦   ¦       ¦   
+¦   ¦       +---alertas
+¦   ¦       ¦       calidadActivos.php
+¦   ¦       ¦       calidadResultados.php
+¦   ¦       ¦       riesgoCredito.php
+¦   ¦       ¦       riesgoInterconexion.php
+¦   ¦       ¦       riesgoLiquidez.php
+¦   ¦       ¦       riesgoMercado.php
+¦   ¦       ¦       
+¦   ¦       +---brechas
+¦   ¦       ¦       brechas.php
+¦   ¦       ¦       
+¦   ¦       +---conafips
+¦   ¦       ¦       conafips.php
+¦   ¦       ¦       
+¦   ¦       +---empaux
+¦   ¦       ¦       empaux.php
+¦   ¦       ¦       
+¦   ¦       +---endeudamiento
+¦   ¦       ¦       endeudamiento.php
+¦   ¦       ¦       
+¦   ¦       +---provisiones
+¦   ¦       ¦       provisiones.php
+¦   ¦       ¦       
+¦   ¦       +---rambiental
+¦   ¦       ¦       rambiental.php
+¦   ¦       ¦       
+¦   ¦       +---saras
+¦   ¦               saras.php
+¦   ¦               
+¦   +---dns
+¦   ¦   +---informes
+¦   ¦   ¦       informes.php
+¦   ¦   ¦       informesRepGeneral.php
+¦   ¦   ¦       
+¦   ¦   +---reportes
+¦   ¦   ¦   +---aexternos
+¦   ¦   ¦   ¦       aexternos.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---asagseps
+¦   ¦   ¦   ¦       asagseps.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---detallesPA
+¦   ¦   ¦   ¦       detallesPA.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---diagsituacional
+¦   ¦   ¦   ¦       diagsituacional.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---halgeneraleps
+¦   ¦   ¦   ¦       halgeneraleps.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---hallazgoseps
+¦   ¦   ¦   ¦       hallazgoseps.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---ssi
+¦   ¦   ¦           ssi.php
+¦   ¦   ¦           
+¦   ¦   +---segEmpAux
+¦   ¦           catastroEmpAux.php
+¦   ¦           segEmpAux.php
+¦   ¦           
+¦   +---dnses
+¦   ¦   +---reportes
+¦   ¦   ¦   +---coacsdnses
+¦   ¦   ¦   ¦       coacsdnses.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---variacionesb11
+¦   ¦   ¦           variacionesb11.php
+¦   ¦   ¦           
+¦   ¦   +---supervision
+¦   ¦           asupervision.php
+¦   ¦           
+¦   +---inr
+¦   ¦   +---backups
+¦   ¦   ¦       backupsview.php
+¦   ¦   ¦       
+¦   ¦   +---eeff_emp_aux_no_implementado
+¦   ¦   ¦       eeff_emp_aux.php
+¦   ¦   ¦       
+¦   ¦   +---gestioninr
+¦   ¦   ¦       gestioninr.php
+¦   ¦   ¦       tablaCompleta.php
+¦   ¦   ¦       
+¦   ¦   +---IndRanking
+¦   ¦   ¦   ¦   rIndRankingDefinitivo.php
+¦   ¦   ¦   ¦   rIndRankingINFMR.php
+¦   ¦   ¦   ¦   rIndRankingINSESF.php
+¦   ¦   ¦   ¦   rIndRankingPreliminar.php
+¦   ¦   ¦   ¦   
+¦   ¦   ¦   +---calfRiesgo
+¦   ¦   ¦           calfRiesgo.php
+¦   ¦   ¦           
+¦   ¦   +---reportes
+¦   ¦   ¦   +---boletin
+¦   ¦   ¦   ¦       boletininr.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---comite
+¦   ¦   ¦   ¦       comiteTecnico.php
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---rdiagnostico
+¦   ¦   ¦           rdiagnostico.php
+¦   ¦   ¦           
+¦   ¦   +---valestructuras
+¦   ¦           valestructuras.php
+¦   ¦           
+¦   +---mUtilidades
+¦   ¦   +---tareas
+¦   ¦           gestionTareas.php
+¦   ¦           
+¦   +---partials
+¦           confidentiality.php
+¦           footer.php
+¦           head.php
+¦           header.php
+¦           loadingDiv.php
+¦           modalCatastro.php
+¦           modalSupervision.php
+¦           scripts.php
+¦           sidebar.php
+¦           
++---helps
+¦       bd.sql
+¦       comandosGit
+¦       CrearRepositorioGit.txt
+¦       inrtools.sql
+¦       testExcel.php
+¦       
++---vendor
+    ¦   autoload.php
+    ¦   
+    +---bin
+    +---composer
+    ¦   ¦   autoload_classmap.php
+    ¦   ¦   autoload_namespaces.php
+    ¦   ¦   autoload_psr4.php
+    ¦   ¦   autoload_real.php
+    ¦   ¦   autoload_static.php
+    ¦   ¦   ClassLoader.php
+    ¦   ¦   installed.json
+    ¦   ¦   installed.php
+    ¦   ¦   InstalledVersions.php
+    ¦   ¦   LICENSE
+    ¦   ¦   platform_check.php
+    ¦   ¦   
+    ¦   +---pcre
+    ¦       ¦   composer.json
+    ¦       ¦   extension.neon
+    ¦       ¦   LICENSE
+    ¦       ¦   README.md
+    ¦       ¦   
+    ¦       +---src
+    ¦           ¦   MatchAllResult.php
+    ¦           ¦   MatchAllStrictGroupsResult.php
+    ¦           ¦   MatchAllWithOffsetsResult.php
+    ¦           ¦   MatchResult.php
+    ¦           ¦   MatchStrictGroupsResult.php
+    ¦           ¦   MatchWithOffsetsResult.php
+    ¦           ¦   PcreException.php
+    ¦           ¦   Preg.php
+    ¦           ¦   Regex.php
+    ¦           ¦   ReplaceResult.php
+    ¦           ¦   UnexpectedNullMatchException.php
+    ¦           ¦   
+    ¦           +---PHPStan
+    ¦                   InvalidRegexPatternRule.php
+    ¦                   PregMatchFlags.php
+    ¦                   PregMatchParameterOutTypeExtension.php
+    ¦                   PregMatchTypeSpecifyingExtension.php
+    ¦                   PregReplaceCallbackClosureTypeExtension.php
+    ¦                   UnsafeStrictGroupsCallRule.php
+    ¦                   
+    +---maennchen
+    ¦   +---zipstream-php
+    ¦       ¦   .editorconfig
+    ¦       ¦   .gitattributes
+    ¦       ¦   .gitignore
+    ¦       ¦   .php-cs-fixer.dist.php
+    ¦       ¦   .tool-versions
+    ¦       ¦   composer.json
+    ¦       ¦   LICENSE
+    ¦       ¦   phpdoc.dist.xml
+    ¦       ¦   phpunit.xml.dist
+    ¦       ¦   psalm.xml
+    ¦       ¦   README.md
+    ¦       ¦   
+    ¦       +---.github
+    ¦       ¦   ¦   CODE_OF_CONDUCT.md
+    ¦       ¦   ¦   CONTRIBUTING.md
+    ¦       ¦   ¦   dependabot.yml
+    ¦       ¦   ¦   FUNDING.yml
+    ¦       ¦   ¦   PULL_REQUEST_TEMPLATE.md
+    ¦       ¦   ¦   scorecard.yml
+    ¦       ¦   ¦   SECURITY.md
+    ¦       ¦   ¦   
+    ¦       ¦   +---ISSUE_TEMPLATE
+    ¦       ¦   ¦       BUG.yml
+    ¦       ¦   ¦       FEATURE.yml
+    ¦       ¦   ¦       
+    ¦       ¦   +---PULL_REQUEST_TEMPLATE
+    ¦       ¦   ¦       FAILING_TEST.md
+    ¦       ¦   ¦       FIX.md
+    ¦       ¦   ¦       IMPROVEMENT.md
+    ¦       ¦   ¦       NEW_FEATURE.md
+    ¦       ¦   ¦       
+    ¦       ¦   +---workflows
+    ¦       ¦           branch_main.yml
+    ¦       ¦           part_dependabot.yml
+    ¦       ¦           part_docs.yml
+    ¦       ¦           part_release.yml
+    ¦       ¦           part_test.yml
+    ¦       ¦           pr.yml
+    ¦       ¦           scorecard.yml
+    ¦       ¦           tag-beta.yml
+    ¦       ¦           tag-stable.yml
+    ¦       ¦           
+    ¦       +---.phive
+    ¦       ¦       phars.xml
+    ¦       ¦       
+    ¦       +---.phpdoc
+    ¦       ¦   +---template
+    ¦       ¦           base.html.twig
+    ¦       ¦           
+    ¦       +---guides
+    ¦       ¦       ContentLength.rst
+    ¦       ¦       FlySystem.rst
+    ¦       ¦       index.rst
+    ¦       ¦       Nginx.rst
+    ¦       ¦       Options.rst
+    ¦       ¦       PSR7Streams.rst
+    ¦       ¦       StreamOutput.rst
+    ¦       ¦       Symfony.rst
+    ¦       ¦       Varnish.rst
+    ¦       ¦       
+    ¦       +---src
+    ¦       ¦   ¦   CentralDirectoryFileHeader.php
+    ¦       ¦   ¦   CompressionMethod.php
+    ¦       ¦   ¦   DataDescriptor.php
+    ¦       ¦   ¦   EndOfCentralDirectory.php
+    ¦       ¦   ¦   Exception.php
+    ¦       ¦   ¦   File.php
+    ¦       ¦   ¦   GeneralPurposeBitFlag.php
+    ¦       ¦   ¦   LocalFileHeader.php
+    ¦       ¦   ¦   OperationMode.php
+    ¦       ¦   ¦   PackField.php
+    ¦       ¦   ¦   Time.php
+    ¦       ¦   ¦   Version.php
+    ¦       ¦   ¦   ZipStream.php
+    ¦       ¦   ¦   
+    ¦       ¦   +---Exception
+    ¦       ¦   ¦       DosTimeOverflowException.php
+    ¦       ¦   ¦       FileNotFoundException.php
+    ¦       ¦   ¦       FileNotReadableException.php
+    ¦       ¦   ¦       FileSizeIncorrectException.php
+    ¦       ¦   ¦       OverflowException.php
+    ¦       ¦   ¦       ResourceActionException.php
+    ¦       ¦   ¦       SimulationFileUnknownException.php
+    ¦       ¦   ¦       StreamNotReadableException.php
+    ¦       ¦   ¦       StreamNotSeekableException.php
+    ¦       ¦   ¦       
+    ¦       ¦   +---Zip64
+    ¦       ¦   ¦       DataDescriptor.php
+    ¦       ¦   ¦       EndOfCentralDirectory.php
+    ¦       ¦   ¦       EndOfCentralDirectoryLocator.php
+    ¦       ¦   ¦       ExtendedInformationExtraField.php
+    ¦       ¦   ¦       
+    ¦       ¦   +---Zs
+    ¦       ¦           ExtendedInformationExtraField.php
+    ¦       ¦           
+    ¦       +---test
+    ¦           ¦   Assertions.php
+    ¦           ¦   bootstrap.php
+    ¦           ¦   CentralDirectoryFileHeaderTest.php
+    ¦           ¦   DataDescriptorTest.php
+    ¦           ¦   EndlessCycleStream.php
+    ¦           ¦   EndOfCentralDirectoryTest.php
+    ¦           ¦   FaultInjectionResource.php
+    ¦           ¦   LocalFileHeaderTest.php
+    ¦           ¦   PackFieldTest.php
+    ¦           ¦   ResourceStream.php
+    ¦           ¦   Tempfile.php
+    ¦           ¦   TimeTest.php
+    ¦           ¦   Util.php
+    ¦           ¦   ZipStreamTest.php
+    ¦           ¦   
+    ¦           +---Zip64
+    ¦           ¦       DataDescriptorTest.php
+    ¦           ¦       EndOfCentralDirectoryLocatorTest.php
+    ¦           ¦       EndOfCentralDirectoryTest.php
+    ¦           ¦       ExtendedInformationExtraFieldTest.php
+    ¦           ¦       
+    ¦           +---Zs
+    ¦                   ExtendedInformationExtraFieldTest.php
+    ¦                   
+    +---markbaker
+    ¦   +---complex
+    ¦   ¦   ¦   composer.json
+    ¦   ¦   ¦   license.md
+    ¦   ¦   ¦   README.md
+    ¦   ¦   ¦   
+    ¦   ¦   +---.github
+    ¦   ¦   ¦   +---workflows
+    ¦   ¦   ¦           main.yml
+    ¦   ¦   ¦           
+    ¦   ¦   +---classes
+    ¦   ¦   ¦   +---src
+    ¦   ¦   ¦           Complex.php
+    ¦   ¦   ¦           Exception.php
+    ¦   ¦   ¦           Functions.php
+    ¦   ¦   ¦           Operations.php
+    ¦   ¦   ¦           
+    ¦   ¦   +---examples
+    ¦   ¦           complexTest.php
+    ¦   ¦           testFunctions.php
+    ¦   ¦           testOperations.php
+    ¦   ¦           
+    ¦   +---matrix
+    ¦       ¦   buildPhar.php
+    ¦       ¦   composer.json
+    ¦       ¦   infection.json.dist
+    ¦       ¦   license.md
+    ¦       ¦   phpstan.neon
+    ¦       ¦   README.md
+    ¦       ¦   
+    ¦       +---.github
+    ¦       ¦   +---workflows
+    ¦       ¦           main.yaml
+    ¦       ¦           
+    ¦       +---classes
+    ¦       ¦   +---src
+    ¦       ¦       ¦   Builder.php
+    ¦       ¦       ¦   Div0Exception.php
+    ¦       ¦       ¦   Exception.php
+    ¦       ¦       ¦   Functions.php
+    ¦       ¦       ¦   Matrix.php
+    ¦       ¦       ¦   Operations.php
+    ¦       ¦       ¦   
+    ¦       ¦       +---Decomposition
+    ¦       ¦       ¦       Decomposition.php
+    ¦       ¦       ¦       LU.php
+    ¦       ¦       ¦       QR.php
+    ¦       ¦       ¦       
+    ¦       ¦       +---Operators
+    ¦       ¦               Addition.php
+    ¦       ¦               DirectSum.php
+    ¦       ¦               Division.php
+    ¦       ¦               Multiplication.php
+    ¦       ¦               Operator.php
+    ¦       ¦               Subtraction.php
+    ¦       ¦               
+    ¦       +---examples
+    ¦               test.php
+    ¦               
+    +---phpoffice
+    ¦   +---phpspreadsheet
+    ¦       ¦   CHANGELOG.md
+    ¦       ¦   composer.json
+    ¦       ¦   CONTRIBUTING.md
+    ¦       ¦   LICENSE
+    ¦       ¦   README.md
+    ¦       ¦   
+    ¦       +---src
+    ¦           +---PhpSpreadsheet
+    ¦               ¦   CellReferenceHelper.php
+    ¦               ¦   Comment.php
+    ¦               ¦   DefinedName.php
+    ¦               ¦   Exception.php
+    ¦               ¦   HashTable.php
+    ¦               ¦   IComparable.php
+    ¦               ¦   IOFactory.php
+    ¦               ¦   NamedFormula.php
+    ¦               ¦   NamedRange.php
+    ¦               ¦   ReferenceHelper.php
+    ¦               ¦   Settings.php
+    ¦               ¦   Spreadsheet.php
+    ¦               ¦   Theme.php
+    ¦               ¦   
+    ¦               +---Calculation
+    ¦               ¦   ¦   ArrayEnabled.php
+    ¦               ¦   ¦   BinaryComparison.php
+    ¦               ¦   ¦   Calculation.php
+    ¦               ¦   ¦   CalculationBase.php
+    ¦               ¦   ¦   CalculationLocale.php
+    ¦               ¦   ¦   CalculationParserOnly.php
+    ¦               ¦   ¦   Category.php
+    ¦               ¦   ¦   Exception.php
+    ¦               ¦   ¦   ExceptionHandler.php
+    ¦               ¦   ¦   FormulaParser.php
+    ¦               ¦   ¦   FormulaToken.php
+    ¦               ¦   ¦   FunctionArray.php
+    ¦               ¦   ¦   Functions.php
+    ¦               ¦   ¦   
+    ¦               ¦   +---Database
+    ¦               ¦   ¦       DatabaseAbstract.php
+    ¦               ¦   ¦       DAverage.php
+    ¦               ¦   ¦       DCount.php
+    ¦               ¦   ¦       DCountA.php
+    ¦               ¦   ¦       DGet.php
+    ¦               ¦   ¦       DMax.php
+    ¦               ¦   ¦       DMin.php
+    ¦               ¦   ¦       DProduct.php
+    ¦               ¦   ¦       DStDev.php
+    ¦               ¦   ¦       DStDevP.php
+    ¦               ¦   ¦       DSum.php
+    ¦               ¦   ¦       DVar.php
+    ¦               ¦   ¦       DVarP.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---DateTimeExcel
+    ¦               ¦   ¦       Constants.php
+    ¦               ¦   ¦       Current.php
+    ¦               ¦   ¦       Date.php
+    ¦               ¦   ¦       DateParts.php
+    ¦               ¦   ¦       DateValue.php
+    ¦               ¦   ¦       Days.php
+    ¦               ¦   ¦       Days360.php
+    ¦               ¦   ¦       Difference.php
+    ¦               ¦   ¦       Helpers.php
+    ¦               ¦   ¦       Month.php
+    ¦               ¦   ¦       NetworkDays.php
+    ¦               ¦   ¦       Time.php
+    ¦               ¦   ¦       TimeParts.php
+    ¦               ¦   ¦       TimeValue.php
+    ¦               ¦   ¦       Week.php
+    ¦               ¦   ¦       WorkDay.php
+    ¦               ¦   ¦       YearFrac.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Engine
+    ¦               ¦   ¦   ¦   ArrayArgumentHelper.php
+    ¦               ¦   ¦   ¦   ArrayArgumentProcessor.php
+    ¦               ¦   ¦   ¦   BranchPruner.php
+    ¦               ¦   ¦   ¦   CyclicReferenceStack.php
+    ¦               ¦   ¦   ¦   FormattedNumber.php
+    ¦               ¦   ¦   ¦   Logger.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---Operands
+    ¦               ¦   ¦           Operand.php
+    ¦               ¦   ¦           StructuredReference.php
+    ¦               ¦   ¦           
+    ¦               ¦   +---Engineering
+    ¦               ¦   ¦       BesselI.php
+    ¦               ¦   ¦       BesselJ.php
+    ¦               ¦   ¦       BesselK.php
+    ¦               ¦   ¦       BesselY.php
+    ¦               ¦   ¦       BitWise.php
+    ¦               ¦   ¦       Compare.php
+    ¦               ¦   ¦       Complex.php
+    ¦               ¦   ¦       ComplexFunctions.php
+    ¦               ¦   ¦       ComplexOperations.php
+    ¦               ¦   ¦       Constants.php
+    ¦               ¦   ¦       ConvertBase.php
+    ¦               ¦   ¦       ConvertBinary.php
+    ¦               ¦   ¦       ConvertDecimal.php
+    ¦               ¦   ¦       ConvertHex.php
+    ¦               ¦   ¦       ConvertOctal.php
+    ¦               ¦   ¦       ConvertUOM.php
+    ¦               ¦   ¦       EngineeringValidations.php
+    ¦               ¦   ¦       Erf.php
+    ¦               ¦   ¦       ErfC.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Financial
+    ¦               ¦   ¦   ¦   Amortization.php
+    ¦               ¦   ¦   ¦   Constants.php
+    ¦               ¦   ¦   ¦   Coupons.php
+    ¦               ¦   ¦   ¦   Depreciation.php
+    ¦               ¦   ¦   ¦   Dollar.php
+    ¦               ¦   ¦   ¦   FinancialValidations.php
+    ¦               ¦   ¦   ¦   Helpers.php
+    ¦               ¦   ¦   ¦   InterestRate.php
+    ¦               ¦   ¦   ¦   TreasuryBill.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---CashFlow
+    ¦               ¦   ¦   ¦   ¦   CashFlowValidations.php
+    ¦               ¦   ¦   ¦   ¦   Single.php
+    ¦               ¦   ¦   ¦   ¦   
+    ¦               ¦   ¦   ¦   +---Constant
+    ¦               ¦   ¦   ¦   ¦   ¦   Periodic.php
+    ¦               ¦   ¦   ¦   ¦   ¦   
+    ¦               ¦   ¦   ¦   ¦   +---Periodic
+    ¦               ¦   ¦   ¦   ¦           Cumulative.php
+    ¦               ¦   ¦   ¦   ¦           Interest.php
+    ¦               ¦   ¦   ¦   ¦           InterestAndPrincipal.php
+    ¦               ¦   ¦   ¦   ¦           Payments.php
+    ¦               ¦   ¦   ¦   ¦           
+    ¦               ¦   ¦   ¦   +---Variable
+    ¦               ¦   ¦   ¦           NonPeriodic.php
+    ¦               ¦   ¦   ¦           Periodic.php
+    ¦               ¦   ¦   ¦           
+    ¦               ¦   ¦   +---Securities
+    ¦               ¦   ¦           AccruedInterest.php
+    ¦               ¦   ¦           Price.php
+    ¦               ¦   ¦           Rates.php
+    ¦               ¦   ¦           SecurityValidations.php
+    ¦               ¦   ¦           Yields.php
+    ¦               ¦   ¦           
+    ¦               ¦   +---Information
+    ¦               ¦   ¦       ErrorValue.php
+    ¦               ¦   ¦       ExcelError.php
+    ¦               ¦   ¦       Info.php
+    ¦               ¦   ¦       Value.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Internal
+    ¦               ¦   ¦       ExcelArrayPseudoFunctions.php
+    ¦               ¦   ¦       MakeMatrix.php
+    ¦               ¦   ¦       WildcardMatch.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---locale
+    ¦               ¦   ¦   ¦   Translations.xlsx
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---bg
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---cs
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---da
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---de
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---en
+    ¦               ¦   ¦   ¦   +---uk
+    ¦               ¦   ¦   ¦           config
+    ¦               ¦   ¦   ¦           
+    ¦               ¦   ¦   +---es
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---fi
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---fr
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---hu
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---it
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---nb
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---nl
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---pl
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---pt
+    ¦               ¦   ¦   ¦   ¦   config
+    ¦               ¦   ¦   ¦   ¦   functions
+    ¦               ¦   ¦   ¦   ¦   
+    ¦               ¦   ¦   ¦   +---br
+    ¦               ¦   ¦   ¦           config
+    ¦               ¦   ¦   ¦           functions
+    ¦               ¦   ¦   ¦           
+    ¦               ¦   ¦   +---ru
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---sv
+    ¦               ¦   ¦   ¦       config
+    ¦               ¦   ¦   ¦       functions
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---tr
+    ¦               ¦   ¦           config
+    ¦               ¦   ¦           functions
+    ¦               ¦   ¦           
+    ¦               ¦   +---Logical
+    ¦               ¦   ¦       Boolean.php
+    ¦               ¦   ¦       Conditional.php
+    ¦               ¦   ¦       Operations.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---LookupRef
+    ¦               ¦   ¦       Address.php
+    ¦               ¦   ¦       ChooseRowsEtc.php
+    ¦               ¦   ¦       ExcelMatch.php
+    ¦               ¦   ¦       Filter.php
+    ¦               ¦   ¦       Formula.php
+    ¦               ¦   ¦       Helpers.php
+    ¦               ¦   ¦       HLookup.php
+    ¦               ¦   ¦       Hstack.php
+    ¦               ¦   ¦       Hyperlink.php
+    ¦               ¦   ¦       Indirect.php
+    ¦               ¦   ¦       Lookup.php
+    ¦               ¦   ¦       LookupBase.php
+    ¦               ¦   ¦       LookupRefValidations.php
+    ¦               ¦   ¦       Matrix.php
+    ¦               ¦   ¦       Offset.php
+    ¦               ¦   ¦       RowColumnInformation.php
+    ¦               ¦   ¦       Selection.php
+    ¦               ¦   ¦       Sort.php
+    ¦               ¦   ¦       TorowTocol.php
+    ¦               ¦   ¦       Unique.php
+    ¦               ¦   ¦       VLookup.php
+    ¦               ¦   ¦       Vstack.php
+    ¦               ¦   ¦       XLookup.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---MathTrig
+    ¦               ¦   ¦   ¦   Absolute.php
+    ¦               ¦   ¦   ¦   Angle.php
+    ¦               ¦   ¦   ¦   Arabic.php
+    ¦               ¦   ¦   ¦   Base.php
+    ¦               ¦   ¦   ¦   Ceiling.php
+    ¦               ¦   ¦   ¦   Combinations.php
+    ¦               ¦   ¦   ¦   Exp.php
+    ¦               ¦   ¦   ¦   Factorial.php
+    ¦               ¦   ¦   ¦   Floor.php
+    ¦               ¦   ¦   ¦   Gcd.php
+    ¦               ¦   ¦   ¦   Helpers.php
+    ¦               ¦   ¦   ¦   IntClass.php
+    ¦               ¦   ¦   ¦   Lcm.php
+    ¦               ¦   ¦   ¦   Logarithms.php
+    ¦               ¦   ¦   ¦   MatrixFunctions.php
+    ¦               ¦   ¦   ¦   Operations.php
+    ¦               ¦   ¦   ¦   Random.php
+    ¦               ¦   ¦   ¦   Roman.php
+    ¦               ¦   ¦   ¦   Round.php
+    ¦               ¦   ¦   ¦   SeriesSum.php
+    ¦               ¦   ¦   ¦   Sign.php
+    ¦               ¦   ¦   ¦   Sqrt.php
+    ¦               ¦   ¦   ¦   Subtotal.php
+    ¦               ¦   ¦   ¦   Sum.php
+    ¦               ¦   ¦   ¦   SumSquares.php
+    ¦               ¦   ¦   ¦   Trunc.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---Trig
+    ¦               ¦   ¦           Cosecant.php
+    ¦               ¦   ¦           Cosine.php
+    ¦               ¦   ¦           Cotangent.php
+    ¦               ¦   ¦           Secant.php
+    ¦               ¦   ¦           Sine.php
+    ¦               ¦   ¦           Tangent.php
+    ¦               ¦   ¦           
+    ¦               ¦   +---Statistical
+    ¦               ¦   ¦   ¦   AggregateBase.php
+    ¦               ¦   ¦   ¦   Averages.php
+    ¦               ¦   ¦   ¦   Conditional.php
+    ¦               ¦   ¦   ¦   Confidence.php
+    ¦               ¦   ¦   ¦   Counts.php
+    ¦               ¦   ¦   ¦   Deviations.php
+    ¦               ¦   ¦   ¦   Maximum.php
+    ¦               ¦   ¦   ¦   MaxMinBase.php
+    ¦               ¦   ¦   ¦   Minimum.php
+    ¦               ¦   ¦   ¦   Percentiles.php
+    ¦               ¦   ¦   ¦   Permutations.php
+    ¦               ¦   ¦   ¦   Size.php
+    ¦               ¦   ¦   ¦   StandardDeviations.php
+    ¦               ¦   ¦   ¦   Standardize.php
+    ¦               ¦   ¦   ¦   StatisticalValidations.php
+    ¦               ¦   ¦   ¦   Trends.php
+    ¦               ¦   ¦   ¦   VarianceBase.php
+    ¦               ¦   ¦   ¦   Variances.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---Averages
+    ¦               ¦   ¦   ¦       Mean.php
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---Distributions
+    ¦               ¦   ¦           Beta.php
+    ¦               ¦   ¦           Binomial.php
+    ¦               ¦   ¦           ChiSquared.php
+    ¦               ¦   ¦           DistributionValidations.php
+    ¦               ¦   ¦           Exponential.php
+    ¦               ¦   ¦           F.php
+    ¦               ¦   ¦           Fisher.php
+    ¦               ¦   ¦           Gamma.php
+    ¦               ¦   ¦           GammaBase.php
+    ¦               ¦   ¦           HyperGeometric.php
+    ¦               ¦   ¦           LogNormal.php
+    ¦               ¦   ¦           NewtonRaphson.php
+    ¦               ¦   ¦           Normal.php
+    ¦               ¦   ¦           Poisson.php
+    ¦               ¦   ¦           StandardNormal.php
+    ¦               ¦   ¦           StudentT.php
+    ¦               ¦   ¦           Weibull.php
+    ¦               ¦   ¦           
+    ¦               ¦   +---TextData
+    ¦               ¦   ¦       CaseConvert.php
+    ¦               ¦   ¦       CharacterConvert.php
+    ¦               ¦   ¦       Concatenate.php
+    ¦               ¦   ¦       Extract.php
+    ¦               ¦   ¦       Format.php
+    ¦               ¦   ¦       Helpers.php
+    ¦               ¦   ¦       Replace.php
+    ¦               ¦   ¦       Search.php
+    ¦               ¦   ¦       Text.php
+    ¦               ¦   ¦       Thai.php
+    ¦               ¦   ¦       Trim.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Token
+    ¦               ¦   ¦       Stack.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Web
+    ¦               ¦           Service.php
+    ¦               ¦           
+    ¦               +---Cell
+    ¦               ¦       AddressHelper.php
+    ¦               ¦       AddressRange.php
+    ¦               ¦       AdvancedValueBinder.php
+    ¦               ¦       Cell.php
+    ¦               ¦       CellAddress.php
+    ¦               ¦       CellRange.php
+    ¦               ¦       ColumnRange.php
+    ¦               ¦       Coordinate.php
+    ¦               ¦       DataType.php
+    ¦               ¦       DataValidation.php
+    ¦               ¦       DataValidator.php
+    ¦               ¦       DefaultValueBinder.php
+    ¦               ¦       Hyperlink.php
+    ¦               ¦       IgnoredErrors.php
+    ¦               ¦       IValueBinder.php
+    ¦               ¦       RowRange.php
+    ¦               ¦       StringValueBinder.php
+    ¦               ¦       
+    ¦               +---Chart
+    ¦               ¦   ¦   Axis.php
+    ¦               ¦   ¦   AxisText.php
+    ¦               ¦   ¦   Chart.php
+    ¦               ¦   ¦   ChartColor.php
+    ¦               ¦   ¦   DataSeries.php
+    ¦               ¦   ¦   DataSeriesValues.php
+    ¦               ¦   ¦   DataTable.php
+    ¦               ¦   ¦   Exception.php
+    ¦               ¦   ¦   GridLines.php
+    ¦               ¦   ¦   Layout.php
+    ¦               ¦   ¦   Legend.php
+    ¦               ¦   ¦   PlotArea.php
+    ¦               ¦   ¦   Properties.php
+    ¦               ¦   ¦   Title.php
+    ¦               ¦   ¦   TrendLine.php
+    ¦               ¦   ¦   
+    ¦               ¦   +---Renderer
+    ¦               ¦           IRenderer.php
+    ¦               ¦           JpGraph.php
+    ¦               ¦           JpGraphRendererBase.php
+    ¦               ¦           MtJpGraphRenderer.php
+    ¦               ¦           PHP Charting Libraries.txt
+    ¦               ¦           
+    ¦               +---Collection
+    ¦               ¦   ¦   Cells.php
+    ¦               ¦   ¦   CellsFactory.php
+    ¦               ¦   ¦   
+    ¦               ¦   +---Memory
+    ¦               ¦           SimpleCache1.php
+    ¦               ¦           SimpleCache3.php
+    ¦               ¦           
+    ¦               +---Document
+    ¦               ¦       Properties.php
+    ¦               ¦       Security.php
+    ¦               ¦       
+    ¦               +---Helper
+    ¦               ¦       Dimension.php
+    ¦               ¦       Downloader.php
+    ¦               ¦       Handler.php
+    ¦               ¦       Html.php
+    ¦               ¦       Sample.php
+    ¦               ¦       Size.php
+    ¦               ¦       TextGrid.php
+    ¦               ¦       TextGridRightAlign.php
+    ¦               ¦       
+    ¦               +---Reader
+    ¦               ¦   ¦   BaseReader.php
+    ¦               ¦   ¦   Csv.php
+    ¦               ¦   ¦   CsvNoEscape.php
+    ¦               ¦   ¦   DefaultReadFilter.php
+    ¦               ¦   ¦   EmptyWorksheetInfo.php
+    ¦               ¦   ¦   Exception.php
+    ¦               ¦   ¦   Gnumeric.php
+    ¦               ¦   ¦   Html.php
+    ¦               ¦   ¦   IReader.php
+    ¦               ¦   ¦   IReader2.php
+    ¦               ¦   ¦   IReadFilter.php
+    ¦               ¦   ¦   Ods.php
+    ¦               ¦   ¦   Slk.php
+    ¦               ¦   ¦   Xls.php
+    ¦               ¦   ¦   XlsBase.php
+    ¦               ¦   ¦   Xlsx.php
+    ¦               ¦   ¦   Xml.php
+    ¦               ¦   ¦   
+    ¦               ¦   +---Csv
+    ¦               ¦   ¦       Delimiter.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Gnumeric
+    ¦               ¦   ¦       PageSetup.php
+    ¦               ¦   ¦       Properties.php
+    ¦               ¦   ¦       Styles.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Ods
+    ¦               ¦   ¦       AutoFilter.php
+    ¦               ¦   ¦       BaseLoader.php
+    ¦               ¦   ¦       DefinedNames.php
+    ¦               ¦   ¦       FormulaTranslator.php
+    ¦               ¦   ¦       PageSettings.php
+    ¦               ¦   ¦       Properties.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Security
+    ¦               ¦   ¦       XmlScanner.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Xls
+    ¦               ¦   ¦   ¦   Biff5.php
+    ¦               ¦   ¦   ¦   Biff8.php
+    ¦               ¦   ¦   ¦   Color.php
+    ¦               ¦   ¦   ¦   ConditionalFormatting.php
+    ¦               ¦   ¦   ¦   DataValidationHelper.php
+    ¦               ¦   ¦   ¦   ErrorCode.php
+    ¦               ¦   ¦   ¦   Escher.php
+    ¦               ¦   ¦   ¦   ListFunctions.php
+    ¦               ¦   ¦   ¦   LoadSpreadsheet.php
+    ¦               ¦   ¦   ¦   Mappings.php
+    ¦               ¦   ¦   ¦   MD5.php
+    ¦               ¦   ¦   ¦   RC4.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---Color
+    ¦               ¦   ¦   ¦       BIFF5.php
+    ¦               ¦   ¦   ¦       BIFF8.php
+    ¦               ¦   ¦   ¦       BuiltIn.php
+    ¦               ¦   ¦   ¦       
+    ¦               ¦   ¦   +---Style
+    ¦               ¦   ¦           Border.php
+    ¦               ¦   ¦           CellAlignment.php
+    ¦               ¦   ¦           CellFont.php
+    ¦               ¦   ¦           FillPattern.php
+    ¦               ¦   ¦           
+    ¦               ¦   +---Xlsx
+    ¦               ¦   ¦       AutoFilter.php
+    ¦               ¦   ¦       BaseParserClass.php
+    ¦               ¦   ¦       Chart.php
+    ¦               ¦   ¦       ColumnAndRowAttributes.php
+    ¦               ¦   ¦       ConditionalStyles.php
+    ¦               ¦   ¦       DataValidations.php
+    ¦               ¦   ¦       Hyperlinks.php
+    ¦               ¦   ¦       Namespaces.php
+    ¦               ¦   ¦       PageSetup.php
+    ¦               ¦   ¦       Properties.php
+    ¦               ¦   ¦       SharedFormula.php
+    ¦               ¦   ¦       SheetViewOptions.php
+    ¦               ¦   ¦       SheetViews.php
+    ¦               ¦   ¦       Styles.php
+    ¦               ¦   ¦       TableReader.php
+    ¦               ¦   ¦       Theme.php
+    ¦               ¦   ¦       WorkbookView.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Xml
+    ¦               ¦       ¦   DataValidations.php
+    ¦               ¦       ¦   PageSettings.php
+    ¦               ¦       ¦   Properties.php
+    ¦               ¦       ¦   Style.php
+    ¦               ¦       ¦   
+    ¦               ¦       +---Style
+    ¦               ¦               Alignment.php
+    ¦               ¦               Border.php
+    ¦               ¦               Fill.php
+    ¦               ¦               Font.php
+    ¦               ¦               NumberFormat.php
+    ¦               ¦               StyleBase.php
+    ¦               ¦               
+    ¦               +---RichText
+    ¦               ¦       ITextElement.php
+    ¦               ¦       RichText.php
+    ¦               ¦       Run.php
+    ¦               ¦       TextElement.php
+    ¦               ¦       
+    ¦               +---Shared
+    ¦               ¦   ¦   CodePage.php
+    ¦               ¦   ¦   Date.php
+    ¦               ¦   ¦   Drawing.php
+    ¦               ¦   ¦   Escher.php
+    ¦               ¦   ¦   File.php
+    ¦               ¦   ¦   Font.php
+    ¦               ¦   ¦   IntOrFloat.php
+    ¦               ¦   ¦   OLE.php
+    ¦               ¦   ¦   OLERead.php
+    ¦               ¦   ¦   PasswordHasher.php
+    ¦               ¦   ¦   StringHelper.php
+    ¦               ¦   ¦   TimeZone.php
+    ¦               ¦   ¦   Xls.php
+    ¦               ¦   ¦   XMLWriter.php
+    ¦               ¦   ¦   
+    ¦               ¦   +---Escher
+    ¦               ¦   ¦   ¦   DgContainer.php
+    ¦               ¦   ¦   ¦   DggContainer.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---DgContainer
+    ¦               ¦   ¦   ¦   ¦   SpgrContainer.php
+    ¦               ¦   ¦   ¦   ¦   
+    ¦               ¦   ¦   ¦   +---SpgrContainer
+    ¦               ¦   ¦   ¦           SpContainer.php
+    ¦               ¦   ¦   ¦           
+    ¦               ¦   ¦   +---DggContainer
+    ¦               ¦   ¦       ¦   BstoreContainer.php
+    ¦               ¦   ¦       ¦   
+    ¦               ¦   ¦       +---BstoreContainer
+    ¦               ¦   ¦           ¦   BSE.php
+    ¦               ¦   ¦           ¦   
+    ¦               ¦   ¦           +---BSE
+    ¦               ¦   ¦                   Blip.php
+    ¦               ¦   ¦                   
+    ¦               ¦   +---OLE
+    ¦               ¦   ¦   ¦   ChainedBlockStream.php
+    ¦               ¦   ¦   ¦   PPS.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---PPS
+    ¦               ¦   ¦           File.php
+    ¦               ¦   ¦           Root.php
+    ¦               ¦   ¦           
+    ¦               ¦   +---Trend
+    ¦               ¦           BestFit.php
+    ¦               ¦           ExponentialBestFit.php
+    ¦               ¦           LinearBestFit.php
+    ¦               ¦           LogarithmicBestFit.php
+    ¦               ¦           PolynomialBestFit.php
+    ¦               ¦           PowerBestFit.php
+    ¦               ¦           Trend.php
+    ¦               ¦           
+    ¦               +---Style
+    ¦               ¦   ¦   Alignment.php
+    ¦               ¦   ¦   Border.php
+    ¦               ¦   ¦   Borders.php
+    ¦               ¦   ¦   Color.php
+    ¦               ¦   ¦   Conditional.php
+    ¦               ¦   ¦   Fill.php
+    ¦               ¦   ¦   Font.php
+    ¦               ¦   ¦   NumberFormat.php
+    ¦               ¦   ¦   Protection.php
+    ¦               ¦   ¦   RgbTint.php
+    ¦               ¦   ¦   Style.php
+    ¦               ¦   ¦   Supervisor.php
+    ¦               ¦   ¦   
+    ¦               ¦   +---ConditionalFormatting
+    ¦               ¦   ¦   ¦   CellMatcher.php
+    ¦               ¦   ¦   ¦   CellStyleAssessor.php
+    ¦               ¦   ¦   ¦   ConditionalColorScale.php
+    ¦               ¦   ¦   ¦   ConditionalDataBar.php
+    ¦               ¦   ¦   ¦   ConditionalDataBarExtension.php
+    ¦               ¦   ¦   ¦   ConditionalFormattingRuleExtension.php
+    ¦               ¦   ¦   ¦   ConditionalFormatValueObject.php
+    ¦               ¦   ¦   ¦   ConditionalIconSet.php
+    ¦               ¦   ¦   ¦   IconSetValues.php
+    ¦               ¦   ¦   ¦   MergedCellStyle.php
+    ¦               ¦   ¦   ¦   StyleMerger.php
+    ¦               ¦   ¦   ¦   Wizard.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---Wizard
+    ¦               ¦   ¦           Blanks.php
+    ¦               ¦   ¦           CellValue.php
+    ¦               ¦   ¦           DateValue.php
+    ¦               ¦   ¦           Duplicates.php
+    ¦               ¦   ¦           Errors.php
+    ¦               ¦   ¦           Expression.php
+    ¦               ¦   ¦           TextValue.php
+    ¦               ¦   ¦           WizardAbstract.php
+    ¦               ¦   ¦           WizardInterface.php
+    ¦               ¦   ¦           
+    ¦               ¦   +---NumberFormat
+    ¦               ¦       ¦   BaseFormatter.php
+    ¦               ¦       ¦   DateFormatter.php
+    ¦               ¦       ¦   Formatter.php
+    ¦               ¦       ¦   FractionFormatter.php
+    ¦               ¦       ¦   NumberFormatter.php
+    ¦               ¦       ¦   PercentageFormatter.php
+    ¦               ¦       ¦   
+    ¦               ¦       +---Wizard
+    ¦               ¦               Accounting.php
+    ¦               ¦               Currency.php
+    ¦               ¦               CurrencyBase.php
+    ¦               ¦               CurrencyNegative.php
+    ¦               ¦               Date.php
+    ¦               ¦               DateTime.php
+    ¦               ¦               DateTimeWizard.php
+    ¦               ¦               Duration.php
+    ¦               ¦               Locale.php
+    ¦               ¦               Number.php
+    ¦               ¦               NumberBase.php
+    ¦               ¦               Percentage.php
+    ¦               ¦               Scientific.php
+    ¦               ¦               Time.php
+    ¦               ¦               Wizard.php
+    ¦               ¦               
+    ¦               +---Worksheet
+    ¦               ¦   ¦   AutoFilter.php
+    ¦               ¦   ¦   AutoFit.php
+    ¦               ¦   ¦   BaseDrawing.php
+    ¦               ¦   ¦   CellIterator.php
+    ¦               ¦   ¦   Column.php
+    ¦               ¦   ¦   ColumnCellIterator.php
+    ¦               ¦   ¦   ColumnDimension.php
+    ¦               ¦   ¦   ColumnIterator.php
+    ¦               ¦   ¦   Dimension.php
+    ¦               ¦   ¦   Drawing.php
+    ¦               ¦   ¦   HeaderFooter.php
+    ¦               ¦   ¦   HeaderFooterDrawing.php
+    ¦               ¦   ¦   Iterator.php
+    ¦               ¦   ¦   MemoryDrawing.php
+    ¦               ¦   ¦   PageBreak.php
+    ¦               ¦   ¦   PageMargins.php
+    ¦               ¦   ¦   PageSetup.php
+    ¦               ¦   ¦   Pane.php
+    ¦               ¦   ¦   ProtectedRange.php
+    ¦               ¦   ¦   Protection.php
+    ¦               ¦   ¦   Row.php
+    ¦               ¦   ¦   RowCellIterator.php
+    ¦               ¦   ¦   RowDimension.php
+    ¦               ¦   ¦   RowIterator.php
+    ¦               ¦   ¦   SheetView.php
+    ¦               ¦   ¦   Table.php
+    ¦               ¦   ¦   Validations.php
+    ¦               ¦   ¦   Worksheet.php
+    ¦               ¦   ¦   
+    ¦               ¦   +---AutoFilter
+    ¦               ¦   ¦   ¦   Column.php
+    ¦               ¦   ¦   ¦   
+    ¦               ¦   ¦   +---Column
+    ¦               ¦   ¦           Rule.php
+    ¦               ¦   ¦           
+    ¦               ¦   +---Drawing
+    ¦               ¦   ¦       Shadow.php
+    ¦               ¦   ¦       
+    ¦               ¦   +---Table
+    ¦               ¦           Column.php
+    ¦               ¦           TableDxfsStyle.php
+    ¦               ¦           TableStyle.php
+    ¦               ¦           
+    ¦               +---Writer
+    ¦                   ¦   BaseWriter.php
+    ¦                   ¦   Csv.php
+    ¦                   ¦   Exception.php
+    ¦                   ¦   Html.php
+    ¦                   ¦   IWriter.php
+    ¦                   ¦   Ods.php
+    ¦                   ¦   Pdf.php
+    ¦                   ¦   Xls.php
+    ¦                   ¦   Xlsx.php
+    ¦                   ¦   ZipStream0.php
+    ¦                   ¦   ZipStream2.php
+    ¦                   ¦   ZipStream3.php
+    ¦                   ¦   
+    ¦                   +---Ods
+    ¦                   ¦   ¦   AutoFilters.php
+    ¦                   ¦   ¦   Content.php
+    ¦                   ¦   ¦   Formula.php
+    ¦                   ¦   ¦   Meta.php
+    ¦                   ¦   ¦   MetaInf.php
+    ¦                   ¦   ¦   Mimetype.php
+    ¦                   ¦   ¦   NamedExpressions.php
+    ¦                   ¦   ¦   Settings.php
+    ¦                   ¦   ¦   Styles.php
+    ¦                   ¦   ¦   Thumbnails.php
+    ¦                   ¦   ¦   WriterPart.php
+    ¦                   ¦   ¦   
+    ¦                   ¦   +---Cell
+    ¦                   ¦           Comment.php
+    ¦                   ¦           Style.php
+    ¦                   ¦           
+    ¦                   +---Pdf
+    ¦                   ¦       Dompdf.php
+    ¦                   ¦       Mpdf.php
+    ¦                   ¦       Tcpdf.php
+    ¦                   ¦       TcpdfNoDie.php
+    ¦                   ¦       
+    ¦                   +---Xls
+    ¦                   ¦   ¦   BIFFwriter.php
+    ¦                   ¦   ¦   CellDataValidation.php
+    ¦                   ¦   ¦   ConditionalHelper.php
+    ¦                   ¦   ¦   ErrorCode.php
+    ¦                   ¦   ¦   Escher.php
+    ¦                   ¦   ¦   Font.php
+    ¦                   ¦   ¦   Parser.php
+    ¦                   ¦   ¦   Workbook.php
+    ¦                   ¦   ¦   Worksheet.php
+    ¦                   ¦   ¦   Xf.php
+    ¦                   ¦   ¦   
+    ¦                   ¦   +---Style
+    ¦                   ¦           CellAlignment.php
+    ¦                   ¦           CellBorder.php
+    ¦                   ¦           CellFill.php
+    ¦                   ¦           
+    ¦                   +---Xlsx
+    ¦                           AutoFilter.php
+    ¦                           Chart.php
+    ¦                           Comments.php
+    ¦                           ContentTypes.php
+    ¦                           DefinedNames.php
+    ¦                           DocProps.php
+    ¦                           Drawing.php
+    ¦                           FeaturePropertyBag.php
+    ¦                           FunctionPrefix.php
+    ¦                           Metadata.php
+    ¦                           Rels.php
+    ¦                           RelsRibbon.php
+    ¦                           RelsVBA.php
+    ¦                           RichDataDrawing.php
+    ¦                           StringTable.php
+    ¦                           Style.php
+    ¦                           Table.php
+    ¦                           Theme.php
+    ¦                           Workbook.php
+    ¦                           Worksheet.php
+    ¦                           WriterPart.php
+    ¦                           
+    +---psr
+        +---simple-cache
+            ¦   .editorconfig
+            ¦   composer.json
+            ¦   LICENSE.md
+            ¦   README.md
+            ¦   
+            +---src
+                    CacheException.php
+                    CacheInterface.php
+                    InvalidArgumentException.php
+                    

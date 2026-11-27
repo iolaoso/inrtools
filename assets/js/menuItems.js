@@ -34,7 +34,7 @@ const menuItems = [
                     {   title: 'Ind Ranking Preliminar (INSESF)',
                         url: '/INRtools/frontend/inr/IndRanking/rIndRankingINSESF.php',
                          direccion: ['INR', 'DNR', 'INSESF','DNSSFI','DNSSFII'],
-                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNSESF'],
+                        rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNSES'],
                         usuarios: [] 
                     },
                     {   title: 'Ind Ranking Definitivo',
@@ -47,7 +47,7 @@ const menuItems = [
                         url: '/INRtools/frontend/inr/IndRanking/calfRiesgo/calfRiesgo.php',
                         direccion: ['INR', 'DNR','DNSES','DNS','DNPLA'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR'],
-                        usuarios: ['FOROZCO','PCARRILLO','AOLALLA','NOSORIO','TVERGARA','EACOSTA','','ILOPEZ','ILOPEZA']
+                        usuarios: ['LOROZCO','PCARRILLO','AOLALLA','NOSORIO','TVERGARA','EACOSTA','','ILOPEZ','ILOPEZA']
                     }
                     /* {   title: 'Ind ranking Imputados',
                         url: '/INRtools/frontend/inr/reportes/IndRanking/rIndRankingImputados.php',
@@ -125,21 +125,21 @@ const menuItems = [
                         url: '/INRtools/frontend/dnr/psi/psi/psi.php',
                         direccion: ['INR', 'DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA','ANALISTA'],
-                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY'] 
+                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','LOROZCO','PCARRILLO','LLOPEZ','DPAGUAY'] 
                     },
                     {
                         title: 'COSEDE', 
                         url: '/INRtools/frontend/dnr/psi/cosede/cosede.php',
                         direccion: ['INR', 'DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA','ANALISTA'],
-                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA','JCASTILLO'] 
+                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','LOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA','JCASTILLO'] 
                     },
                     {
                         title: 'COSEDE DNLESF', 
                         url: '/INRtools/frontend/dnr/psi/cosede/cosedeDNLESF.php',
                         direccion: ['INR', 'DNR','DNLESF'],
                         rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA','ANALISTA'],
-                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','FOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA','JCASTILLO'] 
+                        usuarios: ['ILOPEZA','ILOPEZ','RSOTO','LOROZCO','PCARRILLO','LLOPEZ','DPAGUAY','WBLACK','RGARCIA','JCASTILLO'] 
                     },
                 ],
                 direccion: ['ALL'],
@@ -258,7 +258,7 @@ const menuItems = [
                         url: '/INRtools/frontend/dnses/reportes/coacsdnses/coacsdnses.php',
                         direccion: ['DNSES','INR', 'DNR'],
                         rol: ['SUPERUSER','ADMINISTRADOR','ANALISTA','DIRECTOR','DIRADMINDNR','DIRADMINDNS','DIRADMINDNSES','DIRADMINDNPLA'],
-                        usuarios: ['FOROZCO','PCARRILLO','EVACA','RSOTO','ILOPEZA','ILOPEZ'] 
+                        usuarios: ['LOROZCO','PCARRILLO','EVACA','RSOTO','ILOPEZA','ILOPEZ'] 
                     },
                     {   title: 'Variaciones B11', 
                         url: '/INRtools/frontend/dnses/reportes/variacionesb11/variacionesb11.php',
@@ -412,7 +412,7 @@ const menuItems = [
         icon: 'fa-solid fa-cog',
         direccion: ['ALL'],
         rol: ['SUPERUSER','ADMINISTRADOR','DIRECTOR'],
-        usuarios: ['ILOPEZA','FOROZCO','PCARRILLO'] 
+        usuarios: ['ILOPEZA','LOROZCO','PCARRILLO'] 
     },
     {
         title: 'Perfil',

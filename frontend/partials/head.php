@@ -22,6 +22,9 @@
     <!-- Estilos del menú lateral -->
     <link href="<?php echo $base_url; ?>/assets/css/menu.css?v=<?= time(); ?>" rel="stylesheet">
 
+    <!-- Estilos de Admininstracion de Permisos  -->
+    <link rel="stylesheet" href="<?= $base_url ?>/assets/css/permisos_roles.css?v=<?= time(); ?>" rel="stylesheet">
+
     <!-- ========================================================= -->
     <!-- FRAMEWORKS CSS -->
     <!-- ========================================================= -->

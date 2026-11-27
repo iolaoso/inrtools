@@ -21,7 +21,8 @@ window.addEventListener('load', () => {
     sidebar.classList.add('collapsed');
 });
 
-function generateMenu(usrDir, usrRol, usrName) {
+// funcion anterior
+/* function generateMenu(usrDir, usrRol, usrName) {
     const menu = document.getElementById('menu');
     const fragment = document.createDocumentFragment();
 
@@ -201,7 +202,70 @@ function generateMenu(usrDir, usrRol, usrName) {
 
     menu.innerHTML = '';
     menu.appendChild(fragment);
+} */
+
+
+function generateMenu() {
+    const menu = document.getElementById('menu');
+    menu.innerHTML = '';
+    menu.appendChild(renderMenuItems(menuItems));
 }
 
+function renderMenuItems(items) {
+    const ul = document.createElement('ul');
+    ul.classList.add('ulMenu');
+    items.forEach(item => {
+        const li = document.createElement('li');
+        li.classList.add('menu-item');
+        const header = document.createElement('div');
+        header.classList.add('menu-header');
+        // icono
+        if (item.icon) {
+            const icon = document.createElement('i');
+            icon.className =`${item.icon} icon`;
+            header.appendChild(icon);
+        }
+        // texto o link
+        if (item.url) {
+            const anchor = document.createElement('a');
+            anchor.href = item.url;
+            anchor.textContent = item.title;
+            anchor.style.color = '#fff';
+            anchor.style.textDecoration = 'none';
+            if (typeof currentPage !== 'undefined' && item.url.endsWith(currentPage)) {
+                li.classList.add('active');
+            }
+            header.appendChild(anchor);
+        } else {
+            const span = document.createElement('span');
+            span.textContent = item.title;
+            header.appendChild(span);
+        }
+        li.appendChild(header);
+        // hijos
+        if (item.subMenu && item.subMenu.length > 0) {
+            const arrow = document.createElement('i');
+            arrow.className = 'fas fa-chevron-right arrow';
+            header.appendChild(arrow);
+            const childTree =renderMenuItems(item.subMenu);
+            childTree.classList.add('submenu-recursive');
+            childTree.style.display = 'none';
+            li.appendChild(childTree);
+            header.addEventListener('click', 
+                function(e){
+                    e.stopPropagation();
+                    childTree.style.display =
+                    childTree.style.display === 'none' ? 'block' : 'none';
+                    arrow.classList.toggle('rotate');
+                }
+            );
+        }
+
+        ul.appendChild(li);
+    });
+    return ul;
+}
+
+
 // Inicializar el menú con las variables usrDir, usrRol y usrName definidas en tu contexto
-generateMenu(usrDir, usrRol, usrName);
+//generateMenu(usrDir, usrRol, usrName);

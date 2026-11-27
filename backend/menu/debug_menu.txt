@@ -1,0 +1,535 @@
+[
+    {
+        "id": 1,
+        "title": "HOME",
+        "url": "\/INRtools\/frontend\/main.php",
+        "icon": "fa-solid fa-home",
+        "id_padre": null,
+        "subMenu": []
+    },
+    {
+        "id": 2,
+        "title": "INR",
+        "url": null,
+        "icon": "fa-solid fa-building",
+        "id_padre": null,
+        "subMenu": [
+            {
+                "id": 3,
+                "title": "Gesti\u00f3n INR",
+                "url": "\/INRtools\/frontend\/inr\/gestioninr\/gestioninr.php",
+                "icon": null,
+                "id_padre": "2",
+                "subMenu": []
+            },
+            {
+                "id": 4,
+                "title": "Ind Ranking",
+                "url": null,
+                "icon": null,
+                "id_padre": "2",
+                "subMenu": [
+                    {
+                        "id": 5,
+                        "title": "Ind Ranking Preliminar",
+                        "url": "\/INRtools\/frontend\/inr\/IndRanking\/rIndRankingPreliminar.php",
+                        "icon": null,
+                        "id_padre": "4",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 6,
+                        "title": "Ind Ranking Preliminar (INFMR)",
+                        "url": "\/INRtools\/frontend\/inr\/IndRanking\/rIndRankingINFMR.php",
+                        "icon": null,
+                        "id_padre": "4",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 7,
+                        "title": "Ind Ranking Preliminar (INSESF)",
+                        "url": "\/INRtools\/frontend\/inr\/IndRanking\/rIndRankingINSESF.php",
+                        "icon": null,
+                        "id_padre": "4",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 8,
+                        "title": "Ind Ranking Definitivo",
+                        "url": "\/INRtools\/frontend\/inr\/IndRanking\/rIndRankingDefinitivo.php",
+                        "icon": null,
+                        "id_padre": "4",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 9,
+                        "title": "Reporte de Calificaci\u00f3n de Riesgo",
+                        "url": "\/INRtools\/frontend\/inr\/IndRanking\/calfRiesgo\/calfRiesgo.php",
+                        "icon": null,
+                        "id_padre": "4",
+                        "subMenu": []
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "title": "Validar Estructuras",
+                "url": "\/INRtools\/frontend\/inr\/valestructuras\/valestructuras.php",
+                "icon": null,
+                "id_padre": "2",
+                "subMenu": []
+            },
+            {
+                "id": 11,
+                "title": "Backups Ilitia",
+                "url": "\/INRtools\/frontend\/inr\/backups\/backupsview.php",
+                "icon": null,
+                "id_padre": "2",
+                "subMenu": []
+            },
+            {
+                "id": 12,
+                "title": "Reportes",
+                "url": null,
+                "icon": null,
+                "id_padre": "2",
+                "subMenu": [
+                    {
+                        "id": 13,
+                        "title": "Reporte de Diagn\u00f3stico",
+                        "url": "\/INRtools\/frontend\/inr\/reportes\/rdiagnostico\/rdiagnostico.php",
+                        "icon": null,
+                        "id_padre": "12",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 14,
+                        "title": "Comite",
+                        "url": "\/INRtools\/frontend\/inr\/reportes\/comite\/comiteTecnico.php",
+                        "icon": null,
+                        "id_padre": "12",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 15,
+                        "title": "Boletin INR",
+                        "url": "\/INRtools\/frontend\/inr\/reportes\/boletin\/boletininr.php",
+                        "icon": null,
+                        "id_padre": "12",
+                        "subMenu": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "DNR",
+        "url": null,
+        "icon": "fa-solid fa-chart-line",
+        "id_padre": null,
+        "subMenu": [
+            {
+                "id": 17,
+                "title": "Estructuras",
+                "url": "\/INRtools\/frontend\/dnr\/estructuras\/estructuras.php",
+                "icon": null,
+                "id_padre": "16",
+                "subMenu": []
+            },
+            {
+                "id": 18,
+                "title": "PSI",
+                "url": null,
+                "icon": null,
+                "id_padre": "16",
+                "subMenu": [
+                    {
+                        "id": 19,
+                        "title": "PSI",
+                        "url": "\/INRtools\/frontend\/dnr\/psi\/psi\/psi.php",
+                        "icon": null,
+                        "id_padre": "18",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 20,
+                        "title": "COSEDE",
+                        "url": "\/INRtools\/frontend\/dnr\/psi\/cosede\/cosede.php",
+                        "icon": null,
+                        "id_padre": "18",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 21,
+                        "title": "COSEDE DNLESF",
+                        "url": "\/INRtools\/frontend\/dnr\/psi\/cosede\/cosedeDNLESF.php",
+                        "icon": null,
+                        "id_padre": "18",
+                        "subMenu": []
+                    }
+                ]
+            },
+            {
+                "id": 22,
+                "title": "Reportes",
+                "url": null,
+                "icon": null,
+                "id_padre": "16",
+                "subMenu": [
+                    {
+                        "id": 23,
+                        "title": "Riesgo de Cr\u00e9dito",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/alertas\/riesgoCredito.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 24,
+                        "title": "Riesgo de Liquidez",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/alertas\/riesgoLiquidez.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 25,
+                        "title": "Riesgo de Mercado",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/alertas\/riesgoMercado.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 26,
+                        "title": "Riesgo de Interconexion",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/alertas\/riesgoInterconexion.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 27,
+                        "title": "Calidad de Activos",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/alertas\/CalidadActivos.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 28,
+                        "title": "Calidad de Resultados",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/alertas\/calidadResultados.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 29,
+                        "title": "Provisiones",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/provisiones\/provisiones.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 30,
+                        "title": "Empresas Auxiliares",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/empaux\/empaux.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 31,
+                        "title": "Brechas",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/brechas\/brechas.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 32,
+                        "title": "Endeudamiento",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/endeudamiento\/endeudamiento.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 33,
+                        "title": "Saras",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/saras\/saras.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 34,
+                        "title": "Conafips",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/conafips\/conafips.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 35,
+                        "title": "Riesgo Ambiental",
+                        "url": "\/INRtools\/frontend\/dnr\/reportes\/rambiental\/rambiental.php",
+                        "icon": null,
+                        "id_padre": "22",
+                        "subMenu": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "title": "DNSES",
+        "url": null,
+        "icon": "fa-solid fa-chart-simple",
+        "id_padre": null,
+        "subMenu": [
+            {
+                "id": 37,
+                "title": "Avances de Supervisi\u00f3n",
+                "url": "\/INRtools\/frontend\/enConstruccion.php",
+                "icon": null,
+                "id_padre": "36",
+                "subMenu": []
+            },
+            {
+                "id": 38,
+                "title": "Reportes",
+                "url": null,
+                "icon": null,
+                "id_padre": "36",
+                "subMenu": [
+                    {
+                        "id": 39,
+                        "title": "Coacs DNSES",
+                        "url": "\/INRtools\/frontend\/dnses\/reportes\/coacsdnses\/coacsdnses.php",
+                        "icon": null,
+                        "id_padre": "38",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 40,
+                        "title": "Variaciones B11",
+                        "url": "\/INRtools\/frontend\/dnses\/reportes\/variacionesb11\/variacionesb11.php",
+                        "icon": null,
+                        "id_padre": "38",
+                        "subMenu": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "title": "DNS",
+        "url": null,
+        "icon": "fa-solid fa-network-wired",
+        "id_padre": null,
+        "subMenu": [
+            {
+                "id": 42,
+                "title": "Informes",
+                "url": "\/INRtools\/frontend\/dns\/informes\/informes.php",
+                "icon": null,
+                "id_padre": "41",
+                "subMenu": []
+            },
+            {
+                "id": 43,
+                "title": "Empresas Auxiliares",
+                "url": null,
+                "icon": null,
+                "id_padre": "41",
+                "subMenu": [
+                    {
+                        "id": 44,
+                        "title": "Catastro",
+                        "url": "\/INRtools\/frontend\/dns\/segEmpAux\/catastroEmpAux.php",
+                        "icon": null,
+                        "id_padre": "43",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 45,
+                        "title": "Seguimiento",
+                        "url": "\/INRtools\/frontend\/dns\/segEmpAux\/segEmpAux.php",
+                        "icon": null,
+                        "id_padre": "43",
+                        "subMenu": []
+                    }
+                ]
+            },
+            {
+                "id": 46,
+                "title": "Reportes",
+                "url": null,
+                "icon": null,
+                "id_padre": "41",
+                "subMenu": [
+                    {
+                        "id": 47,
+                        "title": "SSI",
+                        "url": "\/INRtools\/frontend\/dns\/reportes\/ssi\/ssi.php",
+                        "icon": null,
+                        "id_padre": "46",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 48,
+                        "title": "Detalles PA",
+                        "url": "\/INRtools\/frontend\/dns\/reportes\/detallesPA\/detallesPA.php",
+                        "icon": null,
+                        "id_padre": "46",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 49,
+                        "title": "Hallazgos EPS",
+                        "url": "\/INRtools\/frontend\/dns\/reportes\/hallazgoseps\/hallazgoseps.php",
+                        "icon": null,
+                        "id_padre": "46",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 50,
+                        "title": "Diag. Situacionales",
+                        "url": "\/INRtools\/frontend\/dns\/reportes\/diagsituacional\/diagsituacional.php",
+                        "icon": null,
+                        "id_padre": "46",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 51,
+                        "title": "Hal General",
+                        "url": "\/INRtools\/frontend\/dns\/reportes\/halgeneraleps\/halgeneraleps.php",
+                        "icon": null,
+                        "id_padre": "46",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 52,
+                        "title": "As AGSEPS",
+                        "url": "\/INRtools\/frontend\/dns\/reportes\/asagseps\/asagseps.php",
+                        "icon": null,
+                        "id_padre": "46",
+                        "subMenu": []
+                    },
+                    {
+                        "id": 53,
+                        "title": "A. Externos",
+                        "url": "\/INRtools\/frontend\/dns\/reportes\/aexternos\/aexternos.php",
+                        "icon": null,
+                        "id_padre": "46",
+                        "subMenu": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "title": "DNPLA",
+        "url": null,
+        "icon": "fa-solid fa-film",
+        "id_padre": null,
+        "subMenu": []
+    },
+    {
+        "id": 55,
+        "title": "Configuraci\u00f3n",
+        "url": null,
+        "icon": "fa-solid fa-cog",
+        "id_padre": null,
+        "subMenu": [
+            {
+                "id": 56,
+                "title": "New Person",
+                "url": "\/INRtools\/frontend\/configuracion\/users\/newPerson.php",
+                "icon": null,
+                "id_padre": "55",
+                "subMenu": []
+            },
+            {
+                "id": 57,
+                "title": "Add\/Del User",
+                "url": "\/INRtools\/frontend\/configuracion\/users\/addDelUser.php",
+                "icon": null,
+                "id_padre": "55",
+                "subMenu": []
+            },
+            {
+                "id": 58,
+                "title": "Intendencias y Direcciones",
+                "url": "\/INRtools\/frontend\/configuracion\/direcciones\/newdireccion.php",
+                "icon": null,
+                "id_padre": "55",
+                "subMenu": []
+            },
+            {
+                "id": 59,
+                "title": "Bitacora de Usuarios",
+                "url": "\/INRtools\/frontend\/configuracion\/bitacora\/bitacoraUsuariosView.php",
+                "icon": null,
+                "id_padre": "55",
+                "subMenu": []
+            },
+            {
+                "id": 65,
+                "title": "Permisos Roles",
+                "url": "\/INRtools\/frontend\/configuracion\/permisos_roles\/permisos_roles.php",
+                "icon": "fa-solid fa-shield-halved",
+                "id_padre": "55",
+                "subMenu": []
+            }
+        ]
+    },
+    {
+        "id": 60,
+        "title": "Perfil",
+        "url": "\/INRtools\/frontend\/profile.php",
+        "icon": "fa-solid fa-user",
+        "id_padre": null,
+        "subMenu": []
+    },
+    {
+        "id": 61,
+        "title": "Acerca de",
+        "url": "\/INRtools\/frontend\/about.php",
+        "icon": "fa-solid fa-info-circle",
+        "id_padre": null,
+        "subMenu": []
+    },
+    {
+        "id": 62,
+        "title": "EN CONSTRUCCI\u00d3N",
+        "url": "\/INRtools\/frontend\/porUsuario.php",
+        "icon": "fa fa-file-text",
+        "id_padre": null,
+        "subMenu": [
+            {
+                "id": 63,
+                "title": "Tareas",
+                "url": "\/INRtools\/frontend\/mUtilidades\/tareas\/gestionTareas.php",
+                "icon": null,
+                "id_padre": "62",
+                "subMenu": []
+            },
+            {
+                "id": 64,
+                "title": "Avance de Supervision DNSES",
+                "url": "\/INRtools\/frontend\/dnses\/supervision\/asupervision.php",
+                "icon": null,
+                "id_padre": "62",
+                "subMenu": []
+            }
+        ]
+    }
+]

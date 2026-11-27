@@ -18,7 +18,11 @@
 <!-- REGISTRAR BITACORA -->
 <script src="<?php echo $base_url; ?>/assets/js/registrarBitacora.js?v=<?= time(); ?>"></script> 
 <!-- Menú lateral dinámico -->
-<script src="<?php echo $base_url; ?>/assets/js/menuItems.js?v=<?= time(); ?>"></script>
+ <!-- anterior -->
+<!-- <script src="<?php echo $base_url; ?>/assets/js/menuItems.js?v=<?= time(); ?>"></script> -->
+
+<script src="<?php echo $base_url; ?>/assets/js/menuLoader.js?v=<?= time(); ?>"></script>
+
 
 <!-- Funciones del sidebar -->
 <script src="<?php echo $base_url; ?>/assets/js/sidebarFunctions.js?v=<?= time(); ?>"></script>
