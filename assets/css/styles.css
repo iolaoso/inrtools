@@ -129,6 +129,12 @@ thead {
     }
 
 /* Tamaño personalizado para el modal */
+
+.modal-header {
+    background-color: #17a2b8; /* Cambia el color aquí */
+    color: white; /* Cambia el color del texto si es necesario */
+}
+
 .modal-custom {
     max-width: 400px; /* Ancho máximo */
     width: 100%; /* Ancho completo */
@@ -155,10 +161,7 @@ thead {
     font-size: 14px;
     color: #2c3e50; /* Color del texto */
 }
-.modal-header {
-    background-color: #17a2b8; /* Cambia el color aquí */
-    color: white; /* Cambia el color del texto si es necesario */
-}
+
 
 /* estilo para los botones de la tabla */
 .button-container {

@@ -16,6 +16,9 @@
     <!-- ESTILOS PROPIOS DEL SISTEMA -->
     <!-- ========================================================= -->
 
+    <!-- Estilos Header -->
+    <link href="<?php echo $base_url; ?>/assets/css/header.css?v=<?= time(); ?>" rel="stylesheet">
+
     <!-- Estilos generales -->
     <link href="<?php echo $base_url; ?>/assets/css/styles.css?v=<?= time(); ?>" rel="stylesheet">
 

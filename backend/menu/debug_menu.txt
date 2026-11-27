@@ -448,48 +448,7 @@
         "url": null,
         "icon": "fa-solid fa-cog",
         "id_padre": null,
-        "subMenu": [
-            {
-                "id": 56,
-                "title": "New Person",
-                "url": "\/INRtools\/frontend\/configuracion\/users\/newPerson.php",
-                "icon": null,
-                "id_padre": "55",
-                "subMenu": []
-            },
-            {
-                "id": 57,
-                "title": "Add\/Del User",
-                "url": "\/INRtools\/frontend\/configuracion\/users\/addDelUser.php",
-                "icon": null,
-                "id_padre": "55",
-                "subMenu": []
-            },
-            {
-                "id": 58,
-                "title": "Intendencias y Direcciones",
-                "url": "\/INRtools\/frontend\/configuracion\/direcciones\/newdireccion.php",
-                "icon": null,
-                "id_padre": "55",
-                "subMenu": []
-            },
-            {
-                "id": 59,
-                "title": "Bitacora de Usuarios",
-                "url": "\/INRtools\/frontend\/configuracion\/bitacora\/bitacoraUsuariosView.php",
-                "icon": null,
-                "id_padre": "55",
-                "subMenu": []
-            },
-            {
-                "id": 65,
-                "title": "Permisos Roles",
-                "url": "\/INRtools\/frontend\/configuracion\/permisos_roles\/permisos_roles.php",
-                "icon": "fa-solid fa-shield-halved",
-                "id_padre": "55",
-                "subMenu": []
-            }
-        ]
+        "subMenu": []
     },
     {
         "id": 60,
@@ -513,23 +472,6 @@
         "url": "\/INRtools\/frontend\/porUsuario.php",
         "icon": "fa fa-file-text",
         "id_padre": null,
-        "subMenu": [
-            {
-                "id": 63,
-                "title": "Tareas",
-                "url": "\/INRtools\/frontend\/mUtilidades\/tareas\/gestionTareas.php",
-                "icon": null,
-                "id_padre": "62",
-                "subMenu": []
-            },
-            {
-                "id": 64,
-                "title": "Avance de Supervision DNSES",
-                "url": "\/INRtools\/frontend\/dnses\/supervision\/asupervision.php",
-                "icon": null,
-                "id_padre": "62",
-                "subMenu": []
-            }
-        ]
+        "subMenu": []
     }
 ]
